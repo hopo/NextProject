@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- // PROJECT : springApril -->
+
+<!DOCTYPE configuration>
+
+<!-- http://wiki.sitemesh.org/wiki/display/sitemesh3/Getting+Started+with+SiteMesh+3 -->
+<sitemesh>
+
+  <mime-type>text/html</mime-type>
+  <mime-type>appliaction/vnd.wap.xhtml+xml</mime-type>
+  <mime-type>application/xhtml+xml</mime-type>
+  
+  <!-- Exclude url path from decoration. -->
+  <mapping path="/resources/*" exclue="true" />
+  <mapping path="/template/*" exclue="true" />
+  <mapping path="/fonts/*" exclue="true" />
+  <mapping path="/css/*" exclue="true" />
+  <mapping path="/js/*" exclue="true" />
+
+  <mapping path="/*.js" exclue="true" />
+  <mapping path="/*.json" exclue="true" />
+  <mapping path="/*.xml" exclue="true" />
+  <mapping path="/*.htm" exclue="true"/>
+  <mapping path="/*.html" exclue="true" />
+
+  <!-- GUI Main Page -->
+  <!-- <mapping path="/*" decorator="/decorator/index.body.decorator.jsp"/> -->
+  
+</sitemesh>

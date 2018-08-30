@@ -15,73 +15,60 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient view</title>
+	<title>notice view</title>
 </head>
 
 <body>
-"patient view"
-
 <table class="table table-bordered table-hover">
 	<tbody>
 		<tr>
-			<th>환자 이름</th>
+			<th>글번호</th>
 			<td>
-				김환자
+				369
 			</td>
 		</tr>
 		<tr>
-			<th>환자 주민번호</th>
+			<th>제목</th>
 			<td>
-				760503-3413021
+				9월 첫째주 일정 공지
 			</td>
 		</tr>
 		<tr>
-			<th>환자 주소</th>
+			<th>글쓴이</th>
 			<td>
-				대전광역시 중구 용두동 444
+				김의사
 			</td>
 		</tr>
 		<tr>
-			<th>환자 전화번호</th>
+			<th>글등록일</th>
 			<td>
-				017-2342-4444
+				2018-08-30	
 			</td>
 		</tr>
 		<tr>
-			<th>환자 질환유무</th>
-			<td>
-				없음
-			</td>
-		</tr>
-		<tr>
-			<th>환자 초진일</th>
-			<td>
-				2018-04-09
-			</td>
-		</tr>
-		<tr>
-			<th>환자 재진일</th>
+			<th>글수정일</th>
 			<td>
 				-	
 			</td>
 		</tr>
 		<tr>
-			<th>환자 특이사항</th>
-			<td>
-				-	
-			</td>
+			<th colspan="2">내용</th>
 		</tr>
 		<tr>
-			<th>환자 보험코드</th>
-			<td>
-				RC-123123-4444	
+			<td colspan="2">
+				<textarea rows="" cols="">
+					0830금: 시작 주제발표
+					0903월: 웹서버 시험
+					0904화: 이력서/포트폴리오 제출
+					0905수: 산업체특강
+				</textarea>
 			</td>
 		</tr>
 		
 		<tr>
 			<td colspan="2">
-				<button>수정하기</button>
-				<a href="<c:url value='/patient/patientList' />">환자목록</a>
+				<button>글수정</button>
+				<a href="<c:url value='/notice/noticeList' />">글목록</a>
 			</td>
 		</tr>
 	</tbody>

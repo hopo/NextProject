@@ -27,8 +27,8 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="<c:url value="/patient/patientList" />">환자조회</a></li>
-				<li><a class="navbar-brand" href="<c:url value="/patient/patientCreate" />">환자등록</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/patient/patientList' />">환자조회</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/patient/patientCreate' />">환자등록</a></li>
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="#">진료조회</a></li>
 				<li><a class="navbar-brand" href="#">진료</a></li>
@@ -40,10 +40,10 @@
 				<li><a class="navbar-brand" href="#">매출조회</a></li>
 				<li><a class="navbar-brand" href="#">미수환불</a></li>
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="#">공지사항</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/notice/noticeList' />">공지사항</a></li>
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="#">접속정보</a></li>
-				<li><a class="navbar-brand" href="<c:url value="/session/login" />">로그아웃</a></li> <!-- ;;;임시로 로그인으로 링크-->
+				<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그아웃</a></li> <!-- ;;;임시로 로그인으로 링크-->
 				<li><span class="navbar-brand">|</span></li>
 			</ul>
 		</div>

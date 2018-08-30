@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient list</title>
+	<title>notice list</title>
 </head>
 
 <body>
@@ -25,14 +25,14 @@
 			<th>SearchType</th>
 			<td>
 				<select>
-					<option value="sel1">이름</option>
-					<option value="sel2">환자코드</option>
-					<option value="sel3">보험코드</option>
-					<option value="sel4">전화번호</option>
+					<option value="sel1">글번호</option>
+					<option value="sel2">글제목</option>
+					<option value="sel3">글쓴이</option>
+					<option value="sel4">글등록일</option>
 				</select>
 			</td>
 			<td>
-				<input placeholder="입력하세요..." />
+				<input placeholder="검색내용입력..." />
 			</td>
 			<td>
 				<button id="searchsubmit" type="submit" class="btn btn-primary">검색</button>
@@ -43,33 +43,22 @@
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th>환자코드</th>
-				<th>환자이름</th>
-				<th>담장의</th>
-				<th>환자주민번호</th>
-				<th>보험코드</th>
-				<th>환자주소</th>
-				<th>환자전화번호</th>
-				<th>질환유무</th>
-				<th>초진일</th>
-				<th>재진일</th>
-				<th>특이사항</th>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>글등록일</th>
+				<th>글수정일</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="i" begin="0" end="9" step="1">
 				<tr>
-					<td><a href="<c:url value='/patient/patientView' />">PAT-00${i}</a></td>
-					<td>이름${i}</td>
-					<td>담당의사${i}</td>
-					<td>주민번호${i}</td>
-					<td>보험코드${i}</td>
-					<td>주소${i}</td>
-					<td>전화번호${i}</td>
-					<td>질환유무${i}</td>
-					<td>초진일${i}</td>
-					<td>재진일${i}</td>
-					<td>특이사항${i}</td>
+					<td><a href="<c:url value='/notice/noticeView' />">NTC-00${i}</a></td>
+					<td>제목${i}</td>
+					<td>글쓴이${i}</td>
+					<td>2018-08-30</td>
+					<td>2018-09-01</td>
+				</td>
 				</tr>		
 			</c:forEach>
 		</tbody>

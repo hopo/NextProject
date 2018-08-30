@@ -55,5 +55,35 @@
 		</c:forEach>
 	</tbody>
 </table>
+
+<nav>
+	<ul class="pagination">
+		<!-- // ;;Previous Button -->
+			<li>
+				<a href='#' aria-label='Previous' data-curpage='${customerSearchVo.startPage - 1}' class='prev goPage'>
+					<span aria-hidden='true'>Prev</span>
+				</a>
+			</li>
+
+		<!-- // ;;Page Numbering -->
+			<li class='activate'>
+				<a href='#' class='goPage'>1</a>
+			</li>
+			<li class='activate'>
+				<a href='#' class='goPage'>2</a>
+			</li>
+			<li class='activate'>
+				<a href='#' class='goPage'>3</a>
+			</li>
+
+		<!-- // ;;Next Button-->
+
+			<li class='disabled'>
+				<a href='#' aria-label='Next'>
+					<span aria-hidden='true'>Next</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
 </body>
 </html>

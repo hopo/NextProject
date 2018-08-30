@@ -31,7 +31,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>환자 생년월일</th>
+			<th>환자 주민번호</th>
 			<td>
 				<input type="text">
 			</td>
@@ -50,18 +50,6 @@
 		</tr>
 		<tr>
 			<th>환자 질환유무</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 초진일</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 초진일</th>
 			<td>
 				<input type="text">
 			</td>

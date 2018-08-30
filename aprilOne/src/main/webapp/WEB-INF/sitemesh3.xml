@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- // PROJECT : springApril -->
+<!-- // PROJECT : aprilOne -->
 
 <!DOCTYPE configuration>
 
@@ -25,6 +25,6 @@
   <mapping path="/*.html" exclue="true" />
 
   <!-- GUI Main Page -->
-  <!-- <mapping path="/*" decorator="/decorator/index.body.decorator.jsp"/> -->
+  <mapping path="/*" decorator="/decorator/index.body.decorator.jsp"/>
   
 </sitemesh>

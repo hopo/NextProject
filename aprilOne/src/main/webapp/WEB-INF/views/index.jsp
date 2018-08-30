@@ -11,11 +11,16 @@
 <html>
 
 <head>
-	<title>Home</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Welcome Index</title>
 </head>
+
 <body>
 <h1>
-	Hello world!  
+	Hello world SpringOne Project
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

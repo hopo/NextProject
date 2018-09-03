@@ -18,4 +18,20 @@ public class SessionController {
 
 	}
 
+
+	@RequestMapping(value = "session/loginInfo")
+	public String loginInfo() {
+		log.info(">>> session/loginInfo");
+
+		return "session/loginInfo";
+
+	}
+
+	@RequestMapping(value = "session/logoutProc")
+	public String logoutProc() {
+		log.info(">>> session/logoutProc");
+
+		return "redirect:/index";
+	}
+
 }

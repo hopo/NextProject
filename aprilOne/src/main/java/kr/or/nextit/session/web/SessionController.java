@@ -24,7 +24,6 @@ public class SessionController {
 		return "session/login";
 	}
 
-
 	@RequestMapping(value = "session/loginInfo")
 	public String loginInfo() {
 		log.info(">>> session/loginInfo");

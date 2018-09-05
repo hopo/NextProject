@@ -1,10 +1,11 @@
 package kr.or.nextit.employee.web;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.EmployeeVo;
@@ -18,6 +19,8 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService; 
 
+	
+	
 	// 직원등록 
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
@@ -29,17 +32,19 @@ public class EmployeeController {
 	
 	
 	
-	// 직원리스트 
-	@RequestMapping(value = "/employee/employeeCreateResult")
-	public String employeeList(EmployeeVo employeeVo, Model model) throws Exception {
-		log.info(">>> employee/employeeList");
+	// 직원등록 결과 
+	@RequestMapping(value = "/employee/employeeCreateProc")
+	public String employeeCreateProc(EmployeeVo employeeVo, HashMap<String, Object> hmap) throws Exception {
+		log.info(">>> employee/employeeCreateProc");
 		
 		employeeService.employeeInsert(employeeVo);
+	
+		// if(employeeVo == null) if문을 이용해 등록실패를 작성하려했으나 등록 폼에서 빈칸이 있는 상태에서 등록버튼 클릭시 
+		// 빈칸을 입력하라는 화면이 빈칸에 메세지창처럼 뜸.. 다른 등록 실패 예외를 뭐로할지 몰라서 우선 비워둠 
 		
-		model.addAttribute("insertResult", "등록완료");
 		
-
-		return "redirect:/employee/employeeCreateResult";
+		// 정상적 등록시 로그인 화면으로 이동 
+		return "redirect:/session/login";
 
 	}
 	

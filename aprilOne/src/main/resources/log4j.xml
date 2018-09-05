@@ -29,7 +29,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="kr.or.nextit">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	

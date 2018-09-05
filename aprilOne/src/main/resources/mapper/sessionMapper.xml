@@ -5,4 +5,30 @@
 <!-- // 세션 매퍼 -->
 <mapper namespace="kr.or.nextit.session.service.impl.sessionMapper">
 
+
+<select id="selectSession" parameterType="kr.or.nextit.comm.model.EmployeeVo" resultType="kr.or.nextit.comm.model.EmployeeVo">
+
+	 SELECT
+	    emp_id,
+	    emp_name,
+	    emp_pwd,
+	    emp_address,
+	    emp_rrnum,
+	    emp_phone,
+	    emp_salary,
+	    emp_hiredate,
+	    emp_div,
+	    emp_retiredate
+	FROM
+	    tb_employee
+	    where emp_id=#{empId};
+    	and emp_pwd=#{empPwd};
+ 
+
+
+
+</select>
+
+
+
 </mapper>

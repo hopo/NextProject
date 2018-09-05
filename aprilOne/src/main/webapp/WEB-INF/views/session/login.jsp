@@ -18,17 +18,39 @@
 </head>
 
 <body>
-		<!-- <h2 class="form-signin-heading">Please Log In</h2> -->
+
+<form class="form-horizontal" action=" loginProc" method="post">
+
 		<label for="inputEmpId" class="sr-only">직원아이디</label>
 		<input name="empId" id="inputEmpId" class="form-control" placeholder="Employee Id" required autofocus>
+		
 		<label for="inputPassword" class="sr-only">비밀번호</label>
 		<input type="password" name="empPwd"  id="inputPassword" class="form-control" placeholder="Password" required>
+		
 		<div class="checkbox">
 			<label>
 				<input type="checkbox" value="remember-me"> Remember me
 			</label>
 		</div>
+		
 		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		신입은 등록이 필요합니다. <a href="/member/memberCreate">등록하기</a>
+		신입은 등록이 필요합니다. <a href="employee/employeeCreate">등록하기</a>
+
+</form>
+		
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

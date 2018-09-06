@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- // employee 매퍼 -->
+
+<mapper namespace="kr.or.nextit.employee.service.impl.EmployeeMapper">
+
+
+
+<insert id="employeeInsert" parameterType="kr.or.nextit.comm.model.EmployeeVo" >
+
+
+	INSERT INTO tb_employee (
+		emp_id,
+		emp_name,
+		emp_pwd,
+		emp_address,
+		emp_rrnum,
+		emp_phone,
+		emp_salary,
+		emp_hiredate,
+		emp_div
+		
+	) VALUES (
+		#{empId},
+		#{empName},
+		#{empPwd},
+		#{empAddress},
+		#{empRrnum},
+		#{empPhone},
+		#{empSalary},
+		#{empHiredate},
+		#{empDiv}
+		
+	)
+
+</insert>
+
+
+
+
+
+
+
+
+</mapper>

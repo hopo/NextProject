@@ -14,43 +14,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>login</title>
+	<title> 직원 등록 결과   </title>
 </head>
 
 <body>
-
-<form class="form-horizontal" action=" loginProc" method="post">
-
-		<label for="inputEmpId" class="sr-only">직원아이디</label>
-		<input name="empId" id="inputEmpId" class="form-control" placeholder="Employee Id" required autofocus>
 		
-		<label for="inputPassword" class="sr-only">비밀번호</label>
-		<input type="password" name="empPwd"  id="inputPassword" class="form-control" placeholder="Password" required>
+		 
 		
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" value="remember-me"> Remember me
-			</label>
-		</div>
-		
-		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		신입은 등록이 필요합니다. <a href="employee/employeeCreate">등록하기</a>
-
-</form>
-		
+			 
+		 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

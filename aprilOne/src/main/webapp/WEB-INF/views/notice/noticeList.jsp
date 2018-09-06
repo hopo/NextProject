@@ -21,43 +21,45 @@
 </head>
 
 <body>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>순번</th>
-							<th>보드타입</th>
-							<th>제목</th>
-							<th>조회수</th>
-							<th>등록일</th>
-							<th>수정일</th>
-							<th>작성자</th>
-						</tr>
-					</thead>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>글 번호</th>
+				<th>글 제목</th>
+				<th>조회수</th>
+				<th>등록일</th>
+				<th>수정일</th>
+				<th>직원 ID</th>
+			</tr>
+		</thead>
 
-					<tbody>
+		<tbody>
 
-						<c:forEach var="item" items="${result}">
+			<c:forEach var="item" items="${result}">
 
-							<c:url var="viewUrl" value="/notice/noticeView">
-								<c:param name="idx" value="${item.idx }" />
-								<c:param name="curPage" value="${noticeSearchVo.curPage}"></c:param>
-							</c:url>
+				<c:url var="viewUrl" value="/notice/noticeView">
+					<c:param name="idx" value="${item.ntcIdx }" />
+				</c:url>
 
-							<tr>
-								<td><a href="${viewUrl}"> ${item.rnum } </a></td>
-								<td>${item.boardType }</td>
-								<td><a href="${viewUrl}">${item.title } </a></td>
-								<td>${item.readCount }</td>
-								<td>${item.regDate }</td>
-								<td>${item.upDate }</td>
-								<td>${item.regUser }</td>
-							</tr>
+				<tr>
+					<td><a href="${viewUrl}"> ${item.ntcIdx } </a></td>
+					<td><a href="${viewUrl}">${item.ntcTitle } </a></td>
+					<td>${item.ntcCount }</td>
+					<td>${item.ntcRegdate }</td>
+					<td>${item.ntcUpdate }</td>
+					<td>${item.empId }</td>
+				</tr>
 
-						</c:forEach>
+			</c:forEach>
+			<tr>
+				<td colspan="2">
+					<a href="<c:url value='/notice/noticeForm' />">글작성</a>
+				</td>
+			</tr>
 
-					</tbody>
+		</tbody>
 
 
-				</table>
+	</table>
 </body>
 </html>

@@ -29,7 +29,7 @@
 					<td><input type="text" name="ntcTitle"></td>
 				</tr>
 				<tr>
-					<th>글쓴이</th>
+					<th>직원 ID</th>
 					<td>홍길동</td>
 				</tr>
 

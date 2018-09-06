@@ -4,18 +4,42 @@
 
 <mapper namespace="kr.or.nextit.notice.service.impl.NoticeMapper">
 
-	<select id="selectNoticeList" resultType="kr.or.nextit.comm.model.NoticeVo">
+	<select id="selectNoticeList"
+		resultType="kr.or.nextit.comm.model.NoticeVo">
 		SELECT
-			ntc_idx,
-			ntc_title,
-			emp_id,
-			ntc_content,
-			ntc_regdate,
-			ntc_update,
-			ntc_count,
-			ntc_delat
+		ntc_idx,
+		ntc_title,
+		emp_id,
+		ntc_content,
+		ntc_regdate,
+		ntc_update,
+		ntc_count,
+		ntc_delat
 		FROM
-			tb_notice
+		tb_notice
 	</select>
+
+	<insert id="insertNotice"
+		parameterType="kr.or.nextit.comm.model.NoticeVo">
+
+		INSERT INTO tb_notice (
+		ntc_idx,
+		ntc_title,
+		emp_id,
+		ntc_content,
+		ntc_regdate,
+		ntc_update
+
+		) VALUES (
+		seq_notice.nextval,
+		#{ntcTitle},
+		#{empId},
+		#{ntcContent},
+		sysdate,
+		sysdate
+		)
+
+	</insert>
+
 
 </mapper>

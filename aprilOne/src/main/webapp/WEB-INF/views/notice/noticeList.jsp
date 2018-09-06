@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,12 +14,50 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>notice list</title>
+<title>notice list</title>
 </head>
 
 <body>
-	"게시판 리스트 화면입니다"
+				<table class="table">
+					<thead>
+						<tr>
+							<th>순번</th>
+							<th>보드타입</th>
+							<th>제목</th>
+							<th>조회수</th>
+							<th>등록일</th>
+							<th>수정일</th>
+							<th>작성자</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<c:forEach var="item" items="${result}">
+
+							<c:url var="viewUrl" value="/notice/noticeView">
+								<c:param name="idx" value="${item.idx }" />
+								<c:param name="curPage" value="${noticeSearchVo.curPage}"></c:param>
+							</c:url>
+
+							<tr>
+								<td><a href="${viewUrl}"> ${item.rnum } </a></td>
+								<td>${item.boardType }</td>
+								<td><a href="${viewUrl}">${item.title } </a></td>
+								<td>${item.readCount }</td>
+								<td>${item.regDate }</td>
+								<td>${item.upDate }</td>
+								<td>${item.regUser }</td>
+							</tr>
+
+						</c:forEach>
+
+					</tbody>
+
+
+				</table>
 </body>
 </html>

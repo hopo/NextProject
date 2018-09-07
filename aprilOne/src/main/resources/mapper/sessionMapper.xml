@@ -2,61 +2,48 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- // 세션 매퍼 -->
+<!-- ============ sessionMapper.xml =================================================== -->
+
 <mapper namespace="kr.or.nextit.session.service.impl.SessionMapper">
 
-
-<!-- 로그인 select -->
-<select id="selectSession" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
-
-	 SELECT
+	<!-- TB_EMPLOYEE 모든 컬럼 -->
+	<sql id="tableAllColumn">
 	    emp_id,
-	    emp_name,
 	    emp_pwd,
-	    emp_address,
-	    emp_rrnum,
+	    emp_name,
 	    emp_phone,
+	    emp_rrnum,
+	    emp_address,
+	    emp_div,
 	    emp_salary,
 	    emp_hiredate,
-	    emp_div,
 	    emp_retiredate
-	FROM
-	    tb_employee
-	    where emp_id = #{empId}
-    	and emp_pwd=  #{empPwd}
+	</sql>
+	
 
-</select>
-
-
-<!-- 접속자 정보 select -->
-<select id="selectLoginInfo" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
-
-	 SELECT
-	    emp_id,
-	    emp_name,
-	    emp_pwd,
-	    emp_address,
-	    emp_rrnum,
-	    emp_phone,
-	    emp_salary,
-	    emp_hiredate,
-	    emp_div,
-	    emp_retiredate
-	FROM
-	    tb_employee
-	  
-
-</select>
+	<!-- WHERE문 트림 (search 사용시) -->
+	<sql id="whereQueryTrimIf">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="searchText != null and searchText != ''">
+				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
+			</if>
+		</trim>
+	</sql>
 
 
-
-
-
-
-
-
-
-
+	<!-- 로그인 select -->
+	<select id="loginCheck" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
+		SELECT
+			emp_id,
+			emp_pwd,
+		    emp_name
+		FROM
+			tb_employee
+		WHERE
+			emp_id = #{empId} AND
+			emp_pwd=  #{empPwd}
+	</select>
+	
 </mapper>
 
 

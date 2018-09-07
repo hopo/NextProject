@@ -13,26 +13,18 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <title>접속자 정보</title>
 </head>
 
 <body>
-
 	<table class="table">
 		<tr>
-			<th>직원 ID</th>
-
-			<th>로그인 시간</th>
-
-			<th>로그아웃 시간</th>
-
-
+			<th>접속자 아이디</th>
+			<th>접속자 이름</th>
 		</tr>
 		<tr>
 			<td>${loginInfo.empId}</td>
-			<%-- <td>${loginInfo.empId}</td>
-			<td>${loginInfo.empId}</td> --%>
+			<td>${loginInfo.empName}</td>
 		</tr>
 	</table>
 </body>

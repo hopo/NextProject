@@ -2,8 +2,9 @@ package kr.or.nextit.comm.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @SuppressWarnings("serial")
 public class EmployeeVo implements Serializable {
@@ -11,10 +12,10 @@ public class EmployeeVo implements Serializable {
 	// !!! *테이블이름 : TB_EMPLOYEE
 	// !!!필드
 	
-	@Size(max=12, min=5, message="Error : 직원ID는 5글자이상 12글자 이하입니다.")
+	@Size(max=12, min=5, message="ERROR : 직원ID는 5글자이상 12글자 이하입니다.")
 	private String empId;			// !직원ID (PK)
-	private String empPwd; 			// !비밀번호
 	private String empName; 		// !직원 이름
+	private String empPwd; 			// !비밀번호
 	private String empRrnum; 		// !직원 주민번호
 	private String empPhone; 		// !직원 전화번호
 	private String empAddress;		// !직원 주소
@@ -125,6 +126,12 @@ public class EmployeeVo implements Serializable {
 
 	public void setResult(boolean result) {
 		this.result = result;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this); 
 	}
 
 }

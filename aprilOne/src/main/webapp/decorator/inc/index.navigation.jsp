@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
@@ -18,9 +18,10 @@
 				<span class="icon-bar"></span>
 			</button>
   			-->
-			<a class="navbar-brand" href="/index">
+
+			<a class="navbar-brand" href="<c:url value='/index'/>">
 				<p>
-					<img src="/images/favicon.ico" height="28">&nbsp;&nbsp;&nbsp;AprilClinic
+					<img src="<c:url value='/images/favicon.ico' />" height="28">&nbsp;&nbsp;&nbsp;에이프릴 Clinic
 				</p>
 			</a>
 		</div>
@@ -40,16 +41,18 @@
 				<li><a class="navbar-brand" href="#">매출조회</a></li>
 				<li><a class="navbar-brand" href="#">미수환불</a></li>
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="<c:url value='/notice/noticeList' />">공지사항</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/notice/noticeList' />">게시판</a></li>
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="<c:url value='/session/loginInfo' />">접속정보</a></li>  
 		
 				
-				
-			 
-				<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그인</a></li>  
-				
-				
+				<c:if test="${loginInfo eq null}">
+					<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그인</a></li>  
+				</c:if>
+
+				<c:if test="${loginInfo ne null}">
+					<li><a class="navbar-brand" href="<c:url value='/session/loginInfo' />">접속정보</a></li>  
+					<li><a class="navbar-brand" href="<c:url value='/session/logout' />">로그아웃</a></li>  
+				</c:if>
 	
 			</ul>
 		</div>

@@ -23,10 +23,10 @@
 	<form action="noticeUpdate">
 		<table class="table table-bordered table-hover">
 			<tbody>
-
+				
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="ntcTitle"></td>
+					<td>${param.NTC_TITLE}</td>
 				</tr>
 				<tr>
 					<th>직원 ID</th>
@@ -37,10 +37,7 @@
 					<th colspan="2">내용</th>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea rows="10" cols="60"
-							name="ntcContent">
-					
-				</textarea></td>
+					<td colspan="2">${param}</td>
 				</tr>
 
 				<tr>

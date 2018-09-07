@@ -8,12 +8,9 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.nextit.comm.model.NoticeVo;
 import kr.or.nextit.notice.service.NoticeService;
@@ -55,7 +52,7 @@ public class NoticeController {
 		// TODO : 로그인이후 수정 필요
 		param.put("empId", "cha");
 
-		noticeService.insertNitice(param);
+		noticeService.insertNotice(param);
 
 		return "redirect:/notice/noticeList";
 
@@ -63,36 +60,15 @@ public class NoticeController {
 
 	// 상세보기
 	@RequestMapping(value = "/notice/noticeView")
-	public String noticeView(Model model, ModelMap modelMap,
-
-			@RequestParam HashMap<String, Object> param
-
-	) throws Exception {
-
-		log.info(">>> notice/noticeView");
-
-		log.debug(">>> param : {}", param);
-
-		HashMap<String, Object> result = noticeService.noticeView(param);
-
-		log.debug("가져온값 result {}", result);
-
-		// model.addAttribute("result", result);
-		modelMap.addAttribute("result", result);
-
+	public String noticeView(NoticeVo noticeVo, HashMap<String, Object> hmap) throws Exception {
+		log.info(">>> notice/noticeList");
+		
+		noticeVo = noticeService.noticeView(hmap);
+		
+		hmap.put("noticeView", noticeVo);
+		
 		return "notice/noticeView";
 	}
 
-	// 수정
-	@RequestMapping(value = "/notice/noticeUpdate")
-	public String noticeUpdate(@RequestParam HashMap<String, Object> param) throws Exception {
-		log.info(">>> notice/noticeUpdate");
-		
-		
-		noticeService.noticeUpdate(param);
-
-		return "redirect:/notice/noticeUpdate";
-
-	}
 
 }

@@ -15,8 +15,11 @@ public interface NoticeMapper {
 	public void insertNotice(Map<String, Object> hmap) throws Exception;
 
 	// 상세보기
-	public HashMap<String, Object> noticeView(Map<String, Object> hmap) throws Exception;
+	public NoticeVo noticeView(Map<String, Object> hmap) throws Exception;
 	
-	// 수정
-	public void noticeUpdate(Map<String, Object> hmap) throws Exception;
+	// 수정페이지
+	public  void noticeUpdateForm(Map<String, Object> hmap) throws Exception;
+	
+	//수정처리
+	public  void noticeUpdate(Map<String, Object> hmap) throws Exception;
 }

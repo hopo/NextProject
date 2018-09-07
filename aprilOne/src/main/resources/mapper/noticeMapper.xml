@@ -34,7 +34,7 @@
 		)
 	</insert>
 
-	<select id="noticeView" parameterType="hashMap" resultType="hashMap">
+	<select id="noticeView" parameterType="kr.or.nextit.comm.model.NoticeVo" resultType="kr.or.nextit.comm.model.NoticeVo" >
 		SELECT
 			ntc_idx,
 			ntc_title,
@@ -48,16 +48,16 @@
 			ntc_idx = #{idx}
 	</select>
 	
-	<!--
+	
 	<update id="noticeUpdate" parameterType="kr.or.nextit.comm.model.NoticeVo">
 		UPDATE
 			tb_notice
 		SET
-			ntc_title = #{}
-			AND ntc_content = #{}
+			ntc_title = #{ntcTitle},
+			ntc_content = #{ntcContent}
 		WHERE
-			idx = #{idx}
+			ntc_idx = #{idx}
 	</update>
-  	-->
+  	
 
 </mapper>

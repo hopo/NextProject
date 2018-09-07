@@ -1,6 +1,5 @@
 package kr.or.nextit.notice.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,18 +26,35 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void insertNitice(Map<String, Object> hmap) throws Exception {
+	public void insertNotice(Map<String, Object> hmap) throws Exception {
 		noticeMapper.insertNotice(hmap);
 	}
-
+	
+	
 	@Override
-	public HashMap<String, Object> noticeView(Map<String, Object> hmap) throws Exception {
-		return noticeMapper.noticeView(hmap);
+	public NoticeVo noticeView(Map<String, Object> hmap) throws Exception {
+		
+		List<NoticeVo> noticeVo = (List<NoticeVo>) noticeMapper.noticeView(hmap);
+		
+		return (NoticeVo) noticeVo;
+		
 	}
-
+	
+	
+	@Override
+	public void noticeUpdateForm(Map<String, Object> hmap) throws Exception {
+		noticeMapper.noticeUpdateForm(hmap);
+	}
+	
+	
 	@Override
 	public void noticeUpdate(Map<String, Object> hmap) throws Exception {
+		// TODO Auto-generated method stub
 		noticeMapper.noticeUpdate(hmap);
 	}
+
+	
+
+	
 
 }

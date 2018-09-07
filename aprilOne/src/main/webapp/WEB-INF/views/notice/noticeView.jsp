@@ -19,37 +19,40 @@
 	
 		<table class="table table-bordered table-hover">
 
-			<tbody>
+<!-- 0907 ${} 채우기  -->
+			<%-- <tbody>
 				<tr>
 					<th>글번호</th>
-					<td>${result.NTC_IDX}</td>
+					<td>${}</td>
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td>${result.NTC_TITLE}</td>
+					<td>${}</td>
 				</tr>
 				<tr>
 					<th>글쓴이</th>
-					<td>${result.EMP_ID}</td>
+					<td>${}</td>
 				</tr>
 				<tr>
 					<th>글등록일</th>
-					<td>${result.NTC_REGDATE}</td>
+					<td>${}</td>
 				</tr>
 				<tr>
 					<th>글수정일</th>
-					<td>${result.NTC_UPDATE}</td>
+					<td>${}</td>
 				</tr>
 				<tr>
 					<th colspan="2">내용</th>
 				</tr>
 				<tr>
-					<td>${result.NTC_CONTENT}</td>
+					<td>${}</td>
 				</tr>
-
+ --%>
 				<tr>
-					<td colspan="2"><a href="<c:url value='/notice/noticeList' />">글목록</a>
-						<a href="">수정</a><a href="">삭제</a></td>
+					<td colspan="2">
+					<a href="<c:url value='/notice/noticeList'/>">글목록</a>
+					<a href="<c:url value='/notice/noticeUpdate'/>">수정</a>
+						<a href="">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>

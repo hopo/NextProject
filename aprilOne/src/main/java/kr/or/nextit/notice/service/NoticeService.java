@@ -13,12 +13,15 @@ public interface NoticeService {
 
 	// 글작성
 
-	public void insertNitice(Map<String, Object> hmap) throws Exception;
+	public void insertNotice(Map<String, Object> hmap) throws Exception;
 
 	// 상세보기 
-	public HashMap<String, Object> noticeView(Map<String, Object> hmap) throws Exception;
+	public NoticeVo noticeView(Map<String, Object> hmap) throws Exception;
 	
-	// 수정
-	public void noticeUpdate(Map<String, Object> hmap) throws Exception;
+	// 수정페이지
+	public  void noticeUpdateForm(Map<String, Object> hmap) throws Exception;
+	
+	//수정 처리
+	public  void noticeUpdate(Map<String, Object> hmap) throws Exception;
 	
 }

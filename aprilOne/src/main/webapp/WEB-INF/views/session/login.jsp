@@ -18,10 +18,7 @@
 </head>
 
 <body>
-	<c:url var="loginProcUrl" value='/session/loginProc' />
-
-	<form class="form-horizontal" action="${loginProcUrl}" method="post"> 
-	
+	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
 		<strong>직원아이디</strong><span class="message"><form:errors path="employeeVo" /><form:errors path="employeeVo.empId" /></span>
 		<input name="empId" id="inputEmpId" class="form-control" placeholder="Employee Id" required autofocus>
 		<%-- <form:errors path="employeeVo.empId" /> --%>		
@@ -34,9 +31,8 @@
 		</div>
 		
 		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		ID가 없다면, <a href="/employee/employeeCreate">등록하기</a>
+		ID가 없다면, <a href="<c:url value='/employee/employeeCreate' />">등록하기</a>
 	</form>
-		
 </body>
 </html>
 

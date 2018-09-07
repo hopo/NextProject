@@ -42,9 +42,16 @@ public class PatientServiceImpl implements PatientService {
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception {
 		
 		patientVo = patientMapper.patientSelectView(patientVo);
-		
 		return patientVo;
 		
+	}
+	
+	
+	// 환자 수정 
+	@Override
+	public void patientUpdate(PatientVo patientVo) throws Exception {
+		
+		 patientMapper.patientUpdate(patientVo);
 	}
 
 	

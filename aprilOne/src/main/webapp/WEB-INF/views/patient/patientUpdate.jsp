@@ -15,88 +15,83 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient Update</title>
+<title>patient Update</title>
 </head>
 
 <body>
-환자 정보 수정
-<table class="table table-bordered table-hover">
-	<tbody>
-		<tr>
-			<th>환자 코드</th>
-			<td>
-				${patView.patCode}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 이름</th>
-			<td>
-				${patView.patName}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 담당의</th>
-			<td>
-				${patView.empId}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 주민번호</th>
-			<td>
-				${patView.patRrnum}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 보험코드</th>
-			<td>
-				${patView.patName}	
-			</td>
-		</tr>
-		<tr>
-			<th>환자 주소</th>
-			<td>
-				${patView.patAddress}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 전화번호</th>
-			<td>
-				${patView.patPhone}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 질환유무</th>
-			<td>
-				${patView.patDisease}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 초진일</th>
-			<td>
-				${patView.patFirstdate}
-			</td>
-		</tr>
-		<tr>
-			<th>환자 재진일</th>
-			<td>
-				${patView.patRedate}	
-			</td>
-		</tr>
-		<tr>
-			<th>환자 특이사항</th>
-			<td>
-				${patView.patMemo}	
-			</td>
-		</tr>
-		
-		<tr>
-			<td colspan="2">
-				<button>수정하기</button>
-				<a href="<c:url value='/patient/patientList' />">환자목록</a>
-			</td>
-		</tr>
-	</tbody>
-	
-</table>
+	환자 정보 수정
+
+	<form method="post" action="<c:url value="/patient/patientUpdateProc"/>">
+
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+					<th>환자 코드</th>
+					<td><input name="patCode" type="text" value="${patUpdt.patCode}"></td>
+				</tr>
+				<%-- <tr>
+					<th>환자 보험코드</th>
+					<td><input name="patInscode" type="text" value=" ${patUpdt.patInscode}"></td>
+				</tr> --%>
+				<tr>
+					<th>환자 이름</th>
+					<td><input name="patName" type="text" value=" ${patUpdt.patName}"></td>
+				</tr>
+				<tr>
+					<th>환자 담당의</th>
+					<td><input name="empId" type="text" value=" ${patUpdt.empId}"></td>
+				</tr>
+				<tr>
+					<th>환자 주민번호</th>
+					<td><input name="patRrnum" type="text" value=" ${patUpdt.patRrnum}"></td>
+				</tr>
+				<tr>
+					<th>환자 주소</th>
+					<td><input name="patAddress" type="text" value=" ${patUpdt.patAddress}"></td>
+				</tr>
+				<tr>
+					<th>환자 전화번호</th>
+					<td><input name="patPhone" type="text" value=" ${patUpdt.patPhone}"></td>
+				</tr>
+				<tr>
+					<th>환자 질환유무</th>
+					<td><input name="patDisease" type="text" value=" ${patUpdt.patDisease}"></td>
+				</tr>
+				<tr>
+					<th>환자 초진일</th>
+					<td><input name="patFirstdate" type="text" value=" ${patUpdt.patFirstdate}"></td>
+				</tr>
+				<tr>
+					<th>환자 재진일</th>
+					<td><input name="patRedate" type="text" value=" ${patUpdt.patRedate}"></td>
+				</tr>
+				<tr>
+					<th>환자 특이사항</th>
+					<td><input name="patMemo" type="text" value=" ${patUpdt.patMemo}"></td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<button type="submit" id="btn-update">수정</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

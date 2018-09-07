@@ -15,6 +15,9 @@ public interface PatientMapper {
 	// 환자 상세보기 	
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception;
 	
+	// 환자 수정  
+	public void patientUpdate(PatientVo patientVo) throws Exception;
+	
 		
 
 }

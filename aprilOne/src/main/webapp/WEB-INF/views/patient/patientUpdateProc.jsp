@@ -11,19 +11,23 @@
 <html>
 
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>환자 등록 결과 - 임시페이지 </title>
+<title>patient Update</title>
 </head>
 
 <body>
+	환자 정보 완료 
 
-	<h3> 정상 등록되었습니다. </h3>
 	
 
 </body>
 </html>
+
+
+
 
 
 

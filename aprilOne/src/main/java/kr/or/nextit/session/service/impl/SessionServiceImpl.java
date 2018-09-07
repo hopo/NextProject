@@ -20,48 +20,18 @@ public class SessionServiceImpl implements SessionService {
 	@Autowired
 	private SessionMapper sessionMapper;
 
-	
-	
 	@Override
-	public EmployeeVo selectSession(HashMap<String, Object> hmap) throws Exception {
+	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception {
+		return sessionMapper.loginCheck(param);
 
-		EmployeeVo employeeVo = null; 
-		
-		employeeVo = sessionMapper.selectSession(hmap);
-		return employeeVo;
-		
 	}
 
+//	@Override
+//	public EmployeeVo getLoginInfo(HashMap<String, Object> hmap) throws Exception {
+//		return null;
+//	}
 
-
-	@Override
-	public EmployeeVo selectLoginInfo(HashMap<String, Object> hmap) throws Exception {
-		
-		
-		return null;
-	}
-
-
-
-	@Override
-	public void selectLogOut(HttpSession session) throws Exception {
-		
-		
-		
-		
-	}
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
+//	@Override
+//	public void selectLogout(HttpSession session) throws Exception { }
 
 }

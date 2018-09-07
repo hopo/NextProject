@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,7 +77,7 @@ public class SessionController {
 		return "session/loginInfo";
 	}
 
-	// 로그아웃 결과
+	// !!!로그아웃 프로세스
 	@RequestMapping(value = "/session/logout")
 	public String logoutProc(
 			HttpSession session,
@@ -88,9 +89,7 @@ public class SessionController {
 
 		session.invalidate();
 
-		// 정상 로그아웃 결과 다시 로그인 폼으로 이동
 		return "redirect:/session/login";
-
 	}
 
 }

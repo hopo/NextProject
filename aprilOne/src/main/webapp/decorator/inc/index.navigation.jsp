@@ -43,7 +43,8 @@
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="<c:url value='/notice/noticeList' />">게시판</a></li>
 				<li><span class="navbar-brand">|</span></li>
-		
+				<li><a class="navbar-brand" href="<c:url value='/employee/employeeList' />">(직원리스트)</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/employee/employeeCreate' />">(직원등록)</a></li>
 				
 				<c:if test="${loginInfo eq null}">
 					<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그인</a></li>  

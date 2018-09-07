@@ -2,10 +2,12 @@ package kr.or.nextit.employee.web;
 
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.EmployeeVo;
@@ -15,61 +17,47 @@ import kr.or.nextit.employee.service.EmployeeService;
 public class EmployeeController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
-	@Autowired
-	private EmployeeService employeeService; 
 
-	// 직원등록폼  
+	@Resource(name = "EmployeeService")
+	private EmployeeService employeeService;
+
+	// !!!직원리스트 화면
+	@RequestMapping(value = "/employee/employeeList")
+	public String employeeList() {
+		log.debug(">>> /employee/employeeList");
+
+		return "employee/employeeList";
+	}
+
+	// !!!직원 등록하기 화면
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
-		log.info(">>> employee/employeeCreate");
-		
+		log.debug(">>> /employee/employeeCreate");
+
 		return "employee/employeeCreate";
 	}
-	
-	
-	
-	// 직원등록 결과 
+
+	// !!!직원 등록 프로세서
 	@RequestMapping(value = "/employee/employeeCreateProc")
-	public String employeeCreateProc(EmployeeVo employeeVo, HashMap<String, Object> hmap) throws Exception {
-		log.info(">>> employee/employeeCreateProc");
-		
-		employeeService.employeeInsert(employeeVo);
-	
-		
-		// 정상적 등록시 로그인 화면으로 이동 
-		return "employee/employeeCreateProc";
+	public String employeeCreateProc(
+				@ModelAttribute EmployeeVo param,
+				HashMap<String, Object> hmap
+			) {
+		log.debug(">>> /employee/employeeCreateProc");
 
-	}
-	
-	
-	
-	
-	
-	
-	/*
-	// 직원목록 
-		@RequestMapping(value = "/employee/employeeList")
-		public String employeeList() {
-			log.info(">>> employee/employeeCreate");
+		log.debug(">>> param : {}", param);
+		
+		try {
+			employeeService.insertEmployee(param);
 			
-			return "employee/employeeList";
+			hmap.put("param", param);
 
+			return "employee/employeeCreateProc";
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	
 		
-		
-		*/
-		
-		
-		
-	
-
-	@RequestMapping(value = "employee/employeeView")
-	public String employeeView() {
-		log.info(">>> employee/employeeView");
-
-		return "employee/employeeView";
+		return "/employee/employeeCreate";
 
 	}
 

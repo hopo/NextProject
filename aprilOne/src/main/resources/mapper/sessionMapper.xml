@@ -6,31 +6,6 @@
 
 <mapper namespace="kr.or.nextit.session.service.impl.SessionMapper">
 
-	<!-- TB_EMPLOYEE 모든 컬럼 -->
-	<sql id="tableAllColumn">
-	    emp_id,
-	    emp_pwd,
-	    emp_name,
-	    emp_phone,
-	    emp_rrnum,
-	    emp_address,
-	    emp_div,
-	    emp_salary,
-	    emp_hiredate,
-	    emp_retiredate
-	</sql>
-	
-
-	<!-- WHERE문 트림 (search 사용시) -->
-	<sql id="whereQueryTrimIf">
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="searchText != null and searchText != ''">
-				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
-			</if>
-		</trim>
-	</sql>
-
-
 	<!-- 로그인 select -->
 	<select id="loginCheck" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
 		SELECT

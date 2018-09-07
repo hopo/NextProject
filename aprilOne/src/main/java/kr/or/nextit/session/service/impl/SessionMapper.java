@@ -15,9 +15,9 @@ public interface SessionMapper {
 	 */
 	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception;
 	
-	public EmployeeVo getLoginInfo(HashMap<String,Object> hmap)throws Exception;
+//	public EmployeeVo getLoginInfo(HashMap<String,Object> hmap)throws Exception;
 
-	public void selectLogOut(HttpSession session)throws Exception;
+//	public void selectLogOut(HttpSession session)throws Exception;
 		
 	
 	

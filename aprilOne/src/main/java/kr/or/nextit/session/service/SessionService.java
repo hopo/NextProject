@@ -15,17 +15,10 @@ public interface SessionService {
 	 */
 	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception;
 
-	/**
-	 * @param hmap
-	 * @return
-	 * @throws Exception
-	 */
-	public EmployeeVo getLoginInfo(HashMap<String, Object> hmap) throws Exception;
 
-	/**
-	 * @param session
-	 * @throws Exception
-	 */
-	public void selectLogout(HttpSession session) throws Exception;
+
+//	public EmployeeVo getLoginInfo(HashMap<String, Object> hmap) throws Exception;
+
+//	public void selectLogout(HttpSession session) throws Exception;
 
 }

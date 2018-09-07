@@ -11,10 +11,10 @@
 <html>
 
 <head>
-<title>직원 리스트</title>
+<title>직원등록완료</title>
 </head>
 
 <body>
-	"직원 리스트를 보여줍니다"
+	${param.empName} 등록 당했다!
 </body>
 </html>

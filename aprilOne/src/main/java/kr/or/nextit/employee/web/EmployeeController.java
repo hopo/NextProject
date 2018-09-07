@@ -17,7 +17,7 @@ public class EmployeeController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	EmployeeService employeeService; 
+	private EmployeeService employeeService; 
 
 	// 직원등록폼  
 	@RequestMapping(value = "/employee/employeeCreate")

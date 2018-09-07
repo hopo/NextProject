@@ -4,68 +4,60 @@
 
 <mapper namespace="kr.or.nextit.notice.service.impl.NoticeMapper">
 
-	<select id="selectNoticeList"
-		resultType="kr.or.nextit.comm.model.NoticeVo">
+	<select id="selectNoticeList" resultType="kr.or.nextit.comm.model.NoticeVo">
 		SELECT
-		ntc_idx,
-		ntc_title,
-		emp_id,
-		ntc_content,
-		ntc_regdate,
-		ntc_update,
-		ntc_count,
-		ntc_delat
+			ntc_idx,
+			ntc_title,
+			emp_id,
+			ntc_content,
+			ntc_regdate,
+			ntc_update,
+			ntc_count,
+			ntc_delat
 		FROM
-		tb_notice
+			tb_notice
 	</select>
 
-	<insert id="insertNotice"
-		parameterType="kr.or.nextit.comm.model.NoticeVo">
-
+	<insert id="insertNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
 		INSERT INTO tb_notice (
-		ntc_idx,
-		ntc_title,
-		emp_id,
-		ntc_content,
-		ntc_regdate,
-		ntc_update
-
+			ntc_idx,
+			ntc_title,
+			emp_id,
+			ntc_content,
+			ntc_update
 		) VALUES (
-		seq_notice.nextval,
-		#{ntcTitle},
-		#{empId},
-		#{ntcContent},
-		sysdate,
-		sysdate
+			seq_notice.nextval,
+			#{ntcTitle},
+			#{empId},
+			#{ntcContent},
+			sysdate
 		)
-
 	</insert>
 
-	<select id="noticeView" parameterType="hashMap"
-		resultType="hashMap">
-
+	<select id="noticeView" parameterType="hashMap" resultType="hashMap">
 		SELECT
-		ntc_idx,
-		ntc_title,
-		ntc_content,
-		ntc_regdate,
-		ntc_update,
-		emp_id
+			ntc_idx,
+			ntc_title,
+			ntc_content,
+			ntc_regdate,
+			ntc_update,
+			emp_id
 		FROM
-		tb_notice
-		WHERE ntc_idx = #{idx}
-
-	</select>
-
-	<update id="noticeUpdate" parameterType="kr.or.nextit.comm.model.NoticeVo">
-		UPDATE tb_notice
-		SET
-		AND ntc_title = #{}
-		AND
-		ntc_content = #{}
+			tb_notice
 		WHERE
-		idx = #{idx}
-
+			ntc_idx = #{idx}
+	</select>
+	
+	<!--
+	<update id="noticeUpdate" parameterType="kr.or.nextit.comm.model.NoticeVo">
+		UPDATE
+			tb_notice
+		SET
+			ntc_title = #{}
+			AND ntc_content = #{}
+		WHERE
+			idx = #{idx}
 	</update>
+  	-->
 
 </mapper>

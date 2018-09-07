@@ -11,13 +11,78 @@
 <html>
 
 <head>
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>login Info</title>
+
+<title>접속자 정보</title>
 </head>
 
 <body>
-	접속자 정보가 들어갈 계횎ㅇ빕니다
+
+	<table class="table">
+		<tr>
+			<th>
+				직원 ID  
+			</th>
+			
+			<th>
+				직원 이름 
+			</th>
+			
+			<th>
+				직원 전화번호 
+			</th>
+			
+			<th>
+				직원 직책 
+			</th>
+			
+			<th>
+				직원 입사일 
+			</th>
+		</tr>
+		<tr>
+		<td>
+		${ loginInfo.empId}	
+		</td>
+		<td>
+		${ loginInfo.empName}	
+		</td>
+		<td>
+		${ loginInfo.empPhone}	
+		</td>
+		<td>
+		${ loginInfo.empDiv}	
+		</td>
+		<td>
+		${ loginInfo.empHiredate}	
+		</td>
+		</tr>
+	</table>
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,81 +11,89 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient create form</title>
+<title>환자 등록</title>
 </head>
 
 <body>
-"patient create"
+
+<form action="patientCreateProc"  method="post">
+
+	<table class="table table-bordered" >
+		<tbody>
+			<tr>
+				<th>환자 코드</th>
+				<td><input type="text" name="patCode" ></td>
+			</tr>
+			<tr>
+				<th>보험 코드</th>
+				<td><input type="text" name="patInscode" ></td>
+			</tr>
+			<tr>
+				<th>환자 이름</th>
+				<td><input type="text" name="patName" ></td>
+			</tr>
+			<tr>
+				<th>환자 전화번호</th>
+				<td><input type="text" name="patPhone" ></td>
+			</tr>
+			<tr>
+				<th>환자 주민번호</th>
+				<td><input type="text" name="patRrnum" ></td>
+			</tr>
+			<tr>
+				<th>환자 성별</th>
+				<td><input type="text" name="patGender" ></td>
+			</tr>
+			<tr>
+				<th>환자 주소</th>
+				<td><input type="text" name="patAddress" ></td>
+			</tr>
+			<tr>
+				<th>환자 질환유무</th>
+				<td><input type="text" name="patDisease" ></td>
+			</tr>
+			<tr>
+				<th>환자 초진일</th>
+				<td><input type="date" name="patFirstdate" ></td>
+			</tr>
+			<tr>
+				<th>환자 재진일</th>
+				<td><input type="date" name="patRedate" ></td>
+			</tr>
+			<tr>
+				<th>환자 특이사항</th>
+				<td><input type="text" name="patMemo" ></td>
+			</tr>
+			<tr>
+				<th>직원 ID (담당의)</th>
+				<td><input type="text" name="empId" ></td>
+			</tr>
 
 
-<table class="table table-bordered">
-	<tbody>
-		<tr>
-			<th>환자 이름</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 주민번호</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 주소</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 전화번호</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 질환유무</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 초진일</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 재진일</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 특이사항</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		<tr>
-			<th>환자 보험코드</th>
-			<td>
-				<input type="text">
-			</td>
-		</tr>
-		
-		<tr>
-			<td colspan="2">
-				<button>환자등록</button>
-			</td>
-		</tr>
-	</tbody>
-</table>
+			<tr>
+				<td colspan="2">
+					<button>환자등록</button>
+				</td>
+			</tr>
+			
+		</tbody>
+	</table>
+</form>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

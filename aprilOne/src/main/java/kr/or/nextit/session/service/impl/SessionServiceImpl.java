@@ -2,6 +2,8 @@ package kr.or.nextit.session.service.impl;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,45 @@ public class SessionServiceImpl implements SessionService {
 	@Autowired
 	private SessionMapper sessionMapper;
 
+	
+	
 	@Override
-	public EmployeeVo selectSession(HashMap<String, Object> param) throws Exception {
+	public EmployeeVo selectSession(HashMap<String, Object> hmap) throws Exception {
 
+		EmployeeVo employeeVo = null; 
+		
+		employeeVo = sessionMapper.selectSession(hmap);
+		return employeeVo;
+		
+	}
+
+
+
+	@Override
+	public EmployeeVo selectLoginInfo(HashMap<String, Object> hmap) throws Exception {
 		
 		
-		return sessionMapper.selectSession(param);
+		return null;
+	}
+
+
+
+	@Override
+	public void selectLogOut(HttpSession session) throws Exception {
+		
+		
 		
 		
 	}
+
+
+
+
+
+
+	
+	
+	
 	
 	
 	

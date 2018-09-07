@@ -19,9 +19,10 @@
 
 <body>
 
-<form class="form-horizontal" action="employeeCreateResult" method="post">
+<form class="form-horizontal" action="employeeCreateProc" method="post">
 	
-		<!-- <h2 class="form-signin-heading">Please Log In</h2> -->
+	
+	
 		직원 ID
 		<input type="text"  name="empId" id="inputEmpId" class="form-control" placeholder="Id" required autofocus>
 		
@@ -44,8 +45,8 @@
 		직책
 		
 		<div id='type'>
-	        의사 <input type='radio' id='radio_1' name='type' value='1' />
-	        직원 <input type='radio' id='radio_2' name='type' value='2' />
+	        의사 <input type='radio' id='radio_1' name='empDiv' value='D' />
+	        직원 <input type='radio' id='radio_2' name='empDiv' value='N' />
     	</div>
 		<br>
 
@@ -65,8 +66,12 @@
 	
 	</form>	 
 		 
-		 
-		 
-		 
+					 
 </body>
 </html>
+
+
+
+
+
+

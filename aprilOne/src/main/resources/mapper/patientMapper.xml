@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- // 환자 매퍼 -->
+<mapper namespace="kr.or.nextit.patient.service.impl.PatientMapper">
+
+
+	 <!-- 환자등록 --> 
+	<insert id="patientInsert" parameterType="kr.or.nextit.comm.model.PatientVo">
+
+		INSERT INTO tb_patient (
+			pat_code,
+			pat_inscode,
+			pat_name,
+			pat_phone,
+			pat_rrnum,
+			pat_gender,
+			pat_address,
+			pat_disease,
+			pat_firstdate,
+			pat_redate,
+			pat_memo,
+			emp_id
+			
+		) VALUES (
+			
+			#{patCode},
+			#{patInscode},
+			#{patName},
+			#{patPhone},
+			#{patRrnum},
+			#{patGender},
+			#{patAddress},
+			#{patDisease},
+			#{patFirstdate},
+			#{patRedate},
+			#{patMemo},
+			#{empId}
+		)
+
+	</insert>
+	
+	
+	
+
+ 	<!-- 환자 리스트  select -->
+	<select id="selectPatientList" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
+ 
+		 SELECT
+		    pat_code,
+		    pat_inscode,
+		    pat_name,
+		    pat_phone,
+		    pat_rrnum,
+		    pat_gender,
+		    pat_address,
+		    pat_disease,
+		    pat_firstdate,
+		    pat_redate,
+		    pat_memo,
+		    emp_id
+		FROM
+		    tb_patient
+
+	</select>
+
+
+	
+	<!--<select id="selectLoginInfo"
+		resultType="kr.or.nextit.comm.model.PatientVo" parameterType="hashMap">
+
+		SELECT
+
+
+
+
+		FROM
+		tb_employee
+
+
+	</select>
+
+ -->
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

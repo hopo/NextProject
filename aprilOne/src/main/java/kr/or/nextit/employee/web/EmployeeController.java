@@ -1,10 +1,11 @@
 package kr.or.nextit.employee.web;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.EmployeeVo;
@@ -18,30 +19,31 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService; 
 
-	// 직원등록 
+	// 직원등록폼  
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
 		log.info(">>> employee/employeeCreate");
 		
 		return "employee/employeeCreate";
-
 	}
 	
 	
 	
-	// 직원리스트 
-	@RequestMapping(value = "/employee/employeeCreateResult")
-	public String employeeList(EmployeeVo employeeVo, Model model) throws Exception {
-		log.info(">>> employee/employeeList");
+	// 직원등록 결과 
+	@RequestMapping(value = "/employee/employeeCreateProc")
+	public String employeeCreateProc(EmployeeVo employeeVo, HashMap<String, Object> hmap) throws Exception {
+		log.info(">>> employee/employeeCreateProc");
 		
 		employeeService.employeeInsert(employeeVo);
+	
 		
-		model.addAttribute("insertResult", "등록완료");
-		
-
-		return "redirect:/employee/employeeCreateResult";
+		// 정상적 등록시 로그인 화면으로 이동 
+		return "employee/employeeCreateProc";
 
 	}
+	
+	
+	
 	
 	
 	

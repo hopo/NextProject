@@ -3,10 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- // 세션 매퍼 -->
-<mapper namespace="kr.or.nextit.session.service.impl.sessionMapper">
+<mapper namespace="kr.or.nextit.session.service.impl.SessionMapper">
 
 
-<select id="selectSession" parameterType="kr.or.nextit.comm.model.EmployeeVo" resultType="kr.or.nextit.comm.model.EmployeeVo">
+<!-- 로그인 select -->
+<select id="selectSession" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
 
 	 SELECT
 	    emp_id,
@@ -21,14 +22,67 @@
 	    emp_retiredate
 	FROM
 	    tb_employee
-	    where emp_id=#{empId};
-    	and emp_pwd=#{empPwd};
- 
+	    where emp_id = #{empId}
+    	and emp_pwd=  #{empPwd}
+
+</select>
 
 
+<!-- 접속자 정보 select -->
+<select id="selectLoginInfo" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="hashMap">
+
+	 SELECT
+	    emp_id,
+	    emp_name,
+	    emp_pwd,
+	    emp_address,
+	    emp_rrnum,
+	    emp_phone,
+	    emp_salary,
+	    emp_hiredate,
+	    emp_div,
+	    emp_retiredate
+	FROM
+	    tb_employee
+	  
 
 </select>
 
 
 
+
+
+
+
+
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

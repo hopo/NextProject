@@ -19,10 +19,20 @@
 
 <body>
 
-<form class="form-horizontal" action=" loginProc" method="post">
+
+
+<form class="form-horizontal" commandName="employeeVo" action="/loginProc" method="post"> 
+
+
+		<div class="message">
+			<form:errors path="employeeVo" />
+		</div>
+		
+
 
 		<label for="inputEmpId" class="sr-only">직원아이디</label>
 		<input name="empId" id="inputEmpId" class="form-control" placeholder="Employee Id" required autofocus>
+		<form:errors path="employeeVo.empId" />
 		
 		<label for="inputPassword" class="sr-only">비밀번호</label>
 		<input type="password" name="empPwd"  id="inputPassword" class="form-control" placeholder="Password" required>
@@ -34,7 +44,7 @@
 		</div>
 		
 		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		신입은 등록이 필요합니다. <a href="employee/employeeCreate">등록하기</a>
+		신입은 등록이 필요합니다. <a href="/employee/employeeCreate">등록하기</a>
 
 </form>
 		

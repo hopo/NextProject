@@ -37,7 +37,7 @@
 
 	<div class="container">
 		<div id="body-top" class="blog-header">
-			<div lass="blog-title" style="color:tomato; font-size:2em;">
+			<div class="blog-title" style="color:tomato; font-size:2em;">
 				<sitemesh:write property='title' />
 			</div>
 			<!-- <p class="lead blog-description">"there is no meaning"</p> -->

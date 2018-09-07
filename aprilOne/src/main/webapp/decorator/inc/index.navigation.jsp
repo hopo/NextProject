@@ -42,10 +42,31 @@
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="<c:url value='/notice/noticeList' />">공지사항</a></li>
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="#">접속정보</a></li>
-				<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그아웃</a></li> <!-- ;;;임시로 로그인으로 링크-->
-				<li><span class="navbar-brand">|</span></li>
+				<li><a class="navbar-brand" href="<c:url value='/session/loginInfo' />">접속정보</a></li>  
+		
+				
+				
+			 
+				<li><a class="navbar-brand" href="<c:url value='/session/login' />">로그인</a></li>  
+				
+				
+	
 			</ul>
 		</div>
 	</div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

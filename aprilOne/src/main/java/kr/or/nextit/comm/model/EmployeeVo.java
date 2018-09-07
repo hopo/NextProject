@@ -2,11 +2,16 @@ package kr.or.nextit.comm.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 @SuppressWarnings("serial")
 public class EmployeeVo implements Serializable {
 
 	// !!! *테이블이름 : TB_EMPLOYEE
 	// !!!필드
+	
+	@Size(max=12, min=5, message="Error : 직원ID는 5글자이상 12글자 이하입니다.")
 	private String empId;			// !직원ID (PK)
 	private String empPwd; 			// !비밀번호
 	private String empName; 		// !직원 이름
@@ -18,10 +23,13 @@ public class EmployeeVo implements Serializable {
 	private String empHiredate; 	// !입사일
 	private String empRetiredate; 	// !퇴사일
 
+	
 	// !!!부가적 필드
 	private String message;
 	private boolean result;
 
+	
+	
 	// !!!게터 세터
 	public String getEmpId() {
 		return empId;

@@ -15,12 +15,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient view</title>
+	<title>patient Update</title>
 </head>
 
 <body>
-환자 상세보기 
-
+환자 정보 수정
 <table class="table table-bordered table-hover">
 	<tbody>
 		<tr>

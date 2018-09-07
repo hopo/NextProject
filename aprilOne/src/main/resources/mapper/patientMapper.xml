@@ -22,9 +22,7 @@
 			pat_redate,
 			pat_memo,
 			emp_id
-			
 		) VALUES (
-			
 			#{patCode},
 			#{patInscode},
 			#{patName},
@@ -44,8 +42,9 @@
 	
 	
 
- 	<!-- 환자 리스트  select -->
-	<select id="selectPatientList" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
+ 	<!-- 환자 리스트-->
+	<select id="patientSelectList" resultType="kr.or.nextit.comm.model.PatientVo" 
+									parameterType="kr.or.nextit.comm.model.PatientVo">
  
 		 SELECT
 		    pat_code,
@@ -64,24 +63,33 @@
 		    tb_patient
 
 	</select>
-
-
 	
-	<!--<select id="selectLoginInfo"
-		resultType="kr.or.nextit.comm.model.PatientVo" parameterType="hashMap">
-
-		SELECT
-
-
-
-
-		FROM
-		tb_employee
-
-
+	
+ 	<!-- 환자 상세보기 -->
+	<select id="patientSelectView" resultType="kr.or.nextit.comm.model.PatientVo" 
+									parameterType="kr.or.nextit.comm.model.PatientVo">
+	
+			 SELECT
+			    pat_code,
+			    pat_inscode,
+			    pat_name,
+			    pat_phone,
+			    pat_rrnum,
+			    pat_gender,
+			    pat_address,
+			    pat_disease,
+			    pat_firstdate,
+			    pat_redate,
+			    pat_memo,
+			    emp_id
+			FROM
+		   	 	tb_patient
+		   	 	where patCode=#{patCode}
+	
+	
+		
 	</select>
-
- -->
+	
 
 
 

@@ -15,11 +15,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>patient list</title>
+	<title>patient List</title>
 </head>
 
 <body>
-	<!-- // ;Search Part -->
+	<!-- // Search Part -->
 	<table class="table table-bordered">
 		<tr>
 			<th>SearchType</th>
@@ -40,12 +40,14 @@
 		</tr>
 	</table>
 
+
+
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>환자코드</th>
 				<th>환자이름</th>
-				<th>담장의</th>
+				<th>담당의</th>
 				<th>환자주민번호</th>
 				<th>보험코드</th>
 				<th>환자주소</th>
@@ -57,7 +59,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="i" items="${patinetList }">
+			<c:forEach var="i" items="${patList }">
 				<tr>
 					<td><a href="<c:url value='/patient/patientView' />">PAT-00${i.patCode}</a></td>
 					<td>${i.patName}</td>
@@ -106,3 +108,8 @@
 	</nav>
 </body>
 </html>
+
+
+
+
+

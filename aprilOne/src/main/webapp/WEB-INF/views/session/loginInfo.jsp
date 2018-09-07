@@ -21,46 +21,20 @@
 
 	<table class="table">
 		<tr>
-			<th>
-				직원 ID  
-			</th>
-			
-			<th>
-				직원 이름 
-			</th>
-			
-			<th>
-				직원 전화번호 
-			</th>
-			
-			<th>
-				직원 직책 
-			</th>
-			
-			<th>
-				직원 입사일 
-			</th>
+			<th>직원 ID</th>
+
+			<th>로그인 시간</th>
+
+			<th>로그아웃 시간</th>
+
+
 		</tr>
 		<tr>
-		<td>
-		${ loginInfo.empId}	
-		</td>
-		<td>
-		${ loginInfo.empName}	
-		</td>
-		<td>
-		${ loginInfo.empPhone}	
-		</td>
-		<td>
-		${ loginInfo.empDiv}	
-		</td>
-		<td>
-		${ loginInfo.empHiredate}	
-		</td>
+			<td>${loginInfo.empId}</td>
+			<%-- <td>${loginInfo.empId}</td>
+			<td>${loginInfo.empId}</td> --%>
 		</tr>
 	</table>
-
-
 </body>
 </html>
 

@@ -19,15 +19,12 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService; 
 
-	
-	
-	// 직원등록 
+	// 직원등록폼  
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
 		log.info(">>> employee/employeeCreate");
 		
 		return "employee/employeeCreate";
-
 	}
 	
 	
@@ -39,14 +36,14 @@ public class EmployeeController {
 		
 		employeeService.employeeInsert(employeeVo);
 	
-		// if(employeeVo == null) if문을 이용해 등록실패를 작성하려했으나 등록 폼에서 빈칸이 있는 상태에서 등록버튼 클릭시 
-		// 빈칸을 입력하라는 화면이 빈칸에 메세지창처럼 뜸.. 다른 등록 실패 예외를 뭐로할지 몰라서 우선 비워둠 
-		
 		
 		// 정상적 등록시 로그인 화면으로 이동 
-		return "redirect:/session/login";
+		return "employee/employeeCreateProc";
 
 	}
+	
+	
+	
 	
 	
 	

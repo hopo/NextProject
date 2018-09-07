@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.session.service.SessionService;
@@ -25,7 +26,7 @@ public class SessionController {
 	private SessionService sessionService;
 
 	
-	// 로그인폼 
+	// 로그인폼 // 완료 
 	@RequestMapping(value = "session/login")
 	public String login() {
 		log.info(">>> session/login");
@@ -36,7 +37,7 @@ public class SessionController {
 	
 	
 	
-	//  로그인 결과 
+	//  로그인 결과 // 완료 
 	@RequestMapping(value = "/loginProc")
 	public String loginProc(@RequestParam HashMap<String, Object> hmap
 			                ,  @Valid EmployeeVo employeeVo
@@ -66,53 +67,51 @@ public class SessionController {
 	}
 	
 	
-/*	
+
+
+	// 로그인 사용자 정보 // 완료 
+	@RequestMapping(value = "session/loginInfo")
+	public String loginInfo(HttpSession session
+			, EmployeeVo employeeVo 
+			, HashMap<String, Object> hmap
+			)throws Exception {
+		log.info(">>> session/loginInfo");
+		
+		// 세션매퍼에서 아이디 가져와 vo 변수에 저장 
+		employeeVo = sessionService.selectLoginInfo(hmap);
+		// 저장한 vo  변수를 hmap에 put 
+		hmap.put("loginInfo", employeeVo);
+		
+		return "session/loginInfo";
+	}
+	
+
 	
 	// 로그아웃 결과 
-	public String logoutProc(HashMap<String, Object> hmap
-							, HttpSession session
-							, EmployeeVo employeeVo 
-							
+	public String logoutProc(HttpSession session
+							, EmployeeVo employeeVo
+							, ModelAndView modelAndView 
 							) throws Exception {
 		
 		log.info(">>> session/logoutProc");
 		
 		session.invalidate();
+
+
+
 		
 		// 정상 로그아웃 결과 다시 로그인 폼으로 이동 
 		return "redirect:/session/login";
-	}
-	*/
-	
-	
-	
-	
-	
-	
-	// 로그인 사용자 정보 
-	@RequestMapping(value = "session/loginInfo")
-	public String loginInfo(HttpSession session
-			, 
-			
-			
-			
-			
-			)throws Exception {
-		log.info(">>> session/loginInfo");
-
 		
 		
 		
-		
-		
-		return "session/loginInfo";
 	}
 
+	
+	
 	
 
 }
-
-
 
 
 

@@ -46,7 +46,7 @@
 		
 		<div id='type'>
 	        의사 <input type='radio' id='radio_1' name='empDiv' value='D' />
-	        직원 <input type='radio' id='radio_2' name='empDiv' value='Y' />
+	        직원 <input type='radio' id='radio_2' name='empDiv' value='N' />
     	</div>
 		<br>
 

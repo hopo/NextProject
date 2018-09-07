@@ -11,7 +11,6 @@
 <html>
 
 <head>
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,25 +21,42 @@
 
 	<table class="table">
 		<tr>
-			<td>
-				직원 ID <input type="text" name="empId" id="inputEmpId" class="form-control">
-			</td>
+			<th>
+				직원 ID  
+			</th>
 			
-			<td>
-				직원 이름 <input type="text" name="empName" id="inputName" class="form-control" val>
-			</td>
+			<th>
+				직원 이름 
+			</th>
 			
-			<td>
-				직원 전화번호 <input type="text" name="empPwd" id="inputPassword" class="form-control">
-			</td>
+			<th>
+				직원 전화번호 
+			</th>
 			
-			<td>
-				직원 직책 <input type="text" name="empPwd" id="inputPassword" class="form-control">
-			</td>
+			<th>
+				직원 직책 
+			</th>
 			
-			<td>
-				직원 입사일 <input type="text" name="empPwd" id="inputPassword" class="form-control">
-			</td>
+			<th>
+				직원 입사일 
+			</th>
+		</tr>
+		<tr>
+		<td>
+		${ loginInfo.empId}	
+		</td>
+		<td>
+		${ loginInfo.empName}	
+		</td>
+		<td>
+		${ loginInfo.empPhone}	
+		</td>
+		<td>
+		${ loginInfo.empDiv}	
+		</td>
+		<td>
+		${ loginInfo.empHiredate}	
+		</td>
 		</tr>
 	</table>
 

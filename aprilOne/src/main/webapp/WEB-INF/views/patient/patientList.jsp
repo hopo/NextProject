@@ -57,19 +57,19 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="i" begin="0" end="9" step="1">
+			<c:forEach var="i" items="${patinetList }">
 				<tr>
-					<td><a href="<c:url value='/patient/patientView' />">PAT-00${i}</a></td>
-					<td>이름${i}</td>
-					<td>담당의사${i}</td>
-					<td>주민번호${i}</td>
-					<td>보험코드${i}</td>
-					<td>주소${i}</td>
-					<td>전화번호${i}</td>
-					<td>질환유무${i}</td>
-					<td>초진일${i}</td>
-					<td>재진일${i}</td>
-					<td>특이사항${i}</td>
+					<td><a href="<c:url value='/patient/patientView' />">PAT-00${i.patCode}</a></td>
+					<td>${i.patName}</td>
+					<td>${i.empId}</td>
+					<td>${i.patRrnum}</td>
+					<td>${i.patInscode}</td>
+					<td>${i.patAddress}</td>
+					<td>${i.patPhone}</td>
+					<td>${i.patDisease}</td>
+					<td>${i.patFirstdate}</td>
+					<td>${i.patRedate}</td>
+					<td>${i.patMemo}</td>
 				</tr>		
 			</c:forEach>
 		</tbody>

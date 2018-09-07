@@ -16,6 +16,7 @@ public interface NoticeMapper {
 
 	// 상세보기
 	public HashMap<String, Object> noticeView(Map<String, Object> hmap) throws Exception;
-
+	
+	// 수정
 	public void noticeUpdate(Map<String, Object> hmap) throws Exception;
 }

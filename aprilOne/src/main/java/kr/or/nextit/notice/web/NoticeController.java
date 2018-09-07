@@ -37,7 +37,7 @@ public class NoticeController {
 
 		return "notice/noticeList";
 	}
-	
+
 	// 글작성
 	@RequestMapping(value = "/notice/noticeForm")
 	public String noticeForm(HashMap<String, Object> hmap) throws Exception {
@@ -45,7 +45,7 @@ public class NoticeController {
 
 		return "notice/noticeForm";
 	}
-	
+
 	// 저장
 	@RequestMapping(value = "/notice/noticeRegist")
 	public String noticeRegist(@RequestParam HashMap<String, Object> param) throws Exception {
@@ -60,12 +60,10 @@ public class NoticeController {
 		return "redirect:/notice/noticeList";
 
 	}
-	
-	// 상세보기 
+
+	// 상세보기
 	@RequestMapping(value = "/notice/noticeView")
-	public String noticeView(
-			// Model model,
-			ModelMap modelMap,
+	public String noticeView(Model model, ModelMap modelMap,
 
 			@RequestParam HashMap<String, Object> param
 
@@ -84,12 +82,15 @@ public class NoticeController {
 
 		return "notice/noticeView";
 	}
-	
-	// 수정, 삭제
+
+	// 수정
 	@RequestMapping(value = "/notice/noticeUpdate")
 	public String noticeUpdate(@RequestParam HashMap<String, Object> param) throws Exception {
 		log.info(">>> notice/noticeUpdate");
 		
+		
+		noticeService.noticeUpdate(param);
+
 		return "redirect:/notice/noticeUpdate";
 
 	}

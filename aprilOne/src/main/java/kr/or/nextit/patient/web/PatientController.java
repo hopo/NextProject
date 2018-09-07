@@ -2,6 +2,10 @@ package kr.or.nextit.patient.web;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +45,6 @@ public class PatientController {
 		return "patient/patientCreateProc";
 
 	}
-	
 
 	// 환자 리스트
 	@RequestMapping(value = "patient/patientList")
@@ -57,43 +60,50 @@ public class PatientController {
 
 	}
 
-	
 	// 환자정보 상세보기
 
 	@RequestMapping(value = "patient/patientView")
-	public String patientView(PatientVo patientVo, Model model   ) throws Exception {
+	public String patientView(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
 		log.info(">>> patient/patientView");
 
-		patientService.patientSelectView(patientVo);
-		model.addAttribute("patView",patientVo);
-		
-		
+		PatientVo result = patientService.patientSelectView(patientVo);
+		model.addAttribute("patView", result);
+
 		return "patient/patientView";
 
 	}
 	
+	// 환자정보 수정 페이지 
 	
+	@RequestMapping(value = "patient/patientUpdate")
+	public String patientUpdate(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
+		log.info(">>> patient/patientUpdate");
+		
+		PatientVo result = patientService.patientSelectView(patientVo);
+		model.addAttribute("patUpdt", result);
+		
+		return "patient/patientUpdate";
+		
+	}
+
 	
+	// 환자정보 수정 완료 
 	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "patient/patientUpdateProc")
+	public String patientUpdateProc(@ModelAttribute PatientVo patientVo) throws Exception {
+		log.info(">>> patient/patientUpdateProc");
+		
+		  patientService.patientUpdate(patientVo);
+		
+		// 수정 후 리스트페이지로 
+		return "redirect:/patient/patientView?patCode="+patientVo.getPatCode();
+		
+	}
 	
 
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

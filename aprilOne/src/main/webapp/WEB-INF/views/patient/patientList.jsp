@@ -61,7 +61,7 @@
 		<tbody>
 			<c:forEach var="i" items="${patList }">
 				<tr>
-					<td><a href="<c:url value='/patient/patientView' />">PAT-00${i.patCode}</a></td>
+					<td><a href="<c:url value='/patient/patientView?patCode=${i.patCode}' />">PAT-00${i.patCode}</a></td>
 					<td>${i.patName}</td>
 					<td>${i.empId}</td>
 					<td>${i.patRrnum}</td>

@@ -50,7 +50,7 @@
 		<tr>
 			<th>환자 보험코드</th>
 			<td>
-				${patView.patName}	
+				${patView.patInscode}	
 			</td>
 		</tr>
 		<tr>
@@ -92,7 +92,9 @@
 		
 		<tr>
 			<td colspan="2">
-				<button>수정하기</button>
+				<a href="<c:url value='/patient/patientUpdate?patCode=${patView.patCode}' />">수정</a>
+				<a href="<c:url value='#' />">삭제</a>
+				
 				<a href="<c:url value='/patient/patientList' />">환자목록</a>
 			</td>
 		</tr>

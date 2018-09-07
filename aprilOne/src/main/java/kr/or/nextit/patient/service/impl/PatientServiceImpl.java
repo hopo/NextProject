@@ -30,10 +30,21 @@ public class PatientServiceImpl implements PatientService {
 
 	// 환자 리스트 
 	@Override
-	public List<PatientVo> selectPatientList(PatientVo patientVo) throws Exception {
+	public List<PatientVo> patientSelectList(PatientVo patientVo) throws Exception {
 		
+		return patientMapper.patientSelectList(patientVo);
 		
-		return patientMapper.selectPatientList(patientVo);
+	}
+
+
+	// 환자 상세보기 
+	@Override
+	public PatientVo patientSelectView(PatientVo patientVo) throws Exception {
+		
+		patientVo = patientMapper.patientSelectView(patientVo);
+		
+		return patientVo;
+		
 	}
 
 	

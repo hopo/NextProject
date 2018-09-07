@@ -1,9 +1,6 @@
 package kr.or.nextit.patient.web;
 
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.PatientVo;
 import kr.or.nextit.patient.service.PatientService;
@@ -33,10 +29,6 @@ public class PatientController {
 		return "patient/patientCreate";
 
 	}
-	
-	
-	
-	
 
 	// 환자 등록 결과
 	@RequestMapping(value = "/patient/patientCreateProc")
@@ -44,54 +36,53 @@ public class PatientController {
 		log.info(">>> patient/patientCreateProc");
 
 		patientService.patientInsert(patientvo);
-		model.addAttribute("patientInsert", patientvo);         
+		model.addAttribute("patInsert", patientvo);
 
 		return "patient/patientCreateProc";
 
 	}
 	
-	
-	
-	 // 환자 리스트
-	  @RequestMapping(value = "patient/patientList") 
-	  public String patientList(
-			    @ModelAttribute PatientVo patientVo
-			  , Model model 
 
-			  ) throws Exception {
-	  log.info(">>> patient/patientList");
-	  
-	  List<PatientVo> items =  patientService.selectPatientList(patientVo);
-	  model.addAttribute("patinetList", items);
+	// 환자 리스트
+	@RequestMapping(value = "patient/patientList")
+	public String patientList(@ModelAttribute PatientVo patientVo, Model model
 
-	  
-	  
-	  
-	  return "patient/patientList";
-	  
-	  }
-	  
+	) throws Exception {
+		log.info(">>> patient/patientList");
+
+		List<PatientVo> items = patientService.patientSelectList(patientVo);
+		model.addAttribute("patList", items);
+
+		return "patient/patientList";
+
+	}
+
 	
-	  
-	  
-	  
-	  
-	  
-	  // 환자정보 상세보기
-	  
-	  @RequestMapping(value = "patient/patientView") public String patientView() {
-	  log.info(">>> patient/patientView");
-	  
-	  return "patient/patientView";
-	 
-	  }
+	// 환자정보 상세보기
+
+	@RequestMapping(value = "patient/patientView")
+	public String patientView(PatientVo patientVo, Model model   ) throws Exception {
+		log.info(">>> patient/patientView");
+
+		patientService.patientSelectView(patientVo);
+		model.addAttribute("patView",patientVo);
+		
+		
+		return "patient/patientView";
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
-
-
-
-
-
 
 
 

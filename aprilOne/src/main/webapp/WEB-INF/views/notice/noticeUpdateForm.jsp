@@ -45,8 +45,9 @@
 
 				<tr>
 					<td colspan="2">
-						<button type="submit">수정</button> <a
-						href="<c:url value='/notice/noticeList' />">글목록</a>
+						<button type="submit">수정</button>
+						<button type="submit">취소</button>
+						
 					</td>
 				</tr>
 			</tbody>

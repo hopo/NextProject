@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.employee.service.EmployeeService;
 
-@Service("employeeService")
+@Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -16,18 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
-
-	// 직원등록 
 	@Override
-	public void employeeInsert(EmployeeVo employeeVo) throws Exception {
-
-		  employeeMapper.employeeInsert(employeeVo);
-		
+	public void insertEmployee(EmployeeVo param) throws Exception {
+		employeeMapper.insertEmployee(param);
 	}
-
-	
-	
-	
-	
-	
 }

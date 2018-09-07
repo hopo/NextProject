@@ -16,11 +16,11 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>글 작성</title>
+<title>수정</title>
 </head>
 
 <body>
-	<form action="noticeRegist">
+	<form action="noticeUpdate">
 		<table class="table table-bordered table-hover">
 			<tbody>
 
@@ -45,8 +45,9 @@
 
 				<tr>
 					<td colspan="2">
-						<button type="submit">글저장</button> <a
-						href="<c:url value='/notice/noticeList' />">글목록</a>
+						<button type="submit">수정</button>
+						<button type="submit">취소</button>
+						
 					</td>
 				</tr>
 			</tbody>

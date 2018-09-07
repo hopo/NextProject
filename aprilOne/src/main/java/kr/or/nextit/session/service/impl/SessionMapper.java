@@ -8,14 +8,16 @@ import kr.or.nextit.comm.model.EmployeeVo;
 
 public interface SessionMapper {
 	
-	// 로그인 
-	public EmployeeVo selectSession(HashMap<String, Object> hmap) throws Exception;
+	/**
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
+	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception;
 	
-	// 접속 정보  
-	public EmployeeVo selectLoginInfo(HashMap<String,Object> hmap)throws Exception;
+//	public EmployeeVo getLoginInfo(HashMap<String,Object> hmap)throws Exception;
 
-	// 로그아웃 
-	public void selectLogOut(HttpSession session)throws Exception;
+//	public void selectLogOut(HttpSession session)throws Exception;
 		
 	
 	

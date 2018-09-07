@@ -1,5 +1,6 @@
 package kr.or.nextit.notice.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,14 +23,22 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVo> selectNoticeList() throws Exception {
 		List<NoticeVo> result = noticeMapper.selectNoticeList();
-
 		return result;
 	}
 
 	@Override
 	public void insertNitice(Map<String, Object> hmap) throws Exception {
-		
 		noticeMapper.insertNotice(hmap);
+	}
+
+	@Override
+	public HashMap<String, Object> noticeView(Map<String, Object> hmap) throws Exception {
+		return noticeMapper.noticeView(hmap);
+	}
+
+	@Override
+	public void noticeUpdate(Map<String, Object> hmap) throws Exception {
+		noticeMapper.noticeUpdate(hmap);
 	}
 
 }

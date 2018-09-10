@@ -29,7 +29,7 @@ public class SessionController {
 	// !!!로그인 화면
 	@RequestMapping(value = "/session/login")
 	public String login() {
-		log.debug(">>> /session/login");
+		log.info(">>> /session/login");
 
 		return "session/login";
 	}
@@ -44,7 +44,7 @@ public class SessionController {
 				Errors error,
 				HttpSession session
 			) {
-		log.debug(">>> /session/loginProc");
+		log.info(">>> /session/loginProc");
 
 		try {
 			employeeVo = sessionService.loginCheck(param);
@@ -70,7 +70,7 @@ public class SessionController {
 				HashMap<String, Object> hmap,
 				HttpSession session
 			) {
-		log.debug(">>> /session/loginInfo");
+		log.info(">>> /session/loginInfo");
 		
 		hmap.put("loginInfo", (EmployeeVo)session.getAttribute("loginInfo"));
 
@@ -85,7 +85,7 @@ public class SessionController {
 			ModelAndView modelAndView
 		) throws Exception {
 
-		log.debug(">>> /session/logout");
+		log.info(">>> /session/logout");
 
 		session.invalidate();
 

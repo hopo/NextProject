@@ -29,7 +29,24 @@
 			</if>
 		</trim>
 	</sql>
+	
+	
+	<!-- SELECT / INSERT / UPDATE -->
+	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
+		SELECT
+			<include refid="tableAllColumn" />
+		FROM
+			tb_employee
+	</select>
 
+	<select id="selectEmployeeItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.EmployeeVo">
+		SELECT
+			<include refid="tableAllColumn" />
+		FROM
+			tb_employee
+		WHERE
+			emp_id = #{empId}
+	</select>
 
 	<insert id="insertEmployee" parameterType="kr.or.nextit.comm.model.EmployeeVo">
 		INSERT INTO tb_employee (
@@ -52,5 +69,20 @@
 			SYSDATE
 		)
 	</insert>
+
+	<update id="updateEmployee" parameterType="kr.or.nextit.comm.model.EmployeeVo">
+		UPDATE
+			tb_employee
+		SET
+			emp_pwd = #{empPwd} ,
+			emp_name = #{empName} ,
+			emp_phone = #{empPhone} ,
+			emp_rrnum = #{empRrnum} ,
+			emp_address = #{empAddress} ,
+			emp_salary = #{empSalary} ,
+			emp_div = #{empDiv}
+		WHERE
+			emp_id = #{empId}
+	</update>
 
 </mapper>

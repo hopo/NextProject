@@ -1,6 +1,7 @@
 package kr.or.nextit.employee.web;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.employee.service.EmployeeService;
@@ -23,16 +25,51 @@ public class EmployeeController {
 
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
-	public String employeeList() {
-		log.debug(">>> /employee/employeeList");
+	public String employeeList(
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> /employee/employeeList");
+
+		List<EmployeeVo> result = null;
+
+		try {
+			result = employeeService.selectEmployeeList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		log.debug(">>> result : {}", result);
+		hmap.put("result", result);
 
 		return "employee/employeeList";
 	}
 
-	// !!!직원 등록하기 화면
+	// !!!직원 상세보기 화면
+	@RequestMapping(value = "/employee/employeeView")
+	public String employeeView(
+				HashMap<String, Object> hmap,
+				@RequestParam HashMap<String, Object> param
+			) {
+		log.info(">>> /employee/employeeView");
+		log.debug(">>> param : {}", param);
+		
+		EmployeeVo item = null;
+		try {
+			item = employeeService.selectEmployeeItem(param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		log.debug(">>> item : {}", item);
+		hmap.put("item", item);
+		
+		return "employee/employeeView";
+	}
+
+	// !!!직원 등록 화면
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
-		log.debug(">>> /employee/employeeCreate");
+		log.info(">>> /employee/employeeCreate");
 
 		return "employee/employeeCreate";
 	}
@@ -43,8 +80,7 @@ public class EmployeeController {
 				@ModelAttribute EmployeeVo param,
 				HashMap<String, Object> hmap
 			) {
-		log.debug(">>> /employee/employeeCreateProc");
-
+		log.info(">>> /employee/employeeCreateProc");
 		log.debug(">>> param : {}", param);
 		
 		try {
@@ -57,8 +93,50 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "/employee/employeeCreate";
+		return "employee/employeeCreate";
+	}
 
+	// !!!직원 수정 화면
+	@RequestMapping(value = "/employee/employeeEdit")
+	public String employeeEdit(
+				HashMap<String, Object> hmap,
+				@RequestParam HashMap<String, Object> param
+			) {
+		log.info(">>> /employee/employeeEdit");
+		log.debug(">>> param : {}", param);
+		
+		EmployeeVo item = null;
+
+		try {
+			item = employeeService.selectEmployeeItem(param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		log.debug(">>> item : {}", item);
+		hmap.put("item", item);
+		
+		return "employee/employeeEdit";
+	}
+
+	// !!!직원 수정 프로세서
+	@RequestMapping(value = "/employee/employeeEditProc")
+	public String employeeEditProc(
+				@ModelAttribute EmployeeVo param
+			) {
+		log.info(">>> /employee/employeeEditProc");
+		log.debug(">>> param : {}", param);
+		
+		try {
+			employeeService.updateEmployee(param);
+			String resultViewUrl = String.format("redirect:/employee/employeeView?empId=%s", param.getEmpId());
+			
+			return resultViewUrl;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "employee/employeeEdit";
 	}
 
 }

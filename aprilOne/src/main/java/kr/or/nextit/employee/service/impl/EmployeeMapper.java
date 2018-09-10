@@ -32,4 +32,10 @@ public interface EmployeeMapper {
 	 */
 	public void updateEmployee(EmployeeVo param) throws Exception;
 
+	/**
+	 * @param param
+	 * @throws Exception
+	 */
+	public void updateRetireEmployee(EmployeeVo param) throws Exception;
+
 }

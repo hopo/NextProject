@@ -38,5 +38,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void updateEmployee(EmployeeVo param) throws Exception {
 		employeeMapper.updateEmployee(param);
 	}
-
+	
+	@Override
+	public void updateRetireEmployee(EmployeeVo param) throws Exception {
+		employeeMapper.updateRetireEmployee(param);
+	}
 }

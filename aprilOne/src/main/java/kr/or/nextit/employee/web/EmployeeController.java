@@ -93,7 +93,7 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "employee/employeeCreate";
+		return "home";
 	}
 
 	// !!!직원 수정 화면
@@ -136,7 +136,37 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "employee/employeeEdit";
+		return "home";
+	}
+
+	// !!!직원 퇴사(수정) 화면
+	@RequestMapping(value = "/employee/employeeRetire")
+	public String employeeRetire(
+				@ModelAttribute EmployeeVo param
+			) {
+		log.info(">>> /employee/employeeRetire");
+		log.debug(">>> param : {}", param);
+		
+		return "employee/employeeRetire";
+	}
+
+	// !!!직원 퇴사(수정) 프로세서
+	@RequestMapping(value = "/employee/employeeRetireProc")
+	public String employeeRetireProc(
+				@ModelAttribute EmployeeVo param
+			) {
+		log.info(">>> /employee/employeeRetireProc");
+		log.debug(">>> param : {}", param);
+		
+		try {
+			employeeService.updateRetireEmployee(param);
+			
+			return "redirect:/employee/employeeList";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "home";
 	}
 
 }

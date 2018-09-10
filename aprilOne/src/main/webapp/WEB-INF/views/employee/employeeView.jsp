@@ -63,6 +63,11 @@
 	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 		<c:param value='${item.empId}' name='empId' />
 	</c:url>
-	<a href="${employeeEditUrl}">수정</a>
+	<button class="btn"><a href="${employeeEditUrl}">수정</a></button>
+
+	<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
+		<c:param value='${item.empId}' name='empId' />
+	</c:url>
+	<button class="btn"><a href="${employeeRetireUrl}">"YOU'RE FIRED!"</a></button>
 </body>
 </html>

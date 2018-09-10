@@ -12,7 +12,7 @@ public class EmployeeVo implements Serializable {
 	// !!! *테이블이름 : TB_EMPLOYEE
 	// !!!필드
 	
-	@Size(min=5, max=12, message="ERROR : 직원ID는 5글자이상 12글자 이하입니다.")
+	@Size(min=3, max=12, message="ERROR : 직원ID는 5글자이상 12글자 이하입니다.")
 	private String empId;			// !직원ID (PK)
 	private String empPwd; 			// !비밀번호
 	private String empName; 		// !직원 이름

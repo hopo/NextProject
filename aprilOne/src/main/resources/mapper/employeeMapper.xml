@@ -69,7 +69,7 @@
 			SYSDATE
 		)
 	</insert>
-
+		
 	<update id="updateEmployee" parameterType="kr.or.nextit.comm.model.EmployeeVo">
 		UPDATE
 			tb_employee
@@ -81,6 +81,15 @@
 			emp_address = #{empAddress} ,
 			emp_salary = #{empSalary} ,
 			emp_div = #{empDiv}
+		WHERE
+			emp_id = #{empId}
+	</update>
+
+	<update id="updateRetireEmployee" parameterType="kr.or.nextit.comm.model.EmployeeVo">
+		UPDATE
+			tb_employee
+		SET
+			emp_retiredate = SYSDATE
 		WHERE
 			emp_id = #{empId}
 	</update>

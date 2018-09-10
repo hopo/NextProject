@@ -19,7 +19,7 @@
 			<tbody>
 				<tr>
 					<th>직원 ID</th>
-					<td><input type="text"  name="empId" class="form-control" placeholder="Id" required autofocus></td>
+					<td><input type="text" name="empId" class="form-control" placeholder="Id" required autofocus></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -46,7 +46,8 @@
 					<td>
 						<div id='type'>
 				    	    의사 <input type='radio' id='radio_1' name='empDiv' value='D' />
-				    	    간호사 <input type='radio' id='radio_2' name='empDiv' value='N' checked="checked" />
+				    	    간호사 <input type='radio' id='radio_2' name='empDiv' value='N' />
+				    	    미분류 <input type='radio' id='radio_3' name='empDiv' value='A' checked="checked" />
 			    		</div>
 					</td>
 				</tr>

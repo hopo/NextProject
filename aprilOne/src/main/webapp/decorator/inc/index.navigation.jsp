@@ -31,7 +31,7 @@
 				<li><a class="navbar-brand" href="<c:url value='/patient/patientList' />">환자조회</a></li>
 				<li><a class="navbar-brand" href="<c:url value='/patient/patientCreate' />">환자등록</a></li>
 				<li><span class="navbar-brand">|</span></li>
-				<li><a class="navbar-brand" href="#">진료조회</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/clinic/clinicList' />">진료조회</a></li>
 				<li><a class="navbar-brand" href="#">진료</a></li>
 				<li><a class="navbar-brand" href="#">처방조회</a></li>
 				<li><span class="navbar-brand">|</span></li>

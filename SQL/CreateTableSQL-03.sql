@@ -68,7 +68,7 @@ CREATE TABLE TB_RESERVE (
 	res_idx			NUMBER 			NOT NULL,
 	res_name		VARCHAR2(200) 	NOT NULL,
 	res_phone		VARCHAR2(50) 	NOT NULL,
-	res_resdate		DATE
+	res_date		DATE
 );
 
 

@@ -25,9 +25,7 @@ public class EmployeeController {
 
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
-	public String employeeList(
-				HashMap<String, Object> hmap
-			) {
+	public String employeeList(HashMap<String, Object> hmap) {
 		log.info(">>> /employee/employeeList");
 
 		List<EmployeeVo> result = null;

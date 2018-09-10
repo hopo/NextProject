@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ================ clinicMapper.xml ============================== -->
+
+<mapper namespace="kr.or.nextit.clinic.service.impl.ClinicMapper">
+
+	<!-- TB_CLINIC 모든 컬럼 -->
+	<sql id="tableAllColumn">
+		cln_code ,
+		pat_code ,
+		emp_id ,
+		cln_date ,
+		cln_descr
+	</sql>
+	
+
+	<!-- WHERE문 트림 (search 사용시) -->
+	<sql id="whereQueryTrimIf">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="searchText != null and searchText != ''">
+				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
+			</if>
+		</trim>
+	</sql>
+	
+	
+	<!-- SELECT / INSERT / UPDATE -->
+	<select id="selectClinicList" resultType="kr.or.nextit.comm.model.ClinicVo">
+		SELECT
+			<include refid="tableAllColumn" />
+		FROM
+			tb_clinic
+	</select>
+
+	<select id="selectClinicItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.ClinicVo">
+		SELECT
+			<include refid="tableAllColumn" />
+		FROM
+			tb_clinic
+		WHERE
+			cln_code = #{clnCode}
+	</select>
+
+</mapper>

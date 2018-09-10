@@ -2,10 +2,6 @@ package kr.or.nextit.patient.web;
 
 import java.util.List;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.nextit.comm.model.PatientSearchVo;
 import kr.or.nextit.comm.model.PatientVo;
 import kr.or.nextit.patient.service.PatientService;
 
@@ -48,18 +45,45 @@ public class PatientController {
 
 	// 환자 리스트
 	@RequestMapping(value = "patient/patientList")
-	public String patientList(@ModelAttribute PatientVo patientVo, Model model
+	public String patientList(@ModelAttribute PatientVo patientVo, 
+							  Model model,
+							  @ModelAttribute(name="patientSearchVo") PatientSearchVo patientSearchVo
+							  
 
-	) throws Exception {
-		log.info(">>> patient/patientList");
+			) throws Exception {
+		log.debug(">>> patient/patientList");
+	/*	log.debug("PatientSearchVo = {}", PatientSearchVo);*/
 
-		List<PatientVo> items = patientService.patientSelectList(patientVo);
-		model.addAttribute("patList", items);
 
+		
+		try {
+			
+			patientSearchVo.setTotalCount(patientService.selectTotalCount(patientSearchVo));
+			patientSearchVo.setPageBlockSize(10);
+			patientSearchVo.setScreenSize(5);
+			patientSearchVo.pageSetting();
+			
+		
+			List<PatientVo> items = patientService.patientSelectList(patientSearchVo);
+			model.addAttribute("patList", items);
+			
+			
+			
+			
+		}catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		
 		return "patient/patientList";
 
 	}
 
+	
+	
+	
 	// 환자정보 상세보기
 
 	@RequestMapping(value = "patient/patientView")
@@ -101,6 +125,9 @@ public class PatientController {
 	}
 	
 
+	
+	
+	
 	
 	
 }

@@ -43,28 +43,70 @@
 
 
 
+<sql id="whereQuery">
+
+<if test="searchText != null and searchText != ''">
+	<if test="searchType == 'sel1'">
+		and pat_name = #{searchText}
+	</if>
+	<if test="searchType == 'sel2'">
+		and pat_code = #{searchText}
+	</if>
+	<if test="searchType == 'sel3'">
+		and pat_inscode = #{searchText}
+	</if>
+	<if test="searchType == 'sel4'">
+		and pat_phone = #{searchText}
+	</if>
+</if>
+</sql>
+
+
 
 	<!-- 환자 리스트 -->
 	<select id="patientSelectList"
 		resultType="kr.or.nextit.comm.model.PatientVo"
 		parameterType="kr.or.nextit.comm.model.PatientVo">
 
-		SELECT
-			pat_code,
-			pat_inscode,
-			pat_name,
-			pat_phone,
-			pat_rrnum,
-			pat_gender,
-			pat_address,
-			pat_disease,
-			pat_firstdate,
-			pat_redate,
-			pat_memo,
-			emp_id
-		FROM
-			TB_PATIENT
+			
+			SELECT * FROM (
+		    SELECT ROWNUM as rnum , frm.* from (
+		    
+				SELECT
+					pat_code,
+					pat_inscode,
+					pat_name,
+					pat_phone,
+					pat_rrnum,
+					pat_gender,
+					pat_address,
+					pat_disease,
+					pat_firstdate,
+					pat_redate,
+					pat_memo,
+					emp_id
+				FROM
+					TB_PATIENT
+	    		
+	    		WHERE 1=1 	    		 
+	    		
+	    		<include refid="whereQuery"></include>
+	    		
+	    		ORDER BY pat_code DESC
+		        ) frm 
+		    ) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 
+	</select>
+	
+	<!-- 환자 검색  -->
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.model.PatientSearchVo" 
+							      resultType="int">			  
+		 SELECT
+		    count(*) as totalCount
+		 FROM
+		    tb_patient
+		    WHERE 1=1 	    		 
+	    		<include refid="whereQuery"></include>	
 	</select>
 
 
@@ -113,6 +155,12 @@
 
 
 	</update>
+
+
+	
+
+
+
 
 
 

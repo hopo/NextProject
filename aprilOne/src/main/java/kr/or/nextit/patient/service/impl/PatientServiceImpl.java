@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.nextit.comm.model.PatientSearchVo;
 import kr.or.nextit.comm.model.PatientVo;
 import kr.or.nextit.patient.service.PatientService;
 
@@ -30,9 +31,9 @@ public class PatientServiceImpl implements PatientService {
 
 	// 환자 리스트 
 	@Override
-	public List<PatientVo> patientSelectList(PatientVo patientVo) throws Exception {
+	public List<PatientVo> patientSelectList(PatientSearchVo patientSearchVo) throws Exception {
 		
-		return patientMapper.patientSelectList(patientVo);
+		return patientMapper.patientSelectList(patientSearchVo);
 		
 	}
 
@@ -52,6 +53,15 @@ public class PatientServiceImpl implements PatientService {
 	public void patientUpdate(PatientVo patientVo) throws Exception {
 		
 		 patientMapper.patientUpdate(patientVo);
+	}
+
+	// 환자 검색 
+	@Override
+	public int selectTotalCount(PatientSearchVo patientSearchVo) throws Exception {
+		
+		return patientMapper.selectTotalCount(patientSearchVo);
+		
+		
 	}
 
 	

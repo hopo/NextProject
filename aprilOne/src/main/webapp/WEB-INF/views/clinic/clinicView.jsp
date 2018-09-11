@@ -30,13 +30,13 @@
 			<tr>
 				<th>환자코드</th>	<!-- patCode -->
 				<td>
-					${item.patCode}<a href="<c:url value='${patientViewUrl}'/>"><button class="btn btn-sm btn-info">상세보기</button></a>
+					${item.patCode}<a href="<c:url value='${patientViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
 				</td>
 			</tr>
 			<tr>
 				<th>담당의</th>	<!-- empId -->
 				<td>
-					${item.empId}<a href="<c:url value='${employeeViewUrl}'/>"><button class="btn btn-sm btn-info">상세보기</button></a>
+					${item.empId}<a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
 				</td>
 			</tr>
 			<tr>
@@ -50,7 +50,8 @@
 		</tbody>
 	</table>
 
-<%-- 	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
+	<%--
+	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 		<c:param value='${item.empId}' name='empId' />
 	</c:url>
 	<button class="btn"><a href="${employeeEditUrl}">수정</a></button>
@@ -59,5 +60,6 @@
 		<c:param value='${item.empId}' name='empId' />
 	</c:url>
 	<button class="btn"><a href="${employeeRetireUrl}">"YOU'RE FIRED!"</a></button>
- --%></body>
+	--%>
+	</body>
 </html>

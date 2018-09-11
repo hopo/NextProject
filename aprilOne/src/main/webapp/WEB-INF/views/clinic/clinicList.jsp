@@ -11,7 +11,7 @@
 <html>
 
 <head>
-<title>진료조회</title>
+<title>진료 리스트</title>
 </head>
 
 <body>

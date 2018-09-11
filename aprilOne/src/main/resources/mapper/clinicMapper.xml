@@ -42,5 +42,16 @@
 		WHERE
 			cln_code = #{clnCode}
 	</select>
-
+	
+	<insert id="insertClinic" parameterType="HashMap">
+		INSERT INTO tb_clinic (
+			<include refid="tableAllColumn" />
+		) VALUES (
+			#{clnCode} ,
+			#{patCode} ,
+			#{empId}   ,
+			SYSDATE    ,
+			#{clnDescr}
+		)
+	</insert>
 </mapper>

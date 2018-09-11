@@ -9,6 +9,10 @@ public class NoticeVo implements Serializable {
 	// !!!필드
 	private String ntcIdx;		// !글 번호 (PK) => 자동증가로 만들 계획
 	private String empId;		// !직원 ID (FK) from TB_EMPLOYEE
+	
+	private String empName;		// 직원명
+ 	private String empDiv;		// 직책구분
+	
 	private String ntcTitle;	// !글 제목
 	private String ntcContent;	// !글 내용
 	private String ntcRegdate;	// !글 등록일
@@ -99,6 +103,22 @@ public class NoticeVo implements Serializable {
 
 	public void setResult(boolean result) {
 		this.result = result;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getEmpDiv() {
+		return empDiv;
+	}
+
+	public void setEmpDiv(String empDiv) {
+		this.empDiv = empDiv;
 	}
 
 }

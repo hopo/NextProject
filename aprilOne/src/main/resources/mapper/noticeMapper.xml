@@ -34,18 +34,23 @@
 		)
 	</insert>
 
-	<select id="noticeView" parameterType="kr.or.nextit.comm.model.NoticeVo" resultType="kr.or.nextit.comm.model.NoticeVo" >
-		SELECT
-			ntc_idx,
-			ntc_title,
-			ntc_content,
-			ntc_regdate,
-			ntc_update,
-			emp_id
-		FROM
-			tb_notice
-		WHERE
-			ntc_idx = #{idx}
+	<select id="selectNoticeItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.NoticeVo">
+		 SELECT
+		    a.ntc_idx,
+		    a.ntc_title,
+		    a.emp_id,
+		    b.EMP_NAME,
+		    b.EMP_DIV,
+		    a.ntc_content,
+		    a.ntc_count,
+		    to_char(a.ntc_regdate,'yyyy/mm/dd hh24:mi') as ntc_regdate,
+		    a.ntc_update,
+		    a.ntc_delat    
+	  FROM
+		     tb_notice a
+		    ,tb_employee b
+	  WHERE a.emp_id = b.emp_id 
+		AND	ntc_idx = #{idx}
 	</select>
 	
 	

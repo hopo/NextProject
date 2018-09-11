@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,15 +60,67 @@ public class NoticeController {
 
 	// 상세보기
 	@RequestMapping(value = "/notice/noticeView")
-	public String noticeView(NoticeVo noticeVo, HashMap<String, Object> hmap) throws Exception {
-		log.info(">>> notice/noticeList");
+	public String noticeView(
+				HashMap<String, Object> hmap,
+				@RequestParam HashMap<String, Object> param
+			) {
+		log.info(">>> /notice/noticeView");
+		log.debug(">>> param : {}", param);
 		
-		noticeVo = noticeService.noticeView(hmap);
+		NoticeVo item = null;
+		try {
+			item = noticeService.selectNoticeItem(param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		hmap.put("noticeView", noticeVo);
+		log.debug(">>> item : {}", item);
+		hmap.put("item", item);
 		
 		return "notice/noticeView";
 	}
+	// 수정
+		@RequestMapping(value = "/notice/noticeEdit")
+		public String noticeEdit(
+					HashMap<String, Object> hmap,
+					@RequestParam HashMap<String, Object> param
+				) {
+			log.info(">>> /notice/noticeEdit");
+			log.debug(">>> param : {}", param);
+			
+			NoticeVo item = null;
+
+			try {
+				item = noticeService.selectNoticeItem(param);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			log.debug(">>> item : {}", item);
+			hmap.put("item", item);
+			
+			return "notice/noticeEdit";
+		}
+		
+		// 수정처리
+		@RequestMapping(value = "/notice/noticeEditProc")
+		public String employeeEditProc(
+					@ModelAttribute NoticeVo param
+				) {
+			log.info(">>> /notice/noticeEditProc");
+			log.debug(">>> param : {}", param);
+			
+			try {
+				noticeService.updateNotice(param);
+				String resultViewUrl = String.format("redirect:/notice/noticeView?idx=%s", param.getEmpId());
+				
+				return resultViewUrl;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return "home";
+		}
 
 
 }

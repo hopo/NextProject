@@ -10,11 +10,11 @@ public class ClinicVo implements Serializable {
 	// !!! *테이블이름 : TB_CLINIC
 
 	// !!!필드
-	private String clnCode;		// cln_code
-	private String patCode; 	// pat_code
-	private String empId; 		// emp_id
+	private String clnCode;		// cln_code (6)
+	private String patCode; 	// pat_code (6)
+	private String empId; 		// emp_id (50)
 	private String clnDate; 	// cln_date
-	private String clnDescr; 	// cln_descr
+	private String clnDescr; 	// cln_descr (4000)
 
 	// !!!부가적 필드
 	private String message;

@@ -63,13 +63,35 @@ public class ClinicController {
 		return "clinic/clinicView";
 
 	}
-
+ 
 	// !!!진료 기록 화면
 	@RequestMapping(value = "/clinic/clinicCreate")
 	public String clinicCreate() {
 		log.info(">>> /clinic/clinicCreate");
-		// TODO 진료 기록 화면 만들기
 
-		return "clinc/clinicCreate";
+		return "clinic/clinicCreate";
+	}
+
+	// !!!진료 기록 프로세스
+	@RequestMapping(value = "/clinic/clinicCreateProc")
+	public String clinicCreateProc(
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> /clinic/clinicCreateProc");
+		
+		log.debug("param : {}", param);
+		
+		try {
+			clinicService.insertClinic(param);
+			
+			hmap.put("param", param);
+
+			return "clinic/clinicCreateProc";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "home";
 	}
 }

@@ -19,4 +19,10 @@ public interface ClinicMapper {
 	 * @throws Exception
 	 */
 	public ClinicVo selectClinicItem(HashMap<String, Object> param) throws Exception;
+	
+	/**
+	 * @param param
+	 * @throws Exception
+	 */
+	public void insertClinic(HashMap<String, Object> param) throws Exception;
 }

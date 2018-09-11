@@ -33,7 +33,7 @@
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="<c:url value='/clinic/clinicList' />">진료조회</a></li>
 				<li><a class="navbar-brand" href="#">진료</a></li>
-				<li><a class="navbar-brand" href="#">처방조회</a></li>
+				<li><a class="navbar-brand" href="<c:url value='/prescription/prescriptionView' />">처방조회</a></li>
 				<li><span class="navbar-brand">|</span></li>
 				<li><a class="navbar-brand" href="#">약품재고</a></li>
 				<li><a class="navbar-brand" href="#">약품등록</a></li>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- // 처방 매퍼 -->
+<mapper
+	namespace="kr.or.nextit.patient.service.impl.PrescriptionMapper">
+
+
+	<!-- 처방폼 화면  -->
+	<select id="prescriptionSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo"
+							   resultType="kr.or.nextit.comm.model.PrescriptionVo">
+
+		 SELECT
+		    prs_code,
+		    cln_code,
+		    prs_descr,
+		    med_code,
+		    med_code2,
+		    med_code3
+		FROM
+		    tb_prescription
+
+	</select>
+	
+	
+	
+	
+
+	<!-- 처방 조회 -->
+	<select id="prescriptionViewSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo"
+							   resultType="kr.or.nextit.comm.model.PrescriptionVo">
+
+		 SELECT
+		    prs_code,
+		    cln_code,
+		    prs_descr,
+		    med_code,
+		    med_code2,
+		    med_code3
+		FROM
+		    tb_prescription
+		   where 
+
+
+
+
+	</select>
+
+
+	
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

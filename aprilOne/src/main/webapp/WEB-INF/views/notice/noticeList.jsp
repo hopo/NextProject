@@ -29,25 +29,27 @@
 				<th>등록일</th>
 				<th>수정일</th>
 				<th>직원 ID</th>
+				<th>del여부</th>
 			</tr>
 		</thead>
 
 		<tbody>
 
-			<c:forEach var="item" items="${result}">
-				<c:url var="viewUrl" value="/notice/noticeView">
-					<c:param name="ntcIdx" value="${item.ntcIdx }" />
-				</c:url>
-
-				<tr>
-					<td><a href="${viewUrl}"> ${item.ntcIdx } </a></td>
-					<td><a href="${viewUrl}">${item.ntcTitle } </a></td>
-					<td>${item.ntcCount }</td>
-					<td>${item.ntcRegdate }</td>
-					<td>${item.ntcUpdate }</td>
-					<td>${item.empId }</td>
-				</tr>
-			</c:forEach>
+				<c:forEach var="item" items="${result}">
+					<c:url var="viewUrl" value="/notice/noticeView">
+						<c:param name="ntcIdx" value="${item.ntcIdx }" />
+					</c:url>
+	
+					<tr>
+						<td><a href="${viewUrl}"> ${item.ntcIdx } </a></td>
+						<td><a href="${viewUrl}">${item.ntcTitle } </a></td>
+						<td>${item.ntcCount }</td>
+						<td>${item.ntcRegdate }</td>
+						<td>${item.ntcUpdate }</td>
+						<td>${item.empId }</td>
+						<td>${item.ntcDelat }</td>
+					</tr>
+				</c:forEach>
 			<tr>
 				<td colspan="2">
 					<a href="<c:url value='/notice/noticeForm' />">글작성</a>

@@ -65,12 +65,9 @@
 	</update>
 	
 	<update id="updateDelNotice"  parameterType="kr.or.nextit.comm.model.NoticeVo">
-		UPDATE 
-			tb_notice
-		SET
-	    	ntc_delat = 'T' <!-- 삭제되었다는 플래그로 변경 -->
-		WHERE
-	    	ntc_idx = #{ntcIdx}
+		UPDATE tb_notice
+		SET ntc_delat = 'T'
+		WHERE ntc_idx = #{ntcIdx}
 	</update>
 	
 

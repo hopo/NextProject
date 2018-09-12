@@ -19,19 +19,26 @@
 
 <body>
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
-		<strong>직원아이디</strong><span class="message"><form:errors path="employeeVo" /><form:errors path="employeeVo.empId" /></span>
-		<input name="empId" id="inputEmpId" class="form-control" placeholder="Employee Id" required autofocus>
-		<%-- <form:errors path="employeeVo.empId" /> --%>		
+		<div class="">
+			<strong>직원아이디</strong>
+			<input name="empId" id="inputEmpId" class="" placeholder="Employee Id" required autofocus>
+			<span class="alert-warning">
+				<form:errors path="employeeVo" /><form:errors path="employeeVo.empId" />
+			</span>
+			<%-- <form:errors path="employeeVo.empId" /> --%>		
+		</div>
 
-		<strong>비밀번호</strong>
-		<input type="password" name="empPwd"  id="inputPassword" class="form-control" placeholder="Password" required>
+		<div class="">
+			<strong class="">비밀번호</strong>
+			<input type="password" name="empPwd"  id="inputPassword" class="" placeholder="Password" required>
+		</div>
 		
 		<div class="checkbox">
 			<label><input type="checkbox" value="remember-me">Remember me</label>
 		</div>
 		
-		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-		ID가 없다면, <a href="<c:url value='/employee/employeeCreate' />">등록하기</a>
+		<button class="btn btn-primary" type="submit">로그인</button>
+		<div>ID가 없다면, <a href="<c:url value='/employee/employeeCreate' />">등록하기</a></div>
 	</form>
 </body>
 </html>

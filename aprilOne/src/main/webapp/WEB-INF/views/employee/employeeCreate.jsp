@@ -47,7 +47,7 @@
 						<div id='type'>
 				    	    의사 <input type='radio' id='radio_1' name='empDiv' value='D' />
 				    	    간호사 <input type='radio' id='radio_2' name='empDiv' value='N' />
-				    	    미분류 <input type='radio' id='radio_3' name='empDiv' value='A' checked="checked" />
+				    	    미분류 <input type='radio' id='radio_3' name='empDiv' value='Z' checked="checked" />
 			    		</div>
 					</td>
 				</tr>

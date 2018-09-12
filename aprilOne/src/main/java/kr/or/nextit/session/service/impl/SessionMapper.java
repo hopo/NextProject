@@ -14,11 +14,18 @@ public interface SessionMapper {
 	 * @throws Exception
 	 */
 	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception;
-	
-//	public EmployeeVo getLoginInfo(HashMap<String,Object> hmap)throws Exception;
 
-//	public void selectLogOut(HttpSession session)throws Exception;
-		
+	/**
+	 * @param loginEmpId
+	 * @throws Exception
+	 */
+	public void insertLoginDate(EmployeeVo employeeVo) throws Exception;
 	
+
+	/**
+	 * @param employeeVo
+	 * @throws Exception
+	 */
+	public void updateLogoutDate(EmployeeVo employeeVo) throws Exception;
 	
 }

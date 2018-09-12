@@ -22,6 +22,6 @@ public interface NoticeMapper {
 	public  void updateNotice(NoticeVo param) throws Exception;
 	
 	// 삭제
-	public void deleteNotice(NoticeVo param) throws Exception;
+	public void updateDelNotice(NoticeVo param) throws Exception;
 	
 }

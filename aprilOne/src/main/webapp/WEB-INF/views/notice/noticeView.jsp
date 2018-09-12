@@ -61,6 +61,6 @@
 	<c:url value='/notice/noticeDelete' var='noticeDeleteUrl'>
 		<c:param value='${item.ntcIdx}' name='ntcIdx' />
 	</c:url>
-	<button class="btn"><a href="${noticeDelteUrl}">삭제</a></button>
+	<button class="btn"><a href="${noticeDeleteUrl}">삭제2</a></button>
 </body>
 </html>

@@ -12,61 +12,33 @@ import kr.or.nextit.prescription.service.PrescriptionService;
 public class PrescriptionServiceImpl implements PrescriptionService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private PrescriptionMapper prescriptionMapper;
 
-	
-	
 	// 처방 폼 화면
 	@Override
-	public PrescriptionVo prescriptionSelect( PrescriptionVo prescriptionVo) throws Exception {
-		
+	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception {
+
 		prescriptionMapper.prescriptionSelect(prescriptionVo);
-		
+
 		return prescriptionVo;
 	}
 
-
-
-	// 처방 등록 화면
+	// 진료테이블에서 정보가져오기
 	@Override
 	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
-		
+
 		return prescriptionMapper.selectClinicItem(prescriptionVo);
-		
+
 	}
 
+	// 처방 등록
+	@Override
+	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception {
 
+		prescriptionMapper.insertPrescription(prescriptionVo);
 
+	}
 
-	
-
-	
-	
-	
-
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

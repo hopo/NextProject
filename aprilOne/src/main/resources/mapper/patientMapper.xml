@@ -5,10 +5,8 @@
 <!-- // 환자 매퍼 -->
 <mapper namespace="kr.or.nextit.patient.service.impl.PatientMapper">
 
-
 	<!-- 환자등록 -->
-	<insert id="patientInsert"
-		parameterType="kr.or.nextit.comm.model.PatientVo">
+	<insert id="patientInsert" parameterType="kr.or.nextit.comm.model.PatientVo">
 
 		INSERT INTO tb_patient (
 			pat_code,
@@ -40,67 +38,56 @@
 
 	</insert>
 
-
-
-<sql id="whereQuery">
-	<if test="searchText != null and searchText != ''">
-		<if test="searchType == 'sel1'">
-			and pat_name = #{searchText}
+	<sql id="whereQuery">
+		<if test="searchText != null and searchText != ''">
+			<if test="searchType == 'sel1'">
+				AND pat_name = #{searchText}
+			</if>
+			<if test="searchType == 'sel2'">
+				AND pat_code = #{searchText}
+			</if>
+			<if test="searchType == 'sel3'">
+				AND pat_inscode = #{searchText}
+			</if>
+			<if test="searchType == 'sel4'">
+				AND pat_phone = #{searchText}
+			</if>
 		</if>
-		<if test="searchType == 'sel2'">
-			and pat_code = #{searchText}
-		</if>
-		<if test="searchType == 'sel3'">
-			and pat_inscode = #{searchText}
-		</if>
-		<if test="searchType == 'sel4'">
-			and pat_phone = #{searchText}
-		</if>
-	</if>
-</sql>
+	</sql>
 
 
 
 	<!-- 환자 리스트 -->
-	<select id="patientSelectList"
-		resultType="kr.or.nextit.comm.model.PatientVo"
-		parameterType="kr.or.nextit.comm.model.PatientVo">
-
-			
+	<select id="patientSelectList" parameterType="kr.or.nextit.comm.util.PatientSearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
 			SELECT * FROM (
-		    SELECT ROWNUM as rnum , frm.* from (
-		    
-				SELECT
-					pat_code,
-					pat_inscode,
-					pat_name,
-					pat_phone,
-					pat_rrnum,
-					pat_gender,
-					pat_address,
-					pat_disease,
-					pat_firstdate,
-					pat_redate,
-					pat_memo,
-					emp_id
-				FROM
-					TB_PATIENT
-	    		
-	    		WHERE 1=1 	    		 
-	    		
-	    		<include refid="whereQuery"></include>
-	    		
-	    		ORDER BY pat_code DESC
-		        ) frm 
+			    SELECT ROWNUM AS rnum , frm.* from (
+					SELECT
+						pat_code,
+						pat_inscode,
+						pat_name,
+						pat_phone,
+						pat_rrnum,
+						pat_gender,
+						pat_address,
+						pat_disease,
+						pat_firstdate,
+						pat_redate,
+						pat_memo,
+						emp_id
+					FROM
+						tb_patient
+		    		WHERE 1=1 	    		 
+		    			<include refid="whereQuery"></include>
+		    		ORDER BY pat_code DESC
+				) frm 
 		    ) WHERE rnum BETWEEN #{startRow} AND #{endRow}
-
 	</select>
 	
 	<!-- 환자 검색  -->
 	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.PatientSearchVo" 
 							      resultType="int">			  
 		 SELECT
-		    count(*) as totalCount
+		    COUNT(*) AS totalCount
 		 FROM
 		    tb_patient
 		    WHERE 1=1 	    		 
@@ -127,8 +114,8 @@
 			pat_memo,
 			emp_id
 		FROM
-			TB_PATIENT
-			WHERE PAT_CODE = #{patCode}
+			tb_patient
+		WHERE pat_code = #{patCode}
 
 	</select>
 	

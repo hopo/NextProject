@@ -46,8 +46,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	//삭제
 	@Override
-	public void deleteNotice(NoticeVo param) throws Exception {
-		noticeMapper.deleteNotice(param);
+	public void updateDelNotice(NoticeVo param) throws Exception {
+		noticeMapper.updateDelNotice(param);
 	}
 
 	

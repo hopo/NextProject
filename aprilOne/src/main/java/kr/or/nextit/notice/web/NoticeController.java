@@ -36,7 +36,7 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 
-	// 글작성
+	// 글작성(화면)
 	@RequestMapping(value = "/notice/noticeForm")
 	public String noticeForm(HashMap<String, Object> hmap) throws Exception {
 		log.info(">>> notice/noticeForm");
@@ -44,7 +44,7 @@ public class NoticeController {
 		return "notice/noticeForm";
 	}
 
-	// 저장
+	// 저장(글작성프로세스)
 	@RequestMapping(value = "/notice/noticeRegist")
 	public String noticeRegist(@RequestParam HashMap<String, Object> param) throws Exception {
 		log.info(">>> notice/noticeRegist");
@@ -92,7 +92,7 @@ public class NoticeController {
 			NoticeVo item = null;
 
 			try {
-				item = noticeService.selectNoticeItem(param);
+				item = noticeService.selectNoticeItem(param);   // 메서드 확인해야함
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -113,17 +113,17 @@ public class NoticeController {
 			
 			try {
 				noticeService.updateNotice(param);
-				String resultViewUrl = String.format("redirect:/notice/noticeView?NtcIdx=%s", param.getNtcIdx());
+				String resultViewUrl = String.format("redirect:/notice/noticeView?ntcIdx=%s", param.getNtcIdx());
 				
 				return resultViewUrl;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			return "home";
+			return "wrong";
 		}
 		
-		//삭제
+		//삭제(화면)
 		@RequestMapping(value = "/notice/noticeDelete")
 		public String noticeDelete(
 					@ModelAttribute NoticeVo param
@@ -134,7 +134,7 @@ public class NoticeController {
 			return "notice/noticeDelete";
 		}
 		
-		//삭제처리
+		//삭제처리프로세서
 		@RequestMapping(value = "/notice/noticeDeleteProc")
 		public String noticeDeleteProc(
 					@ModelAttribute NoticeVo param
@@ -143,14 +143,14 @@ public class NoticeController {
 			log.debug(">>> param : {}", param);
 			
 			try {
-				noticeService.deleteNotice(param);
+				noticeService.updateDelNotice(param); 
 				
 				return "redirect:/notice/noticeList";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			return "home";
+			return "wrong";
 		}
 
 

@@ -18,9 +18,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 	
 	
-	// 처방조회 화면
+	// 처방 폼 화면
 	@Override
-	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception {
+	public PrescriptionVo prescriptionSelect( PrescriptionVo prescriptionVo) throws Exception {
 		
 		prescriptionMapper.prescriptionSelect(prescriptionVo);
 		
@@ -30,11 +30,15 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 
 
+	// 처방 등록 화면
 	@Override
-	public PrescriptionVo prescriptionViewSelect(PrescriptionVo prescriptionVo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
+		
+		return prescriptionMapper.selectClinicItem(prescriptionVo);
+		
 	}
+
+
 
 
 	

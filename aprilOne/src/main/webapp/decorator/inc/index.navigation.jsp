@@ -90,9 +90,9 @@
 
 				<!-- // ;;;아래는 이전 메뉴입니다 -->
 				<span class="navbar-brand">|</span>
-				<a class="navbar-brand" href="#">처방조회</a>
+				<a class="navbar-brand" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a>
 				<a class="navbar-brand" href="#">약품재고</a>
-				<a class="navbar-brand" href="#">약품등록</a>
+				<a class="navbar-brand" href="<c:url value='/medicine/medicineCreate' />">약품등록</a>
 				<span class="navbar-brand">|</span>
 				<a class="navbar-brand" href="#">매출조회</a>
 				<a class="navbar-brand" href="#">미수환불</a>

@@ -23,32 +23,23 @@
 
 	</select>
 	
-	
-	
-	
 
-	<!-- 처방 조회 -->
-	<select id="prescriptionViewSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo"
-							   resultType="kr.or.nextit.comm.model.PrescriptionVo">
 
-		 SELECT
-		    prs_code,
-		    cln_code,
-		    prs_descr,
-		    med_code,
-		    med_code2,
-		    med_code3
+
+	<select id="selectClinicItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.ClinicVo">
+	
+		SELECT
+			cln_code ,
+			pat_code ,
+			emp_id ,
+			cln_date ,
+			cln_descr
 		FROM
-		    tb_prescription
-		   where 
-
-
-
-
+			tb_clinic
+		WHERE
+			cln_code=#{clnCode}
+			
 	</select>
-
-
-	
 
 
 

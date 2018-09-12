@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 의약품 매퍼 -->
+
+<mapper namespace="kr.or.nextit.employee.service.impl.EmployeeMapper">
+
+<!-- 약품 등록 폼  -->
+<select id="medicineCreate" parameterType="kr.or.nextit.comm.model.MedicineVo"   
+				resultType="kr.or.nextit.comm.model.MedicineVo">
+	
+		SELECT
+			medCode,			
+			medStoredate,	 
+			medDisusedate,
+			medAmt, 			
+			medMemo		
+		FROM
+			TB_MEDICINE
+	
+</select>
+
+
+
+<!-- 약품 등록 -->
+<insert id="medicineInsert" parameterType="kr.or.nextit.comm.model.MedicineVo">
+	
+		
+</insert>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

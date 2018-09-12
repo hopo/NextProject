@@ -13,7 +13,7 @@ public interface PrescriptionService {
 	
 	
 	// 처방 등록  
-	public PrescriptionVo prescriptionViewSelect (PrescriptionVo prescriptionVo)throws Exception;
+	public PrescriptionVo selectClinicItem (PrescriptionVo prescriptionVo)throws Exception;
 	
 
 

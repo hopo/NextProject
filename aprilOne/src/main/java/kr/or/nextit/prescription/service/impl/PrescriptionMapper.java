@@ -7,8 +7,8 @@ public interface PrescriptionMapper {
 	// 처방 폼 화면 
 	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception;
 		
-	// 처방 조회   
-	public PrescriptionVo prescriptionViewSelect (PrescriptionVo prescriptionVo)throws Exception;
+	// 처방 등록 
+	public PrescriptionVo selectClinicItem (PrescriptionVo prescriptionVo)throws Exception;
 	
 	
 	

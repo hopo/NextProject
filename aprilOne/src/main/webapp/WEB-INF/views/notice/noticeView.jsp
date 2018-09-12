@@ -56,10 +56,13 @@
 
 
 	<c:url value='/notice/noticeEdit' var='noticeEditUrl'>
-		<c:param value='${item.ntcIdx}' name='idx' />
+		<c:param value='${item.ntcIdx}' name='ntcIdx' />
 	</c:url>
-	<button class="btn">
-		<a href="${noticeEditUrl}">수정</a>
-	</button>
+	<button class="btn"><a href="${noticeEditUrl}">수정</a></button>
+	
+	<c:url value='/notice/noticeDelete' var='noticeDeleteUrl'>
+		<c:param value='${item.ntcIdx}' name='ntcIdx' />
+	</c:url>
+	<button class="btn"><a href="${noticeDelteUrl}">삭제</a></button>
 </body>
 </html>

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.nextit.comm.model.EmployeeVo;
+
 import kr.or.nextit.comm.model.NoticeVo;
 
 public interface NoticeMapper {
@@ -20,5 +20,8 @@ public interface NoticeMapper {
 	
 	// 수정페이지
 	public  void updateNotice(NoticeVo param) throws Exception;
+	
+	// 삭제
+	public void deleteNotice(NoticeVo param) throws Exception;
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import kr.or.nextit.comm.model.NoticeVo;
 import kr.or.nextit.notice.service.NoticeService;
 
@@ -104,7 +105,7 @@ public class NoticeController {
 		
 		// 수정처리
 		@RequestMapping(value = "/notice/noticeEditProc")
-		public String employeeEditProc(
+		public String noticeEditProc(
 					@ModelAttribute NoticeVo param
 				) {
 			log.info(">>> /notice/noticeEditProc");
@@ -112,7 +113,7 @@ public class NoticeController {
 			
 			try {
 				noticeService.updateNotice(param);
-				String resultViewUrl = String.format("redirect:/notice/noticeView?idx=%s", param.getEmpId());
+				String resultViewUrl = String.format("redirect:/notice/noticeView?NtcIdx=%s", param.getNtcIdx());
 				
 				return resultViewUrl;
 			} catch (Exception e) {
@@ -121,6 +122,37 @@ public class NoticeController {
 			
 			return "home";
 		}
+		
+		//삭제
+		@RequestMapping(value = "/notice/noticeDelete")
+		public String noticeDelete(
+					@ModelAttribute NoticeVo param
+				) {
+			log.info(">>> /notice/noticeDelete");
+			log.debug(">>> param : {}", param);
+			
+			return "notice/noticeDelete";
+		}
+		
+		//삭제처리
+		@RequestMapping(value = "/notice/noticeDeleteProc")
+		public String noticeDeleteProc(
+					@ModelAttribute NoticeVo param
+				) {
+			log.info(">>> /notice/noticeDeleteProc");
+			log.debug(">>> param : {}", param);
+			
+			try {
+				noticeService.deleteNotice(param);
+				
+				return "redirect:/notice/noticeList";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return "home";
+		}
+
 
 
 }

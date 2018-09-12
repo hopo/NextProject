@@ -36,7 +36,7 @@
 
 			<c:forEach var="item" items="${result}">
 				<c:url var="viewUrl" value="/notice/noticeView">
-					<c:param name="idx" value="${item.ntcIdx }" />
+					<c:param name="ntcIdx" value="${item.ntcIdx }" />
 				</c:url>
 
 				<tr>

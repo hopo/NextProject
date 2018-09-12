@@ -28,7 +28,7 @@
 			 <tbody>
 				<tr>
 					<th>글번호</th>
-					<td><input type="hidden" name="idx" value="${item.ntcIdx}">${item.ntcIdx}</td>
+					<td><input type="hidden" name="ntcIdx" value="${item.ntcIdx}">${item.ntcIdx}</td>
 				</tr>
 				<tr>
 					<th>제목</th>

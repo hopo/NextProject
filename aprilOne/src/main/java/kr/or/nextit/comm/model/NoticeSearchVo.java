@@ -2,13 +2,13 @@ package kr.or.nextit.comm.model;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import kr.or.nextit.comm.util.PagingVo;
 
 @SuppressWarnings("serial")
 public class NoticeSearchVo extends PagingVo implements Serializable {
 
-	// 차: 나중에 구현 예정
-	/*
 	private String searchType;
 	private String searchText;
 
@@ -32,6 +32,6 @@ public class NoticeSearchVo extends PagingVo implements Serializable {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
-	*/
+	
 
 }

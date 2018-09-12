@@ -5,8 +5,6 @@
 <!-- 의약품 매퍼 -->
 <mapper namespace="kr.or.nextit.medicine.service.impl.MedicineMapper">
 
-
-
 <!-- 약품 등록 폼  -->
 <select id="medicineCreate" parameterType="kr.or.nextit.comm.model.MedicineVo"   
 							resultType="kr.or.nextit.comm.model.MedicineVo">
@@ -66,10 +64,6 @@
 
 
 </insert> -->
-
-
-
-
 
 </mapper>
 

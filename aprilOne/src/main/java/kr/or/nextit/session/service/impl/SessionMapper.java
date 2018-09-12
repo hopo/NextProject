@@ -1,10 +1,10 @@
 package kr.or.nextit.session.service.impl;
 
 import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.model.LoginInfoVo;
 
 public interface SessionMapper {
 	
@@ -28,4 +28,10 @@ public interface SessionMapper {
 	 */
 	public void updateLogoutDate(EmployeeVo employeeVo) throws Exception;
 	
+	/**
+	 * @param employeeVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<LoginInfoVo> selectLoginInfoList(EmployeeVo employeeVo) throws Exception;
 }

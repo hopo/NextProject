@@ -86,13 +86,20 @@ public class SessionController {
 			) {
 		log.info(">>> /session/loginInfo");
 
-
 		EmployeeVo employeeVo = (EmployeeVo)session.getAttribute("loginInfo");
 		hmap.put("loginInfo", employeeVo);
-		
-		// TODO: 데이터베이스에서 특정아이디 접속정보 리스트 가져오기
-		//List<LoginInfoVo> result = sessionService.selectLoginInfoList(employeeVo);
-		//hmap.put("result", result);
+
+		List<LoginInfoVo> result = null;
+
+		try {
+
+			result = sessionService.selectLoginInfoList(employeeVo); // ;TB_LOGIN_INFO로 부터 조회
+			hmap.put("result", result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 
 		return "session/loginInfo";
 	}

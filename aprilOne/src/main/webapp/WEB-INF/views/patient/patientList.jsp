@@ -15,41 +15,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>환자 리스트</title>
-
-
 <script type="text/javascript" defer="defer">
-$(document).ready(function(){	
-	
-	$frm = $('#searchForm');
-	// 서브밋 버튼 클릭시   
-	$('button[type=submit]', $frm).click(function(e){
-		e.preventDefault(); // 이벤트 전파 막기 
-		$('input[name=curPage]', $frm).val(1);
-		$frm.submit();
-	});
-	
-	// 페이지 네비~ 버튼 클릭시
-	$(".goPage").click(function() {
+	$(document).ready(function(){	
 		
-		var curPage = $(this).data("curpage");
-		$('#curPage').val(curPage);
-		$frm.submit();
+		$frm = $('#searchForm');
+		// 서브밋 버튼 클릭시   
+		$('button[type=submit]', $frm).click(function(e){
+			e.preventDefault(); // 이벤트 전파 막기 
+			$('input[name=curPage]', $frm).val(1);
+			$frm.submit();
+		});
+		
+		// 페이지 네비~ 버튼 클릭시
+		$(".goPage").click(function() {
+			
+			var curPage = $(this).data("curpage");
+			$('#curPage').val(curPage);
+			$frm.submit();
+		});
 	});
-});
 </script>
- 
-
-
-
-
-
-
 </head>
 
 <body>
+
 	<!-- 검색 -->
-	
-	<form action="/patient/patientList" id="searchForm" method="post">
+	<form action="<c:url value='/patient/patientList' />" id="searchForm" method="POST">
 		<input type="hidden" name="curPage" id="curPage" />
 		
 		<table class="table table-bordered">
@@ -57,10 +48,10 @@ $(document).ready(function(){
 				<th>SearchType</th>
 				<td>
 					<select name="searchType">
-						<option value="sel1" ${patientSearchVO.searchType eq 'sel1'?'selected="selected"':''}>이름</option>
-						<option value="sel2" ${patientSearchVO.searchType eq 'sel2'?'selected="selected"':''}>환자코드</option>
-						<option value="sel3" ${patientSearchVO.searchType eq 'sel3'?'selected="selected"':''}>보험코드</option>
-						<option value="sel4" ${patientSearchVO.searchType eq 'sel4'?'selected="selected"':''}>전화번호</option>
+						<option value="sel1" ${patientSearchVo.searchType eq 'sel1'?'selected="selected"':''}>이름</option>
+						<option value="sel2" ${patientSearchVo.searchType eq 'sel2'?'selected="selected"':''}>환자코드</option>
+						<option value="sel3" ${patientSearchVo.searchType eq 'sel3'?'selected="selected"':''}>보험코드</option>
+						<option value="sel4" ${patientSearchVo.searchType eq 'sel4'?'selected="selected"':''}>전화번호</option>
 					</select>
 				</td>
           		
@@ -79,7 +70,7 @@ $(document).ready(function(){
 
 
 
-	<<!-- 검색테이블 -->
+	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>

@@ -32,8 +32,25 @@
 		</tr>
 	</table>
 	
-	"접속자 이전 접속정보"
-	${result}
+	<strong>"${loginInfo.empName}"님 이전 접속정보</strong>
+	<a href="#" class="btn btn-info btn-xs">상세보기</a> // 난주 ajax로 보여주는거롤 하면 어떨까
+	<table class="table-bordered">
+		<thead>
+			<tr>
+				<th>로그인 시간</th>
+				<th>로그아웃 시간</th>
+			</tr>
+			<c:forEach var="item" items="${result}">
+				<tr>
+					<td>${item.logLogindate}</td>
+					<td>${item.logLogoutdate}</td>
+				</tr>
+			</c:forEach>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
 </body>
 </html>
 

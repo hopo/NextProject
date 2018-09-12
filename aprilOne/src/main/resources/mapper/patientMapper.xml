@@ -3,8 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- // 환자 매퍼 -->
-<mapper
-	namespace="kr.or.nextit.patient.service.impl.PatientMapper">
+<mapper namespace="kr.or.nextit.patient.service.impl.PatientMapper">
 
 
 	<!-- 환자등록 -->
@@ -44,21 +43,20 @@
 
 
 <sql id="whereQuery">
-
-<if test="searchText != null and searchText != ''">
-	<if test="searchType == 'sel1'">
-		and pat_name = #{searchText}
+	<if test="searchText != null and searchText != ''">
+		<if test="searchType == 'sel1'">
+			and pat_name = #{searchText}
+		</if>
+		<if test="searchType == 'sel2'">
+			and pat_code = #{searchText}
+		</if>
+		<if test="searchType == 'sel3'">
+			and pat_inscode = #{searchText}
+		</if>
+		<if test="searchType == 'sel4'">
+			and pat_phone = #{searchText}
+		</if>
 	</if>
-	<if test="searchType == 'sel2'">
-		and pat_code = #{searchText}
-	</if>
-	<if test="searchType == 'sel3'">
-		and pat_inscode = #{searchText}
-	</if>
-	<if test="searchType == 'sel4'">
-		and pat_phone = #{searchText}
-	</if>
-</if>
 </sql>
 
 
@@ -99,7 +97,7 @@
 	</select>
 	
 	<!-- 환자 검색  -->
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.model.PatientSearchVo" 
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.PatientSearchVo" 
 							      resultType="int">			  
 		 SELECT
 		    count(*) as totalCount
@@ -141,29 +139,21 @@
 	<update id="patientUpdate"
 		parameterType="kr.or.nextit.comm.model.PatientVo">
 			 
-		UPDATE tb_patient
+		UPDATE
+			tb_patient
 		SET
-		     pat_name =#{patName},
-		     emp_id =#{empId},
-		     pat_rrnum =#{patRrnum},
-		     pat_address =#{patAddress},
-		     pat_phone =#{patPhone},
-		     pat_disease =#{patDisease},
-		     pat_memo =#{patMemo}
+		     pat_name = #{patName},
+		     emp_id = #{empId},
+		     pat_rrnum = #{patRrnum},
+		     pat_address = #{patAddress},
+		     pat_phone = #{patPhone},
+		     pat_disease = #{patDisease},
+		     pat_memo = #{patMemo}
 		WHERE
 		    pat_code = #{patCode}
 
 
 	</update>
-
-
-	
-
-
-
-
-
-
 
 </mapper>
 

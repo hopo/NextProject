@@ -50,19 +50,25 @@
 		     tb_notice a
 		    ,tb_employee b
 	  WHERE a.emp_id = b.emp_id 
-		AND	ntc_idx = #{idx}
+		AND	ntc_idx = #{ntcIdx}
 	</select>
 	
 	
-	<update id="noticeUpdate" parameterType="kr.or.nextit.comm.model.NoticeVo">
+	<update id="updateNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
 		UPDATE
 			tb_notice
 		SET
 			ntc_title = #{ntcTitle},
 			ntc_content = #{ntcContent}
 		WHERE
-			ntc_idx = #{idx}
+			ntc_idx = #{ntcIdx}
 	</update>
-  	
+	
+	<update id="updateDelNotice"  parameterType="kr.or.nextit.comm.model.NoticeVo">
+		UPDATE tb_notice
+		SET ntc_delat = 'T'
+		WHERE ntc_idx = #{ntcIdx}
+	</update>
+	
 
 </mapper>

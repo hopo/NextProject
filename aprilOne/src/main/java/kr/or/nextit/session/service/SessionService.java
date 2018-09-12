@@ -1,8 +1,10 @@
 package kr.or.nextit.session.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.model.LoginInfoVo;
 
 public interface SessionService {
 
@@ -27,5 +29,12 @@ public interface SessionService {
 	 * @throws Exception
 	 */
 	public void updateLogoutDate(EmployeeVo employeeVo) throws Exception;
+
+	/**
+	 * @param employeeVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<LoginInfoVo> selectLoginInfoList(EmployeeVo employeeVo) throws Exception;
 
 }

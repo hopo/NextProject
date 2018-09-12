@@ -19,27 +19,35 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private NoticeMapper noticeMapper;
-
+	
+	//리스트
 	@Override
 	public List<NoticeVo> selectNoticeList() throws Exception {
 		List<NoticeVo> result = noticeMapper.selectNoticeList();
 		return result;
 	}
-
+	
+	// 등록
 	@Override
 	public void insertNotice(Map<String, Object> hmap) throws Exception {
 		noticeMapper.insertNotice(hmap);
 	}
-
+	
+	// 상세보기
 	@Override
 	public NoticeVo selectNoticeItem(HashMap<String, Object> param) throws Exception {
 
 		return noticeMapper.selectNoticeItem(param);
 	}
-
+	// 수정
 	@Override
 	public void updateNotice(NoticeVo param) throws Exception {
 		noticeMapper.updateNotice(param);
+	}
+	//삭제
+	@Override
+	public void updateDelNotice(NoticeVo param) throws Exception {
+		noticeMapper.updateDelNotice(param);
 	}
 
 	

@@ -1,21 +1,17 @@
 package kr.or.nextit.session.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.model.LoginInfoVo;
 import kr.or.nextit.session.service.SessionService;
 
 @Service("SessionService")
 public class SessionServiceImpl implements SessionService {
-
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private SessionMapper sessionMapper;
@@ -23,7 +19,6 @@ public class SessionServiceImpl implements SessionService {
 	@Override
 	public EmployeeVo loginCheck(HashMap<String, Object> param) throws Exception {
 		return sessionMapper.loginCheck(param);
-
 	}
 	
 	@Override
@@ -34,5 +29,10 @@ public class SessionServiceImpl implements SessionService {
 	@Override
 	public void updateLogoutDate(EmployeeVo employeeVo) throws Exception {
 		sessionMapper.updateLogoutDate(employeeVo);
+	}
+	
+	@Override
+	public List<LoginInfoVo> selectLoginInfoList(EmployeeVo employeeVo) throws Exception {
+		return sessionMapper.selectLoginInfoList(employeeVo);
 	}
 }

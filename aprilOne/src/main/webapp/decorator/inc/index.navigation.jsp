@@ -26,21 +26,53 @@
 			</a>
 		</div>
 		
+
 		<!-- // !!!네비게이션 우측 -->
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-			
-				<!-- // !!진료 드랍다운 -->
+
+				<!-- // !!진료/처방 드랍다운 -->
 				<span class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-clinic" data-toggle="dropdown" aria-expanded="true">
-						진료
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-clnAndPrs" data-toggle="dropdown" aria-expanded="true">
+						진료/처방
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-clinic">
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicList' />">진료리스트</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicCreate' />">진료등록</a></li>
+						<li role="presentation" class="divider"></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#처방리스트</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a></li>
 					</ul>
 				</span>
+
+
+				<!-- // !!의약품 드랍다운 -->
+				<span class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-medicine" data-toggle="dropdown" aria-expanded="true">
+						의약품
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-medicine">
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/medicine/medicineList' />">의약품리스트</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#의약품거래처</a></li>
+					</ul>
+				</span>
+
+
+				<!-- // !!매출 드랍다운 -->
+				<span class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-sales" data-toggle="dropdown" aria-expanded="true">
+						매출
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-sales">
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#매출조회</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#미수환불</a></li>
+					</ul>
+				</span>
+
 
 				<!-- // !!환자 드랍다운 -->
 				<span class="dropdown">
@@ -54,6 +86,7 @@
 				  </ul>
 				</span>
 			
+
 				<!-- // !!직원 드랍다운 -->
 				<span class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-employee" data-toggle="dropdown" aria-expanded="true">
@@ -66,38 +99,30 @@
 					</ul>
 				</span>
 			
+
 				<!-- // !!게시판 버튼 -->
 				<span><a class="btn btn-default" href="<c:url value='/notice/noticeList' />">게시판</a></span>
 			
+
 				<!-- // !!로그인/아웃 버튼(드랍다운) -->
 				<c:if test="${loginInfo eq null}">
 					<span><a class="btn btn-default" href="<c:url value='/session/login' />">로그인</a></span>
 				</c:if>
 				<c:if test="${loginInfo ne null}">
 					<span class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-session" data-toggle="dropdown" aria-expanded="true">
-						<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-						${loginInfo.empId}	
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-session">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/session/loginInfo' />">접속정보</a></li>
-						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/session/logout' />">로그아웃</a></li>
-				 	</ul>
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-session" data-toggle="dropdown" aria-expanded="true">
+							<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+							${loginInfo.empId}	
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-session">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/session/loginInfo' />">접속정보</a></li>
+							<li role="presentation" class="divider"></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/session/logout' />">로그아웃</a></li>
+					 	</ul>
+				 	</span>
 				</c:if>
 
-
-				<!-- // ;;;아래는 이전 메뉴입니다 -->
-				<span class="navbar-brand">|</span>
-				<a class="navbar-brand" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a>
-				<a class="navbar-brand" href="#">약품재고</a>
-				<a class="navbar-brand" href="<c:url value='/medicine/medicineCreate' />">약품등록</a>
-				<a class="navbar-brand" href="<c:url value='/medicine/medicineList' />">약품리스트</a>
-				<span class="navbar-brand">|</span>
-				<a class="navbar-brand" href="#">매출조회</a>
-				<a class="navbar-brand" href="#">미수환불</a>
-				<span class="navbar-brand">|</span>
 			</ul>
 		</div>
 

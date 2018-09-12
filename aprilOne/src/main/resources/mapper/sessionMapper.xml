@@ -6,7 +6,7 @@
 <mapper namespace="kr.or.nextit.session.service.impl.SessionMapper">
 
 	<!-- // !!!로그인 select : sol) using join -->
-	<select id="loginCheck" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="HashMap">
+	<select id="loginCheck" parameterType="HashMap" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			aa.emp_id,
 			aa.emp_name,
@@ -21,7 +21,7 @@
 
 	<!-- // !!!로그인 select : sol02) -->
 	<!--
-	<select id="loginCheck" resultType="kr.or.nextit.comm.model.EmployeeVo"  parameterType="HashMap">
+	<select id="loginCheck" parameterType="HashMap" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			emp_id   ,
 			emp_pwd  ,
@@ -34,8 +34,21 @@
 			emp_pwd =  #{empPwd}
 	</select>
   	-->
+
+	<select id="selectLoginInfoList" parameterType="kr.or.nextit.comm.model.EmployeeVo" resultType="kr.or.nextit.comm.model.LoginInfoVo">
+		SELECT
+			log_idx,
+			log_logindate,
+			log_logoutdate
+		FROM
+			tb_login_info
+		WHERE
+			emp_id = #{empId}
+		ORDER BY
+			log_idx DESC
+	</select>
   	
-  	<insert id="insertLoginDate" parameterType="kr.or.nextit.comm.model.EmployeeVo">
+  	<insert id="insertLoginDate" parameterType="kr.or.nextit.comm.model.EmployeeVo"  >
 	  	INSERT INTO
 	  		tb_login_info (
 	  			log_idx			,

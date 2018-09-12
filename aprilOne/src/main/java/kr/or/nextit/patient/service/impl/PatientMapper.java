@@ -7,18 +7,36 @@ import kr.or.nextit.comm.util.PatientSearchVo;
 
 public interface PatientMapper {
 
-	// 환자등록
+	/**
+	 * @param patientVo
+	 * @throws Exception
+	 */
 	public void patientInsert(PatientVo patientVo) throws Exception;
 
-	// 환자 리스트
+	/**
+	 * @param patientSearchVo
+	 * @return
+	 * @throws Exception
+	 */
 	public List<PatientVo> patientSelectList(PatientSearchVo patientSearchVo) throws Exception;
 
-	// 환자 상세보기
+	/**
+	 * @param patientVo
+	 * @return
+	 * @throws Exception
+	 */
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception;
 
-	// 환자 수정
+	/**
+	 * @param patientVo
+	 * @throws Exception
+	 */
 	public void patientUpdate(PatientVo patientVo) throws Exception;
 
-	// 환자 검색
+	/**
+	 * @param patientSearchVoVo
+	 * @return
+	 * @throws Exception
+	 */
 	public int selectTotalCount(PatientSearchVo patientSearchVoVo) throws Exception;
 }

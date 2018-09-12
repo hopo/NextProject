@@ -60,6 +60,8 @@ public class PatientController {
 			patientSearchVo.pageSetting();
 
 			List<PatientVo> items = patientService.patientSelectList(patientSearchVo);
+			log.debug(">>> items : {}", items);
+
 			model.addAttribute("patList", items);
 
 		} catch (Exception e) {
@@ -79,6 +81,8 @@ public class PatientController {
 		log.info(">>> patient/patientView");
 
 		PatientVo result = patientService.patientSelectView(patientVo);
+		log.debug(">>> result : {}", result);
+
 		model.addAttribute("patView", result);
 
 		return "patient/patientView";

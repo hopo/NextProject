@@ -36,14 +36,13 @@ public class PrescriptionController {
 	public String prescriptionSelect() {
 		log.info(">>> /prescription/prescriptionView");
 	
-		
 		return "prescription/prescriptionView";
 	
 	}
 	
 	
 
-	// !!! 처방 등록 .. 처방등록 후 결과까지입니당 ^^
+	// 진료테이블에서 정보가져오기 
 	@RequestMapping("/prescription/prescriptionCreate")
 	public String prescriptionCreate( @RequestParam(name="clnCode", defaultValue="c11111" , required=false ) String clnCode , 
 													HashMap<String, Object> param,
@@ -53,29 +52,33 @@ public class PrescriptionController {
 		
 		param.put("clnCode", clnCode);
 		
-		
 		// 진료정보를 조회하여 모델에 저장 	
 		 ClinicVo clinicVo = clinicService.selectClinicItem(param);
 		 model.addAttribute("clinicVo", clinicVo );
 		 
-		
 		// TODO : 처방이력목록을 조회하여 모델에 저장 
 		// model.addAttribute("",   )
 		
-		 
-		 
 		//약품목록을 조회하여 모델에 저장
 		List<MedicineVo> medList = medicineService.medicineSelectList(null);
 		 model.addAttribute("medList", medList  );
-		
-		
-		
-	
 		
 		return "prescription/prescriptionCreate";
 		
 	}
 
+	
+	// 처방 등록 
+	@RequestMapping("/prescription/prescriptionCreateProc")
+	public String insertPrescription(PrescriptionVo prescriptionVo,
+									Model model) throws Exception {
+		
+		prescriptionService.insertPrescription(prescriptionVo);
+		model.addAttribute("preInsert", prescriptionVo );
+		
+		return "/prescription/prescriptionCreateProc";
+		
+	}
 	
 	
 	

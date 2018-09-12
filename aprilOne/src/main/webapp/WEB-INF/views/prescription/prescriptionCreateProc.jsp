@@ -9,7 +9,7 @@ name="medMemo" class="form-control"<%@ page language="java" contentType="text/ht
 <body>
 
 
-처방 등록 성공한건가..??
+처방 등록 성공입니다~~~~
 
 
 

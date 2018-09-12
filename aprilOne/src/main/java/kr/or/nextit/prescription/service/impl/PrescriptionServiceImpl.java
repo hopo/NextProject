@@ -29,11 +29,21 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
 
 
-	// 처방 등록 화면
+	// 진료테이블에서 정보가져오기 
 	@Override
 	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
 		
 		return prescriptionMapper.selectClinicItem(prescriptionVo);
+		
+	}
+
+
+	// 처방 등록 
+	@Override
+	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception {
+		
+		prescriptionMapper.insertPrescription(prescriptionVo);
+		
 		
 	}
 

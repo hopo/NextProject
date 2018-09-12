@@ -31,9 +31,9 @@ public class PatientController {
 
 	}
 
-	// 환자 등록 결과
+	// 환자 등록 후 결과까지 입니당 *^^*
 	@RequestMapping(value = "/patient/patientCreateProc")
-	public String patientCreate(PatientVo patientvo, Model model) throws Exception {
+	public String patientCreateProc(PatientVo patientvo, Model model) throws Exception {
 		log.info(">>> patient/patientCreateProc");
 
 		patientService.patientInsert(patientvo);

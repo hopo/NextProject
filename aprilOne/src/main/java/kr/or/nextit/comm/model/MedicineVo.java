@@ -13,8 +13,12 @@ public class MedicineVo implements Serializable {
 	private String medStoredate; 		// 
 	private String medDisusedate; 		// 
 	private String medAmt; 				// 
-	private String medMemo; 			// 
-
+	private String medMemo; 			//
+	
+	// 약품정보에 대한 추가 정보 필드 
+	private String medUnit; 			//  
+	private String medCodename; 		//
+	
 	// !!!부가적 필드
 	private String message;
 	private boolean result;
@@ -61,6 +65,18 @@ public class MedicineVo implements Serializable {
 	}
 	public void setResult(boolean result) {
 		this.result = result;
+	}
+	public String getMedUnit() {
+		return medUnit;
+	}
+	public void setMedUnit(String medUnit) {
+		this.medUnit = medUnit;
+	}
+	public String getMedCodename() {
+		return medCodename;
+	}
+	public void setMedCodename(String medCodename) {
+		this.medCodename = medCodename;
 	}
 	
 	// !!!게터 세터

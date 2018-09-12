@@ -3,12 +3,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 의약품 매퍼 -->
+<mapper namespace="kr.or.nextit.medicine.service.impl.MedicineMapper">
 
-<mapper namespace="kr.or.nextit.employee.service.impl.EmployeeMapper">
+
 
 <!-- 약품 등록 폼  -->
 <select id="medicineCreate" parameterType="kr.or.nextit.comm.model.MedicineVo"   
-				resultType="kr.or.nextit.comm.model.MedicineVo">
+							resultType="kr.or.nextit.comm.model.MedicineVo">
 	
 		SELECT
 			medCode,			
@@ -23,11 +24,50 @@
 
 
 
-<!-- 약품 등록 -->
-<insert id="medicineInsert" parameterType="kr.or.nextit.comm.model.MedicineVo">
-	
+<!-- 약품 리스트 조회   -->
+<select id="medicineSelectList" parameterType="kr.or.nextit.comm.model.MedicineVo"
+								resultType="kr.or.nextit.comm.model.MedicineVo">
 		
-</insert>
+		SELECT a.med_code
+		     , b.med_codename
+		     , b.med_unit 
+		     , a.med_storedate
+		     , a.med_disusedate
+		     , a.med_amt
+		     , a.med_memo 
+		  FROM tb_medicine a 
+		     , tb_med_codename  b
+		 WHERE a.med_code = b.med_code   
+
+		
+</select>
+
+
+
+<!-- 약품 등록  -->
+<!-- 
+<insert id="medicineInsert" >
+
+
+		 INSERT INTO tb_medicine (
+		    med_code,
+		    med_storedate,
+		    med_disusedate,
+		    med_amt,
+		    med_memo
+		) VALUES (
+		    :v0,
+		    :v1,
+		    :v2,
+		    :v3,
+		    :v4
+		);
+
+
+
+</insert> -->
+
+
 
 
 

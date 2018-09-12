@@ -1,6 +1,7 @@
 package kr.or.nextit.prescription.web;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
+import kr.or.nextit.comm.model.MedicineVo;
 import kr.or.nextit.comm.model.PrescriptionVo;
+import kr.or.nextit.medicine.service.MedicineService;
 import kr.or.nextit.prescription.service.PrescriptionService;
 
 @Controller
@@ -23,8 +26,10 @@ public class PrescriptionController {
 	@Autowired
 	PrescriptionService prescriptionService;
 	@Autowired
-	ClinicService clinicService ;
-	
+	ClinicService clinicService;
+	@Autowired
+	MedicineService medicineService;
+
 	
 	// !!! 처방등록 폼 화면
 	@RequestMapping("/prescription/prescriptionView")
@@ -38,7 +43,7 @@ public class PrescriptionController {
 	
 	
 
-	// !!! 처방 등록
+	// !!! 처방 등록 .. 처방등록 후 결과까지입니당 ^^
 	@RequestMapping("/prescription/prescriptionCreate")
 	public String prescriptionCreate( @RequestParam(name="clnCode", defaultValue="c11111" , required=false ) String clnCode , 
 													HashMap<String, Object> param,
@@ -49,8 +54,8 @@ public class PrescriptionController {
 		param.put("clnCode", clnCode);
 		
 		
-		// 진료정보를 조회하여 모델에 저장 		
-		ClinicVo clinicVo = clinicService.selectClinicItem(param);
+		// 진료정보를 조회하여 모델에 저장 	
+		 ClinicVo clinicVo = clinicService.selectClinicItem(param);
 		 model.addAttribute("clinicVo", clinicVo );
 		 
 		
@@ -59,12 +64,13 @@ public class PrescriptionController {
 		
 		 
 		 
-		// TODO : 약품목록을 조회하여 모델에 저장  
-		// model.addAttribute("",   )
+		//약품목록을 조회하여 모델에 저장
+		List<MedicineVo> medList = medicineService.medicineSelectList(null);
+		 model.addAttribute("medList", medList  );
 		
-		 // prescriptionService.prescriptionViewSelect(prescriptionVo);
 		
 		
+	
 		
 		return "prescription/prescriptionCreate";
 		

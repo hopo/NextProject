@@ -24,7 +24,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		
 		prescriptionMapper.prescriptionSelect(prescriptionVo);
 		
-		
 		return prescriptionVo;
 	}
 

@@ -1,6 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+name="medMemo" class="form-control"<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>.
+    
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,18 +22,12 @@
 	$(document).ready(function(){
 		$("#btn_mediChooice").click(function () {
 			$radio = $('input[name="medi"]:checked');			
-			alert($radio.data("med-code") )  ;
-			alert($('input[name="medi"]:checked').data("med-codename") )  ;
-			alert($('input[name="medi"]:checked').data("med-unit") )  ;
 			
-			/* text를 hidden으로 변경 */
-			$("#medi_1").html("감기약 [ABC001, ml]<input type='text' name='medCode' value='ABC001' />");
-			$("#medi_2").html("감기약 [ABC001, ml]<input type='text' name='medCode' value='ABC001' />");
-			$("#medi_3").html("감기약 [ABC001, ml]<input type='text' name='medCode' value='ABC001' />");
-			
+			/* text를 hidden으로 변경  테스트 중  */
+			$("#medi_1").html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 
+					          + ", " + $radio.data("med-unit")
+				              + " <input type='hidden' name='medCode' value='" + $radio.data("med-code") + "' />");
 		});
-		
-		
 		
 	});
 
@@ -31,17 +35,14 @@
 
 </script>
 
-<form action="" method="get">
-<table class="table">
-		<tbody>
-			
+	<form action="<c:url value='/prescription/prescriptionCreateProc'/>" method="get">
+		<table class="table">
+			<tbody>
 			
 			<tr>
 				<th>처방코드</th>	<!-- prsCode -->
 				<td><input type="text" name="preCode" id="preCode" > </td>
 			</tr>
-			
-			
 			
 			
 			<!-- clnCode  진료상세조회 - 진료코드로 가져옴(진료코드, 환자코드, 담당의, 진료일, 진료내용)   -->  
@@ -54,13 +55,13 @@
 			<tr>
 				<th>환자코드</th>	<!-- patCode -->  
 				<td>
-					${clinicVo.patCode}<a href="<c:url value='/patientView'/>"><button class="btn btn-sm btn-info">상세보기</button></a>
+					${clinicVo.patCode}<%-- <a href="<c:url value='/patientView'/>"><button class="btn btn-sm btn-info">상세보기</button></a> --%>
 				</td>
 			</tr>
 			<tr>
 				<th>담당의</th>	<!-- empId -->  
 				<td>
-					${clinicVo.empId}<a href="<c:url value='/employeeView'/>"><button class="btn btn-sm btn-info">상세보기</button></a>
+					${clinicVo.empId}<%-- <a href="<c:url value='/employeeView'/>"><button class="btn btn-sm btn-info">상세보기</button></a> --%>
 				</td>
 			</tr>
 			<tr>
@@ -93,8 +94,6 @@
 			
 			
 			
-			
-			
 			<!-- medCode  의약품코드 테이블에서 의약품코드 컬럼3개 가져옴   -->
 			
 			<tr>
@@ -120,14 +119,12 @@
 			</tr>
 			
 			<tr>				
-				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" > save</button></td>
+				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" > 처방등록 </button></td>
 			</tr>			
 			
 		</tbody>
 	</table>
 </form>
-
-
 
 
 
@@ -141,10 +138,18 @@
         <h4 class="modal-title"> 약품 선택 </h4>
       </div>
       <div class="modal-body">
+       
+       
         <ul>
-        	<li><label><input type="radio" name="medi" data-med-code="AD0001" data-med-codename="감기약" data-med-unit="정" >  감기약 [AD0001, 정] </label> </li>
-        	<li><label><input type="radio" name="medi" data-med-code="AD0002" data-med-codename="두통약" data-med-unit="정" >  "두통약" [AD0002, 정] </label> </li>
-        	<li><label><input type="radio" name="medi" data-med-code="AD0023" data-med-codename="설사" data-med-unit="정" >  설사 [AD0023, 정] </label> </li>
+        
+        
+        <c:forEach var="i" items="${medList}">
+       
+        	<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename } [${i.medCode }, ${i.medUnit }] </label> </li>
+        </c:forEach>
+        
+        
+        
         
         </ul>
       </div>

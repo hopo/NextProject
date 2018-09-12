@@ -15,7 +15,9 @@
 <title>약품 등록</title>
 </head>
 <body>
-	<form class="form-horizontal" action="#' /> method="POST">
+
+
+	<form class="form-horizontal" action="medicine/medicineList' /> method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -24,11 +26,11 @@
 				</tr>
 				<tr>
 					<th>입고일</th>
-					<td><input type="password" name="medStoredate" class="form-control" ></td>
+					<td><input type="date" name="medStoredate" class="form-control" ></td>
 				</tr>
 				<tr>
 					<th>폐기일</th>
-					<td><input type="text" name="medDisusedate" class="form-control" ></td>
+					<td><input type="date" name="medDisusedate" class="form-control" ></td>
 				</tr>
 				<tr>
 					<th>재고 수량 </th>
@@ -36,7 +38,7 @@
 				</tr>
 				<tr>
 					<th>의약품 주의사항</th>
-					<td><input type="text" name="medMemo" class="form-control" ></td>
+					<td><textarea name="medMemo" class="form-control" cols="40" rows="5">  </textarea></td>
 				</tr>
 			
 				
@@ -59,6 +61,16 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

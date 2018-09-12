@@ -47,7 +47,7 @@ $(document).ready(function(){
 </head>
 
 <body>
-	<!-- // Search Part -->
+	<!-- 검색 -->
 	
 	<form action="/patient/patientList" id="searchForm" method="post">
 		<input type="hidden" name="curPage" id="curPage" />
@@ -79,7 +79,7 @@ $(document).ready(function(){
 
 
 
-
+	<<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -125,6 +125,10 @@ $(document).ready(function(){
 
 
 
+
+
+	<!-- 네비게이션 -->
+
 	<nav>
 	<ul class="pagination">
 	
@@ -159,10 +163,6 @@ $(document).ready(function(){
         </li>
 	</c:if> --%>
 	
-
-
-
-
 
 		<!-- // ;;Next Button-->
 		<c:if test="${patientSearchVo.endPage >= patientSearchVo.totalPageCount}">

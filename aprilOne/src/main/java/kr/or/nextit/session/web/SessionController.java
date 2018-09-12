@@ -1,6 +1,7 @@
 package kr.or.nextit.session.web;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -9,13 +10,12 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.model.LoginInfoVo;
 import kr.or.nextit.session.service.SessionService;
 
 @Controller
@@ -47,21 +47,35 @@ public class SessionController {
 		log.info(">>> /session/loginProc");
 
 		try {
-			employeeVo = sessionService.loginCheck(param);
+
+			employeeVo = sessionService.loginCheck(param); // ;해당 계정이 있는 지 비밀번호가 맞는지
 			log.debug(">>> employeeVo : {}", employeeVo);
+
+			if (employeeVo != null) {
+				// ;로그인이 가능합니다
+				log.debug(">>> loginInfo : {}", employeeVo);
+				
+				// ;로그인 정보를 세션에 저장
+				session.setAttribute("loginInfo", employeeVo);
+
+				// ;로그인 접속날짜를 TB_LOGIN_INFO에 저장
+				sessionService.insertLoginDate(employeeVo);
+	
+				return "redirect:/index";
+
+			} else {
+				// ;로그인이 NOT 가능합니다
+				error.reject("error", " : 아이디와 비밀번호 확인해라");
+				return "session/login";
+
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if (employeeVo != null) {
-			session.setAttribute("loginInfo", employeeVo);
-			log.debug(">>> loginInfo : {}", employeeVo);
-
-			return "redirect:/index";
-		} else {
-			error.reject("error", " : 해당 직원이 존재하지 않습니다.");
-			return "session/login";
-		}
+		return "wrong";
+		
 	}
 
 	// !!!로그인 사용자 정보
@@ -71,8 +85,14 @@ public class SessionController {
 				HttpSession session
 			) {
 		log.info(">>> /session/loginInfo");
+
+
+		EmployeeVo employeeVo = (EmployeeVo)session.getAttribute("loginInfo");
+		hmap.put("loginInfo", employeeVo);
 		
-		hmap.put("loginInfo", (EmployeeVo)session.getAttribute("loginInfo"));
+		// TODO: 데이터베이스에서 특정아이디 접속정보 리스트 가져오기
+		//List<LoginInfoVo> result = sessionService.selectLoginInfoList(employeeVo);
+		//hmap.put("result", result);
 
 		return "session/loginInfo";
 	}
@@ -80,16 +100,27 @@ public class SessionController {
 	// !!!로그아웃 프로세스
 	@RequestMapping(value = "/session/logout")
 	public String logoutProc(
-			HttpSession session,
-			EmployeeVo employeeVo,
-			ModelAndView modelAndView
+			HttpSession session
 		) throws Exception {
 
 		log.info(">>> /session/logout");
 
-		session.invalidate();
+		EmployeeVo employeeVo = (EmployeeVo) session.getAttribute("loginInfo");
 
-		return "redirect:/session/login";
+		try {
+			// ;로그아웃 날짜를 TB_LOGIN_INFO에 저장
+			sessionService.updateLogoutDate(employeeVo);
+
+			// ;저장되어있는 세션을 삭제합니다
+			session.invalidate(); 
+
+			return "redirect:/session/login";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "wrong";
 	}
 
 }

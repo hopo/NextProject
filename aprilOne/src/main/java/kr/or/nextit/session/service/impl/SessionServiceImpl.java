@@ -25,13 +25,14 @@ public class SessionServiceImpl implements SessionService {
 		return sessionMapper.loginCheck(param);
 
 	}
-
-//	@Override
-//	public EmployeeVo getLoginInfo(HashMap<String, Object> hmap) throws Exception {
-//		return null;
-//	}
-
-//	@Override
-//	public void selectLogout(HttpSession session) throws Exception { }
-
+	
+	@Override
+	public void insertLoginDate(EmployeeVo employeeVo) throws Exception {
+		sessionMapper.insertLoginDate(employeeVo);
+	}
+	
+	@Override
+	public void updateLogoutDate(EmployeeVo employeeVo) throws Exception {
+		sessionMapper.updateLogoutDate(employeeVo);
+	}
 }

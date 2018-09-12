@@ -15,7 +15,7 @@
 </head>
 <body>
 <h1>
-	something wrong
+	"사용하지 않는 페이지 일거야?"
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

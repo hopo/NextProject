@@ -91,7 +91,7 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "home";
+		return "wrong";
 	}
 
 	// !!!직원 수정 화면
@@ -134,7 +134,7 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "home";
+		return "wrong";
 	}
 
 	// !!!직원 퇴사(수정) 화면
@@ -164,7 +164,7 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "home";
+		return "wrong";
 	}
 
 }

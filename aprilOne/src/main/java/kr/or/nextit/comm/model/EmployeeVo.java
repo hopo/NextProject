@@ -12,8 +12,9 @@ public class EmployeeVo implements Serializable {
 	// !!! *테이블이름 : TB_EMPLOYEE
 
 	// !!!필드
-	@Size(min=3, max=12, message="ERROR : 직원ID는 5글자이상 12글자 이하입니다.")
+	@Size(min=3, max=12, message="size error : 직원ID는 3글자이상 12글자 이하입니다.")
 	private String empId;			// !직원ID (PK)
+	@Size(min=4, max=12, message="size error  : 직원PWD 4 ~ 12")
 	private String empPwd; 			// !비밀번호
 	private String empName; 		// !직원 이름
 	private String empPhone; 		// !직원 전화번호
@@ -24,11 +25,24 @@ public class EmployeeVo implements Serializable {
 	private String empHiredate; 	// !입사일 (계정만든일)
 	private String empRetiredate; 	// !퇴사일
 
+	// !!! join시 필드
+	private String empDivname; 	// from TB_EMP_DIVNAME
+
 	// !!!부가적 필드
 	private String message;
 	private boolean result;
 	
 	// !!!게터 세터
+	
+	public String getEmpDivname() {
+		return empDivname;
+	}
+
+	public void setEmpDivname(String empDivname) {
+		this.empDivname = empDivname;
+	}
+
+	
 	public String getEmpId() {
 		return empId;
 	}

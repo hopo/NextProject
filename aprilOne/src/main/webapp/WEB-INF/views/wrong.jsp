@@ -11,51 +11,14 @@
 <html>
 
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>접속자 정보</title>
+	<title>wrong page</title>
 </head>
-
 <body>
-	<table class="table">
-		<tr>
-			<th>접속자 직원 아이디</th>
-			<th>접속자 직원 이름</th>
-			<th>접속자 직원 직책분류</th>
-			<th>접속자 직원 직책이름</th>
-		</tr>
-		<tr>
-			<td>${loginInfo.empId}</td>
-			<td>${loginInfo.empName}</td>
-			<td>${loginInfo.empDiv}</td>
-			<td>${loginInfo.empDivname}</td>
-		</tr>
-	</table>
-	
-	"접속자 이전 접속정보"
-	${result}
+<h1>
+	""something wrong"
+</h1>
+
+<P>The time on the server is ${serverTime}. </P>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

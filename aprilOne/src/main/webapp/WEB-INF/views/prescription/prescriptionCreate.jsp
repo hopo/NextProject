@@ -22,6 +22,7 @@ name="medMemo" class="form-control"<%@ page language="java" contentType="text/ht
 	$(document).ready(function(){
 		$("#btn_mediChooice").click(function () {
 			$radio = $('input[name="medi"]:checked');			
+		});
 			
 			/* text를 hidden으로 변경  테스트 중  */
 			$("#medi_1").html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 

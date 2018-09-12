@@ -18,8 +18,6 @@
 <body>
 
 	<table class="table">
-
-
 		<tbody>
 			<tr>
 				<th>글번호</th>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.service.PaginationService;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.employee.service.EmployeeService;
 
@@ -36,11 +37,6 @@ public class EmployeeController {
 		List<EmployeeVo> result = null;
 
 		try {
-
-//			searchVo.setTotalCount(pagingService.selectTotalCount(searchVo));
-//			searchVo.setPageBlockSize(5);
-//			searchVo.setScreenSize(10);
-//			searchVo.pageSetting();
 
 			result = employeeService.selectEmployeeList();
 

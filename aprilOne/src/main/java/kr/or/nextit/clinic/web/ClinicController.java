@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
+import kr.or.nextit.comm.service.PaginationService;
 import kr.or.nextit.comm.util.SearchVo;
 
 @Controller
@@ -23,6 +24,9 @@ public class ClinicController {
 
 	@Resource(name = "ClinicService")
 	private ClinicService clinicService;
+	
+	@Resource(name = "PaginationService")
+	private PaginationService paginationService;
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
@@ -37,7 +41,7 @@ public class ClinicController {
 
 		try {
 
-			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
+			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
 			searchVo.setScreenSize(10);
 			searchVo.pageSetting();

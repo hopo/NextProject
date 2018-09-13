@@ -22,12 +22,7 @@ public interface ClinicMapper {
 	 */
 	public ClinicVo selectClinicItem(HashMap<String, Object> param) throws Exception;
 
-	/**
-	 * @param searchVo
-	 * @return
-	 * @throws Exception
-	 */
-	public int selectTotalCount(SearchVo searchVo) throws Exception;
+//	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
 	/**
 	 * @param param

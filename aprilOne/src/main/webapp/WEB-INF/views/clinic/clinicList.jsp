@@ -42,16 +42,16 @@
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType">
+					<form:select path="searchType" class="btn-dark btn-sm">
 						<form:option value="cln_code">진료코드</form:option>
 						<form:option value="pat_code">환자코드</form:option>
 					</form:select>
 				</td>
 				<td>
-					<form:input path="searchText" placeholder="입력하세요..." />
+					<form:input path="searchText" placeholder="입력하세요..." class="form-control" />
 				</td>
 				<td>
-					<form:button id="searchSubmit" type="submit" class="btn btn-primary">검색</form:button>
+					<form:button id="searchSubmit" type="submit" class="btn btn-primary btn-sm">검색</form:button>
 				</td>
 			</tr>
 		</table>
@@ -120,7 +120,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class='activate'>
-							<a href='#' data-curpage='${i}' class='goPage btn-info'>${i}</a>
+							<a href='#' data-curpage='${i}' class='goPage'>${i}</a>
 						</li>
 					</c:otherwise>
 				</c:choose>

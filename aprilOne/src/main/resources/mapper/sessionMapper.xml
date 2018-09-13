@@ -48,6 +48,7 @@
 			log_idx DESC
 	</select>
   	
+
   	<insert id="insertLoginDate" parameterType="kr.or.nextit.comm.model.EmployeeVo"  >
 	  	INSERT INTO
 	  		tb_login_info (

@@ -43,37 +43,37 @@
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType">
+					<form:select path="searchType" class="btn-dark btn-sm">
 						<form:option value="emp_id">직원아이디</form:option>
 						<form:option value="emp_name">직원이름</form:option>
 					</form:select>
 				</td>
 				<td>
-					<form:input path="searchText" placeholder="입력하세요..." />
+					<form:input path="searchText" placeholder="입력하세요..." class="form-control" />
 				</td>
 				<td>
-					<form:button id="searchSubmit" type="submit" class="btn btn-primary">검색</form:button>
+					<form:button id="searchSubmit" type="submit" class="btn btn-primary btn-sm">검색</form:button>
 				</td>
 			</tr>
 		</table>
-		currentPage: <form:input path="curPage" readonly="true" />
-		totalPage: <form:input path="totalPageCount" readonly="true" />
-		totalRecord: <form:input path="totalCount" readonly="true" />
+		<form:hidden path="curPage" readonly="true" />
+		<form:hidden path="totalPageCount" readonly="true" />
+		<form:hidden path="totalCount" readonly="true" />
 	</form:form>
 
 	<!-- // ;List View Part -->
 	<table class="table">
 		<thead>
 			<tr>
-				<th>아이디</th>	<!-- empId -->
-				<th>이름</th>	<!-- empName -->
+				<th>아이디</th>		<!-- empId -->
+				<th>이름</th>		<!-- empName -->
 				<th>전화번호</th>	<!-- empPhone -->
 				<th>주민번호</th>	<!-- empRrnum -->
-				<th>주소</th>	<!-- empAddress -->
-				<th>직책</th>	<!-- empDiv -->
-				<th>연봉</th>	<!--empSalary -->
-				<th>입사일</th>	<!-- empHiredate -->
-				<th>퇴사일</th>	<!-- empRetiredate -->
+				<th>주소</th>		<!-- empAddress -->
+				<th>직책</th>		<!-- empDiv -->
+				<th>연봉</th>		<!--empSalary -->
+				<th>입사일</th>		<!-- empHiredate -->
+				<th>퇴사일</th>		<!-- empRetiredate -->
 			</tr>
 		</thead>
 		<tbody>
@@ -132,7 +132,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class='activate'>
-							<a href='#' data-curpage='${i}' class='goPage btn-info'>${i}</a>
+							<a href='#' data-curpage='${i}' class='goPage'>${i}</a>
 						</li>
 					</c:otherwise>
 				</c:choose>

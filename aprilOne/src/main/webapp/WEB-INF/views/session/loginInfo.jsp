@@ -14,26 +14,119 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>접속자 정보</title>
+
+<script type="text/javascript" defer="defer">
+	var nodeTable = null;
+	var nodeThead = null;
+	var nodeTbody = null;
+	var nodeTr = null;
+	var nodeTh = null;
+	var nodeTd = null;
+	
+	function fn_showPrevLogDate(data) {
+		var showDiv = document.querySelector("#showDiv");					
+
+		$("#showDiv").empty();
+
+		// !!table 생성
+		nodeTable = document.createElement("table");
+		nodeTable.setAttribute("class", "table-bordered table-condensed")
+
+		// !!thead, tbody 생성
+		nodeThead = document.createElement("thead");
+		nodeTbody = document.createElement("tbody");
+		
+		// !!thead 부분
+		nodeTr = document.createElement("tr");
+
+		nodeTh = document.createElement("th");
+		nodeTh.innerHTML = "로그인 시간";
+		nodeTr.appendChild(nodeTh);
+
+		nodeTh = document.createElement("th");
+		nodeTh.innerHTML = "로그아웃 시간";
+		nodeTr.appendChild(nodeTh);
+
+		nodeThead.appendChild(nodeTr);
+		nodeTable.appendChild(nodeThead);
+		
+		// !!tbody 부분 (여러 레코드들)
+		for(e of data.result) {
+			nodeTr = document.createElement("tr");
+
+			nodeTd = document.createElement("td");
+			nodeTd.innerHTML = e.logLogindate;
+			nodeTr.appendChild(nodeTd);
+
+			nodeTd = document.createElement("td");
+			nodeTd.innerHTML = e.logLogoutdate;
+			nodeTr.appendChild(nodeTd);
+
+			nodeTbody.appendChild(nodeTr);
+			nodeTable.appendChild(nodeTbody);
+		} 
+
+		// !!최종 'showDiv'에 append
+		showDiv.appendChild(nodeTable);
+		
+	}
+
+	// ;===== for ajax jQuery ========
+	$(document).ready(function() {
+		$("#showInfo").on("click", function(evt) {
+			//alert("@@@ Btn Click!!!");
+
+			evt.preventDefault();
+			
+			$.ajax({
+				url				: '/aprilOne/session/showDateInfoProc', // URL체크 해야합다
+				method			: "POST",
+				dataType		: 'json',
+				data			: $('#sendDataForm').serialize(),
+				success			: function(data, status, xhr) {
+					//alert("###ajax success: " + JSON.stringify(data.result));
+					
+					fn_showPrevLogDate(data);
+					
+				},
+				error			: function(jqXhr, textStatus, errorMessage) {
+					alert("@@@ ajax error");
+					console.log(jqXhr);
+					console.log(textStatus);
+					console.log(errorMessage);
+				}
+			});
+		});
+	});
+    // ;=================================
+</script>
 </head>
 
 <body>
 	<table class="table">
 		<tr>
-			<th>접속자 직원 아이디</th>
 			<th>접속자 직원 이름</th>
+			<th>접속자 직원 아이디</th>
 			<th>접속자 직원 직책분류</th>
 			<th>접속자 직원 직책이름</th>
 		</tr>
 		<tr>
-			<td>${loginInfo.empId}</td>
 			<td>${loginInfo.empName}</td>
+			<td>${loginInfo.empId}</td>
 			<td>${loginInfo.empDiv}</td>
 			<td>${loginInfo.empDivname}</td>
 		</tr>
 	</table>
 	
-	<strong>"${loginInfo.empName}"님 이전 접속정보</strong>
-	<a href="#" class="btn btn-info btn-xs">상세보기</a> // 난주 ajax로 보여주는거롤 하면 어떨까
+	<form id="sendDataForm">
+		<input type="hidden" name="empId" value="${loginInfo.empId}">
+		<strong>"${loginInfo.empName}" 님 이전 접속정보</strong>
+		<button type="submit" id="showInfo" href="#" class="btn btn-info btn-xs">상세보기</button>
+	</form>
+	
+	<div id="showDiv"></div>
+
+	<%--
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -47,32 +140,9 @@
 				</tr>
 			</c:forEach>
 		</thead>
-		<tbody>
-			
-		</tbody>
+		<tbody></tbody>
 	</table>
+	--%>	
+	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

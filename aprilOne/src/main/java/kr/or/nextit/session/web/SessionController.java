@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.comm.model.LoginInfoVo;
@@ -89,18 +90,6 @@ public class SessionController {
 		EmployeeVo employeeVo = (EmployeeVo)session.getAttribute("loginInfo");
 		hmap.put("loginInfo", employeeVo);
 
-		List<LoginInfoVo> result = null;
-
-		try {
-
-			result = sessionService.selectLoginInfoList(employeeVo); // ;TB_LOGIN_INFO로 부터 조회
-			hmap.put("result", result);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-
 		return "session/loginInfo";
 	}
 
@@ -128,6 +117,35 @@ public class SessionController {
 		}
 		
 		return "wrong";
+	}
+
+	// !!!이전접속정보 보여주기 (AJAX)
+	@RequestMapping(value = "/session/showDateInfoProc")
+	@ResponseBody
+	public HashMap<String, Object> showDateInfoProc( 
+				@RequestParam HashMap<String, Object> param
+			) {
+		log.info("/session/showDateInfoProc");
+		log.debug("param : {}",param);
+
+		EmployeeVo employeeVo = new EmployeeVo();
+		employeeVo.setEmpId((String)param.get("empId"));
+		
+		List<LoginInfoVo> result = null;
+
+		try {
+
+			result = sessionService.selectLoginInfoList(employeeVo); // ;TB_LOGIN_INFO로 부터 조회
+			log.debug("result : {}", result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		HashMap<String, Object> hmap = new HashMap<>(); 
+		hmap.put("result", result);
+
+		return hmap;
 	}
 
 }

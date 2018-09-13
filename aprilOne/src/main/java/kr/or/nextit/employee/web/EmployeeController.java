@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.employee.service.EmployeeService;
 
 @Controller
@@ -25,13 +26,24 @@ public class EmployeeController {
 
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
-	public String employeeList(HashMap<String, Object> hmap) {
+	public String employeeList(
+				HashMap<String, Object> hmap,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo
+			) {
 		log.info(">>> /employee/employeeList");
+		log.debug(">>> searchVo : {}", searchVo);
 
 		List<EmployeeVo> result = null;
 
 		try {
+
+//			searchVo.setTotalCount(pagingService.selectTotalCount(searchVo));
+//			searchVo.setPageBlockSize(5);
+//			searchVo.setScreenSize(10);
+//			searchVo.pageSetting();
+
 			result = employeeService.selectEmployeeList();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

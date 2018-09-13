@@ -2,6 +2,8 @@ package kr.or.nextit.comm.util;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @SuppressWarnings("serial")
 public class PatientSearchVo extends PagingVo implements Serializable {
 
@@ -22,6 +24,11 @@ public class PatientSearchVo extends PagingVo implements Serializable {
 
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

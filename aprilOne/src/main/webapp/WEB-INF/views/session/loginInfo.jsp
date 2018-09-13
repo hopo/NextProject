@@ -34,7 +34,7 @@
 	
 	<strong>"${loginInfo.empName}"님 이전 접속정보</strong>
 	<a href="#" class="btn btn-info btn-xs">상세보기</a> // 난주 ajax로 보여주는거롤 하면 어떨까
-	<table class="table-bordered">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>로그인 시간</th>

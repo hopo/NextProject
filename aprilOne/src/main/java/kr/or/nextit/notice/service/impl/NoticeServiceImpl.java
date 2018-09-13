@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.NoticeVo;
+import kr.or.nextit.comm.util.NoticeSearchVo;
 import kr.or.nextit.notice.service.NoticeService;
 
 @Service("NoticeService")
@@ -22,8 +23,8 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//리스트
 	@Override
-	public List<NoticeVo> selectNoticeList() throws Exception {
-		List<NoticeVo> result = noticeMapper.selectNoticeList();
+	public List<NoticeVo> selectNoticeList(NoticeSearchVo vo) throws Exception {
+		List<NoticeVo> result = noticeMapper.selectNoticeList(vo);
 		return result;
 	}
 	

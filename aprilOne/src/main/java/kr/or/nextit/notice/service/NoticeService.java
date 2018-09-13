@@ -6,11 +6,12 @@ import java.util.Map;
 
 
 import kr.or.nextit.comm.model.NoticeVo;
+import kr.or.nextit.comm.util.NoticeSearchVo;
 
 public interface NoticeService {
 
 	// 리스트
-	public List<NoticeVo> selectNoticeList() throws Exception;
+	public List<NoticeVo> selectNoticeList(NoticeSearchVo vo) throws Exception;
 
 	// 글작성
 

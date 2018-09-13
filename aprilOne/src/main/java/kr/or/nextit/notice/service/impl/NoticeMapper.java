@@ -6,11 +6,12 @@ import java.util.Map;
 
 
 import kr.or.nextit.comm.model.NoticeVo;
+import kr.or.nextit.comm.util.NoticeSearchVo;
 
 public interface NoticeMapper {
 
 	// 매퍼- 게시판 목록을 불러온다
-	public List<NoticeVo> selectNoticeList() throws Exception;
+	public List<NoticeVo> selectNoticeList(NoticeSearchVo vo) throws Exception;
 
 	// 글작성
 	public void insertNotice(Map<String, Object> hmap) throws Exception;

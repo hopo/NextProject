@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import kr.or.nextit.comm.model.NoticeVo;
+import kr.or.nextit.comm.util.NoticeSearchVo;
 import kr.or.nextit.notice.service.NoticeService;
 
 @Controller
@@ -26,10 +27,12 @@ public class NoticeController {
 
 	// 리스트
 	@RequestMapping(value = "/notice/noticeList")
-	public String noticeList(HashMap<String, Object> hmap) throws Exception {
+	public String noticeList(  String searchType, String searchText
+			                 , NoticeSearchVo vo 
+			                 , HashMap<String, Object> hmap) throws Exception {
 		log.info(">>> notice/noticeList");
 
-		List<NoticeVo> result = noticeService.selectNoticeList();
+		List<NoticeVo> result = noticeService.selectNoticeList(vo);
 
 		hmap.put("result", result);
 

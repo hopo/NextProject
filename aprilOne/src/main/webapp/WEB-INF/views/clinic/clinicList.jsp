@@ -48,7 +48,7 @@
 					</form:select>
 				</td>
 				<td>
-					<form:input path="searchText" placeholder="입력하세요..."/>
+					<form:input path="searchText" placeholder="입력하세요..." />
 				</td>
 				<td>
 					<form:button id="searchSubmit" type="submit" class="btn btn-primary">검색</form:button>

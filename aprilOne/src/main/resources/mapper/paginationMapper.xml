@@ -10,7 +10,7 @@
 	<sql id="whereQueryTrimIf">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="searchText != null and searchText != ''">
-				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
+				AND ${searchType} LIKE '%' || #{searchText} || '%'
 			</if>
 		</trim>
 	</sql>
@@ -19,7 +19,7 @@
 		SELECT
 			COUNT(*) AS total_count
 		FROM
-			tb_clinic
+			#{searchTable}
 		<include refid="whereQueryTrimIf" />
 	</select>
 

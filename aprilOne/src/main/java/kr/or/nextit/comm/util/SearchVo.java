@@ -9,6 +9,7 @@ public class SearchVo extends PagingVo implements Serializable {
 
 	private String searchType;
 	private String searchText;
+	private String searchTable;
 
 	public String getSearchType() {
 		return searchType;
@@ -24,6 +25,14 @@ public class SearchVo extends PagingVo implements Serializable {
 
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
+	}
+
+	public String getSearchTable() {
+		return searchTable;
+	}
+
+	public void setSearchTable(String searchTable) {
+		this.searchTable = searchTable;
 	}
 
 	@Override

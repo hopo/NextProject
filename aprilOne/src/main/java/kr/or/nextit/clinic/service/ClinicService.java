@@ -22,7 +22,7 @@ public interface ClinicService {
 	 */
 	public ClinicVo selectClinicItem(HashMap<String, Object> param) throws Exception;
 
-//	public int selectTotalCount(SearchVo searchVo) throws Exception;
+	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
 	/**
 	 * @param param

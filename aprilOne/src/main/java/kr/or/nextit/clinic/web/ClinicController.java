@@ -25,6 +25,9 @@ public class ClinicController {
 	@Resource(name = "ClinicService")
 	private ClinicService clinicService;
 
+	@Resource(name = "PaginationService")
+	private PaginationService paginationService;
+
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
 	public String clinicList(
@@ -38,8 +41,8 @@ public class ClinicController {
 
 		try {
 
-			searchVo.setSearchTable("TB_CLINIC");
-			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
+			searchVo.setSearchTable("tb_clinic");
+			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
 			searchVo.setScreenSize(10);
 			searchVo.pageSetting();

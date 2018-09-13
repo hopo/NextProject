@@ -12,6 +12,7 @@ public class PaginationServiceImpl implements PaginationService {
 	@Autowired
 	public PaginationMapper paginationMapper;
 
+	@Override
 	public int selectTotalCount(SearchVo searchVo) throws Exception {
 		return paginationMapper.selectTotalCount(searchVo);
 	}

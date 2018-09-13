@@ -50,7 +50,7 @@
 			cln_code = #{clnCode}
 	</select>
 
-
+	<!--
 	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">
 		SELECT
 			COUNT(*) AS total_count
@@ -58,6 +58,7 @@
 			${searchTable}
 		<include refid="whereQueryTrimIf" />
 	</select>
+  	-->
 
 	<insert id="insertClinic" parameterType="HashMap">
 		INSERT INTO tb_clinic (

@@ -9,19 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.employee.service.EmployeeService;
 
 @Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private EmployeeMapper employeeMapper;
 
 	@Override
-	public List<EmployeeVo> selectEmployeeList() throws Exception {
-		return employeeMapper.selectEmployeeList();
+	public List<EmployeeVo> selectEmployeeList(SearchVo searchVo) throws Exception {
+		return employeeMapper.selectEmployeeList(searchVo);
 	}
 	
 	@Override

@@ -32,7 +32,7 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/clinicList")
 	public String clinicList(
 				HashMap<String, Object> hmap,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo // ; name='*' 과 jsp 쪽 form commandName='*' 같음
+				@ModelAttribute(name = "searchVo") SearchVo searchVo
 			) {
 		log.info(">>> /clinic/clinicList");
 		log.debug(">>> searchVo : {}", searchVo);
@@ -47,16 +47,18 @@ public class ClinicController {
 			searchVo.setScreenSize(10);
 			searchVo.pageSetting();
 			
-			log.debug(">>> ====== customerSearchVo ======");
-			log.debug(">>> TotalCount: {}", searchVo.getTotalCount());
-			log.debug(">>> ScreenSize: {}", searchVo.getScreenSize());
-			log.debug(">>> TotalPageCount: {}", searchVo.getTotalPageCount());
-			log.debug(">>> CurPage: {}", searchVo.getCurPage());
-			log.debug(">>> EndPage: {}", searchVo.getEndPage());
-			log.debug(">>> StartRow: {}", searchVo.getStartRow());
-			log.debug(">>> EndRow: {}", searchVo.getEndRow());
-			log.debug(">>> SearchTable: {}", searchVo.getSearchTable());
-			log.debug(">>> ===============================");
+			log.debug(">>> ========= searchVo =====================");
+			log.debug(">>> SearchTable : {}", searchVo.getSearchTable());
+			log.debug(">>> SearchType : {}", searchVo.getSearchType());
+			log.debug(">>> SearchText : {}", searchVo.getSearchText());
+			log.debug(">>> TotalCount : {}", searchVo.getTotalCount());
+			log.debug(">>> ScreenSize : {}", searchVo.getScreenSize());
+			log.debug(">>> TotalPageCount : {}", searchVo.getTotalPageCount());
+			log.debug(">>> CurPage : {}", searchVo.getCurPage());
+			log.debug(">>> EndPage : {}", searchVo.getEndPage());
+			log.debug(">>> StartRow : {}", searchVo.getStartRow());
+			log.debug(">>> EndRow : {}", searchVo.getEndRow());
+			log.debug(">>> =========================================");
 
 			result = clinicService.selectClinicList(searchVo);
 			log.debug(">>> result : {}", result);
@@ -64,9 +66,7 @@ public class ClinicController {
 			hmap.put("result", result);
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 
 		return "clinic/clinicList";

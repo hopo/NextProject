@@ -8,15 +8,15 @@
 
 	<!-- TB_EMPLOYEE 모든 컬럼 -->
 	<sql id="tableAllColumn">
-	    emp_id,
-	    emp_pwd,
-	    emp_name,
-	    emp_phone,
-	    emp_rrnum,
-	    emp_address,
-	    emp_div,
-	    emp_salary,
-	    emp_hiredate,
+	    emp_id		 ,
+	    emp_pwd 	 ,
+	    emp_name	 ,
+	    emp_phone 	 ,
+	    emp_rrnum    ,
+	    emp_address  ,
+	    emp_div 	 ,
+	    emp_salary 	 ,
+	    emp_hiredate ,
 	    emp_retiredate
 	</sql>
 	
@@ -25,20 +25,35 @@
 	<sql id="whereQueryTrimIf">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="searchText != null and searchText != ''">
-				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
+				AND ${searchType} LIKE '%' || #{searchText} || '%'
 			</if>
 		</trim>
 	</sql>
 	
 	
 	<!-- SELECT / INSERT / UPDATE -->
-	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
+<!-- 	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			<include refid="tableAllColumn" />
 		FROM
 			tb_employee
 	</select>
-
+ -->
+ 
+	<select id="selectEmployeeList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.EmployeeVo">
+		SELECT *
+		FROM (
+			SELECT ROWNUM AS rnum , frm.*
+			FROM (
+				SELECT <include refid="tableAllColumn" />
+				FROM tb_employee
+				<include refid="whereQueryTrimIf" />
+				ORDER BY emp_id DESC
+			) frm
+	    )
+	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
+	</select>
+ 
 	<select id="selectEmployeeItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			<include refid="tableAllColumn" />

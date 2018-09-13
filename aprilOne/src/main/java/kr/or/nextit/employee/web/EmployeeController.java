@@ -25,11 +25,14 @@ public class EmployeeController {
 	@Resource(name = "EmployeeService")
 	private EmployeeService employeeService;
 
+	@Resource(name = "PaginationService")
+	private PaginationService paginationService;
+
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
 	public String employeeList(
 				HashMap<String, Object> hmap,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo
+				@ModelAttribute(name = "searchVo") SearchVo searchVo // ;name='*' 과 jsp 쪽 form commandName='*' 같음
 			) {
 		log.info(">>> /employee/employeeList");
 		log.debug(">>> searchVo : {}", searchVo);
@@ -38,15 +41,34 @@ public class EmployeeController {
 
 		try {
 
-			result = employeeService.selectEmployeeList();
+			searchVo.setSearchTable("tb_employee"); 	// ;검색테이블 설정
+			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
+			searchVo.setPageBlockSize(5); 			// ;페이지 5개씩
+			searchVo.setScreenSize(10);				// ;로우 10개씩 
+			searchVo.pageSetting(); // ;토대로 세팅하라
+			
+			log.debug(">>> ========= searchVo =====================");
+			log.debug(">>> SearchTable : {}", searchVo.getSearchTable());
+			log.debug(">>> SearchType : {}", searchVo.getSearchType());
+			log.debug(">>> SearchText : {}", searchVo.getSearchText());
+			log.debug(">>> TotalCount : {}", searchVo.getTotalCount());
+			log.debug(">>> ScreenSize : {}", searchVo.getScreenSize());
+			log.debug(">>> TotalPageCount : {}", searchVo.getTotalPageCount());
+			log.debug(">>> CurPage : {}", searchVo.getCurPage());
+			log.debug(">>> EndPage : {}", searchVo.getEndPage());
+			log.debug(">>> StartRow : {}", searchVo.getStartRow());
+			log.debug(">>> EndRow : {}", searchVo.getEndRow());
+			log.debug(">>> =========================================");
+
+			result = employeeService.selectEmployeeList(searchVo);
+			log.debug(">>> result : {}", result);
+			
+			hmap.put("result", result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		log.debug(">>> result : {}", result);
-		hmap.put("result", result);
-
 		return "employee/employeeList";
 	}
 

@@ -4,14 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.or.nextit.comm.model.EmployeeVo;
+import kr.or.nextit.comm.util.SearchVo;
 
 public interface EmployeeService {
 
 	/**
+	 * @param searchVo
 	 * @return
 	 * @throws Exception
 	 */
-	public List<EmployeeVo> selectEmployeeList() throws Exception;
+	public List<EmployeeVo> selectEmployeeList(SearchVo searchVo) throws Exception;
 
 	/**
 	 * @param param

@@ -8,11 +8,13 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
+import kr.or.nextit.comm.util.SearchVo;
 
 @Controller
 public class ClinicController {
@@ -24,19 +26,43 @@ public class ClinicController {
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
-	public String clinicList(HashMap<String, Object> hmap) {
+	public String clinicList(
+				HashMap<String, Object> hmap,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo // ; name='*' 과 jsp 쪽 form commandName='*' 같음
+			) {
 		log.info(">>> /clinic/clinicList");
+		log.debug(">>> searchVo : {}", searchVo);
 
 		List<ClinicVo> result = null;
 
 		try {
-			result = clinicService.selectClinicList();
+
+			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
+			searchVo.setPageBlockSize(5);
+			searchVo.setScreenSize(10);
+			searchVo.pageSetting();
+			
+			log.debug(">>> ====== customerSearchVo ======");
+			log.debug(">>> TotalCount: {}", searchVo.getTotalCount());
+			log.debug(">>> ScreenSize: {}", searchVo.getScreenSize());
+			log.debug(">>> TotalPageCount: {}", searchVo.getTotalPageCount());
+			log.debug(">>> CurPage: {}", searchVo.getCurPage());
+			log.debug(">>> EndPage: {}", searchVo.getEndPage());
+			log.debug(">>> StartRow: {}", searchVo.getStartRow());
+			log.debug(">>> EndRow: {}", searchVo.getEndRow());
+			log.debug(">>> ===============================");
+
+			result = clinicService.selectClinicList(searchVo);
+			log.debug(">>> result : {}", result);
+
+			hmap.put("result", result);
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
 
-		log.debug(">>> result : {}", result);
-		hmap.put("result", result);
 
 		return "clinic/clinicList";
 
@@ -51,10 +77,15 @@ public class ClinicController {
 		log.info(">>> /clinic/clinicView");
 
 		ClinicVo item = null;
+
 		try {
+
 			item = clinicService.selectClinicItem(param);
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
 		
 		log.debug(">>> item : {}", item);
@@ -83,16 +114,19 @@ public class ClinicController {
 		log.debug("param : {}", param);
 		
 		try {
+
 			clinicService.insertClinic(param);
-			
 			hmap.put("param", param);
 
 			return "clinic/clinicCreateProc";
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
 
-		return "home";
+		return "wrong";
 	}
 }
 

@@ -2,16 +2,16 @@ package kr.or.nextit.comm.util;
 
 public class PagingVo {
 
-	private int totalCount; // 전체 레코드 갯수 100
-	private int curPage; // 현제페이지 1
-	private int screenSize; // 화면에 보이는 레코드수 10개씩 100개 100/10
+	private int totalCount; 	// 전체 레코드 갯수 100
+	private int curPage; 		// 현제페이지 1
+	private int screenSize; 	// 화면에 보이는 레코드수 10개씩 100개 100/10
 	private int totalPageCount; // 총 페이지 수 10개씩 10페이지
-	private int startRow; // 시작 행번호 레코드 첫번째번호
-	private int endRow; // 끝 행번호 레코드 끝번호
+	private int startRow; 		// 시작 행번호 레코드 첫번째번호
+	private int endRow; 		// 끝 행번호 레코드 끝번호
 
-	private int pageBlockSize; // 화면에 보여지는 페이지 3페이지씩 4블록
-	private int startPage; // 시작 페이지 번호 1페이지
-	private int endPage; // 끝 페이지 번호 10페이지
+	private int pageBlockSize; 	// 화면에 보여지는 페이지 3페이지씩 4블록
+	private int startPage; 		// 시작 페이지 번호 1페이지
+	private int endPage; 		// 끝 페이지 번호 10페이지
 
 	public void pageSetting() {
 

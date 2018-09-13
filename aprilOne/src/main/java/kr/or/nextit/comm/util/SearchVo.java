@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @SuppressWarnings("serial")
-public class NoticeSearchVo extends PagingVo implements Serializable {
+public class SearchVo extends PagingVo implements Serializable {
 
 	private String searchType;
 	private String searchText;

@@ -20,18 +20,25 @@
 	<sql id="whereQueryTrimIf">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="searchText != null and searchText != ''">
-				AND ${searchType} LIKE CONCAT('%', #{searchText}, '%')
+				AND ${searchType} LIKE '%' || #{searchText} || '%'
 			</if>
 		</trim>
 	</sql>
 	
 	
 	<!-- SELECT / INSERT / UPDATE -->
-	<select id="selectClinicList" resultType="kr.or.nextit.comm.model.ClinicVo">
-		SELECT
-			<include refid="tableAllColumn" />
-		FROM
-			tb_clinic
+	<select id="selectClinicList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.ClinicVo">
+		SELECT *
+		FROM (
+			SELECT ROWNUM AS rnum , frm.*
+			FROM (
+				SELECT <include refid="tableAllColumn" />
+				FROM tb_clinic
+				<include refid="whereQueryTrimIf" />
+				ORDER BY cln_code DESC
+			) frm
+	    )
+	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<select id="selectClinicItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.ClinicVo">
@@ -41,6 +48,14 @@
 			tb_clinic
 		WHERE
 			cln_code = #{clnCode}
+	</select>
+
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">
+		SELECT
+			COUNT(*) AS total_count
+		FROM
+			tb_clinic
+		<include refid="whereQueryTrimIf" />
 	</select>
 	
 	<insert id="insertClinic" parameterType="HashMap">

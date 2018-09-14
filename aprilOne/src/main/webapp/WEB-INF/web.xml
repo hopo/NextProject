@@ -33,6 +33,21 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
+	
+	<!-- // ;Filter) TimerFilter -->
+	<filter>
+		<filter-name>timerCheckFilter</filter-name>
+		<filter-class>kr.or.nextit.filter.TimerFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>timerCheckFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!-- ========================================================== -->
 	
 	
@@ -71,6 +86,7 @@
 			<file-size-threshold>104857600</file-size-threshold>
 		</multipart-config>
  		-->
+
 	</servlet>
 		
 	<servlet-mapping>

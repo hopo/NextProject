@@ -16,6 +16,37 @@
 <title>접속자 정보</title>
 
 <script type="text/javascript" defer="defer">
+
+	// ;===== jQuery AJAX ========
+	$(document).ready(function() {
+		$("#showInfo").on("click", function(evt) {
+			//alert("@@@ Btn Click!!!");
+
+			evt.preventDefault();
+			
+			$.ajax({
+				url				: '/aprilOne/session/showDateInfoProc', // URL체크 해야합다
+				method			: "POST",
+				dataType		: 'json',
+				data			: $('#sendDataForm').serialize(),
+				success			: function(data, status, xhr) {
+					//alert("###ajax success: " + JSON.stringify(data.result));
+					
+					fn_showPrevLogDate(data);
+					
+				},
+				error			: function(jqXhr, textStatus, errorMessage) {
+					alert("@@@ ajax error");
+					console.log(jqXhr);
+					console.log(textStatus);
+					console.log(errorMessage);
+				}
+			});
+		});
+	});
+    // ;=================================
+
+    // ;=== User function ===============
 	var nodeTable = null;
 	var nodeThead = null;
 	var nodeTbody = null;
@@ -70,34 +101,6 @@
 		showDiv.appendChild(nodeTable);
 		
 	}
-
-	// ;===== for ajax jQuery ========
-	$(document).ready(function() {
-		$("#showInfo").on("click", function(evt) {
-			//alert("@@@ Btn Click!!!");
-
-			evt.preventDefault();
-			
-			$.ajax({
-				url				: '/aprilOne/session/showDateInfoProc', // URL체크 해야합다
-				method			: "POST",
-				dataType		: 'json',
-				data			: $('#sendDataForm').serialize(),
-				success			: function(data, status, xhr) {
-					//alert("###ajax success: " + JSON.stringify(data.result));
-					
-					fn_showPrevLogDate(data);
-					
-				},
-				error			: function(jqXhr, textStatus, errorMessage) {
-					alert("@@@ ajax error");
-					console.log(jqXhr);
-					console.log(textStatus);
-					console.log(errorMessage);
-				}
-			});
-		});
-	});
     // ;=================================
 </script>
 </head>

@@ -43,7 +43,7 @@
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType" class="btn-dark btn-sm">
+					<form:select path="searchType" class="btn-default btn">
 						<form:option value="emp_id">직원아이디</form:option>
 						<form:option value="emp_name">직원이름</form:option>
 					</form:select>
@@ -91,7 +91,8 @@
 					<td>
 						<c:if test="${item.empDiv eq 'D'}">의사</c:if>
 						<c:if test="${item.empDiv eq 'N'}">간호사</c:if>
-						<c:if test="${item.empDiv eq 'A'}">*미분류</c:if>
+						<c:if test="${item.empDiv eq 'A'}">관리자</c:if>
+						<c:if test="${item.empDiv eq 'Z'}">*미분류</c:if>
 					</td>
 					<td>${item.empSalary}</td>
 					<td>${item.empHiredate}</td>

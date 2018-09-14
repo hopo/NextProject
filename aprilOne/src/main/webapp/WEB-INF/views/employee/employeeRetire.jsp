@@ -15,11 +15,11 @@
 </head>
 
 <body>
-	${param.empName} 정말 해고?!
+	<div>${param.empName} (${param.empId})님. 정말 퇴사인가요?!</div>
 	<c:url value='/employee/employeeRetireProc' var='employeeRetireProcUrl'>
 		<c:param value='${param.empId}' name='empId' />
 	</c:url>
-	<button class="btn btn-danger"><a href="${employeeRetireProcUrl}">OK</a></button>
-	<button class="btn btn-secondary"><a href="<c:url value='/employee/employeeList' />">취소</a></button>
+	<a href="${employeeRetireProcUrl}" class="btn btn-danger">OK</a>
+	<a href="<c:url value='/employee/employeeList' />" class="btn btn-default">취소</a>
 </body>
 </html>

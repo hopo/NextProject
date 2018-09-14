@@ -19,7 +19,7 @@
 
 <body>
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
-		<div class="">
+		<div class="form-group">
 			<strong>직원아이디</strong>
 			<input name="empId" id="inputEmpId" class="" placeholder="Employee Id" required autofocus>
 			<span class="alert-warning">
@@ -28,7 +28,7 @@
 			<%-- <form:errors path="employeeVo.empId" /> --%>		
 		</div>
 
-		<div class="">
+		<div class="form-group">
 			<strong class="">비밀번호</strong>
 			<input type="password" name="empPwd"  id="inputPassword" class="" placeholder="Password" required>
 		</div>

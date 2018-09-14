@@ -22,7 +22,7 @@
 				<td>${item.empId}</td>
 			</tr>
 			<tr>
-				<th>이름</th>	<!-- empName -->
+				<th>이름</th>		<!-- empName -->
 				<td>${item.empName}</td>
 			</tr>
 			<tr>
@@ -34,19 +34,20 @@
 				<td>${item.empRrnum}</td>
 			</tr>
 			<tr>
-				<th>주소</th>	<!-- empAddress -->
+				<th>주소</th> 	<!-- empAddress -->
 				<td>${item.empAddress}</td>
 			</tr>
 			<tr>
-				<th>직책</th>	<!-- empDiv -->
+				<th>직책</th>		<!-- empDiv -->
 				<td>
 					<c:if test="${item.empDiv eq 'D'}">의사</c:if>
 					<c:if test="${item.empDiv eq 'N'}">간호사</c:if>
-					<c:if test="${item.empDiv eq 'A'}">*미선택</c:if>
+					<c:if test="${item.empDiv eq 'A'}">관리자</c:if>
+					<c:if test="${item.empDiv eq 'Z'}">*미선택</c:if>
 				</td>
 			</tr>
 			<tr>
-				<th>연봉</th>	<!--empSalary -->
+				<th>연봉</th>		<!--empSalary -->
 				<td>${item.empSalary}</td>
 			</tr>
 			<tr>
@@ -59,15 +60,22 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<c:url value='/employee/employeeList' var='employeeListUrl' />
+	<a href="${employeeListUrl}" class="btn btn-default">직원리스트</a>
 
 	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 		<c:param value='${item.empId}' name='empId' />
 	</c:url>
-	<button class="btn"><a href="${employeeEditUrl}">수정</a></button>
+	<a href="${employeeEditUrl}" class="btn btn-info">수정</a>
 
 	<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
 		<c:param value='${item.empId}' name='empId' />
+		<c:param value='${item.empName}' name='empName' />
 	</c:url>
-	<button class="btn"><a href="${employeeRetireUrl}">"YOU'RE FIRED!"</a></button>
+	
+	<c:if test="${item.empRetiredate eq null}">
+		<a href="${employeeRetireUrl}" class="btn btn-danger">퇴사</a>
+	</c:if>
 </body>
 </html>

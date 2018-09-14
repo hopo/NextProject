@@ -19,7 +19,9 @@ public class NoticeVo implements Serializable {
 	private String ntcUpdate;	// !글 수정일
 	private String ntcCount;	// !글 조회수
 	private String ntcDelat;	// !삭제여부; 삭제=T 노삭제=F
-
+	
+	private String rnum;		// 글 번호정렬
+	
 	// !!!부가적 필드
 	private String message;
 	private boolean result;
@@ -119,6 +121,14 @@ public class NoticeVo implements Serializable {
 
 	public void setEmpDiv(String empDiv) {
 		this.empDiv = empDiv;
+	}
+
+	public String getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
 	}
 
 }

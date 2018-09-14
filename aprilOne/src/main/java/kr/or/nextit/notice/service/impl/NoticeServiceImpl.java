@@ -51,5 +51,11 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeMapper.updateDelNotice(param);
 	}
 
+	@Override
+	public int selectTotalCount(NoticeSearchVo vo) throws Exception {
+		
+		return noticeMapper.selectTotalCount(vo);
+	}
+
 	
 }

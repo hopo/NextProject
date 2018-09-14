@@ -25,4 +25,7 @@ public interface NoticeMapper {
 	// 삭제
 	public void updateDelNotice(NoticeVo param) throws Exception;
 	
+	// 전체리스트갯수 확인
+	public int selectTotalCount(NoticeSearchVo vo) throws Exception;
+	
 }

@@ -27,13 +27,19 @@ public class NoticeController {
 
 	// 리스트
 	@RequestMapping(value = "/notice/noticeList")
-	public String noticeList(  String searchType, String searchText
-			                 , NoticeSearchVo vo 
+	public String noticeList( @ModelAttribute("NoticeSearchVo") NoticeSearchVo vo 
 			                 , HashMap<String, Object> hmap) throws Exception {
 		log.info(">>> notice/noticeList");
-
+		
+		
+		vo.setSearchTable("tb_notice");
+		vo.setTotalCount(noticeService.selectTotalCount(vo));
+		vo.setPageBlockSize(5);
+		vo.setScreenSize(10);
+		vo.pageSetting();
+	
 		List<NoticeVo> result = noticeService.selectNoticeList(vo);
-
+		
 		hmap.put("result", result);
 
 		return "notice/noticeList";

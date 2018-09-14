@@ -7,6 +7,7 @@ import java.util.Map;
 
 import kr.or.nextit.comm.model.NoticeVo;
 import kr.or.nextit.comm.util.NoticeSearchVo;
+import kr.or.nextit.comm.util.SearchVo;
 
 public interface NoticeService {
 
@@ -25,5 +26,8 @@ public interface NoticeService {
 	
 	// 삭제
 	public  void updateDelNotice(NoticeVo param) throws Exception;
+	
+	// 전체리스트갯수 확인
+	public int selectTotalCount(NoticeSearchVo vo) throws Exception;
 	
 }

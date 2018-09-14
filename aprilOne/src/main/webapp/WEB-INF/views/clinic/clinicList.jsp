@@ -37,7 +37,7 @@
 
 <body>
 	<!-- // ;Search Part -->
-	<form:form commandName="searchVo" method="POST">
+	<form:form  commandName="searchVo" method="POST">
 		<table>
 			<tr>
 				<th>검색타입</th>

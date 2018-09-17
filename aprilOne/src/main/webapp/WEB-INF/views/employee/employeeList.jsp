@@ -37,6 +37,10 @@
 </head>
 
 <body>
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
 	<!-- // ;Search Part -->
 	<form:form commandName="searchVo" method="POST">
 		<table>
@@ -60,6 +64,7 @@
 		<form:hidden path="totalPageCount" readonly="true" />
 		<form:hidden path="totalCount" readonly="true" />
 	</form:form>
+
 
 	<!-- // ;List View Part -->
 	<table class="table">

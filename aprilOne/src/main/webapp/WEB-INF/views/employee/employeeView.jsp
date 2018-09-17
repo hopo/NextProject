@@ -15,6 +15,10 @@
 </head>
 
 <body>
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
 	<table class="table">
 		<tbody>
 			<tr>
@@ -75,7 +79,7 @@
 	</c:url>
 	
 	<c:if test="${item.empRetiredate eq null}">
-		<a href="${employeeRetireUrl}" class="btn btn-danger">퇴사</a>
+		<a href="${employeeRetireUrl}" class="btn btn-danger">삭제(퇴사)</a>
 	</c:if>
 </body>
 </html>

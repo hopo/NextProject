@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.comm.service.PaginationService;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.employee.service.EmployeeService;
 
@@ -28,11 +30,18 @@ public class EmployeeController {
 	@Resource(name = "PaginationService")
 	private PaginationService paginationService;
 
+	// !비즈니스 로직
+	private CommBuis commBuis = new CommBuis();
+
+	// !메시지Vo 공동 사용
+	MessageVo msgVo = new MessageVo();
+
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
 	public String employeeList(
-				HashMap<String, Object> hmap,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo // ;name='*' 과 jsp 쪽 form commandName='*' 같음
+				@RequestParam HashMap<String, Object> param,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo, // ;name='*' 과 jsp 쪽 form commandName='*' 같음
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeList");
 		log.debug(">>> searchVo : {}", searchVo);
@@ -47,23 +56,15 @@ public class EmployeeController {
 			searchVo.setScreenSize(10);				// ;로우 10개씩 
 			searchVo.pageSetting(); // ;토대로 세팅하라
 			
-			log.debug(">>> ========= searchVo =====================");
-			log.debug(">>> SearchTable : {}", searchVo.getSearchTable());
-			log.debug(">>> SearchType : {}", searchVo.getSearchType());
-			log.debug(">>> SearchText : {}", searchVo.getSearchText());
-			log.debug(">>> TotalCount : {}", searchVo.getTotalCount());
-			log.debug(">>> ScreenSize : {}", searchVo.getScreenSize());
-			log.debug(">>> TotalPageCount : {}", searchVo.getTotalPageCount());
-			log.debug(">>> CurPage : {}", searchVo.getCurPage());
-			log.debug(">>> EndPage : {}", searchVo.getEndPage());
-			log.debug(">>> StartRow : {}", searchVo.getStartRow());
-			log.debug(">>> EndRow : {}", searchVo.getEndRow());
-			log.debug(">>> =========================================");
+			commBuis.dispSearchVo(searchVo);
 
 			result = employeeService.selectEmployeeList(searchVo);
 			log.debug(">>> result : {}", result);
 			
 			hmap.put("result", result);
+
+			hmap.put("msgTag", param.get("msgTag"));
+			hmap.put("msgValue", param.get("msgValue"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,21 +76,25 @@ public class EmployeeController {
 	// !!!직원 상세보기 화면
 	@RequestMapping(value = "/employee/employeeView")
 	public String employeeView(
-				HashMap<String, Object> hmap,
-				@RequestParam HashMap<String, Object> param
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeView");
 		log.debug(">>> param : {}", param);
 		
 		EmployeeVo item = null;
+
 		try {
+
 			item = employeeService.selectEmployeeItem(param);
+			log.debug(">>> item : {}", item);
+			
+			hmap.put("item", item);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		log.debug(">>> item : {}", item);
-		hmap.put("item", item);
+
 		
 		return "employee/employeeView";
 	}
@@ -115,8 +120,12 @@ public class EmployeeController {
 
 			employeeService.insertEmployee(param); // ;DB에 새로운 계정을 인서트 한다
 			
-			String message = String.format("Info : %s님 계정이 생성되었습니다.", param.getEmpId());
-			hmap.put("message", message);
+			msgVo.setMsgTag("info");
+			msgVo.setMsgValue(String.format("%s님 계정이 생성되었습니다.", param.getEmpId()));
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
+			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가
 
 			return "redirect:/session/login";
 
@@ -130,8 +139,8 @@ public class EmployeeController {
 	// !!!직원 수정 화면
 	@RequestMapping(value = "/employee/employeeEdit")
 	public String employeeEdit(
-				HashMap<String, Object> hmap,
-				@RequestParam HashMap<String, Object> param
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeEdit");
 		log.debug(">>> param : {}", param);
@@ -139,30 +148,46 @@ public class EmployeeController {
 		EmployeeVo item = null;
 
 		try {
+
 			item = employeeService.selectEmployeeItem(param);
+			log.debug(">>> item : {}", item);
+
+			hmap.put("item", item);
+			hmap.put("phone", item.getEmpPhone().split("-")); // ;;전화번호 쪼개기
+			hmap.put("rrnum", item.getEmpRrnum().split("-")); // ;;주민번호 쪼개기
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		log.debug(">>> item : {}", item);
-		hmap.put("item", item);
-		
+
 		return "employee/employeeEdit";
 	}
 
 	// !!!직원 수정 프로세서
 	@RequestMapping(value = "/employee/employeeEditProc")
 	public String employeeEditProc(
-				@ModelAttribute EmployeeVo param
+				@RequestParam HashMap<String, Object> param,
+				@ModelAttribute EmployeeVo employeeVo,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeEditProc");
-		log.debug(">>> param : {}", param);
+		log.debug(">>> param : {}", employeeVo);
 		
 		try {
-			employeeService.updateEmployee(param);
-			String resultViewUrl = String.format("redirect:/employee/employeeView?empId=%s", param.getEmpId());
+
+			employeeService.updateEmployee(employeeVo); // 직원정보를 수정하였다
+
+			msgVo.setMsgTag("info");
+			msgVo.setMsgValue(String.format("%s님 계정이 수정되었습니다.", employeeVo.getEmpId()));
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
+			hmap.put("msgVo", msgVo);
+			hmap.put("empId", employeeVo.getEmpId());
 			
-			return resultViewUrl;
+			return "redirect:/employee/employeeView";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -184,15 +209,25 @@ public class EmployeeController {
 	// !!!직원 퇴사(수정) 프로세서
 	@RequestMapping(value = "/employee/employeeRetireProc")
 	public String employeeRetireProc(
-				@ModelAttribute EmployeeVo param
+				@ModelAttribute EmployeeVo employeeVo,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeRetireProc");
-		log.debug(">>> param : {}", param);
+		log.debug(">>> param : {}", employeeVo);
 		
 		try {
-			employeeService.updateRetireEmployee(param);
+
+			employeeService.updateRetireEmployee(employeeVo);
+
+			msgVo.setMsgTag("warning");
+			msgVo.setMsgValue(String.format("%s님 계정이 삭제(퇴사) 되었습니다.", employeeVo.getEmpId()));
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
+			hmap.put("msgVo", msgVo);
 			
 			return "redirect:/employee/employeeList";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -36,8 +36,12 @@
 </head>
 
 <body>
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
 	<!-- // ;Search Part -->
-	<form:form  commandName="searchVo" method="POST">
+	<form:form commandName="searchVo" method="POST">
 		<table>
 			<tr>
 				<th>검색타입</th>

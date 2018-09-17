@@ -16,8 +16,8 @@
 	    emp_address  ,
 	    emp_div 	 ,
 	    emp_salary 	 ,
-	    emp_hiredate ,
-	    emp_retiredate
+	    TO_CHAR(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
+	    TO_CHAR(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
 	</sql>
 	
 
@@ -56,7 +56,16 @@
  
 	<select id="selectEmployeeItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
-			<include refid="tableAllColumn" />
+		    emp_id		 ,
+		    emp_pwd		 ,
+		    emp_name	 ,
+		    emp_phone 	 ,
+		    emp_rrnum    ,
+		    emp_address  ,
+		    emp_div 	 ,
+		    emp_salary 	 ,
+		    TO_CHAR(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
+		    TO_CHAR(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
 		FROM
 			tb_employee
 		WHERE

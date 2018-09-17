@@ -36,7 +36,8 @@ public class SessionController {
 		log.info(">>> /session/login");
 		log.debug(">>> param {}", param);
 		
-		hmap.put("message", param.get("message"));
+		hmap.put("msgTag", param.get("msgTag"));
+		hmap.put("msgValue", param.get("msgValue"));
 
 		return "session/login";
 	}

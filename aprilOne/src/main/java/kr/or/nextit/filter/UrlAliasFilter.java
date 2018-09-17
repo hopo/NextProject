@@ -26,7 +26,7 @@ public class UrlAliasFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-		log.info(">>> UrlAliasFilter.doFilter() Call");
+		//		log.info(">>> UrlAliasFilter.doFilter() Call");
 		// ;별칭 맵을 상뇽하면 좋을 듯 하다고 생각
 		// ; 세션에 loginInfo를 삭제 하면 어떻게 ???
 		
@@ -39,15 +39,13 @@ public class UrlAliasFilter implements Filter {
 			urls.put("employee_list", "/employee/employeeList");
 			urls.put("employee_view", "/employee/employeeView");
 			urls.put("employee_create", "/employee/employeeCreate");
-			urls.put("employee_createproc", "/employee/employeeCreateProc");
+//			urls.put("employee_createproc", "/employee/employeeCreateProc");
 			urls.put("employee_edit", "/employee/employeeEdit");
 			urls.put("employee_editproc", "/employee/employeeEditProc");
 			urls.put("employee_retire", "/employee/employeeRetire");
 			urls.put("employee_retireproc", "/employee/employeeRetireProc");
 
 			myreq.getSession().setAttribute("urls", urls);
-		} else {
-			log.debug(">>> urlAliasMap : {}", myreq.getSession().getAttribute("urls"));
 		}
 
 		chain.doFilter(req, res);

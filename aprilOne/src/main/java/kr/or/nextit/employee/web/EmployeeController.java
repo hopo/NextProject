@@ -112,11 +112,14 @@ public class EmployeeController {
 		log.debug(">>> param : {}", param);
 		
 		try {
-			employeeService.insertEmployee(param);
-			
-			hmap.put("param", param);
 
-			return "employee/employeeCreateProc";
+			employeeService.insertEmployee(param); // ;DB에 새로운 계정을 인서트 한다
+			
+			String message = String.format("%s님 계정이 생성되었습니다.", param.getEmpId());
+			hmap.put("message", message);
+
+			return "redirect:/session/login";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -18,6 +18,10 @@
 </head>
 
 <body>
+	<c:if test="${message ne null}">
+		<div class="alert-info">${message}</div>
+	</c:if>
+
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
 		<div class="form-group">
 			<strong>직원아이디</strong>

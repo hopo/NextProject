@@ -29,8 +29,14 @@ public class SessionController {
 
 	// !!!로그인 화면
 	@RequestMapping(value = "/session/login")
-	public String login() {
+	public String login(
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
+			) {
 		log.info(">>> /session/login");
+		log.debug(">>> param {}", param);
+		
+		hmap.put("message", param.get("message"));
 
 		return "session/login";
 	}
@@ -95,9 +101,7 @@ public class SessionController {
 
 	// !!!로그아웃 프로세스
 	@RequestMapping(value = "/session/logout")
-	public String logoutProc(
-			HttpSession session
-		) throws Exception {
+	public String logoutProc(HttpSession session) throws Exception {
 
 		log.info(">>> /session/logout");
 

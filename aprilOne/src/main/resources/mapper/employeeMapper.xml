@@ -16,8 +16,8 @@
 	    emp_address  ,
 	    emp_div 	 ,
 	    emp_salary 	 ,
-	    to_char(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
-	    to_char(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
+	    TO_CHAR(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
+	    TO_CHAR(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
 	</sql>
 	
 
@@ -64,8 +64,8 @@
 		    emp_address  ,
 		    emp_div 	 ,
 		    emp_salary 	 ,
-		    to_char(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
-		    to_char(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
+		    TO_CHAR(emp_hiredate,'yyyy/mm/dd') AS emp_hiredate,
+		    TO_CHAR(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
 		FROM
 			tb_employee
 		WHERE

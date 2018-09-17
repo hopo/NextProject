@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.comm.service.PaginationService;
+import kr.or.nextit.comm.service.impl.CommBuis;
 import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.employee.service.EmployeeService;
@@ -29,6 +30,10 @@ public class EmployeeController {
 	@Resource(name = "PaginationService")
 	private PaginationService paginationService;
 
+	// !비즈니스 로직
+	private CommBuis commBuis = new CommBuis();
+
+	// !메시지Vo 공동 사용
 	MessageVo msgVo = new MessageVo();
 
 	// !!!직원리스트 화면
@@ -51,18 +56,7 @@ public class EmployeeController {
 			searchVo.setScreenSize(10);				// ;로우 10개씩 
 			searchVo.pageSetting(); // ;토대로 세팅하라
 			
-			log.debug(">>> ========= searchVo =====================");
-			log.debug(">>> SearchTable : {}", searchVo.getSearchTable());
-			log.debug(">>> SearchType : {}", searchVo.getSearchType());
-			log.debug(">>> SearchText : {}", searchVo.getSearchText());
-			log.debug(">>> TotalCount : {}", searchVo.getTotalCount());
-			log.debug(">>> ScreenSize : {}", searchVo.getScreenSize());
-			log.debug(">>> TotalPageCount : {}", searchVo.getTotalPageCount());
-			log.debug(">>> CurPage : {}", searchVo.getCurPage());
-			log.debug(">>> EndPage : {}", searchVo.getEndPage());
-			log.debug(">>> StartRow : {}", searchVo.getStartRow());
-			log.debug(">>> EndRow : {}", searchVo.getEndRow());
-			log.debug(">>> =========================================");
+			commBuis.dispSearchVo(searchVo);
 
 			result = employeeService.selectEmployeeList(searchVo);
 			log.debug(">>> result : {}", result);
@@ -93,15 +87,14 @@ public class EmployeeController {
 		try {
 
 			item = employeeService.selectEmployeeItem(param);
+			log.debug(">>> item : {}", item);
+			
+			hmap.put("item", item);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug(">>> item : {}", item);
 
-		hmap.put("item", item);
-		hmap.put("msgTag", param.get("msgTag"));
-		hmap.put("msgValue", param.get("msgValue"));
 		
 		return "employee/employeeView";
 	}
@@ -122,7 +115,6 @@ public class EmployeeController {
 			) {
 		log.info(">>> /employee/employeeCreateProc");
 		log.debug(">>> param : {}", param);
-		
 		
 		try {
 
@@ -147,8 +139,8 @@ public class EmployeeController {
 	// !!!직원 수정 화면
 	@RequestMapping(value = "/employee/employeeEdit")
 	public String employeeEdit(
-				HashMap<String, Object> hmap,
-				@RequestParam HashMap<String, Object> param
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeEdit");
 		log.debug(">>> param : {}", param);
@@ -156,15 +148,18 @@ public class EmployeeController {
 		EmployeeVo item = null;
 
 		try {
+
 			item = employeeService.selectEmployeeItem(param);
+			log.debug(">>> item : {}", item);
+
+			hmap.put("item", item);
+			hmap.put("phone", item.getEmpPhone().split("-")); // ;;전화번호 쪼개기
+			hmap.put("rrnum", item.getEmpRrnum().split("-")); // ;;주민번호 쪼개기
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		hmap.put("item", item);
-		hmap.put("phone", item.getEmpPhone().split("-"));
-		hmap.put("rrnum", item.getEmpRrnum().split("-"));
-		log.debug(">>> hmap : {}", hmap);
 
 		return "employee/employeeEdit";
 	}
@@ -175,7 +170,6 @@ public class EmployeeController {
 				@RequestParam HashMap<String, Object> param,
 				@ModelAttribute EmployeeVo employeeVo,
 				HashMap<String, Object> hmap
-
 			) {
 		log.info(">>> /employee/employeeEditProc");
 		log.debug(">>> param : {}", employeeVo);
@@ -222,6 +216,7 @@ public class EmployeeController {
 		log.debug(">>> param : {}", employeeVo);
 		
 		try {
+
 			employeeService.updateRetireEmployee(employeeVo);
 
 			msgVo.setMsgTag("warning");

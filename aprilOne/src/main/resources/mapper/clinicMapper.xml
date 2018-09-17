@@ -11,7 +11,7 @@
 		cln_code ,
 		pat_code ,
 		emp_id ,
-		cln_date ,
+		TO_CHAR(cln_date,'yyyy/mm/dd hh24:mi') AS cln_date,
 		cln_descr
 	</sql>
 	

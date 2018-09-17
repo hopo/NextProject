@@ -1,8 +1,7 @@
-name="medMemo" class="form-control"<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>.
     
-    
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -24,25 +23,22 @@ name="medMemo" class="form-control"<%@ page language="java" contentType="text/ht
 			$radio = $('input[name="medi"]:checked');			
 		});
 			
-			/* text를 hidden으로 변경  테스트 중  */
 			$("#medi_1").html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 
 					          + ", " + $radio.data("med-unit")
 				              + " <input type='hidden' name='medCode' value='" + $radio.data("med-code") + "' />");
 		});
-		
-	});
 
 
 
 </script>
 
-	<form action="<c:url value='/prescription/prescriptionCreateProc'/>" method="get">
+	<form action="<c:url value='/prescription/prescriptionCreateProc'/>" method="post">
 		<table class="table">
 			<tbody>
 			
 			<tr>
 				<th>처방코드</th>	<!-- prsCode -->
-				<td><input type="text" name="preCode" id="preCode" > </td>
+				<td><input type="text" name="prsCode" id="prsCode" > </td>
 			</tr>
 			
 			
@@ -68,7 +64,7 @@ name="medMemo" class="form-control"<%@ page language="java" contentType="text/ht
 			<tr>
 				<th>진료일</th>	<!-- clnDate -->  
 				<td>
-					${clinicVo.clnDate} </a>
+					${clinicVo.clnDate} 
 				</td>
 			</tr>
 			<tr>
@@ -140,16 +136,12 @@ name="medMemo" class="form-control"<%@ page language="java" contentType="text/ht
       </div>
       <div class="modal-body">
        
-       
         <ul>
-        
         
         <c:forEach var="i" items="${medList}">
        
         	<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename } [${i.medCode }, ${i.medUnit }] </label> </li>
         </c:forEach>
-        
-        
         
         
         </ul>

@@ -41,13 +41,13 @@ public class PrescriptionController {
 
 	}
 
-	// 진료테이블에서 정보가져오기
+	// 약품.진료테이블 정보가져오기
 	@RequestMapping("/prescription/prescriptionCreate")
 	public String prescriptionCreate(
 			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
 			HashMap<String, Object> param, Model model) throws Exception {
-		log.info(">>> /prescription/prescriptionCreate clnCode= {}", clnCode);
 
+		log.info(">>> /prescription/prescriptionCreate clnCode= {}", clnCode);
 		param.put("clnCode", clnCode);
 
 		// 진료정보를 조회하여 모델에 저장
@@ -64,16 +64,62 @@ public class PrescriptionController {
 		return "prescription/prescriptionCreate";
 
 	}
+	
+	
+	
+/*	//!!! 처방 리스트  화면
+	@RequestMapping("/prescription/prescriptionList")
+	public String prescriptionList() {
+		log.info(">>> /prescription/prescriptionList");
+		
+		return "prescription/prescriptionList";
+	}
+*/
 
-	// 처방 등록
+	
+	
+	
+	
+	// 처방 등록 후 리스트화면까지 
 	@RequestMapping("/prescription/prescriptionCreateProc")
-	public String insertPrescription(PrescriptionVo prescriptionVo, Model model) throws Exception {
+	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
+			) throws Exception {
 
-		prescriptionService.insertPrescription(prescriptionVo);
-		model.addAttribute("preInsert", prescriptionVo);
+		log.info(">>> /prescription/prescriptionCreateProc");
+		log.info(">>> preInsert : {} " , prescriptionVo);
+	
+			prescriptionService.insertPrescription(prescriptionVo);
+			model.addAttribute("preInsert", prescriptionVo);
+			
+			return "prescription/prescriptionCreateProc";
+		
 
-		return "/prescription/prescriptionCreateProc";
 
 	}
 
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

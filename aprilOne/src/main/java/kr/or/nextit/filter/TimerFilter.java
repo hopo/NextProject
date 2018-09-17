@@ -16,7 +16,7 @@ public class TimerFilter implements Filter {
 		public void init(FilterConfig filterConfig) throws ServletException {
 			// ; 메모리에 올라 올 때
 			// ; 초기화 해야 할 자원이 있으면
-			System.out.println(">>> [TimerFilter] init() Call");
+			System.out.println("[TimerFilter] init() Call");
 		}
 
 		@Override
@@ -28,7 +28,7 @@ public class TimerFilter implements Filter {
 
 			// ; 전처리 부분
 			long startTime = System.currentTimeMillis();
-			System.out.printf(">>> [TimerFilter] : %s, 시작 : %d ms\n", myreq.getRequestURI(), startTime);
+			System.out.printf("[TimerFilter] : %s, 시작 : %d ms\n", myreq.getRequestURI(), startTime);
 
 			req.setAttribute("test", "testAttr"); // ;;;test
 
@@ -38,7 +38,7 @@ public class TimerFilter implements Filter {
 
 			// ; 후처리 부분
 			long endTime = (System.currentTimeMillis() - startTime);
-			System.out.printf(">>> [TimerFilter] : %s, 걸린시간 : %d ms\n", myreq.getRequestURI(), endTime);
+			System.out.printf("[TimerFilter] : %s, 걸린시간 : %d ms\n", myreq.getRequestURI(), endTime);
 
 		}
 
@@ -46,7 +46,7 @@ public class TimerFilter implements Filter {
 		public void destroy() {
 			// ; 메모리에서 내려갈 때
 			// ; 대체적으로 init 설정한 자원을 정리해야 하는 경우
-			System.out.println(">>> [TimerFilter] destroy() Call");
+			System.out.println("[TimerFilter] destroy() Call");
 		}
 
 	}

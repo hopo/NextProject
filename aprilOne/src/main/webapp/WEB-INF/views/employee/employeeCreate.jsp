@@ -14,32 +14,33 @@
 <title>직원 등록</title>
 </head>
 <body>
-	<form class="form-horizontal" action="<c:url value='/employee/employeeCreateProc' />" method="POST">
+<%-- 	<form class="" action="<c:url value='/employee/employeeCreateProc' />" method="POST"> --%>
+	<form class="" action="<c:url value='${urls.employee_createproc}' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
 					<th>직원 ID</th>
-					<td><input type="text" name="empId" class="form-control" placeholder="Id" required autofocus></td>
+					<td><input type="text" name="empId" class="" placeholder="Id" required autofocus></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" name="empPwd" class="form-control" placeholder="Password" required value="1111"></td>
+					<td><input type="password" name="empPwd" class="" placeholder="Password" required value="1111"></td>
 				</tr>
 				<tr>
 					<th>직원 이름</th>
-					<td><input type="text" name="empName" class="form-control" placeholder="Name" required value="김테스트"></td>
+					<td><input type="text" name="empName" class="" placeholder="Name" required value="김테스트"></td>
 				</tr>
 				<tr>
 					<th>직원 전화번호</th>
-					<td><input type="text" name="empPhone" class="form-control" placeholder="Phone" required value="010-1111-2222"></td>
+					<td><input type="text" name="empPhone" class="" placeholder="Phone" required value="010-1111-2222"></td>
 				</tr>
 				<tr>
 					<th>직원 주민번호</th>
-					<td><input type="text" name="empRrnum" class="form-control" placeholder="Social Security Number" required value="900909-1231234"></td>
+					<td><input type="text" name="empRrnum" class="" placeholder="Social Security Number" required value="900909-1231234"></td>
 				</tr>
 				<tr>
 					<th>직원 주소</th>
-					<td><input type="text" name="empAddress" class="form-control" placeholder="Address" required value="대전광역시 중구"></td>
+					<td><input type="text" name="empAddress" class="" placeholder="Address" required value="대전광역시 중구"></td>
 				</tr>
 				<tr>
 					<th>직책</th>

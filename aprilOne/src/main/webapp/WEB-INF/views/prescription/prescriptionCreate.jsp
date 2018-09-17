@@ -21,14 +21,30 @@
 	$(document).ready(function(){
 		$("#btn_mediChooice").click(function () {
 			$radio = $('input[name="medi"]:checked');			
-		});
+	
 			
-			$("#medi_1").html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 
-					          + ", " + $radio.data("med-unit")
+			span_id = $("#modal_medi").data("med"); 
+			console.log("span_id",  span_id );
+			
+			$("#" +  span_id ).html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 
+					          + ", " + $radio.data("med-unit") 
 				              + " <input type='hidden' name='medCode' value='" + $radio.data("med-code") + "' />");
+		
+			 $("#modal_medi").modal('hide');
 		});
-
-
+		
+		// 버튼 클릭 시 
+		$(".btn_medi").click(function () {			
+			console.log($(this).data('suntack')   );
+			// modal_medi 안에 담긴 데이터를 med라는 이름으로 show  
+			$("#modal_medi").data("med", $(this).data('suntack') );
+			$("#modal_medi").modal('show');
+			
+		});
+		
+		
+		
+	});
 
 </script>
 
@@ -46,46 +62,43 @@
 			<tr>
 				<th>진료코드</th>	
 				<td>
-					${clinicVo.clnCode }
+					<input type="text" name="clnCode" id="clnCode" value="${clinicVo.clnCode }" > 
 				</td>
 			</tr>
 			<tr>
 				<th>환자코드</th>	<!-- patCode -->  
 				<td>
-					${clinicVo.patCode}<%-- <a href="<c:url value='/patientView'/>"><button class="btn btn-sm btn-info">상세보기</button></a> --%>
+					<input type="text" name="patCode" id="patCode" value="${clinicVo.patCode}" > 
 				</td>
 			</tr>
 			<tr>
 				<th>담당의</th>	<!-- empId -->  
 				<td>
-					${clinicVo.empId}<%-- <a href="<c:url value='/employeeView'/>"><button class="btn btn-sm btn-info">상세보기</button></a> --%>
+					<input type="text" name="empId" id="empId" value="${clinicVo.empId}" >  
 				</td>
 			</tr>
 			<tr>
 				<th>진료일</th>	<!-- clnDate -->  
 				<td>
-					${clinicVo.clnDate} 
+					<input type="text" name="clnDate" id="clnDate" value="${clinicVo.clnDate}" >
 				</td>
 			</tr>
 			<tr>
 				<th>진료내용</th>	<!-- clnDescr -->  
 				<td>
-					${clinicVo.clnDescr}
+					<input type="text" name="clnDescr" id="clnDescr" value="${clinicVo.clnDescr}" >
 				</td>
 			</tr>
 			<tr>
 				<th>이전 처방내역</th>	<!-- prsCode -->
-				<td> 
-					
-				</td>
+				<td></td>
 			</tr>
 			
-		
 			
 			<tr>
 				<th>처방내역</th>	<!-- prsDescr -->
 				<td>
-					<textarea cols="55" rows="5"> </textarea>
+					<textarea cols="55" rows="5" name="prsDescr" id="prsDescr"> </textarea>
 				</td>
 			</tr>
 			
@@ -97,21 +110,21 @@
 				<th>의약품코드</th>	
 				<td>
 					<span id="medi_1"></span> 
-					 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal_medi"> 선택</button>
+					 <button type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_1' data-target="#modal_medi"> 선택</button>
 				</td>
 			</tr>
 			<tr>
 				<th>의약품코드2</th>	<!-- medCode2 -->
 				<td>
 					<span id="medi_2"></span> 
-					<button  type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal_medi"> 선택</button>
+					<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_2'  data-target="#modal_medi"> 선택</button>
 				</td>
 			</tr>
 			<tr>
 				<th>의약품코드3</th>	<!-- medCode3 -->
 				<td>
 					<span id="medi_3"></span> 
-					<button  type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal_medi"> 선택</button>
+					<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_3'  ddata-target="#modal_medi"> 선택</button>
 				</td>
 			</tr>
 			
@@ -140,7 +153,7 @@
         
         <c:forEach var="i" items="${medList}">
        
-        	<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename } [${i.medCode }, ${i.medUnit }] </label> </li>
+        	<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename }, [${i.medCode }, ${i.medUnit }] </label> </li>
         </c:forEach>
         
         

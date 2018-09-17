@@ -3,7 +3,7 @@ package kr.or.nextit.patient.service.impl;
 import java.util.List;
 
 import kr.or.nextit.comm.model.PatientVo;
-import kr.or.nextit.comm.util.PatientSearchVo;
+import kr.or.nextit.comm.util.SearchVo;
 
 public interface PatientMapper {
 
@@ -18,7 +18,7 @@ public interface PatientMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<PatientVo> patientSelectList(PatientSearchVo patientSearchVo) throws Exception;
+	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception;
 
 	/**
 	 * @param patientVo
@@ -34,11 +34,11 @@ public interface PatientMapper {
 	public void patientUpdate(PatientVo patientVo) throws Exception;
 
 	/**
-	 * @param patientSearchVoVo
+	 * @param searchVo
 	 * @return
 	 * @throws Exception
 	 */
-	public int selectTotalCount(PatientSearchVo patientSearchVoVo) throws Exception;
+	public int selectTotalCount(SearchVo searchVo) throws Exception;
 }
 
 

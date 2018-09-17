@@ -65,12 +65,38 @@ public class PrescriptionController {
 
 	}
 	
+	// 처방 등록하기 
+	@RequestMapping("/prescription/prescriptionCreateProc")
+	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
+			) throws Exception {
+		
+		log.info(">>> /prescription/prescriptionCreateProc");
+		log.info(">>> preInsert : {} " , prescriptionVo);
+		
+		prescriptionService.insertPrescription(prescriptionVo);
+		model.addAttribute("preInsert", prescriptionVo);
+		
+		return "prescription/prescriptionCreateProc";
+		
+	}
+	
 	
 	
 /*	//!!! 처방 리스트  화면
 	@RequestMapping("/prescription/prescriptionList")
-	public String prescriptionList() {
+	public String prescriptionList(@ModelAttribute PrescriptionVo prescriptionVo, Model model,
+								@ModelAttribute(name="SearchVo") SearchVo searchVo
+								) throws Exception {
+		
 		log.info(">>> /prescription/prescriptionList");
+		log.info(">>> SearchVo = {}" , searchVo));
+		
+		try {
+			
+			searchVo.setTotalCount(prescriptionService.);
+			
+			
+		}
 		
 		return "prescription/prescriptionList";
 	}
@@ -80,22 +106,6 @@ public class PrescriptionController {
 	
 	
 	
-	// 처방 등록 후 리스트화면까지 
-	@RequestMapping("/prescription/prescriptionCreateProc")
-	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
-			) throws Exception {
-
-		log.info(">>> /prescription/prescriptionCreateProc");
-		log.info(">>> preInsert : {} " , prescriptionVo);
-	
-			prescriptionService.insertPrescription(prescriptionVo);
-			model.addAttribute("preInsert", prescriptionVo);
-			
-			return "prescription/prescriptionCreateProc";
-		
-
-
-	}
 
 	
 	

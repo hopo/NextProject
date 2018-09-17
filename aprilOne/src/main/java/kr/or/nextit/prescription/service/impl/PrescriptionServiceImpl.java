@@ -1,5 +1,7 @@
 package kr.or.nextit.prescription.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +42,18 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		prescriptionMapper.insertPrescription(prescriptionVo);
 
 	}
+
+	
+	// 처방 리스트 
+	@Override
+	public List<PrescriptionVo> selectPrescriptionList(PrescriptionVo prescriptionVo) throws Exception {
+		
+		return null;  
+				
+	}
 	
 	
-	
+
 	
 
 }

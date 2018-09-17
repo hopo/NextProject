@@ -38,7 +38,7 @@
 </head>
 
 <body>
-<%-- 
+ 
 	<!-- 검색 -->
 	<form action="<c:url value='/prescription/prescriptionCreateProc' />" id="searchForm" method="POST">
 		<input type="hidden" name="curPage" id="curPage" />
@@ -62,12 +62,12 @@
 			</tr>
 		</table>
 	</form>
- --%>
+
 
 
 
 	<!-- 검색테이블 -->
-	<%-- <table class="table table-bordered table-hover">
+	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>처방코드</th>
@@ -97,7 +97,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
- --%>
+
 
 
 <%-- 

@@ -6,6 +6,26 @@
 <mapper
 	namespace="kr.or.nextit.prescription.service.impl.PrescriptionMapper">
 
+	<sql id="whereQuery">
+		<if test="searchText != null and searchText != '' " >
+			<if test="searchType == 'sel1'">
+				and pre_code = #{pre_code}
+			</if>	
+			<if test="searchType == 'sel2'">
+				and clnCode = #{clnCode}
+			</if>	
+			<if test="searchType== 'sel3'">
+				and patCode = #{patCode}
+			</if>	
+			<if test="searchType== 'sel4'">
+				and empId = #{empId}
+			</if>	
+		</if>
+	</sql>
+
+
+
+
 
 	<!-- 처방폼 화면  -->
 	<select id="prescriptionSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo"
@@ -63,6 +83,39 @@
 	</insert>
 	
 	
+	
+	<!-- 처방 리스트   -->
+	<select id="prescriptionSelectList" parameterType="kr.or.nextit.comm.util.SearchVo"
+							   resultType="kr.or.nextit.comm.model.PrescriptionVo">
+	select * from (
+	select rownum as rnum, frm.* from(
+		 SELECT
+		    prs_code,
+		    cln_code,
+		    prs_descr,
+		    med_code,
+		    med_code2,
+		    med_code3
+		FROM
+		    tb_prescription
+		where 1=1
+			<include refid="whereQuery"></include>
+		order by prs_code DESC
+	) frm 
+) where rnum between #{startRow} and #{endRow}
+</select>
+
+	
+	<!-- 처방 리스트 검색    -->
+	<select id="selectTotalCount"  parameterType="kr.or.nextit.comm.model.PrescriptionVo" 
+										resultType="int">
+	select
+		count(*) as totalCount
+	from 
+		tb_prescription
+		where 1=1
+			<include refid="whereQuery"></include>
+	</select>
 	
 	
 	

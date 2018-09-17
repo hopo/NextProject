@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.PatientVo;
-import kr.or.nextit.comm.util.PatientSearchVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.patient.service.PatientService;
 
 @Controller
@@ -46,20 +46,20 @@ public class PatientController {
 	// 환자 리스트
 	@RequestMapping(value = "/patient/patientList")
 	public String patientList(@ModelAttribute PatientVo patientVo, Model model,
-			@ModelAttribute(name = "patientSearchVo") PatientSearchVo patientSearchVo
+			@ModelAttribute(name = "SearchVo") SearchVo SearchVo
 
 	) throws Exception {
 		log.debug(">>> /patient/patientList");
-		/* log.debug("PatientSearchVo = {}", PatientSearchVo); */
+		 log.debug("SearchVo = {}", SearchVo); 
 
 		try {
 
-			patientSearchVo.setTotalCount(patientService.selectTotalCount(patientSearchVo));
-			patientSearchVo.setPageBlockSize(10);
-			patientSearchVo.setScreenSize(5);
-			patientSearchVo.pageSetting();
+			SearchVo.setTotalCount(patientService.selectTotalCount(SearchVo));
+			SearchVo.setPageBlockSize(10);
+			SearchVo.setScreenSize(5);
+			SearchVo.pageSetting();
 
-			List<PatientVo> items = patientService.patientSelectList(patientSearchVo);
+			List<PatientVo> items = patientService.patientSelectList(SearchVo);
 			log.debug(">>> items : {}", items);
 
 			model.addAttribute("patList", items);

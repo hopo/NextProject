@@ -58,7 +58,7 @@
 
 
 	<!-- 환자 리스트 -->
-	<select id="patientSelectList" parameterType="kr.or.nextit.comm.util.PatientSearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
+	<select id="patientSelectList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
 			SELECT * FROM (
 			    SELECT ROWNUM AS rnum , frm.* from (
 					SELECT
@@ -84,7 +84,7 @@
 	</select>
 	
 	<!-- 환자 검색  -->
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.PatientSearchVo" 
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" 
 							      resultType="int">			  
 		 SELECT
 		    COUNT(*) AS totalCount

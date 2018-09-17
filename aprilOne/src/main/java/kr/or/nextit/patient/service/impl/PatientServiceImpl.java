@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.PatientVo;
-import kr.or.nextit.comm.util.PatientSearchVo;
+import kr.or.nextit.comm.util.SearchVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.patient.service.PatientService;
 
 @Service("patientService")
@@ -25,37 +26,47 @@ public class PatientServiceImpl implements PatientService {
 
 		patientMapper.patientInsert(patientVo);
 	}
-
+	
 	// 환자 리스트
 	@Override
-	public List<PatientVo> patientSelectList(PatientSearchVo patientSearchVo) throws Exception {
-
-		return patientMapper.patientSelectList(patientSearchVo);
-
+	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception {
+		
+		return patientMapper.patientSelectList(searchVo);
 	}
+
 
 	// 환자 상세보기
 	@Override
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception {
-
-		patientVo = patientMapper.patientSelectView(patientVo);
-		return patientVo;
-
+		return patientMapper.patientSelectView(patientVo);
 	}
 
 	// 환자 수정
 	@Override
 	public void patientUpdate(PatientVo patientVo) throws Exception {
-
 		patientMapper.patientUpdate(patientVo);
 	}
-
+	
+	
 	// 환자 검색
 	@Override
-	public int selectTotalCount(PatientSearchVo patientSearchVo) throws Exception {
-
-		return patientMapper.selectTotalCount(patientSearchVo);
-
+	public int selectTotalCount(SearchVo SearchVo) throws Exception {
+		return patientMapper.selectTotalCount(SearchVo);
 	}
 
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

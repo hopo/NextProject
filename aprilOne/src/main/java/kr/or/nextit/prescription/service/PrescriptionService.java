@@ -1,5 +1,7 @@
 package kr.or.nextit.prescription.service;
 
+import java.util.List;
+
 import kr.or.nextit.comm.model.PrescriptionVo;
 
 public interface PrescriptionService {
@@ -25,6 +27,7 @@ public interface PrescriptionService {
 	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception;
 
 	
+	public List<PrescriptionVo> selectPrescriptionList(PrescriptionVo prescriptionVo) throws Exception;
 	
 	
 	

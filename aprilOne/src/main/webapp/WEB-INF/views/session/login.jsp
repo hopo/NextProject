@@ -18,8 +18,8 @@
 </head>
 
 <body>
-	<c:if test="${message ne null}">
-		<div class="alert-info">${message}</div>
+	<c:if test="${msgValue ne null}">
+		<div class="alert-${msgTag}">${msgValue}</div>
 	</c:if>
 
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 

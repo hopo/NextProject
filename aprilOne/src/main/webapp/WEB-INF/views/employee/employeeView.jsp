@@ -15,6 +15,10 @@
 </head>
 
 <body>
+	<c:if test="${msgValue ne null}">
+		<div class="alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
 	<table class="table">
 		<tbody>
 			<tr>

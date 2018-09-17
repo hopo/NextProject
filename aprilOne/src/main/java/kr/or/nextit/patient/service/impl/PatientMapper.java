@@ -40,3 +40,27 @@ public interface PatientMapper {
 	 */
 	public int selectTotalCount(PatientSearchVo patientSearchVoVo) throws Exception;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

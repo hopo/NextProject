@@ -40,5 +40,24 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		prescriptionMapper.insertPrescription(prescriptionVo);
 
 	}
+	
+	
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

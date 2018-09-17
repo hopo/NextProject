@@ -23,5 +23,38 @@ public interface PrescriptionMapper {
 	 * @throws Exception
 	 */
 	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

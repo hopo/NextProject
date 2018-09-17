@@ -41,7 +41,7 @@
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicList' />">진료리스트</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicCreate' />">진료등록</a></li>
 						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#처방리스트</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionList'/>">처방리스트</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a></li>
 					</ul>
 				</span>

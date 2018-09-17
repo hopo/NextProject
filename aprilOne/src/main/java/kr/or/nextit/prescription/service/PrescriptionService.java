@@ -24,4 +24,26 @@ public interface PrescriptionService {
 	 */
 	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception;
 
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

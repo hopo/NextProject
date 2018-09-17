@@ -61,8 +61,8 @@
 		</tbody>
 	</table>
 	
-	<c:url value='/employee/employeeList' var='employeeListUrl' />
-	<a href="${employeeListUrl}" class="btn btn-default">직원리스트</a>
+	
+	<a href="<c:url value='${urls.employee_list}' />" class="btn btn-default">직원리스트</a>
 
 	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 		<c:param value='${item.empId}' name='empId' />

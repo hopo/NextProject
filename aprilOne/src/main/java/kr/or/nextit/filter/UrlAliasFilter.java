@@ -1,7 +1,7 @@
 package kr.or.nextit.filter;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,43 +10,43 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/*
-@WebFilter(urlPatterns = "/*")
 public class UrlAliasFilter implements Filter {
-
-	private ComService comService = null;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println(">>> ComFilter.init() Call");
-		comService = new ComServiceImpl();
+		System.err.println(">>> UrlAliasFilter.init() Call");
 
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println(">>> ComFilter.doFilter() Call");
-
-		List<CodeVo> item = comService.selectCodeSex();
-
-		for (CodeVo codeVo : item) {
-			System.out.println(codeVo.getCodeParents());
-			System.out.println(codeVo.getCodeId());
-			System.out.println(codeVo.getCodeDescription());
-		}
+		System.err.println(">>> UrlAliasFilter.doFilter() Call");
 		
-		request.setAttribute("codeSex", item);
+		HashMap<String, String> urls = new HashMap<>();
+		
+		// ;별칭 맵을 상뇽하면 좋을 듯 하다고 생각
+		// ;필터 방식 말고 시작 할 때 한번만 하는 방법도 있을까?
+		
+		// ! alias = url
+		urls.put("index", "/index");
+		urls.put("employee_list", "/employee/employeeList");
+		urls.put("employee_view", "/employee/employeeView");
+		urls.put("employee_create", "/employee/employeeCreate");
+		urls.put("employee_createproc", "/employee/employeeCreateProc");
+		urls.put("employee_edit", "/employee/employeeEdit");
+		urls.put("employee_editproc", "/employee/employeeEditProc");
+		urls.put("employee_retire", "/employee/employeeRetire");
+		urls.put("employee_retireproc", "/employee/employeeRetireProc");
+		
+		req.setAttribute("urls", urls);
 
-		chain.doFilter(request, response);
+		chain.doFilter(req, res);
 	}
 
 	@Override
 	public void destroy() {
-
-		System.out.println(">>> ComFilter.destroy() Call");
-		comService = null;
+		System.err.println(">>> UrlAliasFilter.destroy() Call");
 	}
 
 }
-*/

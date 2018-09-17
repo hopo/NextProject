@@ -18,14 +18,17 @@
 </head>
 
 <body>
+	<c:if test="${message ne null}">
+		<div class="alert-info">${message}</div>
+	</c:if>
+
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
+		<span class="alert-warning"><form:errors path="employeeVo" /><form:errors path="employeeVo.empId" /></span>
+		<%-- <form:errors path="employeeVo.empId" /> --%>		
+
 		<div class="form-group">
 			<strong>직원아이디</strong>
 			<input name="empId" id="inputEmpId" class="" placeholder="Employee Id" required autofocus>
-			<span class="alert-warning">
-				<form:errors path="employeeVo" /><form:errors path="employeeVo.empId" />
-			</span>
-			<%-- <form:errors path="employeeVo.empId" /> --%>		
 		</div>
 
 		<div class="form-group">

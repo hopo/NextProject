@@ -42,7 +42,7 @@
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType" class="btn-dark btn-sm">
+					<form:select path="searchType" class="btn btn-default">
 						<form:option value="cln_code">진료코드</form:option>
 						<form:option value="pat_code">환자코드</form:option>
 					</form:select>
@@ -55,9 +55,9 @@
 				</td>
 			</tr>
 		</table>
-		currentPage: <form:input path="curPage" readonly="true" />
-		totalPage: <form:input path="totalPageCount" readonly="true" />
-		totalRecord: <form:input path="totalCount" readonly="true" />
+		<form:hidden path="curPage" readonly="true" />
+		<form:hidden path="totalPageCount" readonly="true" />
+		<form:hidden path="totalCount" readonly="true" />
 	</form:form>
 
 

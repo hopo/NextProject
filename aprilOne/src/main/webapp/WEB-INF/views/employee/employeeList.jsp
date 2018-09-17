@@ -43,7 +43,7 @@
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType" class="btn-default btn">
+					<form:select path="searchType" class="btn btn-default">
 						<form:option value="emp_id">직원아이디</form:option>
 						<form:option value="emp_name">직원이름</form:option>
 					</form:select>

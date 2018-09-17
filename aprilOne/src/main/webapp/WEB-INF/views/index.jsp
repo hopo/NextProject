@@ -25,5 +25,22 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
+	<table class="table-bordered">
+		<thead>
+			<tr>
+				<th>Alias</th>
+				<th>Url</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="item" items="${urls}">
+				<tr>
+					<td>${item.key}</td>
+					<td>${item.value}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 </body>
 </html>

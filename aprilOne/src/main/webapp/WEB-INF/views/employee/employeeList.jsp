@@ -38,7 +38,7 @@
 
 <body>
 	<c:if test="${msgValue ne null}">
-		<div class="alert-${msgTag}">${msgValue}</div>
+		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
 
 	<!-- // ;Search Part -->

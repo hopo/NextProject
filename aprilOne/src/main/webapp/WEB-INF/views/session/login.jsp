@@ -19,11 +19,11 @@
 
 <body>
 	<c:if test="${msgValue ne null}">
-		<div class="alert-${msgTag}">${msgValue}</div>
+		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
 
 	<form class="form-horizontal" action="<c:url value='/session/loginProc' />" method="POST"> 
-		<span class="alert-warning"><form:errors path="employeeVo" /><form:errors path="employeeVo.empId" /></span>
+		<span class="alert alert-warning"><form:errors path="employeeVo" /><form:errors path="employeeVo.empId" /></span>
 		<%-- <form:errors path="employeeVo.empId" /> --%>		
 
 		<div class="form-group">

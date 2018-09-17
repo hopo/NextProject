@@ -15,11 +15,13 @@
 </head>
 
 <body>
-	<div>${param.empName} (${param.empId})님. 정말 퇴사인가요?!</div>
-	<c:url value='/employee/employeeRetireProc' var='employeeRetireProcUrl'>
-		<c:param value='${param.empId}' name='empId' />
-	</c:url>
-	<a href="${employeeRetireProcUrl}" class="btn btn-danger">OK</a>
-	<a href="<c:url value='/employee/employeeList' />" class="btn btn-default">취소</a>
+	<div class="alert alert-danger">
+		${param.empName} - ${param.empId} 님. 정말 삭제(퇴사)인가요 ??!!! 
+		<c:url value='/employee/employeeRetireProc' var='employeeRetireProcUrl'>
+			<c:param value='${param.empId}' name='empId' />
+		</c:url>
+		<a href="${employeeRetireProcUrl}" class="btn btn-danger">OK</a>
+		<a href="<c:url value='/employee/employeeList' />" class="btn btn-default">취소</a>
+	</div>
 </body>
 </html>

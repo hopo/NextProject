@@ -115,7 +115,7 @@ public class EmployeeController {
 
 			employeeService.insertEmployee(param); // ;DB에 새로운 계정을 인서트 한다
 			
-			String message = String.format("%s님 계정이 생성되었습니다.", param.getEmpId());
+			String message = String.format("Info : %s님 계정이 생성되었습니다.", param.getEmpId());
 			hmap.put("message", message);
 
 			return "redirect:/session/login";

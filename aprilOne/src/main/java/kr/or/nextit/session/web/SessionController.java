@@ -72,7 +72,7 @@ public class SessionController {
 
 			} else {
 				// ;로그인이 NOT 가능합니다
-				error.reject("error", " : 아이디와 비밀번호 확인해라");
+				error.reject("error", "Error : 아이디와 비밀번호 확인해라");
 				return "session/login";
 
 			}

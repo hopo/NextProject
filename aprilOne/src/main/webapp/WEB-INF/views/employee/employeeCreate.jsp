@@ -14,16 +14,32 @@
 <title>직원 등록</title>
 <script type="text/javascript" defer="defer">
 
-	// 서브밋 전에 아이디에 값들을 가져와 각각의 Vo값으로 넣어 주고 서보밋 한다
+	function check() {
+		empPhone = document.getElementById('empPhone');
+		empPhone1 = document.getElementById('empPhone1');
+		empPhone2 = document.getElementById('empPhone2');
+		empPhone2 = document.getElementById('empPhone3');
 
-	empPhone = "empPhone1" + "empPhone2" + "empPhone3";
-	empRrnum = "empRrnum" + "empRrnum";
+		empRrnum = document.getElementById('empRrnum');
+		empRrnum1 = document.getElementById('empRrnum1');
+		empRrnum2 = document.getElementById('empRrnum2');
+
+		empPhone.value = empPhone1.value + '-' +  empPhone2.value + '-' + empPhone3.value;
+		empRrnum.value = empRrnum1.value + '-' +  empRrnum2.value;
+
+		if (empPhone.value == null || empRrnum == null) {
+			return fasle;
+		} else {
+			return true;
+		}
+
+	}
 
 </script>
 </head>
 <body>
 <%-- 	<form class="" action="<c:url value='/employee/employeeCreateProc' />" method="POST"> --%>
-	<form action="<c:url value='${urls.employee_createproc}' />" method="POST">
+	<form action="<c:url value='${urls.employee_createproc}' />" method="POST" onsubmit="return check()">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -36,34 +52,34 @@
 				</tr>
 				<tr>
 					<th>직원 이름</th>
-					<td><input type="text" name="empName" class="" placeholder="Name" required value="김테스트"></td>
+					<td><input type="text" name="empName" class="" placeholder="Name" required value="박테스트"></td>
 				</tr>
 				<tr>
 					<th>직원 전화번호</th> <!-- empPhone -->
 					<td>
 						<select id="empPhone1">
-							<option>010</option>
-							<option>011</option>
-							<option>017</option>
-							<option>018</option>
-							<option>019</option>
+							<option value='010'>010</option>
+							<option value='011'>011</option>
+							<option value='017'>017</option>
+							<option value='018'>018</option>
+							<option value='019'>019</option>
 						</select>
 						-
 						<input type="text" id="empPhone2" maxlength="4" placeholder="가운데자리" required value="1111">
 						-
 						<input type="text" id="empPhone3" maxlength="4" placeholder="끝자리" required value="2222">
 
-						<input type="hidden" name="empPhone" value="">
+						<input type="hidden" id="empPhone" name="empPhone" value="">
 					</td>
 				</tr>
 				<tr>
 					<th>직원 주민번호</th> <!-- empRnrnum -->
 					<td>
-						<input type="text" name="empRrnum1" maxlength="6" placeholder="주민번호 앞" required value="900909">
+						<input type="text" id="empRrnum1" name="empRrnum1" maxlength="6" placeholder="주민번호 앞" required value="900909">
 						-
-						<input type="text" name="empRrnum2" maxlength="7" placeholder="주민번호 뒤" required value="1231234">
+						<input type="text" id="empRrnum2" name="empRrnum2" maxlength="7" placeholder="주민번호 뒤" required value="1231234">
 
-						<input type="hidden" name="empRrnum" value="">
+						<input type="hidden" id="empRrnum" name="empRrnum" value="">
 					</td>
 				</tr>
 				<tr>

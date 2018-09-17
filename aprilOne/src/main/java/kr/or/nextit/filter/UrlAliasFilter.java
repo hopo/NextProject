@@ -39,7 +39,7 @@ public class UrlAliasFilter implements Filter {
 			urls.put("employee_list", "/employee/employeeList");
 			urls.put("employee_view", "/employee/employeeView");
 			urls.put("employee_create", "/employee/employeeCreate");
-//			urls.put("employee_createproc", "/employee/employeeCreateProc");
+			urls.put("employee_createproc", "/employee/employeeCreateProc");
 			urls.put("employee_edit", "/employee/employeeEdit");
 			urls.put("employee_editproc", "/employee/employeeEditProc");
 			urls.put("employee_retire", "/employee/employeeRetire");

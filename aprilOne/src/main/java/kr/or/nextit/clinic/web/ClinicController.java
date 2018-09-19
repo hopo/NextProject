@@ -81,13 +81,9 @@ public class ClinicController {
 		ClinicVo item = null;
 
 		try {
-
 			item = clinicService.selectClinicItem(param);
-
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 		
 		log.debug(">>> item : {}", item);

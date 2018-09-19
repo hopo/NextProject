@@ -7,7 +7,6 @@
 
 	<!-- 환자등록 -->
 	<insert id="patientInsert" parameterType="kr.or.nextit.comm.model.PatientVo">
-
 		INSERT INTO tb_patient (
 			pat_code,
 			pat_inscode,
@@ -22,7 +21,7 @@
 			pat_memo,
 			emp_id
 		) VALUES (
-			#{patCode},
+			'P' || LPAD(seq_patient.NEXTVAL, 5, '0') , <!-- 자동의라 코드가 생성됩니다. ex) 'P00042' -->
 			#{patInscode},
 			#{patName},
 			#{patPhone},
@@ -143,31 +142,6 @@
 	</update>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

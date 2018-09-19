@@ -94,7 +94,7 @@
 				    	    의사 <input type='radio' id='radio_1' name='empDiv' value='D' ${(item.empDiv eq 'D')? 'checked' : ''} />
 				    	    간호사 <input type='radio' id='radio_2' name='empDiv' value='N' ${(item.empDiv eq 'N')? 'checked' : ''} />
 				    	    관리자 <input type='radio' id='radio_3' name='empDiv' value='A' ${(item.empDiv eq 'A')? 'checked' : ''} />
-				    	    미분류 <input type='radio' id='radio_4' name='empDiv' value='Z' ${(item.empDiv eq 'Z')? 'checked' : ''} />
+				    	    *미분류 <input type='radio' id='radio_4' name='empDiv' value='Z' ${(item.empDiv eq 'Z')? 'checked' : ''} />
 			    		</div>
 					</td>
 				</tr>

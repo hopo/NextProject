@@ -21,21 +21,20 @@
 				<tr>
 					<th>진료코드(6)</th>
 					<td>
-						// 서버에서 자동 생성
-						<input name="clnCode" class="form-control" placeholder="진료코드" required autofocus value="c00021">
-				</td>
+						// 서버에서 자동 생성. currval을 이용해서 보여줄까?>
+					</td>
 				</tr>
 				<tr>
 					<th>환자코드(6)</th>
 					<td>
 						// 환자이름 or 환자코드 를 검색하여 입력
-						<input name="patCode" class="form-control" placeholder="환자코드" required value="p90149">
+						<input name="patCode" class="form-control" placeholder="환자코드" required value="p90042">
 					</td>
 				</tr>
 				<tr>
 					<th>담당의(의사-접속맨)</th>
 					<td>
-						${loginInfo.empId}
+						${loginInfo.empName} (${loginInfo.empId})
 						<input type="hidden" name="empId" class="form-control" required value="${loginInfo.empId}">
 					</td>
 				</tr>

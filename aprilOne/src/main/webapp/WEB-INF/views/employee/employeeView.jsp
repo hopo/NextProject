@@ -12,11 +12,20 @@
 
 <head>
 <title>직원 상세보기</title>
+<script type="text/javascript" defer="defer">
+
+	// 닫았으면 좋겠는데..
+	function fn_close() {
+		msgDiv = document.querySelector('#msgDiv')
+		alert("@@@click", msgDiv.value);
+	}
+
+</script>
 </head>
 
 <body>
 	<c:if test="${msgValue ne null}">
-		<div class="alert alert-${msgTag}">${msgValue}</div>
+		<div id="msgDiv" class="alert alert-${msgTag}">${msgValue}<input type="button" value="X" onclick="fn_close()"></div>
 	</c:if>
 
 	<table class="table">
@@ -80,6 +89,9 @@
 	
 	<c:if test="${item.empRetiredate eq null}">
 		<a href="${employeeRetireUrl}" class="btn btn-danger">삭제(퇴사)</a>
+	</c:if>
+	<c:if test="${item.empRetiredate ne null}">
+		<div><small>퇴사한 사람입니다.</small></div>
 	</c:if>
 </body>
 </html>

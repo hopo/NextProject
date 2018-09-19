@@ -85,10 +85,10 @@
 		INSERT INTO tb_clinic (
 			<include refid="tableAllColumn" />
 		) VALUES (
-			#{clnCode} ,
+			'C' || LPAD(seq_clinic.NEXTVAL, 5, '0') ,
 			#{patCode} ,
-			#{empId}   ,
-			SYSDATE    ,
+			#{empId} ,
+			SYSDATE ,
 			#{clnDescr}
 		)
 	</insert>

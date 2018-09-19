@@ -56,7 +56,7 @@
 	  			emp_id			,
 	  			log_logindate
 	  		) VALUES (
-	  			seq_logininfo.nextval ,
+	  			seq_logininfo.NEXTVAL ,
 	  			#{empId} 			  ,
 	  			SYSDATE
 	  		)

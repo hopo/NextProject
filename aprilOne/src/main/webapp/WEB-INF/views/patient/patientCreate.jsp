@@ -25,7 +25,7 @@
 		<tbody>
 			<tr>
 				<th>환자 코드</th>
-				<td><input type="text" name="patCode" ></td>
+				<td>// 서버 내부에서 자동 생성됩니다</td>
 			</tr>
 			<tr>
 				<th>보험 코드</th>
@@ -68,8 +68,11 @@
 				<td><input type="text" name="patMemo" ></td>
 			</tr>
 			<tr>
-				<th>직원 ID (담당의)</th>
-				<td><input type="text" name="empId" ></td>
+				<th>담당의(직원ID)</th>
+				<td>
+					${loginInfo.empName} (${loginInfo.empId})
+					<input type="hidden" name="empId" value="${loginInfo.empId}" >
+				</td>
 			</tr>
 
 

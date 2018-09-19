@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,6 +16,7 @@ import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
 import kr.or.nextit.comm.model.MedicineVo;
 import kr.or.nextit.comm.model.PrescriptionVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.medicine.service.MedicineService;
 import kr.or.nextit.prescription.service.PrescriptionService;
 
@@ -82,51 +84,23 @@ public class PrescriptionController {
 	
 	
 	
-/*	//!!! 처방 리스트  화면
-	@RequestMapping("/prescription/prescriptionList")
-	public String prescriptionList(@ModelAttribute PrescriptionVo prescriptionVo, Model model,
-								@ModelAttribute(name="SearchVo") SearchVo searchVo
-								) throws Exception {
+	//!!! 처방 리스트  화면
+	@RequestMapping(value = "/prescription/prescriptionList")
+	public String prescriptionList(
+				@ModelAttribute PrescriptionVo prescriptionVo, Model model,
+				@ModelAttribute(name="SearchVo") SearchVo searchVo
+			) throws Exception {
 		
 		log.info(">>> /prescription/prescriptionList");
-		log.info(">>> SearchVo = {}" , searchVo));
+		log.info(">>> SearchVo = {}" , searchVo);
 		
-		try {
-			
-			searchVo.setTotalCount(prescriptionService.);
-			
-			
-		}
-		
+//		try {
+//			searchVo.setTotalCount(prescriptionService.);
+//		}
 		return "prescription/prescriptionList";
 	}
-*/
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

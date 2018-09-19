@@ -18,11 +18,10 @@
 <body>
 
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		$("#btn_mediChooice").click(function () {
 			$radio = $('input[name="medi"]:checked');			
-	
-			
 			span_id = $("#modal_medi").data("med"); 
 			console.log("span_id",  span_id );
 			
@@ -41,8 +40,6 @@
 			$("#modal_medi").modal('show');
 			
 		});
-		
-		
 		
 	});
 

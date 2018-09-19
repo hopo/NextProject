@@ -63,6 +63,7 @@ public class EmployeeController {
 			
 			hmap.put("result", result);
 
+			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가, 아마도 마샬링?
 			hmap.put("msgTag", param.get("msgTag"));
 			hmap.put("msgValue", param.get("msgValue"));
 
@@ -90,6 +91,9 @@ public class EmployeeController {
 			log.debug(">>> item : {}", item);
 			
 			hmap.put("item", item);
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,7 +129,6 @@ public class EmployeeController {
 
 			hmap.put("msgTag", msgVo.getMsgTag());
 			hmap.put("msgValue", msgVo.getMsgValue());
-			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가
 
 			return "redirect:/session/login";
 
@@ -183,7 +186,7 @@ public class EmployeeController {
 
 			hmap.put("msgTag", msgVo.getMsgTag());
 			hmap.put("msgValue", msgVo.getMsgValue());
-			hmap.put("msgVo", msgVo);
+
 			hmap.put("empId", employeeVo.getEmpId());
 			
 			return "redirect:/employee/employeeView";
@@ -224,7 +227,6 @@ public class EmployeeController {
 
 			hmap.put("msgTag", msgVo.getMsgTag());
 			hmap.put("msgValue", msgVo.getMsgValue());
-			hmap.put("msgVo", msgVo);
 			
 			return "redirect:/employee/employeeList";
 

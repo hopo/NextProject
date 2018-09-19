@@ -128,9 +128,3 @@ public class ClinicController {
 	}
 }
 
-
-
-
-
-
-

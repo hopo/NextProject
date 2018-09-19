@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
-import kr.or.nextit.comm.service.PaginationService;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.comm.util.SearchVo;
 
 @Controller
@@ -25,8 +26,14 @@ public class ClinicController {
 	@Resource(name = "ClinicService")
 	private ClinicService clinicService;
 
-	@Resource(name = "PaginationService")
-	private PaginationService paginationService;
+//	@Resource(name = "PaginationService")
+//	private PaginationService paginationService;
+
+	// !비즈니스 로직
+	private CommBuis commBuis = new CommBuis();
+
+	// !메시지Vo 공동 사용
+	MessageVo msgVo = new MessageVo();
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
@@ -41,24 +48,14 @@ public class ClinicController {
 
 		try {
 
-			searchVo.setSearchTable("tb_clinic");
-			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo));
+			// ;PaginationService를 공통으로 사용해보려 했지만 조인을 구현하다보니 아마도 dead code, searchVo.setSearchTable()도 물론
+			//searchVo.setSearchTable("tb_clinic");
+			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
 			searchVo.setScreenSize(10);
 			searchVo.pageSetting();
-			
-			log.debug(">>> ========= searchVo =====================");
-			log.debug(">>> SearchTable : {}", searchVo.getSearchTable());
-			log.debug(">>> SearchType : {}", searchVo.getSearchType());
-			log.debug(">>> SearchText : {}", searchVo.getSearchText());
-			log.debug(">>> TotalCount : {}", searchVo.getTotalCount());
-			log.debug(">>> ScreenSize : {}", searchVo.getScreenSize());
-			log.debug(">>> TotalPageCount : {}", searchVo.getTotalPageCount());
-			log.debug(">>> CurPage : {}", searchVo.getCurPage());
-			log.debug(">>> EndPage : {}", searchVo.getEndPage());
-			log.debug(">>> StartRow : {}", searchVo.getStartRow());
-			log.debug(">>> EndRow : {}", searchVo.getEndRow());
-			log.debug(">>> =========================================");
+
+			commBuis.dispSearchVo(searchVo);
 
 			result = clinicService.selectClinicList(searchVo);
 			log.debug(">>> result : {}", result);

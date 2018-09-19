@@ -11,7 +11,7 @@
 		cln_code ,
 		pat_code ,
 		emp_id ,
-		TO_CHAR(cln_date,'yyyy/mm/dd hh24:mi') AS cln_date,
+		cln_date ,
 		cln_descr
 	</sql>
 	
@@ -28,14 +28,27 @@
 	
 	<!-- SELECT / INSERT / UPDATE -->
 	<select id="selectClinicList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.ClinicVo">
-		SELECT *
+		SELECT
+			*
 		FROM (
-			SELECT ROWNUM AS rnum , frm.*
+			SELECT
+				ROWNUM AS rnum ,
+				frm.*
 			FROM (
-				SELECT <include refid="tableAllColumn" />
-				FROM tb_clinic
+				SELECT
+					aa.cln_code ,
+					aa.pat_code ,
+					aa.emp_id ,
+					TO_CHAR(aa.cln_date,'yyyy/mm/dd hh24:mi') AS cln_date ,
+					aa.cln_descr ,
+					bb.pat_name ,
+					yy.emp_name
+				FROM 
+					tb_clinic aa
+					INNER JOIN tb_patient bb ON aa.pat_code = bb.pat_code
+					INNER JOIN tb_employee yy ON aa.emp_id = yy.emp_id
 				<include refid="whereQueryTrimIf" />
-				ORDER BY cln_code DESC
+				ORDER BY cln_date DESC
 			) frm
 	    )
 	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
@@ -43,22 +56,30 @@
 
 	<select id="selectClinicItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.ClinicVo">
 		SELECT
-			<include refid="tableAllColumn" />
+			cln_code ,
+			pat_code ,
+			emp_id ,
+			TO_CHAR(cln_date,'yyyy/mm/dd hh24:mi') AS cln_date ,
+			cln_descr
 		FROM
 			tb_clinic
 		WHERE
 			cln_code = #{clnCode}
 	</select>
 
-	<!--
 	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">
 		SELECT
 			COUNT(*) AS total_count
-		FROM
-			${searchTable}
-		<include refid="whereQueryTrimIf" />
+		FROM (
+			SELECT
+				aa.cln_code
+			FROM 
+				tb_clinic aa
+				INNER JOIN tb_patient bb ON aa.pat_code = bb.pat_code
+				INNER JOIN tb_employee yy ON aa.emp_id = yy.emp_id
+			<include refid="whereQueryTrimIf" />
+		)
 	</select>
-  	-->
 
 	<insert id="insertClinic" parameterType="HashMap">
 		INSERT INTO tb_clinic (

@@ -20,15 +20,24 @@
 			<tbody>
 				<tr>
 					<th>진료코드(6)</th>
-					<td><input name="clnCode" class="form-control" placeholder="진료코드" required autofocus value="c00001"></td>
+					<td>
+						// 서버에서 자동 생성
+						<input name="clnCode" class="form-control" placeholder="진료코드" required autofocus value="c00021">
+				</td>
 				</tr>
 				<tr>
 					<th>환자코드(6)</th>
-					<td><input name="patCode" class="form-control" placeholder="환자코드" required value="p00001"></td>
+					<td>
+						// 환자이름 or 환자코드 를 검색하여 입력
+						<input name="patCode" class="form-control" placeholder="환자코드" required value="p90149">
+					</td>
 				</tr>
 				<tr>
 					<th>담당의(의사-접속맨)</th>
-					<td><input name="empId" class="form-control" placeholder="담당의사" required value="san"></td>
+					<td>
+						${loginInfo.empId}
+						<input type="hidden" name="empId" class="form-control" required value="${loginInfo.empId}">
+					</td>
 				</tr>
 				<tr>
 					<th>진료내용</th>

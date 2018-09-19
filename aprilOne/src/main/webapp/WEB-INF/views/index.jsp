@@ -26,17 +26,17 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 	<table class="table-bordered">
-		<thead>
+		<thead class="bg-info">
 			<tr>
-				<th>Alias</th>
 				<th>Url</th>
+				<th>Alias</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${urls}">
 				<tr>
-					<td>${item.key}</td>
 					<td>${item.value}</td>
+					<td><a href="<c:url value="${item.value}" />">${item.key}</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

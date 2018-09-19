@@ -36,6 +36,7 @@ public class UrlAliasFilter implements Filter {
 		if(myreq.getSession().getAttribute("urls") == null) {
 			// ! alias = url
 			urls.put("index", "/index");
+
 			urls.put("employee_list", "/employee/employeeList");
 			urls.put("employee_view", "/employee/employeeView");
 			urls.put("employee_create", "/employee/employeeCreate");
@@ -44,6 +45,8 @@ public class UrlAliasFilter implements Filter {
 			urls.put("employee_editproc", "/employee/employeeEditProc");
 			urls.put("employee_retire", "/employee/employeeRetire");
 			urls.put("employee_retireproc", "/employee/employeeRetireProc");
+
+			urls.put("prescription_create", "/prescription/prescriptionCreate");
 
 			myreq.getSession().setAttribute("urls", urls);
 		}

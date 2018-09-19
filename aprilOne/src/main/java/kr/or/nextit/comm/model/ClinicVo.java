@@ -15,14 +15,35 @@ public class ClinicVo implements Serializable {
 	private String empId; 		// emp_id (50)
 	private String clnDate; 	// cln_date
 	private String clnDescr; 	// cln_descr (4000)
+	
+	// !!!조인시 TB_PATIENT, TB_EMPLOYEE
+	private String patName; 	// pat_name
+	private String empName; 	// emp_name
 
 	// !!!부가적 필드
 	private String message;
 	private boolean result;
 	
+
 	// !!!게터 세터
 	public String getClnCode() {
 		return clnCode;
+	}
+
+	public String getPatName() {
+		return patName;
+	}
+
+	public void setPatName(String patName) {
+		this.patName = patName;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	public void setClnCode(String clnCode) {

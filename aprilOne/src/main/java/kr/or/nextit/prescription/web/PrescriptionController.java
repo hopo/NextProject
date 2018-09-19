@@ -33,7 +33,7 @@ public class PrescriptionController {
 	MedicineService medicineService;
 
 	// !!! 처방등록 폼 화면
-	@RequestMapping("/prescription/prescriptionView")
+	@RequestMapping(value = "/prescription/prescriptionView")
 	public String prescriptionSelect() {
 		log.info(">>> /prescription/prescriptionView");
 
@@ -42,7 +42,7 @@ public class PrescriptionController {
 	}
 
 	// 약품.진료테이블 정보가져오기
-	@RequestMapping("/prescription/prescriptionCreate")
+	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
 			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
 			HashMap<String, Object> param, Model model) throws Exception {
@@ -66,7 +66,7 @@ public class PrescriptionController {
 	}
 	
 	// 처방 등록하기 
-	@RequestMapping("/prescription/prescriptionCreateProc")
+	@RequestMapping(value = "/prescription/prescriptionCreateProc")
 	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
 			) throws Exception {
 		

@@ -22,46 +22,53 @@
 		<c:param name="empId" value="${item.empId}" />
 	</c:url>
 	
-	<form action="/prescription/prescriptionCreate" method="post">
-	
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>진료코드</th>	<!-- clnCode -->
-				<td><input type="text" name="clnCode" id="clnCode" value="${item.clnCode}" > </td>
-			</tr>
-			<tr>
-				<th>환자코드</th>	<!-- patCode -->
-				<td>
-					<input type="text" name="patCode" id="patCode" value="${item.patCode}" > <a href="<c:url value='${patientViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
-				</td>
-			</tr>
-			<tr>
-				<th>담당의</th>	<!-- empId -->
-				<td>
-					<input type="text" name="empId" id="empId" value="${item.empId}" > <a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
-				</td>
-			</tr>
-			<tr>
-				<th>진료일</th>	<!-- clnDate -->
-				<td>
-					<input type="text" name="clnDate" id="clnDate" value="${item.clnDate}" >    
-				</td>
-			</tr>
-			<tr>
-				<th>진료내용</th>	<!-- clnDescr -->
-				<td>
-					<input type="text" name="clnDescr" id="clnDescr" value="${item.clnDescr}" >       
-				</td>
-			</tr>
-			
-			<tr>				
-				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" > 처방등록 </button></td>
-			</tr>	
-			
-		</tbody>
-	</table>
-	
+	<form action="<c:url value='${urls.prescription_create}' />" method="POST">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>진료코드</th> <!-- clnCode -->
+					<td>
+						${item.clnCode}
+						<!-- <input type="text" name="clnCode" id="clnCode" value="${item.clnCode}" >  -->
+					</td>
+				</tr>
+				<tr>
+					<th>환자이름 (환자코드)</th>	<!-- patCode -->
+					<td>
+						${param.patName} (${item.patCode})
+						<!-- <input type="text" name="patCode" id="patCode" value="${item.patCode}" >  -->
+						<a href="<c:url value='${patientViewUrl}'/>" class="btn btn-info btn-xs">상세보기</a>
+					</td>
+				</tr>
+				<tr>
+					<th>담당의 (직원ID)</th>	<!-- empId -->
+					<td>
+						${param.empName} (${item.empId})
+						<!-- <input type="text" name="empId" id="empId" value="${item.empId}" > -->
+						<a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
+					</td>
+				</tr>
+				<tr>
+					<th>진료일</th>	<!-- clnDate -->
+					<td>
+						${item.clnDate}
+						<!-- <input type="text" name="clnDate" id="clnDate" value="${item.clnDate}" > -->
+					</td>
+				</tr>
+				<tr>
+					<th>진료내용</th>	<!-- clnDescr -->
+					<td>
+						<pre>${item.clnDescr}</pre>
+						<!-- <input type="text" name="clnDescr" id="clnDescr" value="${item.clnDescr}" >  -->       
+					</td>
+				</tr>
+				
+				<tr>				
+					<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" >처방하기</button></td>
+				</tr>	
+				
+			</tbody>
+		</table>
 	</form>
 	
 

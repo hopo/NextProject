@@ -48,7 +48,8 @@
 				<td>
 					<form:select path="searchType" class="btn btn-default">
 						<form:option value="cln_code">진료코드</form:option>
-						<form:option value="pat_code">환자코드</form:option>
+						<form:option value="pat_name">환자이름</form:option>
+						<form:option value="emp_name">담당의</form:option>
 					</form:select>
 				</td>
 				<td>
@@ -70,24 +71,26 @@
 		<thead>
 			<tr>
 				<th>진료코드</th>	<!-- clnCode -->
-				<th>환자코드</th>	<!-- patCode -->
+				<th>환자이름</th>	<!-- patCode -->
+				<th>진료내용</th>	<!-- clnDescr -->
 				<th>담당의</th>		<!-- empId -->
 				<th>진료일</th>		<!-- clnDate -->
-				<th>진료내용</th>	<!-- clnDescr -->
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${result}">
 				<c:url value="clinicView" var="clinicViewUrl">
+					<c:param name="curPage" value="${searchVo.curPage}" />
 					<c:param name="clnCode" value="${item.clnCode}" />
-				<%-- <c:param name="curPage" value="${search.curPage}" /> --%>
+					<c:param name="patName" value="${item.patName}" />
+					<c:param name="empName" value="${item.empName}" />
 				</c:url>
  				<tr>
 					<td><a href="<c:url value='${clinicViewUrl}'/>">${item.clnCode}</a></td>
-					<td>${item.patCode}</td>
-					<td>${item.empId}</td>
-					<td>${item.clnDate}</td>
+					<td>${item.patName} (${item.patCode})</td>
 					<td>${item.clnDescr}</td>
+					<td>${item.empName} (${item.empId})</td>
+					<td>${item.clnDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

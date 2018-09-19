@@ -31,22 +31,20 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 
-				<!-- // !!진료/처방 드랍다운 -->
+
+				<!-- // !!매출 드랍다운 -->
 				<span class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-clnAndPrs" data-toggle="dropdown" aria-expanded="true">
-						진료/처방
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-sales" data-toggle="dropdown" aria-expanded="true">
+						매출
 						<span class="caret"></span>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-clinic">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicList' />">진료리스트</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicCreate' />">진료등록</a></li>
-						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionList'/>">처방리스트</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a></li>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-sales">
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#매출조회</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#미수환불</a></li>
 					</ul>
 				</span>
-
-
+				
+				
 				<!-- // !!의약품 드랍다운 -->
 				<span class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-medicine" data-toggle="dropdown" aria-expanded="true">
@@ -61,19 +59,6 @@
 				</span>
 
 
-				<!-- // !!매출 드랍다운 -->
-				<span class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-sales" data-toggle="dropdown" aria-expanded="true">
-						매출
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-sales">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#매출조회</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#미수환불</a></li>
-					</ul>
-				</span>
-
-
 				<!-- // !!환자 드랍다운 -->
 				<span class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-patient" data-toggle="dropdown" aria-expanded="true">
@@ -84,6 +69,22 @@
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/patient/patientList' />">환자리스트</a></li>
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/patient/patientCreate' />">환자등록</a></li>
 				  </ul>
+				</span>
+
+
+				<!-- // !!진료/처방 드랍다운 -->
+				<span class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-clnAndPrs" data-toggle="dropdown" aria-expanded="true">
+						진료/처방
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-clinic">
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicList' />">진료리스트</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/clinic/clinicCreate' />">진료등록</a></li>
+						<li role="presentation" class="divider"></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionList'/>">처방리스트</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/prescription/prescriptionCreate' />">처방등록</a></li>
+					</ul>
 				</span>
 			
 

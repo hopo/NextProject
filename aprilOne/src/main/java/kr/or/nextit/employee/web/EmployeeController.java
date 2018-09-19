@@ -50,7 +50,7 @@ public class EmployeeController {
 
 		try {
 
-			searchVo.setSearchTable("tb_employee"); 	// ;검색테이블 설정
+			searchVo.setSearchTable("tb_employee"); 	// ;(PaginationService)검색테이블 설정
 			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
 			searchVo.setPageBlockSize(5); 			// ;페이지 5개씩
 			searchVo.setScreenSize(10);				// ;로우 10개씩 

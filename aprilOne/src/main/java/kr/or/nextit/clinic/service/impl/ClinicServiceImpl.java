@@ -26,10 +26,10 @@ public class ClinicServiceImpl implements ClinicService {
 		return clinicMapper.selectClinicItem(param);
 	}
 
-//	@Override
-//	public int selectTotalCount(SearchVo searchVo) throws Exception {
-//		return clinicMapper.selectTotalCount(searchVo);
-//	}
+	@Override
+	public int selectTotalCount(SearchVo searchVo) throws Exception {
+		return clinicMapper.selectTotalCount(searchVo);
+	}
 
 	@Override
 	public void insertClinic(HashMap<String, Object> param) throws Exception {

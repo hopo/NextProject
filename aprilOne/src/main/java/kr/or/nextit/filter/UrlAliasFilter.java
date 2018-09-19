@@ -37,14 +37,20 @@ public class UrlAliasFilter implements Filter {
 			// ! alias = url
 			urls.put("index", "/index");
 
+			urls.put("clinic_create", "/clinic/clinicCreate");
+			urls.put("clinic_createProc", "/clinic/clinicCreateProc");
+			urls.put("clinic_view", "/clinic/clinicView");
+
 			urls.put("employee_list", "/employee/employeeList");
 			urls.put("employee_view", "/employee/employeeView");
 			urls.put("employee_create", "/employee/employeeCreate");
-			urls.put("employee_createproc", "/employee/employeeCreateProc");
+			urls.put("employee_createProc", "/employee/employeeCreateProc");
 			urls.put("employee_edit", "/employee/employeeEdit");
-			urls.put("employee_editproc", "/employee/employeeEditProc");
+			urls.put("employee_editProc", "/employee/employeeEditProc");
 			urls.put("employee_retire", "/employee/employeeRetire");
-			urls.put("employee_retireproc", "/employee/employeeRetireProc");
+			urls.put("employee_retireProc", "/employee/employeeRetireProc");
+
+			urls.put("patient_list", "/patient/patientList");
 
 			urls.put("prescription_create", "/prescription/prescriptionCreate");
 

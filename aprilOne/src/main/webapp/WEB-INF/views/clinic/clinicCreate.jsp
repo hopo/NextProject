@@ -13,23 +13,27 @@
 <head>
 <title>진료 등록</title>
 </head>
+
 <body>
 	"//의사만 접근 가능할 예정"
-	<form class="form-horizontal" action="<c:url value='/clinic/clinicCreateProc' />" method="POST">
+	<form class="form-horizontal" action="<c:url value='${urls.clinic_createProc}' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
-					<th>진료코드(6)</th>
+					<th>진료코드</th>
 					<td>
 						// 서버에서 자동 생성. currval을 이용해서 보여줄까?
 					</td>
 				</tr>
 				<tr>
-					<th>환자코드(6)</th>
+					<th>환자이름(환자코드)</th>
 					<td>
-						p90042
-						<input type="hidden" name="patCode" required value="p90042">
-						<a class="btn btn-info btn-xs">환자검색</a>
+						<c:if test="${param.patCode ne null}">
+							${param.patName} (${param.patCode})
+						</c:if>
+
+						<input type="hidden" name="patCode" required value="${param.patCode}"> <!-- null상태서 서브밋 하면 에러터짐 -->
+						<a class='btn btn-info btn-xs' href="<c:url value='${urls.patient_list}' />">환자검색</a>
 					</td>
 				</tr>
 				<tr>
@@ -42,7 +46,7 @@
 				<tr>
 					<th>진료내용</th>
 					<td>
-						<textarea name="clnDescr" class="form-control" rows="4" cols="50" placeholder="진료내용" required></textarea>
+						<textarea name="clnDescr" class="form-control" rows="4" cols="50" placeholder="진료내용" require></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -53,9 +57,9 @@
 			</tbody>
 		</table>
 	</form>	 
+
 </body>
 </html>
-
 
 
 

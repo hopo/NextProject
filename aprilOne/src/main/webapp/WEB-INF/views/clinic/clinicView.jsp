@@ -15,6 +15,7 @@
 </head>  
 
 <body>
+	${param.ppp}
 	<c:url value="../patient/patientView" var="patientViewUrl">
 		<c:param name="patCode" value="${item.patCode}" />
 	</c:url>

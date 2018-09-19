@@ -34,7 +34,7 @@
 		
 		// 버튼 클릭 시 
 		$(".btn_medi").click(function () {			
-			console.log($(this).data('suntack')   );
+			console.log($(this).data('suntack'));
 			// modal_medi 안에 담긴 데이터를 med라는 이름으로 show  
 			$("#modal_medi").data("med", $(this).data('suntack') );
 			$("#modal_medi").modal('show');
@@ -145,17 +145,20 @@
         <h4 class="modal-title"> 약품 선택 </h4>
       </div>
       <div class="modal-body">
-       
         <ul>
-        
-        <c:forEach var="i" items="${medList}">
-       
-        	<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename }, [${i.medCode }, ${i.medUnit }] </label> </li>
-        </c:forEach>
+	        <c:forEach var="i" items="${medList}">
+	        	<li>
+	        		<label>
+	        			<input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >
+	        			${i.medCodename }, [${i.medCode }, ${i.medUnit }]
+	        		</label>
+	        	</li>
+	        </c:forEach>
         
         
         </ul>
       </div>
+       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btn_mediChooice" class="btn btn-primary">선택</button>
@@ -166,10 +169,6 @@
 </div><!-- /.modal -->
 
 <!-- 의약품 목록 모달창 끝 -->
-
-
-
-		
 
 </body>
 </html>

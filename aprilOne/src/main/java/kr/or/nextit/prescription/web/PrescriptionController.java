@@ -46,8 +46,10 @@ public class PrescriptionController {
 	// 약품.진료테이블 정보가져오기
 	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
-			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
-			HashMap<String, Object> param, Model model) throws Exception {
+				@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
+				HashMap<String, Object> param,
+				Model model
+			) throws Exception {
 
 		log.info(">>> /prescription/prescriptionCreate clnCode= {}", clnCode);
 		param.put("clnCode", clnCode);

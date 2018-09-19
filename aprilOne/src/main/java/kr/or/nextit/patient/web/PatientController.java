@@ -75,8 +75,7 @@ public class PatientController {
 	}
 
 	// 환자정보 상세보기
-
-	@RequestMapping(value = "patient/patientView")
+	@RequestMapping(value = "/patient/patientView")
 	public String patientView(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
 		log.info(">>> patient/patientView");
 
@@ -91,7 +90,7 @@ public class PatientController {
 
 	// 환자정보 수정 페이지
 
-	@RequestMapping(value = "patient/patientUpdate")
+	@RequestMapping(value = "/patient/patientUpdate")
 	public String patientUpdate(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
 		log.info(">>> patient/patientUpdate");
 
@@ -104,7 +103,7 @@ public class PatientController {
 
 	// 환자정보 수정 완료
 
-	@RequestMapping(value = "patient/patientUpdateProc")
+	@RequestMapping(value = "/patient/patientUpdateProc")
 	public String patientUpdateProc(@ModelAttribute PatientVo patientVo) throws Exception {
 		log.info(">>> patient/patientUpdateProc");
 

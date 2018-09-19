@@ -75,23 +75,24 @@
 	</table>
 	
 	
-	<a href="<c:url value='${urls.employee_list}' />" class="btn btn-default">직원리스트</a>
-
-	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
-		<c:param value='${item.empId}' name='empId' />
-	</c:url>
-	<a href="${employeeEditUrl}" class="btn btn-info">수정</a>
-
-	<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
-		<c:param value='${item.empId}' name='empId' />
-		<c:param value='${item.empName}' name='empName' />
-	</c:url>
+	<div class="btn btn-group">
+		<a href="<c:url value='${urls.employee_list}' />" class="btn btn-default">직원리스트</a>
+		<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
+			<c:param value='${item.empId}' name='empId' />
+		</c:url>
+		<a href="${employeeEditUrl}" class="btn btn-info">수정</a>
 	
-	<c:if test="${item.empRetiredate eq null}">
-		<a href="${employeeRetireUrl}" class="btn btn-danger">삭제(퇴사)</a>
-	</c:if>
+		<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
+			<c:param value='${item.empId}' name='empId' />
+			<c:param value='${item.empName}' name='empName' />
+		</c:url>
+		
+		<c:if test="${item.empRetiredate eq null}">
+			<a href="${employeeRetireUrl}" class="btn btn-danger">삭제(퇴사)</a>
+		</c:if>
+	</div>
 	<c:if test="${item.empRetiredate ne null}">
-		<div><small>퇴사한 사람입니다.</small></div>
+		<div><small class="text-danger">퇴사한 사람입니다.</small></div>
 	</c:if>
 </body>
 </html>

@@ -73,21 +73,27 @@ public class ClinicController {
 	// !!!진료 상세보기 화면
 	@RequestMapping(value = "/clinic/clinicView")
 	public String clinicView(
-			HashMap<String, Object> hmap,
-			@RequestParam HashMap<String, Object> param
+			@RequestParam HashMap<String, Object> param,
+			HashMap<String, Object> hmap
 		) {
 		log.info(">>> /clinic/clinicView");
+		log.debug("######param : {}", param);
+
+		hmap.put("clnCode", param.get("clnCode")); // null 이라서 create에서 넘어 올 경우 뷰가 보이지 않는다
+		hmap.put("patName", param.get("patName"));
+		hmap.put("empName", param.get("empName"));
 
 		ClinicVo item = null;
 
 		try {
 			item = clinicService.selectClinicItem(param);
+			log.debug(">>> item : {}", item);
+
+			hmap.put("item", item);
+			log.debug("$$$$hmap : {}", hmap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		log.debug(">>> item : {}", item);
-		hmap.put("item", item);
 
 		return "clinic/clinicView";
 
@@ -95,8 +101,10 @@ public class ClinicController {
  
 	// !!!진료 기록 화면
 	@RequestMapping(value = "/clinic/clinicCreate")
-	public String clinicCreate() {
+	public String clinicCreate(
+			) {
 		log.info(">>> /clinic/clinicCreate");
+
 
 		return "clinic/clinicCreate";
 	}
@@ -108,20 +116,21 @@ public class ClinicController {
 				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /clinic/clinicCreateProc");
-		
 		log.debug("param : {}", param);
 		
 		try {
 
 			clinicService.insertClinic(param);
-			hmap.put("param", param);
 
-			return "clinic/clinicCreateProc";
+			hmap.put("patCode", param.get("patCode"));
+			hmap.put("empId", param.get("empId"));
+
+			log.debug("@@@@@@hmap : {}", hmap);
+
+			return "redirect:/clinic/clinicView";
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 
 		return "wrong";

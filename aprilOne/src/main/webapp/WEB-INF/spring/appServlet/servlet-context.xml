@@ -46,6 +46,7 @@
 	<resources mapping="/fonts/**" location="/fonts/" />
 	<resources mapping="/css/**" location="/css/" />
 	<resources mapping="/js/**" location="/js/" />
+	<resources mapping="/snippets/**" location="/snippets/" />
 	<!-- <resources mapping="/MDB/**" location="/MDB/" /> -->
 	<!-- =================================== -->
 	

@@ -1,0 +1,107 @@
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		/*
+		$("#btn_mediChooice").on("click", function () {
+			$radio = $('input[name="medi"]:checked');			
+			span_id = $("#modal_medi").data("med"); 
+			console.log("span_id",  span_id );
+			$("#" +  span_id ).html( $radio.data("med-codename")  + " [" + $radio.data("med-code") 
+					          + ", " + $radio.data("med-unit") 
+				              + " <input type='hidden' name='medCode' value='" + $radio.data("med-code") + "' />");
+		
+			 $("#modal_medi").modal('hide');
+		});
+		*/
+		
+		// 버튼 클릭 시 
+		$("#modalBtn").on("click", function () {			
+			//alert("@@@ on click");
+			//alert($(this).data('suntack'));
+			// modal_medi 안에 담긴 데이터를 med라는 이름으로 show  
+			//$("#modal_patSearch").data("med", $(this).data('suntack') );
+			$("#modal_patSearch").modal('show');
+		});
+	});
+
+</script>
+
+
+
+
+	<!-- Modal : 환자 검색 -->
+	<div class="modal fade" id="modal_patSearch">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">환자검색</h4>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<%--
+						<c:forEach var="i" items="${medList}">
+	        				<li><label><input type="radio" name="medi" data-med-code="${i.medCode }" data-med-codename="${i.medCodename }" data-med-unit="${i.medUnit }" >  ${i.medCodename }, [${i.medCode }, ${i.medUnit }] </label> </li>
+	        			</c:forEach>
+ 						--%>
+	        		</ul>
+	        			
+
+					<!-- 검색 -->
+					<form action="<c:url value='${urls.patient_list}' />" id="searchForm" method="POST">
+						<input type="hidden" name="curPage" id="curPage" />
+						
+						<table class="table">
+							<tr>
+								<th>검색타입</th>
+								<td>
+									<select name="searchType">
+										<option value="sel1" ${patientSearchVo.searchType eq 'sel1'?'selected="selected"':''}>환자이름</option>
+										<option value="sel2" ${patientSearchVo.searchType eq 'sel2'?'selected="selected"':''}>환자코드</option>
+										<option value="sel4" ${patientSearchVo.searchType eq 'sel4'?'selected="selected"':''}>전화번호</option>
+									</select>
+								</td>
+								<td>
+									<input type="text" name="searchText"  value="<%= request.getParameter("searchText")%>" />
+								</td>
+								<td>
+									<button id="searchsubmit" type="submit" class="btn btn-primary">검색</button>
+								</td>
+								
+							</tr>
+						</table>
+					</form>
+				
+					<!-- 검색테이블 -->
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>환자코드</th>
+								<th>환자이름</th>
+								<th>환자전화번호</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<c:forEach var="i" items="${patList}">
+								<c:url var="viewUrl" value="/">
+									<c:param name="patCode" value="${i.patCode}"/>
+									<c:param name="patCode" value="${patientSearchVo.curPage }"/>
+								</c:url>
+								<tr>
+									<td><a href="<c:url value='/patient/patientView?patCode=${i.patCode}' />">${i.patCode}</a></td>
+									<td>${i.patName}</td>
+									<td>${i.patPhone}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+	        		
+	        	</div>
+	        	<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	</div>
+	        </div>
+		</div>
+	</div>

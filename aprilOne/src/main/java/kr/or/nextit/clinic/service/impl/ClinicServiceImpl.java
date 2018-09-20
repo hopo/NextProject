@@ -35,5 +35,10 @@ public class ClinicServiceImpl implements ClinicService {
 	public void insertClinic(HashMap<String, Object> param) throws Exception {
 		clinicMapper.insertClinic(param);
 	}
+	
+	@Override
+	public String selectClinicLastItemCode() throws Exception {
+		return clinicMapper.selectClinicLastItemCode();
+	}
 
 }

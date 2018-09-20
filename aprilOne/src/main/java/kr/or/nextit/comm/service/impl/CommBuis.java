@@ -7,6 +7,13 @@ import kr.or.nextit.comm.util.SearchVo;
 
 public class CommBuis {
 
+	// !singletone
+	private CommBuis() {}
+	private static CommBuis instance = new CommBuis();
+	public static CommBuis getInstance() {
+		return instance;
+	}	
+	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	public void dispSearchVo(SearchVo searchVo) {

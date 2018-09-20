@@ -26,11 +26,11 @@ public class ClinicController {
 	@Resource(name = "ClinicService")
 	private ClinicService clinicService;
 
-//	@Resource(name = "PaginationService")
-//	private PaginationService paginationService;
+	//	@Resource(name = "PaginationService")
+	//	private PaginationService paginationService;
 
 	// !비즈니스 로직
-	private CommBuis commBuis = new CommBuis();
+	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
 	MessageVo msgVo = new MessageVo();
@@ -78,24 +78,37 @@ public class ClinicController {
 		) {
 		log.info(">>> /clinic/clinicView");
 		log.debug("######param : {}", param);
-
-		hmap.put("clnCode", param.get("clnCode")); // null 이라서 create에서 넘어 올 경우 뷰가 보이지 않는다
-		hmap.put("patName", param.get("patName"));
-		hmap.put("empName", param.get("empName"));
-
+		
 		ClinicVo item = null;
 
 		try {
+
+			if (param.get("clnCode") == null) {
+				String lastItemCode = clinicService.selectClinicLastItemCode();
+				log.debug("lastItemCode : {}", lastItemCode);
+
+				param.put("clnCode", lastItemCode);
+				hmap.put("clnCode", lastItemCode);
+			} else {
+				// ;진료 리스트로부터 넘어올 때
+				hmap.put("clnCode", param.get("clnCode"));
+				hmap.put("patName", param.get("patName"));
+				hmap.put("empName", param.get("empName"));
+			}
+			
 			item = clinicService.selectClinicItem(param);
 			log.debug(">>> item : {}", item);
 
 			hmap.put("item", item);
-			log.debug("$$$$hmap : {}", hmap);
+
+			return "clinic/clinicView";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "clinic/clinicView";
+		return "wrong";
+
 
 	}
  

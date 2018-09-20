@@ -28,7 +28,7 @@ public class TimerFilter implements Filter {
 
 			// ; 전처리 부분
 			long startTime = System.currentTimeMillis();
-			System.out.printf("[TimerFilter] : %s, 시작 : %d ms\n", myreq.getRequestURI(), startTime);
+			System.out.printf("[TimerFilter] : %s --> 'TIME CHECK START'\n", myreq.getRequestURI());
 
 			req.setAttribute("test", "testAttr"); // ;;;test
 
@@ -38,7 +38,7 @@ public class TimerFilter implements Filter {
 
 			// ; 후처리 부분
 			long endTime = (System.currentTimeMillis() - startTime);
-			System.out.printf("[TimerFilter] : %s, 걸린시간 : %d ms\n", myreq.getRequestURI(), endTime);
+			System.out.printf("[TimerFilter] : %s --> '걸린시간' : %d ms\n", myreq.getRequestURI(), endTime);
 
 		}
 

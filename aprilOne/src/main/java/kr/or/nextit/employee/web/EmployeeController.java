@@ -31,10 +31,10 @@ public class EmployeeController {
 	private PaginationService paginationService;
 
 	// !비즈니스 로직
-	private CommBuis commBuis = new CommBuis();
+	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = new MessageVo();
+	MessageVo msgVo = null;
 
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
@@ -62,6 +62,8 @@ public class EmployeeController {
 			log.debug(">>> result : {}", result);
 			
 			hmap.put("result", result);
+			
+			msgVo = new MessageVo();
 
 			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가, 아마도 마샬링?
 			hmap.put("msgTag", param.get("msgTag"));
@@ -98,7 +100,6 @@ public class EmployeeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		
 		return "employee/employeeView";
 	}
@@ -123,7 +124,8 @@ public class EmployeeController {
 		try {
 
 			employeeService.insertEmployee(param); // ;DB에 새로운 계정을 인서트 한다
-			
+
+			msgVo = new MessageVo();
 			msgVo.setMsgTag("info");
 			msgVo.setMsgValue(String.format("%s님 계정이 생성되었습니다.", param.getEmpId()));
 
@@ -180,6 +182,7 @@ public class EmployeeController {
 		try {
 
 			employeeService.updateEmployee(employeeVo); // 직원정보를 수정하였다
+			msgVo = new MessageVo();
 
 			msgVo.setMsgTag("info");
 			msgVo.setMsgValue(String.format("%s님 계정이 수정되었습니다.", employeeVo.getEmpId()));
@@ -222,6 +225,7 @@ public class EmployeeController {
 
 			employeeService.updateRetireEmployee(employeeVo);
 
+			msgVo = new MessageVo();
 			msgVo.setMsgTag("warning");
 			msgVo.setMsgValue(String.format("%s님 계정이 삭제(퇴사) 되었습니다.", employeeVo.getEmpId()));
 

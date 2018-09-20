@@ -36,7 +36,7 @@
 				<tr>
 					<th>환자이름 (환자코드)</th>	<!-- patCode -->
 					<td>
-						${param.patName} (${item.patCode})
+						${param.patName} - ${item.patCode}
 						<!-- <input type="text" name="patCode" id="patCode" value="${item.patCode}" >  -->
 						<a href="<c:url value='${patientViewUrl}'/>" class="btn btn-info btn-xs">상세보기</a>
 					</td>
@@ -44,7 +44,7 @@
 				<tr>
 					<th>담당의 (직원ID)</th>	<!-- empId -->
 					<td>
-						${param.empName} (${item.empId})
+						${param.empName} - ${item.empId}
 						<!-- <input type="text" name="empId" id="empId" value="${item.empId}" > -->
 						<a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
 					</td>

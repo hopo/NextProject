@@ -28,7 +28,7 @@
 		empRrnum.value = empRrnum1.value + '-' +  empRrnum2.value;
 
 		if (empPhone.value == null || empRrnum == null) {
-			return fasle;
+			return false;
 		} else {
 			return true;
 		}
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-	<form class="form-horizontal" action="<c:url value='${urls.employee_editproc}' />" onsubmit="return check()" method="POST">
+	<form class="form-horizontal" action="<c:url value='${urls.employee_editProc}' />" onsubmit="return check()" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>

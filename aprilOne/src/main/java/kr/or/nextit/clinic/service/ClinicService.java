@@ -22,6 +22,11 @@ public interface ClinicService {
 	 */
 	public ClinicVo selectClinicItem(HashMap<String, Object> param) throws Exception;
 
+	/**
+	 * @param searchVo
+	 * @return
+	 * @throws Exception
+	 */
 	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
 	/**
@@ -29,5 +34,7 @@ public interface ClinicService {
 	 * @throws Exception
 	 */
 	public void insertClinic(HashMap<String, Object> param) throws Exception;
+	
+	public String selectClinicLastItemCode() throws Exception;
 
 }

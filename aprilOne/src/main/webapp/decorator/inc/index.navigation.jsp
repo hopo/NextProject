@@ -31,7 +31,6 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 
-
 				<!-- // !!매출 드랍다운 -->
 				<span class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-sales" data-toggle="dropdown" aria-expanded="true">
@@ -121,7 +120,7 @@
 							<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 								<c:param name="empId" value="${loginInfo.empId}" />
 							</c:url>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="${employeeEditUrl}">직원정보수정</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="${employeeEditUrl}">정보수정</a></li>
 							<li role="presentation" class="divider"></li>
 							<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/session/logout' />">로그아웃</a></li>
 					 	</ul>

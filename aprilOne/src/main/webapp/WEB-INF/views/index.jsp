@@ -26,7 +26,7 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 	<table class="table-bordered">
-		<thead class="bg-info">
+		<thead class="">
 			<tr>
 				<th>Url</th>
 				<th>Alias</th>

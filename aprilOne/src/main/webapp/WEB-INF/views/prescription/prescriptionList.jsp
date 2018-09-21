@@ -67,7 +67,7 @@
 
 	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
-		<thead>
+		<thead class="bg-success">
 			<tr>
 				<th>처방코드</th>
 				<th>진료코드</th>

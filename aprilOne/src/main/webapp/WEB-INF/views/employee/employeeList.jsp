@@ -67,8 +67,8 @@
 
 
 	<!-- // ;List View Part -->
-	<table class="table">
-		<thead>
+	<table class="table table-bordered table-hover">
+		<thead class="bg-info">
 			<tr>
 				<th>아이디</th>		<!-- empId -->
 				<th>이름</th>		<!-- empName -->

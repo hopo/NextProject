@@ -67,8 +67,8 @@
 
 
 	<!-- // ;List View Part -->
-	<table class="table">
-		<thead>
+	<table class="table table-bordered table-hover">
+		<thead class="bg-warning">
 			<tr>
 				<th>진료코드</th>	<!-- clnCode -->
 				<th>환자이름</th>	<!-- patCode -->
@@ -77,6 +77,7 @@
 				<th>진료일</th>		<!-- clnDate -->
 			</tr>
 		</thead>
+
 		<tbody>
 			<c:forEach var="item" items="${result}">
 				<c:url value="clinicView" var="clinicViewUrl">

@@ -88,7 +88,7 @@
 			SELECT
 				cln_code,
 				cln_date,
-				MAX( cln_date ) OVER() AS last_date
+				MAX(cln_date) OVER() AS last_date
 			FROM
 				tb_clinic a
 			)

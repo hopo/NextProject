@@ -72,7 +72,7 @@
 
 	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
-		<thead>
+		<thead class="bg-danger">
 			<tr>
 				<th>환자코드</th>
 				<th>환자이름</th>
@@ -88,15 +88,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="i" items="${patList }">
+			<c:forEach var="i" items="${patList}">
 				<c:url var="viewUrl" value="/">
-					<c:param name="patCode" value="${i.patCode }"/>
-					<c:param name="patCode" value="${patientSearchVo.curPage }"/>
-					
-				
+					<c:param name="patCode" value="${i.patCode}"/>
+					<c:param name="patCode" value="${patientSearchVo.curPage}"/>
 				</c:url>
-			
-			
 				<tr>
 					<td><a href="<c:url value='/patient/patientView?patCode=${i.patCode}' />">${i.patCode}</a></td>
 					<td>${i.patName}</td>
@@ -140,11 +136,9 @@
 		</c:forEach>
 
 
-
-
-
 	<!-- // 다음버튼  -->
-<%-- 	<c:if test="${patientSearchVo.endPage < patientSearchVo.totalPageCount}">
+	<%--
+	<c:if test="${patientSearchVo.endPage < patientSearchVo.totalPageCount}">
 		<li>
           <a href="#" data-curpage="${patientSearchVo.endPage + 1}" 
           			  class="next goPage"  
@@ -152,7 +146,8 @@
             <span aria-hidden="true">다음 »</span>
           </a>
         </li>
-	</c:if> --%>
+	</c:if>
+	--%>
 	
 
 		<!-- // ;;Next Button-->

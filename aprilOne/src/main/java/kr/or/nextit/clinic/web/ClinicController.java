@@ -26,14 +26,11 @@ public class ClinicController {
 	@Resource(name = "ClinicService")
 	private ClinicService clinicService;
 
-	//	@Resource(name = "PaginationService")
-	//	private PaginationService paginationService;
-
 	// !비즈니스 로직
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = new MessageVo();
+	//MessageVo msgVo = null;
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
@@ -48,8 +45,6 @@ public class ClinicController {
 
 		try {
 
-			// ;PaginationService를 공통으로 사용해보려 했지만 조인을 구현하다보니 아마도 dead code, searchVo.setSearchTable()도 물론
-			//searchVo.setSearchTable("tb_clinic");
 			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
 			searchVo.setScreenSize(10);
@@ -59,7 +54,7 @@ public class ClinicController {
 
 			result = clinicService.selectClinicList(searchVo);
 			log.debug(">>> result : {}", result);
-
+			
 			hmap.put("result", result);
 
 		} catch (Exception e) {
@@ -77,7 +72,7 @@ public class ClinicController {
 			HashMap<String, Object> hmap
 		) {
 		log.info(">>> /clinic/clinicView");
-		log.debug("######param : {}", param);
+		log.debug("param : {}", param);
 		
 		ClinicVo item = null;
 
@@ -90,7 +85,7 @@ public class ClinicController {
 				param.put("clnCode", lastItemCode);
 				hmap.put("clnCode", lastItemCode);
 			} else {
-				// ;진료 리스트로부터 넘어올 때
+				// ;;진료 리스트로부터 넘어올 때
 				hmap.put("clnCode", param.get("clnCode"));
 				hmap.put("patName", param.get("patName"));
 				hmap.put("empName", param.get("empName"));
@@ -118,7 +113,6 @@ public class ClinicController {
 			) {
 		log.info(">>> /clinic/clinicCreate");
 
-
 		return "clinic/clinicCreate";
 	}
 
@@ -137,8 +131,6 @@ public class ClinicController {
 
 			hmap.put("patCode", param.get("patCode"));
 			hmap.put("empId", param.get("empId"));
-
-			log.debug("@@@@@@hmap : {}", hmap);
 
 			return "redirect:/clinic/clinicView";
 

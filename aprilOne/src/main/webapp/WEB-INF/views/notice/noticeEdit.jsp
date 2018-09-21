@@ -22,9 +22,7 @@
 <body>
 	<body>
 	<form class="form-horizontal" action="<c:url value='/notice/noticeEditProc' />" method="POST">
-		<table class="table">
-
-
+		<table class="table table-bordered">
 			 <tbody>
 				<tr>
 					<th>글번호</th>
@@ -32,11 +30,17 @@
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="ntcTitle" value="${item.ntcTitle}">${item.ntcTitle}</td>
+					<td><input type="text" name="ntcTitle" value="${item.ntcTitle}"></td>
 				</tr>
 				<tr>
 					<th>글쓴이</th>
-					<td><input type="hidden" name="empName" value="${item.empName} ( ${item.empDiv} )">${item.empName} </td>
+					<td><input type="hidden" name="empName" value="${item.empName}">${item.empName} - ${item.empId}</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<textarea rows="10" cols="60" name="ntcContent" rows="" cols="">${item.ntcContent}</textarea>
+					</td>
 				</tr>
 				<tr>
 					<th>글등록일</th>
@@ -46,24 +50,12 @@
 					<th>글수정일</th>
 					<td>${item.ntcUpdate}</td>
 				</tr>
-				<tr>
-					<th colspan="2">내용</th>
-				</tr>
-				<tr>
-					<td><input type="text" name="ntcContent" value="${item.ntcContent}">${item.ntcContent}</td>
-				</tr>
- 
-				<tr>
-					<td colspan="2">
-					<a href="<c:url value='/notice/noticeList'/>">글목록</a>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<button type="submit">수정</button>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<div class="btn-group">
+			<button class="btn btn-info" type="submit">수정등록</button>
+			<a class="btn btn-default" href="<c:url value='/notice/noticeList' />">취소</a>
+		</div>
 	</form>
 </body>
 </html>

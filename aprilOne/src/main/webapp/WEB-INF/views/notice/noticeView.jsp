@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ page session="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page session="true" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html lang="ko">
 
@@ -15,8 +14,8 @@
 <meta charset="UTF-8">
 <title>notice view</title>
 </head>
-<body>
 
+<body>
 	<table class="table">
 		<tbody>
 			<tr>
@@ -29,7 +28,7 @@
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td>${item.empName}( ${item.empDiv} )</td>
+				<td>${item.empName} - ${item.empDiv}</td>
 			</tr>
 			<tr>
 				<th>글등록일</th>
@@ -40,27 +39,28 @@
 				<td>${item.ntcUpdate}</td>
 			</tr>
 			<tr>
-				<th colspan="2">내용</th>
-			</tr>
-			<tr>
+				<th>내용</th>
 				<td>${item.ntcContent}</td>
-			</tr>
-
-			<tr>
-				<td colspan="2"><a href="<c:url value='/notice/noticeList'/>">글목록</a>
 			</tr>
 		</tbody>
 	</table>
 
 
-	<c:url value='/notice/noticeEdit' var='noticeEditUrl'>
-		<c:param value='${item.ntcIdx}' name='ntcIdx' />
-	</c:url>
-	<button class="btn"><a href="${noticeEditUrl}">수정</a></button>
-	
-	<c:url value='/notice/noticeDelete' var='noticeDeleteUrl'>
-		<c:param value='${item.ntcIdx}' name='ntcIdx' />
-	</c:url>
-	<button class="btn"><a href="${noticeDeleteUrl}">삭제</a></button>
+
+	<div class="btn-group">
+		<a class="btn btn-default" href="<c:url value='/notice/noticeList'/>">글목록</a> 
+		
+		<c:if test="${loginInfo.empId eq item.empId}">
+			<c:url value='/notice/noticeEdit' var='noticeEditUrl'>
+				<c:param value='${item.ntcIdx}' name='ntcIdx' />
+			</c:url>
+			<a class="btn btn-info" href="${noticeEditUrl}">수정</a>
+			
+			<c:url value='/notice/noticeDelete' var='noticeDeleteUrl'>
+				<c:param value='${item.ntcIdx}' name='ntcIdx' />
+			</c:url>
+			<a class="btn btn-danger" href="${noticeDeleteUrl}">삭제</a>
+		</c:if>
+	</div>
 </body>
 </html>

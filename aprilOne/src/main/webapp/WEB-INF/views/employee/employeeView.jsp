@@ -77,7 +77,7 @@
 	
 	<div class="btn btn-group">
 		<a href="<c:url value='${urls.employee_list}' />" class="btn btn-default">직원리스트</a>
-		<c:if test="${loginInfo.empDiv eq 'A'}"> <!-- // 너 관리자냐? -->
+		<c:if test="${loginInfo.empDiv eq 'A'}">
 			<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 				<c:param value='${item.empId}' name='empId' />
 			</c:url>

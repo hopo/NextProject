@@ -22,22 +22,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<EmployeeVo> selectEmployeeList(SearchVo searchVo) throws Exception {
 		return employeeMapper.selectEmployeeList(searchVo);
 	}
-	
+
 	@Override
 	public EmployeeVo selectEmployeeItem(HashMap<String, Object> param) throws Exception {
 		return employeeMapper.selectEmployeeItem(param);
 	}
 
 	@Override
+	public int selectTotalCount(SearchVo searchVo) throws Exception {
+		return employeeMapper.selectTotalCount(searchVo);
+	}
+
+	@Override
 	public void insertEmployee(EmployeeVo param) throws Exception {
 		employeeMapper.insertEmployee(param);
 	}
-	
+
 	@Override
 	public void updateEmployee(EmployeeVo param) throws Exception {
 		employeeMapper.updateEmployee(param);
 	}
-	
+
 	@Override
 	public void updateRetireEmployee(EmployeeVo param) throws Exception {
 		employeeMapper.updateRetireEmployee(param);

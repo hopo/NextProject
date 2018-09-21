@@ -12,7 +12,6 @@
 
 <head>
 <title>직원 리스트</title>
-
 <script type="text/javascript" defer="defer">
 
 	$(document).ready(function() {
@@ -67,8 +66,8 @@
 
 
 	<!-- // ;List View Part -->
-	<table class="table">
-		<thead>
+	<table class="table table-bordered table-hover">
+		<thead class="bg-info">
 			<tr>
 				<th>아이디</th>		<!-- empId -->
 				<th>이름</th>		<!-- empName -->
@@ -83,12 +82,12 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${result}">
- 				<c:url value="employeeView" var="employeeViewUrl"> <!-- ;이곳 페이지 기준인가? -->
+ 				<c:url value="/employee/employeeView" var="employeeViewUrl"> <!-- ;이곳 페이지 기준인가? -->
 					<c:param name="empId" value="${item.empId}" />
-					<%-- <c:param name="curPage" value="${search.curPage}" /> --%>
+					<c:param name="curPage" value="${searchVo.curPage}" />
 				</c:url>
 				<tr>
-					<td><a href="<c:url value='${employeeViewUrl}'/>">${item.empId}</a></td>
+					<td><a href="${employeeViewUrl}">${item.empId}</a></td>
 					<td>${item.empName}</td>
 					<td>${item.empPhone}</td>
 					<td>${item.empRrnum}</td>

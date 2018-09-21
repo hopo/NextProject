@@ -68,7 +68,7 @@
 	<!-- 검색테이블 -->
 <form action="<c:url value='/prescription/prescriptionUpdate' />" id="searchForm" method="POST">
 	<table class="table table-bordered table-hover">
-		<thead>
+		<thead class="bg-success">
 			<tr>
 				<th>처방코드</th>
 				<th>진료코드</th>

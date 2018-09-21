@@ -4,15 +4,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import kr.or.nextit.comm.model.NoticeVo;
 import kr.or.nextit.comm.util.NoticeSearchVo;
 import kr.or.nextit.comm.util.SearchVo;
 
 public interface NoticeService {
 
-	// 리스트
-	public List<NoticeVo> selectNoticeList(NoticeSearchVo vo) throws Exception;
+	/**
+	 * @param searchVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<NoticeVo> selectNoticeList(SearchVo searchVo) throws Exception;
+
+	/**
+	 * @param SearchVo
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectTotalCount(SearchVo SearchVo) throws Exception;
+
+	/**
+	 * @param ntcIdx
+	 * @throws Exception
+	 */
+	public void updateViewCount(String ntcIdx) throws Exception;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 글작성
 
@@ -27,7 +53,5 @@ public interface NoticeService {
 	// 삭제
 	public  void updateDelNotice(NoticeVo param) throws Exception;
 	
-	// 전체리스트갯수 확인
-	public int selectTotalCount(NoticeSearchVo vo) throws Exception;
 	
 }

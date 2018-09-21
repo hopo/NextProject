@@ -72,6 +72,14 @@
 			emp_id = #{empId}
 	</select>
 
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">
+		SELECT
+			COUNT(*) AS total_count
+		FROM
+			tb_employee
+		<include refid="whereQueryTrimIf" />
+	</select>
+
 	<insert id="insertEmployee" parameterType="kr.or.nextit.comm.model.EmployeeVo">
 		INSERT INTO tb_employee (
 			emp_id,

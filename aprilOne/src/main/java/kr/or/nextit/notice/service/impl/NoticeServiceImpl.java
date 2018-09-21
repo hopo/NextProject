@@ -4,29 +4,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.NoticeVo;
 import kr.or.nextit.comm.util.NoticeSearchVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.notice.service.NoticeService;
 
 @Service("NoticeService")
 public class NoticeServiceImpl implements NoticeService {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
-	//리스트
 	@Override
-	public List<NoticeVo> selectNoticeList(NoticeSearchVo vo) throws Exception {
-		List<NoticeVo> result = noticeMapper.selectNoticeList(vo);
-		return result;
+	public List<NoticeVo> selectNoticeList(SearchVo searchVo) throws Exception {
+		return noticeMapper.selectNoticeList(searchVo);
 	}
+
+	@Override
+	public int selectTotalCount(SearchVo searchVo) throws Exception {
+		return noticeMapper.selectTotalCount(searchVo);
+	}
+	
+	@Override
+	public void updateViewCount(String ntcIdx) throws Exception {
+		noticeMapper.updateViewCount(ntcIdx);
+	}
+	
+	
+	
+	
+	
 	
 	// 등록
 	@Override
@@ -51,11 +61,6 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeMapper.updateDelNotice(param);
 	}
 
-	@Override
-	public int selectTotalCount(NoticeSearchVo vo) throws Exception {
-		
-		return noticeMapper.selectTotalCount(vo);
-	}
 
 	
 }

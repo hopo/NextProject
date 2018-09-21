@@ -15,7 +15,6 @@
 </head>  
 
 <body>
-	${param.ppp}
 	<c:url value="../patient/patientView" var="patientViewUrl">
 		<c:param name="patCode" value="${item.patCode}" />
 	</c:url>
@@ -65,14 +64,16 @@
 				</tr>
 				
 				<tr>				
-					<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" >처방하기</button></td>
+					<td colspan="2" class="btn-group">
+						<a class="btn btn-default btn-sm" href="<c:url value='${urls.clinic_list}' />">진료리스트</a>
+						<button type="submit" class="btn btn-primary btn-sm" >처방하기</button>
+					</td>
 				</tr>	
 				
 			</tbody>
 		</table>
 	</form>
 	
-
 	<%--
 	<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 		<c:param value='${item.empId}' name='empId' />
@@ -84,8 +85,7 @@
 	</c:url>
 	<button class="btn"><a href="${employeeRetireUrl}">"YOU'RE FIRED!"</a></button>
 	--%>
+
 	</body>
 </html>
-
-
 

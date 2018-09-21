@@ -40,6 +40,7 @@ public class UrlAliasFilter implements Filter {
 			urls.put("clinic_create", "/clinic/clinicCreate");
 			urls.put("clinic_createProc", "/clinic/clinicCreateProc");
 			urls.put("clinic_view", "/clinic/clinicView");
+			urls.put("clinic_list", "/clinic/clinicList");
 
 			urls.put("employee_list", "/employee/employeeList");
 			urls.put("employee_view", "/employee/employeeView");

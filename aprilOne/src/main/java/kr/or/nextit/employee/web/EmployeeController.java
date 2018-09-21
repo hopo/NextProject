@@ -36,6 +36,7 @@ public class EmployeeController {
 	// !메시지Vo 공동 사용
 	MessageVo msgVo = null;
 
+
 	// !!!직원리스트 화면
 	@RequestMapping(value = "/employee/employeeList")
 	public String employeeList(
@@ -44,9 +45,8 @@ public class EmployeeController {
 				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeList");
+		log.debug(">>> param : {}", param);
 		log.debug(">>> searchVo : {}", searchVo);
-
-		List<EmployeeVo> result = null;
 
 		try {
 
@@ -58,7 +58,7 @@ public class EmployeeController {
 			
 			commBuis.dispSearchVo(searchVo);
 
-			result = employeeService.selectEmployeeList(searchVo);
+			List<EmployeeVo> result = employeeService.selectEmployeeList(searchVo);
 			log.debug(">>> result : {}", result);
 			
 			hmap.put("result", result);

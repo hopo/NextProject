@@ -6,14 +6,14 @@
 	
 	<!-- TB_NOTICE 모든 컬럼 -->
 	<sql id="tableAllColumn">
-			ntc_idx,
-			ntc_title,
-			emp_id,
-			ntc_content,
-			to_char(ntc_regdate,'yyyy.mm.dd') as ntc_regdate ,
-			ntc_update,
-			ntc_count,
-			ntc_delat
+		ntc_idx ,
+		ntc_title ,
+		emp_id ,
+		ntc_content ,
+		TO_CHAR(ntc_regdate,'yyyy/mm/dd hh24:mi') AS ntc_regdate ,
+		ntc_update ,
+		ntc_count ,
+		ntc_delat
 	</sql>
 	
 	<!-- WHERE문 트림 (search 사용시) -->
@@ -26,52 +26,42 @@
 		</trim>
 	</sql>
 	
-
-	<select id="selectNoticeList" resultType="kr.or.nextit.comm.model.NoticeVo">
-		
+	<select id="selectNoticeList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.NoticeVo">
 		SELECT *
 		FROM (
 			SELECT ROWNUM AS rnum , frm.*
 			FROM (
-				SELECT <include refid="tableAllColumn" />
+				SELECT
+					<include refid="tableAllColumn" />
 				FROM tb_notice
 				<include refid="whereQueryTrimIf" />
 				ORDER BY ntc_idx DESC
 			) frm
 	    )
 	    WHERE rnum BETWEEN #{startRow} AND #{endRow}
-	  
 	</select>
 	
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.NoticeSearchVo" resultType="int">
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">
 		SELECT
 			COUNT(*) AS total_count
 		FROM
-			${searchTable}
+			tb_notice
 		<include refid="whereQueryTrimIf" />
 	</select>
 	
-	
-
 	<insert id="insertNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
 		INSERT INTO tb_notice (
-			ntc_idx,
-			ntc_title,
-			emp_id,
-			ntc_content,
-			ntc_count,
-			ntc_delat,
-			ntc_regdate,
-			ntc_update
+			ntc_idx ,
+			ntc_title ,
+			emp_id ,
+			ntc_content ,
+			ntc_regdate
 		) VALUES (
-			seq_notice.nextval,
-			#{ntcTitle},
-			#{empId},
-			#{ntcContent},
-			0,
-			'F',
-			sysdate,
-			sysdate
+			seq_notice.NEXTVAL ,
+			#{ntcTitle} ,
+			#{empId} ,
+			#{ntcContent} ,
+			SYSDATE
 		)
 	</insert>
 
@@ -93,6 +83,21 @@
 	  WHERE a.emp_id = b.emp_id 
 		AND	ntc_idx = #{ntcIdx}
 	</select>
+	
+	<update id="updateViewCount" parameterType="String">
+		UPDATE
+			tb_notice
+		SET
+			ntc_count = ntc_count + 1
+		WHERE ntc_idx = #{ntcIdx}
+	</update>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<update id="updateNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">

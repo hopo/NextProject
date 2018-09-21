@@ -1,23 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
-
-<title>게시판</title>
+<title>게시판 리스트</title>
 <script type="text/javascript" defer="defer">
 	
 	$(document).ready(function() {
-		$frm = $('#NoticeSearchVo');
+		$frm = $('#searchVo');
 		
 		// 서브밋 버튼 클릭시   
 		$('#searchSubmit', $frm).click(function(e) {
@@ -33,21 +30,25 @@
 			$frm.submit();
 		});
 	});
+
 </script>
 </head>
 
 <body>
-	<!-- 검색 -->
-	 
-	 <form:form  commandName="NoticeSearchVo" method="POST">
-	    <form:hidden path="curPage" readonly="true" />
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
+	<!-- // ;Search Part -->
+	<form:form commandName="searchVo" method="POST">
 		<table>
 			<tr>
 				<th>검색타입</th>
 				<td>
-					<form:select path="searchType" class="btn-dark btn-sm">
-						<form:option value="ntc_idx">제목</form:option>
-						<form:option value="emp_id">직원ID</form:option>
+					<form:select path="searchType" class="btn btn-default">
+						<form:option value="ntc_title">글 제목</form:option>
+						<form:option value="emp_id">직원ID(등록자ID)</form:option>
+						<form:option value="ntc_content">내용</form:option>
 					</form:select>
 				</td>
 				<td>
@@ -58,74 +59,70 @@
 				</td>
 			</tr>
 		</table>
-<%-- 		currentPage: 
-		totalPage: <form:input path="totalPageCount" readonly="true" />
-		totalRecord: <form:input path="totalCount" readonly="true" /> --%>
+		<form:hidden path="curPage" readonly="true" />
+		<form:hidden path="totalPageCount" readonly="true" />
+		<form:hidden path="totalCount" readonly="true" />
 	</form:form> 
 	
+	<!-- // ;List View Part -->
+	<table class="table table-bordered table-hover">
+		<thead class="">
+			<tr>
+				<th>글번호</th>	<!-- ntcIdx -->
+				<th>제목</th> 	<!-- ntcTitle-->
+				<th>내용</th> 	<!-- ntcContent -->
+				<th>글쓴이</th>	<!-- empId -->
+				<th>등록일</th>	<!-- ntcRegdate -->
+				<th>조회수</th>	<!-- ntcCount -->
+			</tr>
+		</thead>
 
-				<!-- 게시판 리스트 -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th>글 번호</th>
-							<th>글 제목</th>
-							<th>조회수</th>
-							<th>등록일</th>
-							<th>직원 ID</th>
-							<!-- <th>del여부</th> -->
-						</tr>
-					</thead>
+		<tbody>
+			<c:forEach var="item" items="${result}">
+				<c:url value="/notice/noticeView" var="noticeViewUrl">
+					<c:param name="ntcIdx" value="${item.ntcIdx}" />
+					<c:param name="curPage" value="${searchVo.curPage}" />
+				</c:url>
+				<c:if test="${item.ntcDelat eq 'F'}">
+					<tr>
+						<td><a href="${noticeViewUrl}">${item.ntcIdx}</a></td>
+						<td>${item.ntcTitle}</td>
+						<td>${item.ntcContent}</td>
+						<td>${item.empId}</td>
+						<td>${item.ntcRegdate}</td>
+						<td>${item.ntcCount}</td>
+					</tr>
+				</c:if>
+			</c:forEach>
+		</tbody>
+	</table>
 
-					<tbody>
-
-						<c:forEach var="item" items="${result}">
-							<c:url var="viewUrl" value="/notice/noticeView">
-								<c:param name="ntcIdx" value="${item.ntcIdx }" />
-								<c:param name="curPage" value="${NoticeSearchVo.curPage }" />
-							</c:url>
-							<c:if test="${item.ntcDelat eq 'F'}">
-								<tr>
-									<td><a href="${viewUrl}"> ${item.rnum }</a></td>
-									<td><a href="${viewUrl}">${item.ntcTitle } </a></td>
-									<td>${item.ntcCount }</td>
-									<td>${item.ntcRegdate }</td>
-									<td>${item.empId }</td>
-									<%-- <td>${item.ntcDelat }</td> --%> 
-								</tr>
-							</c:if>
-						</c:forEach>
-						<tr>
-							<td colspan="2"><a
-								href="<c:url value='/notice/noticeForm' />">글작성</a></td>
-						</tr>
-					</tbody>
-				</table>
+	<a class="btn btn-default" href="<c:url value='/notice/noticeCreate' />">글작성</a>
 				
-			<!-- 네비게이션 -->
-		<nav>
-			<ul class="pagination">
-				<!-- 이전 -->
-				<c:if test="${NoticeSearchVo.startPage ne 1}">
-					<li>
-						<a href='#' aria-label='Previous' data-curpage='${NoticeSearchVo.startPage - 1}' class='prev goPage'>
-							<span aria-hidden='true'>Prev</span>
-						</a>
-					</li>
-				</c:if>
+	<!-- // ;List Number Navigation Part -->
+	<nav>
+		<ul class="pagination">
+			<!-- // ;;Previous Button -->
+			<c:if test="${searchVo.startPage ne 1}">
+				<li>
+					<a href='#' aria-label='Previous' data-curpage='${searchVo.startPage - 1}' class='prev goPage'>
+						<span aria-hidden='true'>Prev</span>
+					</a>
+				</li>
+			</c:if>
+
+			<c:if test="${searchVo.startPage eq 1}">
+				<li class='disabled'>
+					<a href='#' aria-label='Previous'>
+						<span aria-hidden='true'>Prev</span>
+					</a>
+				</li>
+			</c:if>
 	
-				<c:if test="${NoticeSearchVo.startPage eq 1}">
-					<li class='disabled'>
-						<a href='#' aria-label='Previous'>
-							<span aria-hidden='true'>Prev</span>
-						</a>
-					</li>
-				</c:if>
-		
-			<!-- 페이지 -->
-			<c:forEach var="i" begin="${NoticeSearchVo.startPage}" end="${NoticeSearchVo.endPage}">
+			<!-- // ;;Page Numbering -->
+			<c:forEach var="i" begin="${searchVo.startPage}" end="${searchVo.endPage}">
 				<c:choose>
-					<c:when test="${i eq NoticeSearchVo.curPage}">
+					<c:when test="${i eq searchVo.curPage}">
 						<li class='disabled'>
 							<a href='#'>${i}</a>
 						</li>
@@ -138,16 +135,16 @@
 				</c:choose>
 			</c:forEach>
 	
-			<!-- 다음 -->
-			<c:if test="${NoticeSearchVo.endPage lt NoticeSearchVo.totalPageCount}">
+			<!-- // ;;Next Button-->
+			<c:if test="${searchVo.endPage lt searchVo.totalPageCount}">
 				<li>
-					<a href='#' aria-label='Next' data-curpage='${NoticeSearchVo.endPage + 1}' class='next goPage'>
+					<a href='#' aria-label='Next' data-curpage='${searchVo.endPage + 1}' class='next goPage'>
 						<span aria-hidden='true'>Next</span>
 					</a>
 				</li>
 			</c:if>
 	
-			<c:if test="${NoticeSearchVo.endPage ge NoticeSearchVo.totalPageCount}">
+			<c:if test="${searchVo.endPage ge searchVo.totalPageCount}">
 				<li class='disabled'>
 					<a href='#' aria-label='Next'>
 						<span aria-hidden='true'>Next</span>

@@ -9,7 +9,7 @@ public class SearchVo extends PagingVo implements Serializable {
 
 	private String searchType;
 	private String searchText;
-	private String searchTable;
+	private String searchTable; // ;PaginationService로 만들지 않는다면 쓰지 않는 쪽으로
 
 	public String getSearchType() {
 		return searchType;

@@ -35,6 +35,10 @@ public interface ClinicService {
 	 */
 	public void insertClinic(HashMap<String, Object> param) throws Exception;
 	
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	public String selectClinicLastItemCode() throws Exception;
 
 }

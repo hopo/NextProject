@@ -27,8 +27,8 @@ public class EmployeeController {
 	@Resource(name = "EmployeeService")
 	private EmployeeService employeeService;
 
-	@Resource(name = "PaginationService")
-	private PaginationService paginationService;
+	// @Resource(name = "PaginationService")
+	// private PaginationService paginationService;
 
 	// !비즈니스 로직
 	private CommBuis commBuis = CommBuis.getInstance();
@@ -50,8 +50,8 @@ public class EmployeeController {
 
 		try {
 
-			searchVo.setSearchTable("tb_employee"); 	// ;(PaginationService)검색테이블 설정
-			searchVo.setTotalCount(paginationService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
+			//searchVo.setSearchTable("tb_employee"); 	// ;(PaginationService)검색테이블 설정
+			searchVo.setTotalCount(employeeService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
 			searchVo.setPageBlockSize(5); 			// ;페이지 5개씩
 			searchVo.setScreenSize(10);				// ;로우 10개씩 
 			searchVo.pageSetting(); // ;토대로 세팅하라

@@ -127,7 +127,14 @@
 			
 			<tr>				
 				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" > 처방등록 </button></td>
-			</tr>			
+			</tr>	
+			<tr>				
+				<td><a class="btn btn-success" href="prescription/prescriptionUpdate" role="button">처방수정</a></td>
+			</tr>	
+					
+			<!-- <tr>				
+				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-danger" > 처방삭제  </button></td>
+			</tr> -->			
 			
 		</tbody>
 	</table>

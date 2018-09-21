@@ -9,22 +9,13 @@
 	<sql id="whereQuery">
 		<if test="searchText != null and searchText != '' " >
 			<if test="searchType == 'sel1'">
-				and pre_code = #{pre_code}
+				and c.pat_name like '%' || #{searchText} || '%'
 			</if>	
-			<if test="searchType == 'sel2'">
-				and clnCode = #{clnCode}
-			</if>	
-			<if test="searchType== 'sel3'">
-				and patCode = #{patCode}
-			</if>	
-			<if test="searchType== 'sel4'">
-				and empId = #{empId}
+			<if test="searchType== 'sel2'">
+				and a.prs_code like '%' || #{searchText} || '%'
 			</if>	
 		</if>
 	</sql>
-
-
-
 
 
 	<!-- 처방폼 화면  -->
@@ -87,22 +78,39 @@
 	<!-- 처방 리스트   -->
 	<select id="prescriptionSelectList" parameterType="kr.or.nextit.comm.util.SearchVo"
 							   resultType="kr.or.nextit.comm.model.PrescriptionVo">
-	select * from (
-	select rownum as rnum, frm.* from(
-		 SELECT
-		    prs_code,
-		    cln_code,
-		    prs_descr,
-		    med_code,
-		    med_code2,
-		    med_code3
-		FROM
-		    tb_prescription
-		where 1=1
-			<include refid="whereQuery"></include>
-		order by prs_code DESC
-	) frm 
-) where rnum between #{startRow} and #{endRow}
+	select  prs_code,
+            cln_code,
+            prs_descr,
+            med_code,
+            (select med_codename from tb_med_codename where med_code = b.med_code) as med_codename,
+            med_code2,
+            (select med_codename from tb_med_codename where med_code = b.med_code2) as med_codename2,
+            med_code3,
+           (select med_codename from tb_med_codename where med_code = b.med_code3) as med_codename3,
+            pat_code,
+            pat_name 
+      from ( select rownum as rnum, frm.* 
+               from ( SELECT
+                            a.prs_code,
+                            a.cln_code,
+                            a.prs_descr,
+                            a.med_code,
+                            a.med_code2,
+                            a.med_code3,
+                            b.pat_code,
+                            c.pat_name 
+                        FROM
+                             tb_prescription a
+                           , tb_clinic b  
+                           , tb_patient c 
+                        where 1=1
+                           and a.cln_code = b.cln_code
+                           and b.pat_code = c.pat_code
+                           <include refid="whereQuery"></include>
+                        order by prs_code DESC
+	                 ) frm 
+             ) b
+  where rnum between #{startRow} and #{endRow}
 </select>
 
 	
@@ -111,20 +119,20 @@
 										resultType="int">
 	select
 		count(*) as totalCount
-	from 
-		tb_prescription
-		where 1=1
-			<include refid="whereQuery"></include>
+	FROM
+         tb_prescription a
+       , tb_clinic b  
+       , tb_patient c 
+    where 1=1
+       and a.cln_code = b.cln_code
+       and b.pat_code = c.pat_code
+       <include refid="whereQuery"></include>
 	</select>
 	
 	
 	
-	
-	
-	
-	
 	<!-- 처방 수정 -->
-	<!-- <update id="updatePrescription" parameterType="kr.or.nextit.comm.model.PrescriptionVo" >
+	 <update id="updatePrescription" parameterType="kr.or.nextit.comm.model.PrescriptionVo" >
 		 
 		 UPDATE tb_prescription
 			SET
@@ -136,7 +144,7 @@
 			    AND med_code3 =#{medCode3}
 			WHERE
 				prs_code =#{prsCode}
-	</update> -->
+	</update> 
 
 
 

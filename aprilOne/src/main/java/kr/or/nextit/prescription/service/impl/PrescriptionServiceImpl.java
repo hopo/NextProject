@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.nextit.comm.model.PrescriptionVo;
+import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.prescription.service.PrescriptionService;
 
 @Service("PrescriptionService")
@@ -46,14 +47,31 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	
 	// 처방 리스트 
 	@Override
-	public List<PrescriptionVo> selectPrescriptionList(PrescriptionVo prescriptionVo) throws Exception {
+	public List<PrescriptionVo> selectPrescriptionList(SearchVo searchVo) throws Exception {
 		
-		return null;  
+		return prescriptionMapper.prescriptionSelectList(searchVo);
 				
 	}
 	
 	
+	// 검색 
+	@Override
+	public int selectTotalCount(SearchVo searchVo) throws Exception {
+		
+		return prescriptionMapper.selectTotalCount(searchVo);
+	}
 
+	// 처방 수정 
+	@Override
+	public void updatePrescription(PrescriptionVo prescriptionVo) throws Exception {
+		
+		prescriptionMapper.updatePrescription(prescriptionVo);
+		
+	}
+	
+	
+	
+	
 	
 
 }

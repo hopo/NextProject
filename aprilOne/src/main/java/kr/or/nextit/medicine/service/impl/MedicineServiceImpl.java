@@ -20,24 +20,45 @@ public class MedicineServiceImpl implements MedicineService {
 	MedicineMapper medicineMapper;
 	
 
-	// 약품등록 폼 화면만 보여줍니당 ~~~
+	// 약품등록 폼 화면
 	@Override
 	public void medicineCreate() throws Exception {
 		
 		medicineMapper.medicineCreate();
 	}
 
-
-
-	// 약품 리스트 ~~~
+	// 약품등록 
+	@Override
+	public void medicineInsert(MedicineVo medicineVo) throws Exception {
+		
+		medicineMapper.medicineInsert(medicineVo);
+		
+	}
+	
+	
+	// 약품 리스트
 	@Override
 	public List<MedicineVo> medicineSelectList(MedicineVo medicineVo) throws Exception {
 		
 		 return medicineMapper.medicineSelectList(medicineVo);
 	}
+
+
+
 	
 
 
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+

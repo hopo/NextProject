@@ -20,6 +20,25 @@
 	
 </select>
 
+<!-- 약품 등록  -->
+
+<insert id="medicineInsert" parameterType="kr.or.nextit.comm.model.MedicineVo" >
+
+		 INSERT INTO tb_medicine (
+		    med_code,
+		    med_storedate,
+		    med_disusedate,
+		    med_amt,
+		    med_memo
+		) VALUES (
+		    #{medCode},
+		    #{medStoredate},
+		    #{medDisusedate},
+		    #{medAmt},
+		    #{medMemo},
+		);
+
+</insert> 
 
 
 <!-- 약품 리스트 조회   -->
@@ -42,28 +61,6 @@
 
 
 
-<!-- 약품 등록  -->
-<!-- 
-<insert id="medicineInsert" >
-
-
-		 INSERT INTO tb_medicine (
-		    med_code,
-		    med_storedate,
-		    med_disusedate,
-		    med_amt,
-		    med_memo
-		) VALUES (
-		    :v0,
-		    :v1,
-		    :v2,
-		    :v3,
-		    :v4
-		);
-
-
-
-</insert> -->
 
 </mapper>
 

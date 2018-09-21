@@ -58,9 +58,7 @@ public class PrescriptionController {
 		ClinicVo clinicVo = clinicService.selectClinicItem(param);
 		model.addAttribute("clinicVo", clinicVo);
 
-		// TODO : 처방이력목록을 조회하여 모델에 저장
-		// model.addAttribute("", )
-
+	
 		// 약품목록을 조회하여 모델에 저장
 		List<MedicineVo> medList = medicineService.medicineSelectList(null);
 		model.addAttribute("medList", medList);
@@ -69,7 +67,7 @@ public class PrescriptionController {
 
 	}
 	
-	// 처방 등록하기 
+	// 처방 등록 
 	@RequestMapping(value = "/prescription/prescriptionCreateProc")
 	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
 			) throws Exception {
@@ -78,7 +76,7 @@ public class PrescriptionController {
 		log.info(">>> preInsert : {} " , prescriptionVo);
 		
 		prescriptionService.insertPrescription(prescriptionVo);
-		model.addAttribute("preInsert", prescriptionVo);
+		model.addAttribute("prsInsert", prescriptionVo);
 		
 		return "prescription/prescriptionCreateProc";
 		
@@ -86,7 +84,7 @@ public class PrescriptionController {
 	
 	
 	
-	//!!! 처방 리스트  화면
+	//!!! 처방 리스트
 	@RequestMapping(value = "/prescription/prescriptionList")
 	public String prescriptionList(
 				@ModelAttribute PrescriptionVo prescriptionVo, Model model,
@@ -96,13 +94,56 @@ public class PrescriptionController {
 		log.info(">>> /prescription/prescriptionList");
 		log.info(">>> SearchVo = {}" , searchVo);
 		
-//		try {
-//			searchVo.setTotalCount(prescriptionService.);
-//		}
+	try {
+			searchVo.setTotalCount(prescriptionService.selectTotalCount(searchVo));
+			searchVo.setPageBlockSize(10);
+			searchVo.setScreenSize(10);
+			searchVo.setPageBlockSize(10);
+			searchVo.pageSetting();
+		
+			List<PrescriptionVo> items = prescriptionService.selectPrescriptionList(searchVo);
+			log.debug(">>> items : {}", items);
+			model.addAttribute("prsList", items);
+			
+		
+		}catch (Exception e) {
+
+			e.printStackTrace();
+			
+		}
 		return "prescription/prescriptionList";
 	}
 	
+	
+	// 처방 수정
+	
+	@RequestMapping("/prescription/prescriptionUpdate")
+	public String updatePrescription(PrescriptionVo prescriptionVo) throws Exception{
+		
+		return "prescription/prescription";
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

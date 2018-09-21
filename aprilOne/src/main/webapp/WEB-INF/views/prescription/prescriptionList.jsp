@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>처방  리스트</title>
-<!-- <script type="text/javascript" defer="defer">
+<script type="text/javascript" defer="defer">
 	$(document).ready(function(){	
 		
 		$frm = $('#searchForm');
@@ -34,13 +34,13 @@
 			$frm.submit();
 		});
 	});
-</script> -->
+</script> 
 </head>
 
 <body>
  
 	<!-- 검색 -->
-	<form action="<c:url value='/prescription/prescriptionCreateProc' />" id="searchForm" method="POST">
+	<form action="<c:url value='/prescription/prescriptionList' />" id="searchForm" method="POST">
 		<input type="hidden" name="curPage" id="curPage" />
 		
 		<table class="table table-bordered">
@@ -48,8 +48,8 @@
 				<th>SearchType</th>
 				<td>
 					<select name="searchType">
-						<option value="sel1" ${patientSearchVo.searchType eq 'sel1'?'selected="selected"':''}>이름</option>
-						<option value="sel2" ${patientSearchVo.searchType eq 'sel2'?'selected="selected"':''}>처방코드</option>
+						<option value="sel1" ${PagingVo.searchType eq 'sel1'?'selected="selected"':''}>환자이름</option>
+						<option value="sel2" ${PagingVo.searchType eq 'sel2'?'selected="selected"':''}>처방코드</option>
 					</select>
 				</td>
 				<td>
@@ -58,7 +58,6 @@
 				<td>
 					<button id="searchsubmit" type="submit" class="btn btn-primary">검색</button>
 				</td>
-				
 			</tr>
 		</table>
 	</form>
@@ -72,27 +71,24 @@
 			<tr>
 				<th>처방코드</th>
 				<th>진료코드</th>
-				<th>환자코드</th>
-				<th>담당의</th>
-				<th>진료일</th>
-				<th>진료내용</th>
+				<th>처방내용</th>
 				<th>의약품코드</th>
+				<th>의약품코드2</th>
+				<th>의약품코드3</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="i" items="${preInsert }">
+			<c:forEach var="i" items="${prsList }">
 				<c:url var="viewUrl" value="/">
-					<c:param name="preCode" value="${i.preCode }"/>
+					<c:param name="prsCode" value="${i.prsCode }"/>
 				
 				</c:url>
-					<td><a href="<c:url value='/prescription/prescriptionCreate?preCode=${i.preCode}' />">${i.preCode}</a></td>
-					<td>${i.preCode}</td>
-					<td>${i.cliCode}</td>
-					<td>${i.patCode}</td>
-					<td>${i.empId}</td>
-					<td>${i.clnDate}</td>
+					<td><a href="<c:url value='/prescription/prescriptionCreate?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
+					<td>${i.clnCode}</td>
+					<td>${i.prsDescr}</td>
 					<td>${i.medCode}</td>
-					
+					<td>${i.medCode2}</td>
+					<td>${i.medCode3}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -100,21 +96,22 @@
 
 
 
-<%-- 
+
 
 	<!-- 네비게이션 -->
 
 	<nav>
 	<ul class="pagination">
 	
-		<!-- // ;;Previous Button -->
+		<!-- // Previous Button -->
 
-			<li><a href='#' aria-label='Previous' data-curpage='${patientSearchVo.startPage - 1}' class='prev goPage'> <span aria-hidden='true'>Prev</span>
+			<li><a href='#' aria-label='Previous' data-curpage='${PagingVo.startPage - 1}' class='prev goPage'> 
+			<span aria-hidden='true'>Prev</span>
 			</a></li>
 		
-		<c:forEach var="i" begin="${patientSearchVo.startPage}" end="${patientSearchVo.endPage}">
+		<c:forEach var="i" begin="${PagingVo.startPage}" end="${PagingVo.endPage}">
 			<c:choose>
-				<c:when test="${i eq patientSearchVo.curPage}">
+				<c:when test="${i eq PagingVo.curPage}">
 					<li class="active"><a>${i}</a></li>
 				</c:when>
 				<c:otherwise>
@@ -128,25 +125,25 @@
 
 
 	<!-- // 다음버튼  -->
-	<c:if test="${patientSearchVo.endPage < patientSearchVo.totalPageCount}">
+	<%--  <c:if test="${PagingVo.endPage < PagingVo.totalPageCount}">
 		<li>
-          <a href="#" data-curpage="${patientSearchVo.endPage + 1}" 
+          <a href="#" data-curpage="${PagingVo.endPage + 1}" 
           			  class="next goPage"  
           		      aria-label="Next" title="Next">
             <span aria-hidden="true">다음 »</span>
           </a>
         </li>
-	</c:if>
+	</c:if>  --%>
 	
 
 		<!-- // ;;Next Button-->
-		<c:if test="${patientSearchVo.endPage >= patientSearchVo.totalPageCount}">
+		 <c:if test="${PagingVo.endPage >= PagingVo.totalPageCount}">
 			<li class='disabled'><a href='#' aria-label='Next'> <span aria-hidden='true'>Next</span>
 			</a></li>
-		</c:if>
+		</c:if> 
 
 	</ul>
-	</nav> --%>
+	</nav> 
 
 
 

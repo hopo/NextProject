@@ -12,7 +12,7 @@
 
 
 <head>
-<title>약품 등록 완료 된거야??? 성공인가..??</title>
+<title>약품 등록 성공</title>
 </head>
 <body>
 

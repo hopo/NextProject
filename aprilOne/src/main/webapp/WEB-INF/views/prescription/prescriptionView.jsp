@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> 처방 등록 </title>
+<title> 처방 상세보기 </title>
 </head>
 <body>
 
@@ -45,50 +45,36 @@
 
 </script>
 
-	<form action="<c:url value='/prescription/prescriptionView'/>" method="post">
+	<form action="<c:url value='/prescription/prescriptionList'/>" method="post">
 		<table class="table">
 			<tbody>
 			
 			<tr>
 				<th>처방코드</th>	<!-- prsCode -->
-				<td><input type="text" name="prsCode" id="prsCode" > </td>
+				<td>${preView.prsCode }</td>
 			</tr>
 			
 			
 			<!-- clnCode  진료상세조회 - 진료코드로 가져옴(진료코드, 환자코드, 담당의, 진료일, 진료내용)   -->  
 			<tr>
 				<th>진료코드</th>	
-				<td>
-					<input type="text" name="clnCode" id="clnCode" value="${clinicVo.clnCode }" > 
-				</td>
+				<td>${preView.clnCode }</td>
 			</tr>
 			<tr>
 				<th>환자코드</th>	<!-- patCode -->  
-				<td>
-					<input type="text" name="patCode" id="patCode" value="${clinicVo.patCode}" > 
-				</td>
+				<td>${clinicVo.patCode}</td>
 			</tr>
 			<tr>
 				<th>담당의</th>	<!-- empId -->  
-				<td>
-					<input type="text" name="empId" id="empId" value="${clinicVo.empId}" >  
-				</td>
-			</tr>
+				<td>${clinicVo.empId} </td>
+			</tr> 
 			<tr>
 				<th>진료일</th>	<!-- clnDate -->  
-				<td>
-					<input type="text" name="clnDate" id="clnDate" value="${clinicVo.clnDate}" >
-				</td>
+				<td>${clinicVo.clnDate}</td>
 			</tr>
 			<tr>
 				<th>진료내용</th>	<!-- clnDescr -->  
-				<td>
-					<input type="text" name="clnDescr" id="clnDescr" value="${clinicVo.clnDescr}" >
-				</td>
-			</tr>
-			<tr>
-				<th>이전 처방내역</th>	<!-- prsCode -->
-				<td></td>
+				<td>${clinicVo.clnDescr}</td>
 			</tr>
 			
 			
@@ -126,9 +112,15 @@
 			</tr>
 			
 			<tr>				
-				<td colspan="2"> <button type="submit"  class="btn btn-sm btn-primary" > 처방등록 </button></td>
+				<td><a class="btn btn-success" href="prescription/prescriptionList" role="button">처방 리스트</a></td>
 			</tr>	
-			
+			<tr>				
+				<td><a class="btn btn-success" href="prescription/prescriptionUpdate" role="button">처방수정</a></td>
+			</tr>	
+					
+			 <tr>				
+				<td><a class="btn btn-warning" href="prescription/prescriptionDelete" role="button">처방삭제 </a></td>
+			 </tr> 		
 			
 		</tbody>
 	</table>

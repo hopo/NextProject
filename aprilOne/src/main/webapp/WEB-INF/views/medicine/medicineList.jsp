@@ -23,10 +23,6 @@
 	<form class="form-horizontal" action="medicine/medicineList" id="searchForm" method="POST"></form>
 
 
-
-
-
-
 	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
 		<thead>

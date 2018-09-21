@@ -66,6 +66,7 @@
 
 
 	<!-- 검색테이블 -->
+<form action="<c:url value='/prescription/prescriptionUpdate' />" id="searchForm" method="POST">
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -83,7 +84,7 @@
 					<c:param name="prsCode" value="${i.prsCode }"/>
 				
 				</c:url>
-					<td><a href="<c:url value='/prescription/prescriptionCreate?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
+					<td><a href="<c:url value='/prescription/prescriptionView?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
 					<td>${i.clnCode}</td>
 					<td>${i.prsDescr}</td>
 					<td>${i.medCode}</td>
@@ -93,8 +94,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
-
+</form>
 
 
 
@@ -125,7 +125,7 @@
 
 
 	<!-- // 다음버튼  -->
-	<%--  <c:if test="${PagingVo.endPage < PagingVo.totalPageCount}">
+<%-- 	  <c:if test="${PagingVo.endPage < PagingVo.totalPageCount}">
 		<li>
           <a href="#" data-curpage="${PagingVo.endPage + 1}" 
           			  class="next goPage"  
@@ -133,7 +133,7 @@
             <span aria-hidden="true">다음 »</span>
           </a>
         </li>
-	</c:if>  --%>
+	</c:if>   --%>
 	
 
 		<!-- // ;;Next Button-->

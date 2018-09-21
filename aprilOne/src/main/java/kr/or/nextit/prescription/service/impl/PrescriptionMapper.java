@@ -52,7 +52,7 @@ public interface PrescriptionMapper {
 	public int updatePrescription(PrescriptionVo prescriptionVo) throws Exception;
 	
 	
-	
+	public PrescriptionVo selectOneView(PrescriptionVo prescriptionVo) throws Exception;
 	
 	
 	

@@ -68,6 +68,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		prescriptionMapper.updatePrescription(prescriptionVo);
 		
 	}
+
+	// 처방 상세보기 
+	@Override
+	public PrescriptionVo selectOneView(PrescriptionVo prescriptionVo) throws Exception {
+		
+		return prescriptionMapper.selectOneView(prescriptionVo);
+	}
 	
 	
 	

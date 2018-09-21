@@ -15,27 +15,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title></title>
+<title> 처방 수정 </title>
 </head>
 
 <body>
-	처방 수정
+	
 
 	<form method="post" action="<c:url value="/prescription/prescriptionUpdateProc"/>">
-
 		<table class="table table-bordered table-hover">
 			<tbody>
 				<tr>
 					<th>처방 코드</th>
-					<td><input name="patCode" type="text" value="${patUpdt.patCode}"></td>
+					<td><input name="patCode" type="text" value="${prsUpdt.prsCode}"></td>
 				</tr>
 				<tr>
 					<th>처방 코드</th>
-					<td><input name="patInscode" type="text" value=" ${patUpdt.patInscode}"></td>
+					<td><input name="patInscode" type="text" value=" ${prsUpdt.patInscode}"></td>
 				</tr> 
 				<tr>
 					<th>환자 코드</th>
-					<td><input name="patName" type="text" value=" ${patUpdt.patName}"></td>
+					<td><input name="patName" type="text" value=" ${prsUpdt.patName}"></td>
 				</tr>
 				<tr>
 					<th> 담당의</th>
@@ -43,33 +42,32 @@
 				</tr>
 				<tr>
 					<th>진료일</th>
-					<td><input name="patRrnum" type="text" value=" ${patUpdt.patRrnum}"></td>
+					<td><input name="patRrnum" type="text" value=" ${prsUpdt.patRrnum}"></td>
 				</tr>
 				<tr>
 					<th> 진료내용 </th>
-					<td><input name="patAddress" type="text" value=" ${patUpdt.patAddress}"></td>
+					<td><input name="patAddress" type="text" value=" ${prsUpdt.patAddress}"></td>
 				</tr>
 				<tr>
 					<th> 처방내역 </th>
-					<td><input name="patPhone" type="text" value=" ${patUpdt.patPhone}"></td>
+					<td><input name="patPhone" type="text" value=" ${prsUpdt.patPhone}"></td>
 				</tr>
 				<tr>
 					<th>의약품 코드</th>
-					<td><input name="patDisease" type="text" value=" ${patUpdt.patDisease}"></td>
+					<td><input name="patDisease" type="text" value=" ${prsUpdt.patDisease}"></td>
 				</tr>
 				<tr>
 					<th>의약품 코드2</th>
-					<td><input name="patDisease" type="text" value=" ${patUpdt.patDisease}"></td>
+					<td><input name="patDisease" type="text" value=" ${prsUpdt.patDisease}"></td>
 				</tr>
 				<tr>
 					<th>의약품 코드3</th>
-					<td><input name="patDisease" type="text" value=" ${patUpdt.patDisease}"></td>
+					<td><input name="patDisease" type="text" value=" ${prsUpdt.patDisease}"></td>
 				</tr>
-				
 				
 				<tr>
 					<td colspan="2">
-						<button type="submit" id="btn-update">수정</button>
+						<button type="submit" id="btn-update">수정하기</button>
 					</td>
 				</tr>
 			</tbody>

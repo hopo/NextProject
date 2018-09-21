@@ -38,7 +38,8 @@ public interface PrescriptionService {
 	// 처방 수정 
 	public void updatePrescription(PrescriptionVo prescriptionVo) throws Exception;
 	
-	
+	// 처방 상세보기 
+	public PrescriptionVo selectOneView(PrescriptionVo prescriptionVo)throws Exception;
 	
 	
 }

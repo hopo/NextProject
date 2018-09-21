@@ -33,16 +33,16 @@ public class PrescriptionController {
 
 	@Autowired
 	MedicineService medicineService;
-
+/*
 	// !!! 처방등록 폼 화면
-	@RequestMapping(value = "/prescription/prescriptionView")
+	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionSelect() {
-		log.info(">>> /prescription/prescriptionView");
+		log.info(">>> /prescription/prescriptionCreate");
 
-		return "prescription/prescriptionView";
+		return "prescription/prescriptionCreate";
 
 	}
-
+*/
 	// 약품.진료테이블 정보가져오기
 	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
@@ -96,9 +96,9 @@ public class PrescriptionController {
 		
 	try {
 			searchVo.setTotalCount(prescriptionService.selectTotalCount(searchVo));
-			searchVo.setPageBlockSize(10);
-			searchVo.setScreenSize(10);
-			searchVo.setPageBlockSize(10);
+			searchVo.setPageBlockSize(5);
+			searchVo.setScreenSize(5);
+			searchVo.setPageBlockSize(5);
 			searchVo.pageSetting();
 		
 			List<PrescriptionVo> items = prescriptionService.selectPrescriptionList(searchVo);
@@ -115,10 +115,31 @@ public class PrescriptionController {
 	}
 	
 	
-	// 처방 수정
+	// 처방 상세보기 
+	@RequestMapping("/prescription/prescriptionView")
+	public String prescriptionView(PrescriptionVo prescriptionVo,Model model,
+			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
+			HashMap<String, Object> param) throws Exception{
+		log.info(">>> /prescription/prescriptionView");
+		
+		// 진료정보를 조회하여 모델에 저장
+		ClinicVo clinicVo = clinicService.selectClinicItem(param);
+		model.addAttribute("clinicVo", clinicVo);
+		
+		prescriptionVo = prescriptionService.selectOneView(prescriptionVo);
+		model.addAttribute("preView",prescriptionVo );
+		
+		return "prescription/prescriptionView";
+	}
 	
+	
+	// 처방 수정
 	@RequestMapping("/prescription/prescriptionUpdate")
-	public String updatePrescription(PrescriptionVo prescriptionVo) throws Exception{
+	public String updatePrescription(PrescriptionVo prescriptionVo, Model model) throws Exception{
+		
+		
+		prescriptionService.updatePrescription(prescriptionVo);
+		model.addAttribute("prsUpdt", prescriptionVo);
 		
 		return "prescription/prescription";
 	}

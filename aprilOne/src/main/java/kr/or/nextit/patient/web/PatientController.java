@@ -2,15 +2,18 @@ package kr.or.nextit.patient.web;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.PatientVo;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.patient.service.PatientService;
 
@@ -19,21 +22,30 @@ public class PatientController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	PatientService patientService;
+	@Resource(name = "PatientService")
+	private PatientService patientService;
 
-	// 환자등록 폼
+	// !비즈니스 로직
+	private CommBuis commBuis = CommBuis.getInstance();
+
+	// !메시지Vo 공동 사용
+	MessageVo msgVo = null;
+
+
+	// !!!환자 등록 화면
 	@RequestMapping(value = "/patient/patientCreate")
 	public String patientCreate() {
-		log.info(">>> patient/patientCreate");
+		log.info(">>> /patient/patientCreate");
 
 		return "patient/patientCreate";
-
 	}
 
-	// 환자 등록 후 결과까지 입니당 *^^*
+	// !!!환자 등록 프로세서
 	@RequestMapping(value = "/patient/patientCreateProc")
-	public String patientCreateProc(PatientVo patientvo, Model model) throws Exception {
+	public String patientCreateProc(
+				PatientVo patientvo,
+				Model model
+			) throws Exception {
 		log.info(">>> patient/patientCreateProc");
 
 		patientService.patientInsert(patientvo);
@@ -43,14 +55,15 @@ public class PatientController {
 
 	}
 
-	// 환자 리스트
+	// !!!환자 리스트 화면
 	@RequestMapping(value = "/patient/patientList")
-	public String patientList(@ModelAttribute PatientVo patientVo, Model model,
-			@ModelAttribute(name = "SearchVo") SearchVo SearchVo
-
-	) throws Exception {
-		log.debug(">>> /patient/patientList");
-		 log.debug("SearchVo = {}", SearchVo); 
+	public String patientList(
+				@ModelAttribute PatientVo patientVo,
+				@ModelAttribute(name = "SearchVo") SearchVo SearchVo,
+				Model model
+			) throws Exception {
+		log.info(">>> /patient/patientList");
+		log.debug(">>> SearchVo : {}", SearchVo);
 
 		try {
 
@@ -64,20 +77,23 @@ public class PatientController {
 
 			model.addAttribute("patList", items);
 
+			return "patient/patientList";
+
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 
-		return "patient/patientList";
+		return "wrong";
 
 	}
 
-	// 환자정보 상세보기
+	// !!!환자 상세보기 화면
 	@RequestMapping(value = "/patient/patientView")
-	public String patientView(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
-		log.info(">>> patient/patientView");
+	public String patientView(
+				@ModelAttribute PatientVo patientVo,
+				Model model
+			) throws Exception {
+		log.info(">>> /patient/patientView");
 
 		PatientVo result = patientService.patientSelectView(patientVo);
 		log.debug(">>> result : {}", result);
@@ -88,11 +104,13 @@ public class PatientController {
 
 	}
 
-	// 환자정보 수정 페이지
-
+	// !!!환자 수정 화면
 	@RequestMapping(value = "/patient/patientUpdate")
-	public String patientUpdate(@ModelAttribute PatientVo patientVo, Model model) throws Exception {
-		log.info(">>> patient/patientUpdate");
+	public String patientUpdate(
+				@ModelAttribute PatientVo patientVo,
+				Model model
+			) throws Exception {
+		log.info(">>> /patient/patientUpdate");
 
 		PatientVo result = patientService.patientSelectView(patientVo);
 		model.addAttribute("patUpdt", result);
@@ -101,11 +119,10 @@ public class PatientController {
 
 	}
 
-	// 환자정보 수정 완료
-
+	// !!!환자 수정 프로세서
 	@RequestMapping(value = "/patient/patientUpdateProc")
 	public String patientUpdateProc(@ModelAttribute PatientVo patientVo) throws Exception {
-		log.info(">>> patient/patientUpdateProc");
+		log.info(">>> /patient/patientUpdateProc");
 
 		patientService.patientUpdate(patientVo);
 

@@ -12,50 +12,36 @@ import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.patient.service.PatientService;
 
-@Service("patientService")
+@Service("PatientService")
 public class PatientServiceImpl implements PatientService {
-
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private PatientMapper patientMapper;
 
-	// 환자 등록
 	@Override
 	public void patientInsert(PatientVo patientVo) throws Exception {
-
 		patientMapper.patientInsert(patientVo);
 	}
 	
-	// 환자 리스트
 	@Override
 	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception {
-		
 		return patientMapper.patientSelectList(searchVo);
 	}
 
-
-	// 환자 상세보기
 	@Override
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception {
 		return patientMapper.patientSelectView(patientVo);
 	}
 
-	// 환자 수정
-	@Override
-	public void patientUpdate(PatientVo patientVo) throws Exception {
-		patientMapper.patientUpdate(patientVo);
-	}
-	
-	
-	// 환자 검색
 	@Override
 	public int selectTotalCount(SearchVo SearchVo) throws Exception {
 		return patientMapper.selectTotalCount(SearchVo);
 	}
 
-
-
+	@Override
+	public void patientUpdate(PatientVo patientVo) throws Exception {
+		patientMapper.patientUpdate(patientVo);
+	}
 
 }
 

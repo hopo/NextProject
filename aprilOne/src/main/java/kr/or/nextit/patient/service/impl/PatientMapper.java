@@ -14,7 +14,7 @@ public interface PatientMapper {
 	public void patientInsert(PatientVo patientVo) throws Exception;
 
 	/**
-	 * @param patientSearchVo
+	 * @param searchVo
 	 * @return
 	 * @throws Exception
 	 */
@@ -28,39 +28,15 @@ public interface PatientMapper {
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception;
 
 	/**
-	 * @param patientVo
-	 * @throws Exception
-	 */
-	public void patientUpdate(PatientVo patientVo) throws Exception;
-
-	/**
 	 * @param searchVo
 	 * @return
 	 * @throws Exception
 	 */
 	public int selectTotalCount(SearchVo searchVo) throws Exception;
+
+	/**
+	 * @param patientVo
+	 * @throws Exception
+	 */
+	public void patientUpdate(PatientVo patientVo) throws Exception;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

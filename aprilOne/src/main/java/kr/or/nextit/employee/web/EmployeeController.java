@@ -37,73 +37,6 @@ public class EmployeeController {
 	MessageVo msgVo = null;
 
 
-	// !!!직원리스트 화면
-	@RequestMapping(value = "/employee/employeeList")
-	public String employeeList(
-				@RequestParam HashMap<String, Object> param,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo, // ;name='*' 과 jsp 쪽 form commandName='*' 같음
-				HashMap<String, Object> hmap
-			) {
-		log.info(">>> /employee/employeeList");
-		log.debug(">>> param : {}", param);
-		log.debug(">>> searchVo : {}", searchVo);
-
-		try {
-
-			//searchVo.setSearchTable("tb_employee"); 	// ;(PaginationService)검색테이블 설정
-			searchVo.setTotalCount(employeeService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
-			searchVo.setPageBlockSize(5); 			// ;페이지 5개씩
-			searchVo.setScreenSize(10);				// ;로우 10개씩 
-			searchVo.pageSetting(); // ;토대로 세팅하라
-			
-			commBuis.dispSearchVo(searchVo);
-
-			List<EmployeeVo> result = employeeService.selectEmployeeList(searchVo);
-			log.debug(">>> result : {}", result);
-			
-			hmap.put("result", result);
-			
-			msgVo = new MessageVo();
-
-			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가, 아마도 마샬링?
-			hmap.put("msgTag", param.get("msgTag"));
-			hmap.put("msgValue", param.get("msgValue"));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "employee/employeeList";
-	}
-
-	// !!!직원 상세보기 화면
-	@RequestMapping(value = "/employee/employeeView")
-	public String employeeView(
-				@RequestParam HashMap<String, Object> param,
-				HashMap<String, Object> hmap
-			) {
-		log.info(">>> /employee/employeeView");
-		log.debug(">>> param : {}", param);
-		
-		EmployeeVo item = null;
-
-		try {
-
-			item = employeeService.selectEmployeeItem(param);
-			log.debug(">>> item : {}", item);
-			
-			hmap.put("item", item);
-
-			hmap.put("msgTag", msgVo.getMsgTag());
-			hmap.put("msgValue", msgVo.getMsgValue());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "employee/employeeView";
-	}
-
 	// !!!직원 등록 화면
 	@RequestMapping(value = "/employee/employeeCreate")
 	public String employeeCreate() {
@@ -141,6 +74,77 @@ public class EmployeeController {
 		return "wrong";
 	}
 
+	// !!!직원 리스트 화면
+	@RequestMapping(value = "/employee/employeeList")
+	public String employeeList(
+				@RequestParam HashMap<String, Object> param,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo, // ;name='*' 과 jsp 쪽 form commandName='*' 같음
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> /employee/employeeList");
+		log.debug(">>> param : {}", param);
+		log.debug(">>> searchVo : {}", searchVo);
+
+		try {
+
+			//searchVo.setSearchTable("tb_employee"); 	// ;(PaginationService)검색테이블 설정
+			searchVo.setTotalCount(employeeService.selectTotalCount(searchVo)); // ;검색 레코드 전체 수
+			searchVo.setPageBlockSize(5); 			// ;페이지 5개씩
+			searchVo.setScreenSize(10);				// ;로우 10개씩 
+			searchVo.pageSetting(); // ;토대로 세팅하라
+			
+			commBuis.dispSearchVo(searchVo);
+
+			List<EmployeeVo> result = employeeService.selectEmployeeList(searchVo);
+			log.debug(">>> result : {}", result);
+			
+			hmap.put("result", result);
+			
+			msgVo = new MessageVo();
+
+			hmap.put("msgVo", msgVo); // ;왜 Vo가 안넘어 가는가, 아마도 마샬링?
+			hmap.put("msgTag", param.get("msgTag"));
+			hmap.put("msgValue", param.get("msgValue"));
+
+			return "employee/employeeList";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "wrong";
+	}
+
+	// !!!직원 상세보기 화면
+	@RequestMapping(value = "/employee/employeeView")
+	public String employeeView(
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> /employee/employeeView");
+		log.debug(">>> param : {}", param);
+		
+		EmployeeVo item = null;
+
+		try {
+
+			item = employeeService.selectEmployeeItem(param);
+			log.debug(">>> item : {}", item);
+			
+			hmap.put("item", item);
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
+
+			return "employee/employeeView";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "wrong";
+	}
+
 	// !!!직원 수정 화면
 	@RequestMapping(value = "/employee/employeeEdit")
 	public String employeeEdit(
@@ -161,12 +165,14 @@ public class EmployeeController {
 			hmap.put("phone", item.getEmpPhone().split("-")); // ;;전화번호 쪼개기
 			hmap.put("rrnum", item.getEmpRrnum().split("-")); // ;;주민번호 쪼개기
 
+			return "employee/employeeEdit";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 
-		return "employee/employeeEdit";
+		return "wrong";
 	}
 
 	// !!!직원 수정 프로세서

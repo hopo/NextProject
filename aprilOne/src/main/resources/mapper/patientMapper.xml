@@ -5,6 +5,27 @@
 <!-- // 환자 매퍼 -->
 <mapper namespace="kr.or.nextit.patient.service.impl.PatientMapper">
 
+	<sql id="whereQuery">
+		<if test="searchText != null and searchText != ''">
+			<if test="searchType == 'sel1'">
+				AND pat_name = #{searchText}
+			</if>
+			<if test="searchType == 'sel2'">
+				AND pat_code = #{searchText}
+			</if>
+			<if test="searchType == 'sel3'">
+				AND pat_inscode = #{searchText}
+			</if>
+			<if test="searchType == 'sel4'">
+				AND pat_phone = #{searchText}
+			</if>
+		</if>
+	</sql>
+
+
+	<!-- ========================= -->
+	<!-- CRUD -->
+	<!-- ========================= -->
 	<!-- 환자등록 -->
 	<insert id="patientInsert" parameterType="kr.or.nextit.comm.model.PatientVo">
 		INSERT INTO tb_patient (
@@ -34,27 +55,7 @@
 			#{patMemo},
 			#{empId}
 		)
-
 	</insert>
-
-	<sql id="whereQuery">
-		<if test="searchText != null and searchText != ''">
-			<if test="searchType == 'sel1'">
-				AND pat_name = #{searchText}
-			</if>
-			<if test="searchType == 'sel2'">
-				AND pat_code = #{searchText}
-			</if>
-			<if test="searchType == 'sel3'">
-				AND pat_inscode = #{searchText}
-			</if>
-			<if test="searchType == 'sel4'">
-				AND pat_phone = #{searchText}
-			</if>
-		</if>
-	</sql>
-
-
 
 	<!-- 환자 리스트 -->
 	<select id="patientSelectList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
@@ -81,24 +82,9 @@
 				) frm 
 		    ) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
-	
-	<!-- 환자 검색  -->
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" 
-							      resultType="int">			  
-		 SELECT
-		    COUNT(*) AS totalCount
-		 FROM
-		    tb_patient
-		    WHERE 1=1 	    		 
-	    		<include refid="whereQuery"></include>	
-	</select>
-
 
 	<!-- 환자 상세보기 -->
-	<select id="patientSelectView"
-		resultType="kr.or.nextit.comm.model.PatientVo"
-		parameterType="kr.or.nextit.comm.model.PatientVo">
-
+	<select id="patientSelectView" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
 		SELECT
 			pat_code,
 			pat_inscode,
@@ -118,8 +104,16 @@
 
 	</select>
 	
-	
-	
+	<!-- 환자 검색  -->
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" 
+							      resultType="int">			  
+		 SELECT
+		    COUNT(*) AS totalCount
+		 FROM
+		    tb_patient
+		    WHERE 1=1 	    		 
+	    		<include refid="whereQuery"></include>	
+	</select>
 	
 	<!-- 환자 수정  -->
 	<update id="patientUpdate"
@@ -137,11 +131,6 @@
 		     pat_memo = #{patMemo}
 		WHERE
 		    pat_code = #{patCode}
-
-
 	</update>
 
 </mapper>
-
-
-

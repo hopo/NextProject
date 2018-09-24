@@ -30,13 +30,14 @@ public class ClinicController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	//MessageVo msgVo = null;
+	MessageVo msgVo = null;
+
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
 	public String clinicList(
-				HashMap<String, Object> hmap,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo
+				@ModelAttribute(name = "searchVo") SearchVo searchVo,
+				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /clinic/clinicList");
 		log.debug(">>> searchVo : {}", searchVo);
@@ -74,8 +75,6 @@ public class ClinicController {
 		log.info(">>> /clinic/clinicView");
 		log.debug("param : {}", param);
 		
-		ClinicVo item = null;
-
 		try {
 
 			if (param.get("clnCode") == null) {
@@ -91,7 +90,7 @@ public class ClinicController {
 				hmap.put("empName", param.get("empName"));
 			}
 			
-			item = clinicService.selectClinicItem(param);
+			ClinicVo item = clinicService.selectClinicItem(param);
 			log.debug(">>> item : {}", item);
 
 			hmap.put("item", item);
@@ -104,13 +103,11 @@ public class ClinicController {
 
 		return "wrong";
 
-
 	}
  
 	// !!!진료 기록 화면
 	@RequestMapping(value = "/clinic/clinicCreate")
-	public String clinicCreate(
-			) {
+	public String clinicCreate() {
 		log.info(">>> /clinic/clinicCreate");
 
 		return "clinic/clinicCreate";
@@ -141,4 +138,3 @@ public class ClinicController {
 		return "wrong";
 	}
 }
-

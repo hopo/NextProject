@@ -16,6 +16,12 @@ public class ClinicServiceImpl implements ClinicService {
 	@Autowired
 	private ClinicMapper clinicMapper;
 
+
+	@Override
+	public void insertClinic(HashMap<String, Object> param) throws Exception {
+		clinicMapper.insertClinic(param);
+	}
+
 	@Override
 	public List<ClinicVo> selectClinicList(SearchVo searchVo) throws Exception {
 		return clinicMapper.selectClinicList(searchVo);
@@ -29,11 +35,6 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	public int selectTotalCount(SearchVo searchVo) throws Exception {
 		return clinicMapper.selectTotalCount(searchVo);
-	}
-
-	@Override
-	public void insertClinic(HashMap<String, Object> param) throws Exception {
-		clinicMapper.insertClinic(param);
 	}
 	
 	@Override

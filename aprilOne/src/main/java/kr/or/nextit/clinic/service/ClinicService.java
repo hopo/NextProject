@@ -9,6 +9,12 @@ import kr.or.nextit.comm.util.SearchVo;
 public interface ClinicService {
 
 	/**
+	 * @param param
+	 * @throws Exception
+	 */
+	public void insertClinic(HashMap<String, Object> param) throws Exception;
+	
+	/**
 	 * @param searchVo
 	 * @return
 	 * @throws Exception
@@ -29,12 +35,6 @@ public interface ClinicService {
 	 */
 	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
-	/**
-	 * @param param
-	 * @throws Exception
-	 */
-	public void insertClinic(HashMap<String, Object> param) throws Exception;
-	
 	/**
 	 * @return
 	 * @throws Exception

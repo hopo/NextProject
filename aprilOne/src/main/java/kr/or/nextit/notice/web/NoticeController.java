@@ -60,19 +60,19 @@ public class NoticeController {
 			hmap.put("result", result);
 			hmap.put("msgTag", param.get("msgTag"));
 			hmap.put("msgValue", param.get("msgValue"));
+
+			return "notice/noticeList";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "notice/noticeList";
+		return "wrong";
 	}
 
 	// !!!글작성 화면 
 	@RequestMapping(value = "/notice/noticeCreate")
-	public String noticeCreate(
-				HashMap<String, Object> hmap
-			) {
+	public String noticeCreate(HashMap<String, Object> hmap) {
 		log.info(">>> notice/noticeCreate");
 
 		return "notice/noticeCreate";

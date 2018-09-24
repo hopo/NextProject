@@ -101,7 +101,6 @@
 		FROM
 			tb_patient
 		WHERE pat_code = #{patCode}
-
 	</select>
 	
 	<!-- 환자 검색  -->

@@ -26,7 +26,22 @@
 	</sql>
 	
 	
-	<!-- SELECT / INSERT / UPDATE -->
+	<!-- ==================== -->
+	<!-- CRUD -->
+	<!-- ==================== -->
+
+	<insert id="insertClinic" parameterType="HashMap">
+		INSERT INTO tb_clinic (
+			<include refid="tableAllColumn" />
+		) VALUES (
+			'C' || LPAD(seq_clinic.NEXTVAL, 5, '0') ,
+			#{patCode} ,
+			#{empId} ,
+			SYSDATE ,
+			#{clnDescr}
+		)
+	</insert>
+
 	<select id="selectClinicList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.ClinicVo">
 		SELECT
 			*
@@ -97,15 +112,4 @@
 			
 	</select>
 
-	<insert id="insertClinic" parameterType="HashMap">
-		INSERT INTO tb_clinic (
-			<include refid="tableAllColumn" />
-		) VALUES (
-			'C' || LPAD(seq_clinic.NEXTVAL, 5, '0') ,
-			#{patCode} ,
-			#{empId} ,
-			SYSDATE ,
-			#{clnDescr}
-		)
-	</insert>
 </mapper>

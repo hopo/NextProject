@@ -3,9 +3,10 @@ package kr.or.nextit.prescription.web;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,8 @@ import kr.or.nextit.clinic.service.ClinicService;
 import kr.or.nextit.comm.model.ClinicVo;
 import kr.or.nextit.comm.model.MedicineVo;
 import kr.or.nextit.comm.model.PrescriptionVo;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.comm.util.SearchVo;
 import kr.or.nextit.medicine.service.MedicineService;
 import kr.or.nextit.prescription.service.PrescriptionService;
@@ -25,40 +28,43 @@ public class PrescriptionController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	PrescriptionService prescriptionService;
+	@Resource(name = "PrescriptionService")
+	private PrescriptionService prescriptionService;
 
-	@Autowired
-	ClinicService clinicService;
+	@Resource(name = "ClinicService")
+	private ClinicService clinicService;
 
-	@Autowired
-	MedicineService medicineService;
-/*
+	@Resource(name = "MedicineService")
+	private MedicineService medicineService;
+
+	// !비즈니스 로직
+	private CommBuis commBuis = CommBuis.getInstance();
+
+	// !메시지Vo 공동 사용
+	MessageVo msgVo = null;
+
 	// !!! 처방등록 폼 화면
-	@RequestMapping(value = "/prescription/prescriptionCreate")
-	public String prescriptionSelect() {
-		log.info(">>> /prescription/prescriptionCreate");
+//	@RequestMapping(value = "/prescription/prescriptionCreate")
+//	public String prescriptionSelect() {
+//		log.info(">>> /prescription/prescriptionCreate");
+//
+//		return "prescription/prescriptionCreate";
+//
+//	}
 
-		return "prescription/prescriptionCreate";
-
-	}
-*/
-	// 약품.진료테이블 정보가져오기
+	// !!!처방 등록 화면 (약품.진료테이블 정보가져오기)
 	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
-				@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
-				HashMap<String, Object> param,
-				Model model
-			) throws Exception {
-
-		log.info(">>> /prescription/prescriptionCreate clnCode= {}", clnCode);
+			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
+			HashMap<String, Object> param, Model model) throws Exception {
+		log.info(">>> /prescription/prescriptionCreate");
+		log.debug(">>> clnCode : {}", clnCode);
 		param.put("clnCode", clnCode);
 
 		// 진료정보를 조회하여 모델에 저장
 		ClinicVo clinicVo = clinicService.selectClinicItem(param);
 		model.addAttribute("clinicVo", clinicVo);
 
-	
 		// 약품목록을 조회하여 모델에 저장
 		List<MedicineVo> medList = medicineService.medicineSelectList(null);
 		model.addAttribute("medList", medList);
@@ -66,108 +72,76 @@ public class PrescriptionController {
 		return "prescription/prescriptionCreate";
 
 	}
-	
-	// 처방 등록 
+
+	// !!!처방 등록 프로세서
 	@RequestMapping(value = "/prescription/prescriptionCreateProc")
-	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model
-			) throws Exception {
-		
+	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model) throws Exception {
+
 		log.info(">>> /prescription/prescriptionCreateProc");
-		log.info(">>> preInsert : {} " , prescriptionVo);
-		
+		log.debug(">>> preInsert : {} ", prescriptionVo);
+
 		prescriptionService.insertPrescription(prescriptionVo);
 		model.addAttribute("prsInsert", prescriptionVo);
-		
+
 		return "prescription/prescriptionCreateProc";
-		
+
 	}
-	
-	
-	
-	//!!! 처방 리스트
+
+	// !!!처방 리스트 화면
 	@RequestMapping(value = "/prescription/prescriptionList")
-	public String prescriptionList(
-				@ModelAttribute PrescriptionVo prescriptionVo, Model model,
-				@ModelAttribute(name="SearchVo") SearchVo searchVo
-			) throws Exception {
-		
+	public String prescriptionList(@ModelAttribute PrescriptionVo prescriptionVo, Model model,
+			@ModelAttribute(name = "SearchVo") SearchVo searchVo) {
 		log.info(">>> /prescription/prescriptionList");
-		log.info(">>> SearchVo = {}" , searchVo);
-		
-	try {
+		log.debug(">>> searchVo : {}", searchVo);
+
+		try {
+
 			searchVo.setTotalCount(prescriptionService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
 			searchVo.setScreenSize(5);
 			searchVo.setPageBlockSize(5);
 			searchVo.pageSetting();
-		
+
+			commBuis.dispSearchVo(searchVo);
+
 			List<PrescriptionVo> items = prescriptionService.selectPrescriptionList(searchVo);
 			log.debug(">>> items : {}", items);
 			model.addAttribute("prsList", items);
-			
-		
-		}catch (Exception e) {
 
+			return "prescription/prescriptionList";
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
-		return "prescription/prescriptionList";
+
+		return "wrong";
+
 	}
-	
-	
-	// 처방 상세보기 
-	@RequestMapping("/prescription/prescriptionView")
-	public String prescriptionView(PrescriptionVo prescriptionVo,Model model,
+
+	// !!!처방 상세보기 화면
+	@RequestMapping(value = "/prescription/prescriptionView")
+	public String prescriptionView(PrescriptionVo prescriptionVo, Model model,
 			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
-			HashMap<String, Object> param) throws Exception{
+			HashMap<String, Object> param) throws Exception {
 		log.info(">>> /prescription/prescriptionView");
-		
+
 		// 진료정보를 조회하여 모델에 저장
 		ClinicVo clinicVo = clinicService.selectClinicItem(param);
 		model.addAttribute("clinicVo", clinicVo);
-		
+
 		prescriptionVo = prescriptionService.selectOneView(prescriptionVo);
-		model.addAttribute("preView",prescriptionVo );
-		
+		model.addAttribute("preView", prescriptionVo);
+
 		return "prescription/prescriptionView";
 	}
-	
-	
-	// 처방 수정
-	@RequestMapping("/prescription/prescriptionUpdate")
-	public String updatePrescription(PrescriptionVo prescriptionVo, Model model) throws Exception{
-		
-		
+
+	// !!!처방 수정 화면
+	@RequestMapping(value = "/prescription/prescriptionUpdate")
+	public String updatePrescription(PrescriptionVo prescriptionVo, Model model) throws Exception {
 		prescriptionService.updatePrescription(prescriptionVo);
 		model.addAttribute("prsUpdt", prescriptionVo);
-		
+
 		return "prescription/prescription";
 	}
-	
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

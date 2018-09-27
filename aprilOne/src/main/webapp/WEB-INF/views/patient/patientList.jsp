@@ -89,7 +89,7 @@
 			<c:forEach var="i" items="${patList}">
 				<c:url var="viewUrl" value="/">
 					<c:param name="patCode" value="${i.patCode}"/>
-					<c:param name="patCode" value="${patientSearchVo.curPage}"/>
+					<c:param name="curPage" value="${patientSearchVo.curPage}"/>
 				</c:url>
 				<tr>
 					<td><a href="<c:url value='/patient/patientView?patCode=${i.patCode}' />">${i.patCode}</a></td>

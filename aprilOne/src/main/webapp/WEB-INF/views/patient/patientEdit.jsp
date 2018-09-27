@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<form action="<c:url value="/patient/patientUpdateProc"/>" method="POST">
+	<form action="<c:url value="/patient/patientEditProc"/>" method="POST">
 		<table class="table table-bordered">
 			<thead></thead>
 			<tbody>

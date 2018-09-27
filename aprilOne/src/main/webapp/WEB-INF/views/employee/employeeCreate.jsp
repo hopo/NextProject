@@ -37,9 +37,12 @@
 
 </script>
 </head>
+
 <body>
-<%-- 	<form class="" action="<c:url value='/employee/employeeCreateProc' />" method="POST"> --%>
-	<form action="<c:url value='${urls.employee_createproc}' />" method="POST" onsubmit="return check()">
+	<%-- 
+	<form class="" action="<c:url value='/employee/employeeCreateProc' />" method="POST">
+	--%>
+	<form action="<c:url value='${urls.employee_createProc}' />" method="POST" onsubmit="return check()">
 		<table class="table">
 			<tbody>
 				<tr>

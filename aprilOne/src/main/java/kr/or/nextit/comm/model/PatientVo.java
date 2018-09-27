@@ -140,6 +140,7 @@ public class PatientVo implements Serializable {
 		this.result = result;
 	}
 
+	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}

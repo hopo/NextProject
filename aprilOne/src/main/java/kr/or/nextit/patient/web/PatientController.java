@@ -126,15 +126,13 @@ public class PatientController {
 
 		try {
 
-			PatientVo result = patientService.patientSelectView(patientVo);
+			PatientVo result = patientService.selectPatientView(patientVo);
 			log.debug(">>> result : {}", result);
 
 			model.addAttribute("patView", result);
 
-			msgVo = new MessageVo();
-
-			model.addAttribute("msgTag", msgVo.getMsgTag());
-			model.addAttribute("msgValue", msgVo.getMsgValue());
+			model.addAttribute("msgTag", param.get("msgTag"));
+			model.addAttribute("msgValue", param.get("msgValue"));
 
 			return "patient/patientView";
 
@@ -156,7 +154,7 @@ public class PatientController {
 
 		try {
 
-			PatientVo result = patientService.patientSelectView(param);
+			PatientVo result = patientService.selectPatientView(param);
 			model.addAttribute("patUpdt", result);
 
 			return "patient/patientEdit";
@@ -168,18 +166,18 @@ public class PatientController {
 		return "wrong";
 	}
 
-	// !!!환자 수정 프로세서
-	@RequestMapping(value = "/patient/patientUpdateProc")
+	// !!!환자 수정 프로세스
+	@RequestMapping(value = "/patient/patientEditProc")
 	public String patientUpdateProc(
 				@ModelAttribute PatientVo patientVo,
 				HashMap<String, Object> hmap
-			) throws Exception {
-		log.info(">>> /patient/patientUpdateProc");
+			) {
+		log.info(">>> /patient/patientEditProc");
 		log.debug(">>> patientVo : {}", patientVo);
 
 		try {
 			
-			patientService.patientUpdate(patientVo);
+			patientService.updatePatient(patientVo);
 
 			msgVo = new MessageVo();
 

@@ -33,13 +33,14 @@
 	<!-- =================================== -->
 	<!-- SELECT / INSERT / UPDATE -->
 	<!-- =================================== -->
-<!-- 	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
+	<!--
+	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			<include refid="tableAllColumn" />
 		FROM
 			tb_employee
 	</select>
- -->
+	-->
  
 	<select id="selectEmployeeList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT *

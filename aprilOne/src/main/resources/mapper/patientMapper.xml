@@ -80,7 +80,7 @@
 	</select>
 
 	<!-- 환자 상세보기 -->
-	<select id="patientSelectView" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
+	<select id="selectPatientView" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
 		SELECT
 			pat_code,
 			pat_inscode,
@@ -110,7 +110,7 @@
 	</select>
 	
 	<!-- 환자 수정  -->
-	<update id="patientUpdate" parameterType="kr.or.nextit.comm.model.PatientVo">
+	<update id="updatePatient" parameterType="kr.or.nextit.comm.model.PatientVo">
 		UPDATE
 			tb_patient
 		SET

@@ -29,8 +29,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientVo patientSelectView(PatientVo patientVo) throws Exception {
-		return patientMapper.patientSelectView(patientVo);
+	public PatientVo selectPatientView(PatientVo patientVo) throws Exception {
+		return patientMapper.selectPatientView(patientVo);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public void patientUpdate(PatientVo patientVo) throws Exception {
-		patientMapper.patientUpdate(patientVo);
+	public void updatePatient(PatientVo patientVo) throws Exception {
+		patientMapper.updatePatient(patientVo);
 	}
 
 }

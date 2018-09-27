@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- // 처방 매퍼 -->
+<!-- // ================= prescriptionMapper.xml ============================================ -->
 <mapper namespace="kr.or.nextit.prescription.service.impl.PrescriptionMapper">
 
 	<sql id="whereQuery">
@@ -16,11 +16,10 @@
 		</if>
 	</sql>
 	
-	<!-- ================= -->
-	<!-- CRUD -->
-	<!-- ================= -->
 
-	<!-- 처방등록   -->
+	<!-- =================================== -->
+	<!-- SELECT / INSERT / UPDATE -->
+	<!-- =================================== -->
 	<insert id="insertPrescription" parameterType="kr.or.nextit.comm.model.PrescriptionVo" >
 		 INSERT INTO tb_prescription (
 		    prs_code,
@@ -30,27 +29,14 @@
 		    med_code2,
 		    med_code3
 		 ) VALUES (
-		    #{prsCode},
-		    #{clnCode},
-		    #{prsDescr},
-		    #{medCode},
-		    #{medCode2},
+			'R' || LPAD(seq_prescriptioc.NEXTVAL, 5, '0') ,
+		    #{clnCode} ,
+		    #{prsDescr} ,
+		    #{medCode} ,
+		    #{medCode2} ,
 		    #{medCode3}
 		)
 	</insert>
-
-	<!-- 처방폼 화면  -->
-	<select id="prescriptionSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
-		 SELECT
-		    prs_code,
-		    cln_code,
-		    prs_descr,
-		    med_code,
-		    med_code2,
-		    med_code3
-		FROM
-		    tb_prescription
-	</select>
 
 	<!-- 진료테이블에서 진료코드로 가져오기  -->
 	<select id="selectClinicItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.ClinicVo">
@@ -67,8 +53,8 @@
 	</select>
 	
 	<!-- 처방 리스트   -->
-	<select id="prescriptionSelectList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
-		select  prs_code,
+	<select id="selectPrescriptionList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
+		SELECT  prs_code,
 	            cln_code,
 	            prs_descr,
 	            med_code,
@@ -79,8 +65,8 @@
 	           (select med_codename from tb_med_codename where med_code = b.med_code3) as med_codename3,
 	            pat_code,
 	            pat_name 
-	      from ( select rownum as rnum, frm.* 
-	               from ( SELECT
+	      FROM ( SELECT rownum as rnum, frm.* 
+	               FROM ( SELECT
 	                            a.prs_code,
 	                            a.cln_code,
 	                            a.prs_descr,
@@ -93,49 +79,62 @@
 	                             tb_prescription a
 	                           , tb_clinic b  
 	                           , tb_patient c 
-	                        where 1=1
+	                        WHERE 1=1
 	                           and a.cln_code = b.cln_code
 	                           and b.pat_code = c.pat_code
 	                           <include refid="whereQuery"></include>
-	                        order by prs_code DESC
+	                        ORDER BY prs_code DESC
 		                 ) frm 
 	             ) b
-	  	where rnum between #{startRow} and #{endRow}
+	  	WHERE rnum between #{startRow} and #{endRow}
 	</select>
 
-	
-	<!-- 처방 리스트 검색    -->
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="int">
-	select
-		count(*) as totalCount
-	FROM
-         tb_prescription a
-       , tb_clinic b  
-       , tb_patient c 
-    where 1=1
-       and a.cln_code = b.cln_code
-       and b.pat_code = c.pat_code
-       <include refid="whereQuery"></include>
-	</select>
-	
-	<!-- 처방 상세보기  -->
-	<select id="selectOneView" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
-		SELECT
-		    prs_code,
-		    cln_code,
-		    prs_descr,
-		    med_code,
+	<select id="prescriptionSelect" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
+		 SELECT
+		    prs_code ,
+		    cln_code ,
+		    prs_descr ,
+		    med_code ,
 		    med_code2,
 		    med_code3
 		FROM
 		    tb_prescription
-		    where prs_code=#{prsCode}
+	</select>
+
+	<!-- 처방 리스트 검색    -->
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="int">
+	SELECT
+		COUNT(*) AS totalCount
+	FROM
+        tb_prescription a ,
+        tb_clinic b ,  
+        tb_patient c 
+    WHERE
+    	1=1
+        AND a.cln_code = b.cln_code
+        AND b.pat_code = c.pat_code
+      	<include refid="whereQuery" />
+	</select>
 	
+	<!-- 처방 상세보기  -->
+	<select id="selectPrescriptionView" parameterType="kr.or.nextit.comm.model.PrescriptionVo" resultType="kr.or.nextit.comm.model.PrescriptionVo">
+		SELECT
+		    prs_code ,
+		    cln_code ,
+		    prs_descr ,
+		    med_code ,
+		    med_code2 ,
+		    med_code3
+		FROM
+		    tb_prescription
+		WHERE
+		    prs_code = #{prsCode}
 	</select>
 	
 	<!-- 처방 수정 -->
 	 <update id="updatePrescription" parameterType="kr.or.nextit.comm.model.PrescriptionVo" >
-		 UPDATE tb_prescription
+		 UPDATE
+		 	tb_prescription
 			SET
 				prs_code =#{prsCode},
 			    AND cln_code =#{clnCode},

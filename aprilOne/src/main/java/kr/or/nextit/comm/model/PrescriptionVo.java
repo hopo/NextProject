@@ -2,11 +2,12 @@ package kr.or.nextit.comm.model;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @SuppressWarnings("serial")
 public class PrescriptionVo implements Serializable {
 
 	// !!! *테이블이름 : TB_PRESCRIPTION
-
 	// !!!필드
 
 	private String prsCode; // !처방 코드 : PK
@@ -19,11 +20,17 @@ public class PrescriptionVo implements Serializable {
 	private String medCodename; // !의약품 코드명 
 	private String medCodename2; // !의약품 코드명2 
 	private String medCodename3; // !의약품 코드명3
-	
+
 	private String patCode; // ! 환자코드 
 	private String patName; // ! 환자명  
 	
 
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this); 
+	}
+	
+	// !!!게터 세터
 	public String getPrsCode() {
 		return prsCode;
 	}
@@ -112,18 +119,3 @@ public class PrescriptionVo implements Serializable {
 		this.patName = patName;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

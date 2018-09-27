@@ -36,7 +36,7 @@ public class MedicineController {
 	@RequestMapping(value="/medicine/medicineCreateProc")
 	public String medicineCreateProc(MedicineVo medicineVo) throws Exception {
 		
-		medicineService.medicineInsert(medicineVo);
+		medicineService.insertMedicine(medicineVo);
 		
 		return "medicine/medicineCreateProc";
 		

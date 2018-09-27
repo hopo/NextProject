@@ -23,6 +23,26 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	}
 
 	@Override
+	public List<PrescriptionVo> selectPrescriptionList(SearchVo searchVo) throws Exception {
+		return prescriptionMapper.selectPrescriptionList(searchVo);
+	}
+	
+	@Override
+	public int selectTotalCount(SearchVo searchVo) throws Exception {
+		return prescriptionMapper.selectTotalCount(searchVo);
+	}
+
+	@Override
+	public PrescriptionVo selectPrescriptionView(PrescriptionVo prescriptionVo) throws Exception {
+		return prescriptionMapper.selectPrescriptionView(prescriptionVo);
+	}
+	
+	
+	
+	
+	
+	
+	@Override
 	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception {
 		prescriptionMapper.prescriptionSelect(prescriptionVo);
 		return prescriptionVo;
@@ -31,21 +51,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	@Override
 	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
 		return prescriptionMapper.selectClinicItem(prescriptionVo);
-	}
-
-	@Override
-	public List<PrescriptionVo> selectPrescriptionList(SearchVo searchVo) throws Exception {
-		return prescriptionMapper.prescriptionSelectList(searchVo);
-	}
-
-	@Override
-	public PrescriptionVo selectOneView(PrescriptionVo prescriptionVo) throws Exception {
-		return prescriptionMapper.selectOneView(prescriptionVo);
-	}
-
-	@Override
-	public int selectTotalCount(SearchVo searchVo) throws Exception {
-		return prescriptionMapper.selectTotalCount(searchVo);
 	}
 
 	@Override

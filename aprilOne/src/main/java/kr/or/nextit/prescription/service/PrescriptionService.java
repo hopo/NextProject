@@ -7,17 +7,41 @@ import kr.or.nextit.comm.util.SearchVo;
 
 public interface PrescriptionService {
 
+	/**
+	 * @param prescriptionVo
+	 * @throws Exception
+	 */
 	public void insertPrescription(PrescriptionVo prescriptionVo) throws Exception;
+
+	/**
+	 * @param searchVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PrescriptionVo> selectPrescriptionList(SearchVo searchVo) throws Exception;
+	
+	/**
+	 * @param searchVo
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectTotalCount(SearchVo searchVo) throws Exception;
+	
+	/**
+	 * @param prescriptionVo
+	 * @return
+	 * @throws Exception
+	 */
+	public PrescriptionVo selectPrescriptionView(PrescriptionVo prescriptionVo) throws Exception;
+	
+	
+	
+	
 
 	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception;
 
 	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception;
 
-	public List<PrescriptionVo> selectPrescriptionList(SearchVo searchVo) throws Exception;
-
-	public PrescriptionVo selectOneView(PrescriptionVo prescriptionVo) throws Exception;
-
-	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
 	public void updatePrescription(PrescriptionVo prescriptionVo) throws Exception;
 

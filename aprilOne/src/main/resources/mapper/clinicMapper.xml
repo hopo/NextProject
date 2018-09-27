@@ -26,9 +26,9 @@
 	</sql>
 	
 	
-	<!-- ==================== -->
-	<!-- CRUD -->
-	<!-- ==================== -->
+	<!-- =================================== -->
+	<!-- SELECT / INSERT / UPDATE -->
+	<!-- =================================== -->
 
 	<insert id="insertClinic" parameterType="HashMap">
 		INSERT INTO tb_clinic (

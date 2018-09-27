@@ -16,136 +16,144 @@
 
 <title>처방  리스트</title>
 <script type="text/javascript" defer="defer">
-	$(document).ready(function(){	
-		
-		$frm = $('#searchForm');
-		// 서브밋 버튼 클릭시   
-		$('button[type=submit]', $frm).click(function(e){
-			e.preventDefault(); // 이벤트 전파 막기 
+
+	$(document).ready(function() {
+		$frm = $('#searchVo');
+
+		// ;;on click submit btn
+		$('#searchSubmit', $frm).click(function(evt) {
+			evt.preventDefault();
 			$('input[name=curPage]', $frm).val(1);
 			$frm.submit();
 		});
-		
-		// 페이지 네비~ 버튼 클릭시
-		$(".goPage").click(function() {
-			
-			var curPage = $(this).data("curpage");
+
+		// ;;on click  page nav btn
+		$('.goPage').click(function() {
+			var curPage = $(this).data('curpage');
 			$('#curPage').val(curPage);
 			$frm.submit();
 		});
 	});
+
 </script> 
 </head>
 
 <body>
  
-	<!-- 검색 -->
-	<form action="<c:url value='/prescription/prescriptionList' />" id="searchForm" method="POST">
-		<input type="hidden" name="curPage" id="curPage" />
-		
-		<table class="table table-bordered">
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
+
+	<!-- // ;Search Part -->
+	<form:form commandName="searchVo" method="POST">
+		<table>
 			<tr>
-				<th>SearchType</th>
+				<th>검색타입</th>
 				<td>
-					<select name="searchType">
-						<option value="sel1" ${PagingVo.searchType eq 'sel1'?'selected="selected"':''}>환자이름</option>
-						<option value="sel2" ${PagingVo.searchType eq 'sel2'?'selected="selected"':''}>처방코드</option>
-					</select>
+					<form:select path="searchType" class="btn btn-default">
+						<form:option value="cln_code">진료코드</form:option>
+						<form:option value="pat_name">환자이름</form:option>
+						<form:option value="emp_name">담당의</form:option>
+					</form:select>
 				</td>
 				<td>
-					<input type="text" name="searchText"  value="<%= request.getParameter("searchText")%>" />
+					<form:input path="searchText" placeholder="입력하세요..." class="form-control" />
 				</td>
 				<td>
-					<button id="searchsubmit" type="submit" class="btn btn-primary">검색</button>
+					<form:button id="searchSubmit" type="submit" class="btn btn-primary btn-sm">검색</form:button>
 				</td>
 			</tr>
 		</table>
+		<form:hidden path="curPage" readonly="true" />
+		<form:hidden path="totalPageCount" readonly="true" />
+		<form:hidden path="totalCount" readonly="true" />
+	</form:form>
+
+	<!-- // ;List View Part -->
+	<form action="<c:url value='/prescription/prescriptionUpdate' />" id="searchForm" method="POST">
+		<table class="table table-bordered">
+			<thead class="bg-success">
+				<tr>
+					<th>처방코드</th>
+					<th>진료코드</th>
+					<th>처방내용</th>
+					<th>의약품코드</th>
+					<th>의약품코드2</th>
+					<th>의약품코드3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="i" items="${prsList}">
+					<c:url var="viewUrl" value="/">
+						<c:param name="prsCode" value="${i.prsCode}"/>
+					</c:url>
+					<tr>
+						<td><a href="<c:url value='/prescription/prescriptionView?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
+						<td>${i.clnCode}</td>
+						<td>${i.prsDescr}</td>
+						<td>${i.medCode}</td>
+						<td>${i.medCode2}</td>
+						<td>${i.medCode3}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</form>
 
-
-
-
-	<!-- 검색테이블 -->
-<form action="<c:url value='/prescription/prescriptionUpdate' />" id="searchForm" method="POST">
-	<table class="table table-bordered table-hover">
-		<thead class="bg-success">
-			<tr>
-				<th>처방코드</th>
-				<th>진료코드</th>
-				<th>처방내용</th>
-				<th>의약품코드</th>
-				<th>의약품코드2</th>
-				<th>의약품코드3</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="i" items="${prsList }">
-				<c:url var="viewUrl" value="/">
-					<c:param name="prsCode" value="${i.prsCode }"/>
-				
-				</c:url>
-					<td><a href="<c:url value='/prescription/prescriptionView?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
-					<td>${i.clnCode}</td>
-					<td>${i.prsDescr}</td>
-					<td>${i.medCode}</td>
-					<td>${i.medCode2}</td>
-					<td>${i.medCode3}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</form>
-
-
-
-	<!-- 네비게이션 -->
-
+	<!-- // ;List Number Navigation Part -->
 	<nav>
-	<ul class="pagination">
+		<ul class="pagination">
+			<!-- // ;;Previous Button -->
+			<c:if test="${searchVo.startPage ne 1}">
+				<li>
+					<a href='#' aria-label='Previous' data-curpage='${searchVo.startPage - 1}' class='prev goPage'>
+						<span aria-hidden='true'>Prev</span>
+					</a>
+				</li>
+			</c:if>
+
+			<c:if test="${searchVo.startPage eq 1}">
+				<li class='disabled'>
+					<a href='#' aria-label='Previous'>
+						<span aria-hidden='true'>Prev</span>
+					</a>
+				</li>
+			</c:if>
 	
-		<!-- // Previous Button -->
-
-			<li><a href='#' aria-label='Previous' data-curpage='${PagingVo.startPage - 1}' class='prev goPage'> 
-			<span aria-hidden='true'>Prev</span>
-			</a></li>
-		
-		<c:forEach var="i" begin="${PagingVo.startPage}" end="${PagingVo.endPage}">
-			<c:choose>
-				<c:when test="${i eq PagingVo.curPage}">
-					<li class="active"><a>${i}</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a href="#" data-curpage='${i}' class="goPage">${i}</a></li>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-
-
-
-
-
-	<!-- // 다음버튼  -->
-<%-- 	  <c:if test="${PagingVo.endPage < PagingVo.totalPageCount}">
-		<li>
-          <a href="#" data-curpage="${PagingVo.endPage + 1}" 
-          			  class="next goPage"  
-          		      aria-label="Next" title="Next">
-            <span aria-hidden="true">다음 »</span>
-          </a>
-        </li>
-	</c:if>   --%>
+			<!-- // ;;Page Numbering -->
+			<c:forEach var="i" begin="${searchVo.startPage}" end="${searchVo.endPage}">
+				<c:choose>
+					<c:when test="${i eq searchVo.curPage}">
+						<li class='disabled'>
+							<a href='#'>${i}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class='activate'>
+							<a href='#' data-curpage='${i}' class='goPage'>${i}</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 	
-
-		<!-- // ;;Next Button-->
-		 <c:if test="${PagingVo.endPage >= PagingVo.totalPageCount}">
-			<li class='disabled'><a href='#' aria-label='Next'> <span aria-hidden='true'>Next</span>
-			</a></li>
-		</c:if> 
-
-	</ul>
-	</nav> 
-
-
+			<!-- // ;;Next Button-->
+			<c:if test="${searchVo.endPage lt searchVo.totalPageCount}">
+				<li>
+					<a href='#' aria-label='Next' data-curpage='${searchVo.endPage + 1}' class='next goPage'>
+						<span aria-hidden='true'>Next</span>
+					</a>
+				</li>
+			</c:if>
+	
+			<c:if test="${searchVo.endPage ge searchVo.totalPageCount}">
+				<li class='disabled'>
+					<a href='#' aria-label='Next'>
+						<span aria-hidden='true'>Next</span>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav>	
 
 </body>
 </html>

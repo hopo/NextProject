@@ -5,28 +5,18 @@ import java.util.List;
 import kr.or.nextit.comm.model.MedicineVo;
 
 public interface MedicineService {
-	
-	
-	// 약품등록 폼 
-	public void medicineCreate() throws Exception ;
-	
-	// 약품 등록 
-	public void medicineInsert(MedicineVo medicineVo) throws Exception;
 
-	// 약품 리스트 조회 
-	public List<MedicineVo> medicineSelectList(MedicineVo medicineVo) throws Exception ;
+	/**
+	 * @param medicineVo
+	 * @throws Exception
+	 */
+	public void insertMedicine(MedicineVo medicineVo) throws Exception;
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * @param medicineVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<MedicineVo> selectMedicineList(MedicineVo medicineVo) throws Exception ;
 	
 }

@@ -41,56 +41,72 @@ public class PrescriptionController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = null;
+	private MessageVo msgVo = null;
+	
 
-	// !!! 처방등록 폼 화면
-//	@RequestMapping(value = "/prescription/prescriptionCreate")
-//	public String prescriptionSelect() {
-//		log.info(">>> /prescription/prescriptionCreate");
-//
-//		return "prescription/prescriptionCreate";
-//
-//	}
-
-	// !!!처방 등록 화면 (약품.진료테이블 정보가져오기)
+	// !!!처방 등록 화면
+	// ;;;약품.진료 리스트 가져오기
 	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
-			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
-			HashMap<String, Object> param, Model model) throws Exception {
+				HashMap<String, Object> param,
+				Model model
+			) {
 		log.info(">>> /prescription/prescriptionCreate");
-		log.debug(">>> clnCode : {}", clnCode);
-		param.put("clnCode", clnCode);
+		log.debug("param : {}", param);
 
-		// 진료정보를 조회하여 모델에 저장
-		ClinicVo clinicVo = clinicService.selectClinicItem(param);
-		model.addAttribute("clinicVo", clinicVo);
+		try {
 
-		// 약품목록을 조회하여 모델에 저장
-		List<MedicineVo> medList = medicineService.medicineSelectList(null);
-		model.addAttribute("medList", medList);
+//			// ;;진료정보를 조회하여 모델에 저장
+//			ClinicVo clinicVo = clinicService.selectClinicItem(null);
+//			log.debug("clinicVo : {}", clinicVo);
+//
+//			model.addAttribute("clinicVo", clinicVo);
+//
+//			// ;;약품목록을 조회하여 모델에 저장
+//			List<MedicineVo> medList = medicineService.selectMedicineList(null);
+//			log.debug("medList : {}", medList);
+//
+//			model.addAttribute("medList", medList);
 
-		return "prescription/prescriptionCreate";
+			return "prescription/prescriptionCreate";
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
-	// !!!처방 등록 프로세서
+	// !!!처방 등록 프로세스
 	@RequestMapping(value = "/prescription/prescriptionCreateProc")
-	public String prescriptionCreateProc(PrescriptionVo prescriptionVo, Model model) throws Exception {
-
+	public String prescriptionCreateProc(
+				PrescriptionVo prescriptionVo,
+				Model model
+			) {
 		log.info(">>> /prescription/prescriptionCreateProc");
-		log.debug(">>> preInsert : {} ", prescriptionVo);
+		log.debug(">>> prescriptionVo : {} ", prescriptionVo);
 
-		prescriptionService.insertPrescription(prescriptionVo);
-		model.addAttribute("prsInsert", prescriptionVo);
+		try {
 
-		return "prescription/prescriptionCreateProc";
+			prescriptionService.insertPrescription(prescriptionVo);
+			model.addAttribute("prsInsert", prescriptionVo);
 
+			return "prescription/prescriptionCreateProc";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 	// !!!처방 리스트 화면
 	@RequestMapping(value = "/prescription/prescriptionList")
-	public String prescriptionList(@ModelAttribute PrescriptionVo prescriptionVo, Model model,
-			@ModelAttribute(name = "SearchVo") SearchVo searchVo) {
+	public String prescriptionList(
+				@ModelAttribute PrescriptionVo prescriptionVo, 
+				@ModelAttribute(name = "searchVo") SearchVo searchVo,
+				Model model
+			) {
 		log.info(">>> /prescription/prescriptionList");
 		log.debug(">>> searchVo : {}", searchVo);
 
@@ -98,14 +114,14 @@ public class PrescriptionController {
 
 			searchVo.setTotalCount(prescriptionService.selectTotalCount(searchVo));
 			searchVo.setPageBlockSize(5);
-			searchVo.setScreenSize(5);
-			searchVo.setPageBlockSize(5);
+			searchVo.setScreenSize(10);
 			searchVo.pageSetting();
 
 			commBuis.dispSearchVo(searchVo);
 
 			List<PrescriptionVo> items = prescriptionService.selectPrescriptionList(searchVo);
 			log.debug(">>> items : {}", items);
+
 			model.addAttribute("prsList", items);
 
 			return "prescription/prescriptionList";
@@ -115,24 +131,37 @@ public class PrescriptionController {
 		}
 
 		return "wrong";
-
 	}
 
 	// !!!처방 상세보기 화면
 	@RequestMapping(value = "/prescription/prescriptionView")
-	public String prescriptionView(PrescriptionVo prescriptionVo, Model model,
-			@RequestParam(name = "clnCode", defaultValue = "c11111", required = false) String clnCode,
-			HashMap<String, Object> param) throws Exception {
+	public String prescriptionView(
+				@RequestParam String clnCode,
+				HashMap<String, Object> param,
+				PrescriptionVo prescriptionVo,
+				Model model
+			) {
 		log.info(">>> /prescription/prescriptionView");
+		log.debug("clnCode : {}", clnCode);
+		log.debug("param : {}", param);
+		log.debug("prescriptionVo : {}", prescriptionVo);
 
-		// 진료정보를 조회하여 모델에 저장
-		ClinicVo clinicVo = clinicService.selectClinicItem(param);
-		model.addAttribute("clinicVo", clinicVo);
+		try {
 
-		prescriptionVo = prescriptionService.selectOneView(prescriptionVo);
-		model.addAttribute("preView", prescriptionVo);
+			// ;;진료정보를 조회하여 모델에 저장
+			ClinicVo clinicVo = clinicService.selectClinicItem(param);
+			model.addAttribute("clinicVo", clinicVo);
 
-		return "prescription/prescriptionView";
+			prescriptionVo = prescriptionService.selectPrescriptionView(prescriptionVo);
+			model.addAttribute("preView", prescriptionVo);
+
+			return "prescription/prescriptionView";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 	// !!!처방 수정 화면

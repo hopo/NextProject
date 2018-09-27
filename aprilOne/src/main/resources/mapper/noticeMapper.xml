@@ -11,7 +11,7 @@
 		emp_id ,
 		ntc_content ,
 		TO_CHAR(ntc_regdate,'yyyy/mm/dd hh24:mi') AS ntc_regdate ,
-		ntc_update ,
+		TO_CHAR(ntc_update,'yyyy/mm/dd hh24:mi') AS ntc_update ,
 		ntc_count ,
 		ntc_delat
 	</sql>
@@ -26,6 +26,26 @@
 		</trim>
 	</sql>
 	
+
+	<!-- =================================== -->
+	<!-- SELECT / INSERT / UPDATE -->
+	<!-- =================================== -->
+	<insert id="insertNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
+		INSERT INTO tb_notice (
+			ntc_idx ,
+			ntc_title ,
+			emp_id ,
+			ntc_content ,
+			ntc_regdate
+		) VALUES (
+			seq_notice.NEXTVAL ,
+			#{ntcTitle} ,
+			#{empId} ,
+			#{ntcContent} ,
+			SYSDATE
+		)
+	</insert>
+
 	<select id="selectNoticeList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.NoticeVo">
 		SELECT *
 		FROM (
@@ -49,22 +69,6 @@
 		<include refid="whereQueryTrimIf" />
 	</select>
 	
-	<insert id="insertNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
-		INSERT INTO tb_notice (
-			ntc_idx ,
-			ntc_title ,
-			emp_id ,
-			ntc_content ,
-			ntc_regdate
-		) VALUES (
-			seq_notice.NEXTVAL ,
-			#{ntcTitle} ,
-			#{empId} ,
-			#{ntcContent} ,
-			SYSDATE
-		)
-	</insert>
-
 	<select id="selectNoticeItem" parameterType="HashMap" resultType="kr.or.nextit.comm.model.NoticeVo">
 		 SELECT
 		    a.ntc_idx,
@@ -74,12 +78,12 @@
 		    b.EMP_DIV,
 		    a.ntc_content,
 		    a.ntc_count,
-		    to_char(a.ntc_regdate,'yyyy/mm/dd hh24:mi') as ntc_regdate,
-		    a.ntc_update,
+			TO_CHAR(ntc_regdate,'yyyy/mm/dd hh24:mi') AS ntc_regdate ,
+			TO_CHAR(ntc_update,'yyyy/mm/dd hh24:mi') AS ntc_update ,
 		    a.ntc_delat    
 	  FROM
-		     tb_notice a
-		    ,tb_employee b
+		    tb_notice a ,
+		    tb_employee b
 	  WHERE a.emp_id = b.emp_id 
 		AND	ntc_idx = #{ntcIdx}
 	</select>
@@ -91,14 +95,6 @@
 			ntc_count = ntc_count + 1
 		WHERE ntc_idx = #{ntcIdx}
 	</update>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	<update id="updateNotice" parameterType="kr.or.nextit.comm.model.NoticeVo">
 		UPDATE
@@ -118,5 +114,4 @@
 		WHERE ntc_idx = #{ntcIdx}
 	</update>
 	
-
 </mapper>

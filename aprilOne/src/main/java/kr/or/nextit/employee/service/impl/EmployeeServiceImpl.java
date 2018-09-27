@@ -19,6 +19,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeMapper employeeMapper;
 
 	@Override
+	public void insertEmployee(EmployeeVo param) throws Exception {
+		employeeMapper.insertEmployee(param);
+	}
+
+	@Override
 	public List<EmployeeVo> selectEmployeeList(SearchVo searchVo) throws Exception {
 		return employeeMapper.selectEmployeeList(searchVo);
 	}
@@ -31,11 +36,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public int selectTotalCount(SearchVo searchVo) throws Exception {
 		return employeeMapper.selectTotalCount(searchVo);
-	}
-
-	@Override
-	public void insertEmployee(EmployeeVo param) throws Exception {
-		employeeMapper.insertEmployee(param);
 	}
 
 	@Override

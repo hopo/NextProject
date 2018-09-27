@@ -11,6 +11,12 @@ import kr.or.nextit.comm.util.SearchVo;
 public interface NoticeService {
 
 	/**
+	 * @param hmap
+	 * @throws Exception
+	 */
+	public void insertNotice(Map<String, Object> hmap) throws Exception;
+
+	/**
 	 * @param searchVo
 	 * @return
 	 * @throws Exception
@@ -34,15 +40,6 @@ public interface NoticeService {
 	
 	
 	
-	
-	
-	
-	
-	
-
-	// 글작성
-
-	public void insertNotice(Map<String, Object> hmap) throws Exception;
 
 	// 상세보기 
 	public NoticeVo selectNoticeItem(HashMap<String, Object> param) throws Exception;

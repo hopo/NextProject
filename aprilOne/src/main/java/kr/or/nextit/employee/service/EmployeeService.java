@@ -9,6 +9,12 @@ import kr.or.nextit.comm.util.SearchVo;
 public interface EmployeeService {
 
 	/**
+	 * @param param
+	 * @throws Exception
+	 */
+	public void insertEmployee(EmployeeVo param) throws Exception;
+
+	/**
 	 * @param searchVo
 	 * @return
 	 * @throws Exception
@@ -28,12 +34,6 @@ public interface EmployeeService {
 	 * @throws Exception
 	 */
 	public int selectTotalCount(SearchVo searchVo) throws Exception;
-
-	/**
-	 * @param param
-	 * @throws Exception
-	 */
-	public void insertEmployee(EmployeeVo param) throws Exception;
 
 	/**
 	 * @param param

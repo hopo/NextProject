@@ -7,7 +7,11 @@ import kr.or.nextit.comm.util.SearchVo;
 
 public interface PatientService {
 
-	public void patientInsert(PatientVo patientVo) throws Exception;
+	/**
+	 * @param param
+	 * @throws Exception
+	 */
+	public void insertPatient(PatientVo param) throws Exception;
 
 	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception;
 

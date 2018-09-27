@@ -31,7 +31,9 @@
 	</sql>
 	
 	
+	<!-- =================================== -->
 	<!-- SELECT / INSERT / UPDATE -->
+	<!-- =================================== -->
 <!-- 	<select id="selectEmployeeList" resultType="kr.or.nextit.comm.model.EmployeeVo">
 		SELECT
 			<include refid="tableAllColumn" />

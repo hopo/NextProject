@@ -34,7 +34,7 @@ public class EmployeeController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = null;
+	private MessageVo msgVo = null;
 
 
 	// !!!직원 등록 화면
@@ -170,7 +170,6 @@ public class EmployeeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
 		return "wrong";
 	}
@@ -218,7 +217,7 @@ public class EmployeeController {
 		return "employee/employeeRetire";
 	}
 
-	// !!!직원 퇴사(수정) 프로세서
+	// !!!직원 퇴사(수정) 프로세스
 	@RequestMapping(value = "/employee/employeeRetireProc")
 	public String employeeRetireProc(
 				@ModelAttribute EmployeeVo employeeVo,

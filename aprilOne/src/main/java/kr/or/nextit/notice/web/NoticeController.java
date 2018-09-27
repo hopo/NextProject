@@ -31,44 +31,8 @@ public class NoticeController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = null;
+	private MessageVo msgVo = null;
 
-
-	// !!!게시판리스트 화면 
-	@RequestMapping(value = "/notice/noticeList")
-	public String noticeList(
-				@RequestParam HashMap<String, Object> param,
-				@ModelAttribute(name = "searchVo") SearchVo searchVo,
-				HashMap<String, Object> hmap
-			) {
-		log.info(">>> notice/noticeList");
-		log.debug(">>> param : {}", param);
-		log.debug(">>> searchVo : {}", searchVo);
-		
-		try {
-
-			searchVo.setTotalCount(noticeService.selectTotalCount(searchVo));
-			searchVo.setPageBlockSize(5);
-			searchVo.setScreenSize(10);
-			searchVo.pageSetting();
-
-			commBuis.dispSearchVo(searchVo);
-
-			List<NoticeVo> result = noticeService.selectNoticeList(searchVo); 
-			log.debug(">>> result : {}", result);
-
-			hmap.put("result", result);
-			hmap.put("msgTag", param.get("msgTag"));
-			hmap.put("msgValue", param.get("msgValue"));
-
-			return "notice/noticeList";
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "wrong";
-	}
 
 	// !!!글작성 화면 
 	@RequestMapping(value = "/notice/noticeCreate")
@@ -107,6 +71,42 @@ public class NoticeController {
 		return "wrong";
 	}
 
+	// !!!게시판리스트 화면 
+	@RequestMapping(value = "/notice/noticeList")
+	public String noticeList(
+				@RequestParam HashMap<String, Object> param,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo,
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> notice/noticeList");
+		log.debug(">>> param : {}", param);
+		log.debug(">>> searchVo : {}", searchVo);
+		
+		try {
+
+			searchVo.setTotalCount(noticeService.selectTotalCount(searchVo));
+			searchVo.setPageBlockSize(5);
+			searchVo.setScreenSize(10);
+			searchVo.pageSetting();
+
+			commBuis.dispSearchVo(searchVo);
+
+			List<NoticeVo> result = noticeService.selectNoticeList(searchVo); 
+			log.debug(">>> result : {}", result);
+
+			hmap.put("result", result);
+			hmap.put("msgTag", param.get("msgTag"));
+			hmap.put("msgValue", param.get("msgValue"));
+
+			return "notice/noticeList";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
+	}
+
 	// !!!글 상세보기 화면
 	@RequestMapping(value = "/notice/noticeView")
 	public String noticeView(
@@ -131,37 +131,24 @@ public class NoticeController {
 		return "notice/noticeView";
 	}
 
-	// 수정
+	// !!!게시판 수정 화면
 	@RequestMapping(value = "/notice/noticeEdit")
-	public String noticeEdit(HashMap<String, Object> hmap, @RequestParam HashMap<String, Object> param) {
+	public String noticeEdit(
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
+			) {
 		log.info(">>> /notice/noticeEdit");
 		log.debug(">>> param : {}", param);
 
-		NoticeVo item = null;
-
 		try {
-			item = noticeService.selectNoticeItem(param); // 메서드 확인해야함
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		log.debug(">>> item : {}", item);
-		hmap.put("item", item);
+			NoticeVo item = noticeService.selectNoticeItem(param); // 메서드 확인해야함
+			log.debug(">>> item : {}", item);
 
-		return "notice/noticeEdit";
-	}
+			hmap.put("item", item);
 
-	// 수정처리
-	@RequestMapping(value = "/notice/noticeEditProc")
-	public String noticeEditProc(@ModelAttribute NoticeVo param) {
-		log.info(">>> /notice/noticeEditProc");
-		log.debug(">>> param : {}", param);
+			return "notice/noticeEdit";
 
-		try {
-			noticeService.updateNotice(param);
-			String resultViewUrl = String.format("redirect:/notice/noticeView?ntcIdx=%s", param.getNtcIdx());
-
-			return resultViewUrl;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -169,7 +156,27 @@ public class NoticeController {
 		return "wrong";
 	}
 
-	// 삭제(화면)
+	// !!!게시판 수정 프로세스
+	@RequestMapping(value = "/notice/noticeEditProc")
+	public String noticeEditProc(@ModelAttribute NoticeVo param) {
+		log.info(">>> /notice/noticeEditProc");
+		log.debug(">>> param : {}", param);
+
+		try {
+
+			noticeService.updateNotice(param);
+			String resultViewUrl = String.format("redirect:/notice/noticeView?ntcIdx=%s", param.getNtcIdx());
+
+			return resultViewUrl;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
+	}
+
+	// !!!게시판 삭제(수정) 화면
 	@RequestMapping(value = "/notice/noticeDelete")
 	public String noticeDelete(@ModelAttribute NoticeVo param) {
 		log.info(">>> /notice/noticeDelete");
@@ -178,16 +185,18 @@ public class NoticeController {
 		return "notice/noticeDelete";
 	}
 
-	// 삭제처리프로세서
+	// !!!게시판 삭제(수정) 프로세스
 	@RequestMapping(value = "/notice/noticeDeleteProc")
 	public String noticeDeleteProc(@ModelAttribute NoticeVo param) {
 		log.info(">>> /notice/noticeDeleteProc");
 		log.debug(">>> param : {}", param);
 
 		try {
+
 			noticeService.updateDelNotice(param);
 
 			return "redirect:/notice/noticeList";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -19,8 +19,8 @@ public class PatientServiceImpl implements PatientService {
 	private PatientMapper patientMapper;
 
 	@Override
-	public void patientInsert(PatientVo patientVo) throws Exception {
-		patientMapper.patientInsert(patientVo);
+	public void insertPatient(PatientVo param) throws Exception {
+		patientMapper.insertPatient(param);
 	}
 	
 	@Override

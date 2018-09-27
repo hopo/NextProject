@@ -8,10 +8,10 @@ import kr.or.nextit.comm.util.SearchVo;
 public interface PatientMapper {
 
 	/**
-	 * @param patientVo
+	 * @param param
 	 * @throws Exception
 	 */
-	public void patientInsert(PatientVo patientVo) throws Exception;
+	public void insertPatient(PatientVo param) throws Exception;
 
 	/**
 	 * @param searchVo

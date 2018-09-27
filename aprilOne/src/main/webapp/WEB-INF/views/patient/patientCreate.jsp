@@ -18,78 +18,57 @@
 </head>
 
 <body>
-
-<form action="patientCreateProc"  method="post">
-
-	<table class="table table-bordered" >
-		<tbody>
-			<tr>
-				<th>환자 코드</th>
-				<td>// 서버 내부에서 자동 생성됩니다</td>
-			</tr>
-			<tr>
-				<th>보험 코드</th>
-				<td><input type="text" name="patInscode" ></td>
-			</tr>
-			<tr>
-				<th>환자 이름</th>
-				<td><input type="text" name="patName" ></td>
-			</tr>
-			<tr>
-				<th>환자 전화번호</th>
-				<td><input type="text" name="patPhone" ></td>
-			</tr>
-			<tr>
-				<th>환자 주민번호</th>
-				<td><input type="text" name="patRrnum" ></td>
-			</tr>
-			<tr>
-				<th>환자 성별</th>
-				<td><input type="text" name="patGender" ></td>
-			</tr>
-			<tr>
-				<th>환자 주소</th>
-				<td><input type="text" name="patAddress" ></td>
-			</tr>
-			<tr>
-				<th>환자 질환유무</th>
-				<td><input type="text" name="patDisease" ></td>
-			</tr>
-			<tr>
-				<th>환자 초진일</th>
-				<td><input type="date" name="patFirstdate" ></td>
-			</tr>
-			<tr>
-				<th>환자 재진일</th>
-				<td><input type="date" name="patRedate" ></td>
-			</tr>
-			<tr>
-				<th>환자 특이사항</th>
-				<td><input type="text" name="patMemo" ></td>
-			</tr>
-			<tr>
-				<th>담당의(직원ID)</th>
-				<td>
-					${loginInfo.empName} (${loginInfo.empId})
-					<input type="hidden" name="empId" value="${loginInfo.empId}" >
-				</td>
-			</tr>
-
-
-			<tr>
-				<td colspan="2">
-					<button>환자등록</button>
-				</td>
-			</tr>
-			
-		</tbody>
-	</table>
-</form>
-
-
-
-
-
+	<form action="patientCreateProc"  method="POST">
+		<table class="table table-bordered" >
+			<tbody>
+				<tr>
+					<th>보험 코드</th>
+					<td><input type="text" name="patInscode"></td>
+				</tr>
+				<tr>
+					<th>환자 이름</th>
+					<td><input type="text" name="patName" required placeholder="이름" value="김환자"></td>
+				</tr>
+				<tr>
+					<th>환자 전화번호</th>
+					<td><input type="text" name="patPhone" required placeholder="전화번호" value="010-0000-0000"></td>
+				</tr>
+				<tr>
+					<th>환자 주민번호</th>
+					<td><input type="text" name="patRrnum" required placeholder="주민번호" value="900101-1112222"></td>
+				</tr>
+				<tr>
+					<th>환자 성별</th>
+					<td><input type="text" name="patGender" required placeholder="성별(M/F)" value="F"></td>
+				</tr>
+				<tr>
+					<th>환자 주소</th>
+					<td><input type="text" name="patAddress" required placeholder="주소" value="대전광역시 중구"></td>
+				</tr>
+				<tr>
+					<th>환자 질환유무</th>
+					<td><input type="text" name="patDisease" ></td>
+				</tr>
+				<tr>
+					<th>환자 특이사항</th>
+					<td><input type="text" name="patMemo" ></td>
+				</tr>
+				<tr>
+					<th>담당의(직원ID)</th>
+					<td>
+						${loginInfo.empName} (${loginInfo.empId})
+						<input type="hidden" name="empId" value="${loginInfo.empId}" >
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button class="btn btn-default">환자등록</button>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</form>
 </body>
 </html>
 

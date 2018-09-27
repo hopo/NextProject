@@ -29,8 +29,7 @@ public class PatientController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = null;
-
+	private MessageVo msgVo = null;
 
 	// !!!환자 등록 화면
 	@RequestMapping(value = "/patient/patientCreate")
@@ -40,39 +39,48 @@ public class PatientController {
 		return "patient/patientCreate";
 	}
 
-	// !!!환자 등록 프로세서
+	// !!!환자 등록 프로세스
 	@RequestMapping(value = "/patient/patientCreateProc")
 	public String patientCreateProc(
-				PatientVo patientvo,
+				PatientVo param,
 				Model model
-			) throws Exception {
+			) {
 		log.info(">>> patient/patientCreateProc");
 
-		patientService.patientInsert(patientvo);
-		model.addAttribute("patInsert", patientvo);
+		try {
 
-		return "patient/patientCreateProc";
+			patientService.insertPatient(param);
+			model.addAttribute("patInsert", param);
 
+			return "patient/patientCreateProc";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 	// !!!환자 리스트 화면
 	@RequestMapping(value = "/patient/patientList")
 	public String patientList(
 				@ModelAttribute PatientVo patientVo,
-				@ModelAttribute(name = "SearchVo") SearchVo SearchVo,
+				@ModelAttribute(name = "SearchVo") SearchVo searchVo,
 				Model model
 			) throws Exception {
 		log.info(">>> /patient/patientList");
-		log.debug(">>> SearchVo : {}", SearchVo);
+		log.debug(">>> SearchVo : {}", searchVo);
 
 		try {
 
-			SearchVo.setTotalCount(patientService.selectTotalCount(SearchVo));
-			SearchVo.setPageBlockSize(10);
-			SearchVo.setScreenSize(5);
-			SearchVo.pageSetting();
+			searchVo.setTotalCount(patientService.selectTotalCount(searchVo));
+			searchVo.setPageBlockSize(5);
+			searchVo.setScreenSize(10);
+			searchVo.pageSetting();
 
-			List<PatientVo> items = patientService.patientSelectList(SearchVo);
+			commBuis.dispSearchVo(searchVo);
+
+			List<PatientVo> items = patientService.patientSelectList(searchVo);
 			log.debug(">>> items : {}", items);
 
 			model.addAttribute("patList", items);

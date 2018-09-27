@@ -30,8 +30,41 @@ public class ClinicController {
 	private CommBuis commBuis = CommBuis.getInstance();
 
 	// !메시지Vo 공동 사용
-	MessageVo msgVo = null;
+	private MessageVo msgVo = null;
 
+
+	// !!!진료 기록 화면
+	@RequestMapping(value = "/clinic/clinicCreate")
+	public String clinicCreate() {
+		log.info(">>> /clinic/clinicCreate");
+
+		return "clinic/clinicCreate";
+	}
+
+	// !!!진료 기록 프로세스
+	@RequestMapping(value = "/clinic/clinicCreateProc")
+	public String clinicCreateProc(
+				@RequestParam HashMap<String, Object> param,
+				HashMap<String, Object> hmap
+			) {
+		log.info(">>> /clinic/clinicCreateProc");
+		log.debug("param : {}", param);
+		
+		try {
+
+			clinicService.insertClinic(param);
+
+			hmap.put("patCode", param.get("patCode"));
+			hmap.put("empId", param.get("empId"));
+
+			return "redirect:/clinic/clinicView";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
+	}
 
 	// !!!진료리스트 화면
 	@RequestMapping(value = "/clinic/clinicList")
@@ -42,8 +75,6 @@ public class ClinicController {
 		log.info(">>> /clinic/clinicList");
 		log.debug(">>> searchVo : {}", searchVo);
 
-		List<ClinicVo> result = null;
-
 		try {
 
 			searchVo.setTotalCount(clinicService.selectTotalCount(searchVo));
@@ -53,16 +84,18 @@ public class ClinicController {
 
 			commBuis.dispSearchVo(searchVo);
 
-			result = clinicService.selectClinicList(searchVo);
+			List<ClinicVo> result = clinicService.selectClinicList(searchVo);
 			log.debug(">>> result : {}", result);
 			
 			hmap.put("result", result);
+
+			return "clinic/clinicList";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "clinic/clinicList";
+		return "wrong";
 
 	}
 
@@ -102,39 +135,6 @@ public class ClinicController {
 		}
 
 		return "wrong";
-
 	}
  
-	// !!!진료 기록 화면
-	@RequestMapping(value = "/clinic/clinicCreate")
-	public String clinicCreate() {
-		log.info(">>> /clinic/clinicCreate");
-
-		return "clinic/clinicCreate";
-	}
-
-	// !!!진료 기록 프로세스
-	@RequestMapping(value = "/clinic/clinicCreateProc")
-	public String clinicCreateProc(
-				@RequestParam HashMap<String, Object> param,
-				HashMap<String, Object> hmap
-			) {
-		log.info(">>> /clinic/clinicCreateProc");
-		log.debug("param : {}", param);
-		
-		try {
-
-			clinicService.insertClinic(param);
-
-			hmap.put("patCode", param.get("patCode"));
-			hmap.put("empId", param.get("empId"));
-
-			return "redirect:/clinic/clinicView";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "wrong";
-	}
 }

@@ -33,7 +33,7 @@
 			pat_memo ,
 			emp_id
 		) VALUES (
-			'P' || LPAD(seq_patient.NEXTVAL, 5, '0') , <!-- 자동의라 코드가 생성됩니다. ex) 'P00042' -->
+			'P' || LPAD(seq_patient.NEXTVAL, 5, '0') ,
 			#{patInscode} ,
 			#{patName} ,
 			#{patPhone} ,
@@ -73,7 +73,7 @@
 					tb_patient
 	   			<include refid="whereQueryTrimIf" />	
 	    		ORDER BY
-	    			pat_code DESC
+	    			pat_firstdate
 			) frm 
 	    ) WHERE
 	    	rnum BETWEEN #{startRow} AND #{endRow}

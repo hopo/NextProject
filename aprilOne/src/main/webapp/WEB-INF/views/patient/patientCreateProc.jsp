@@ -18,7 +18,9 @@
 </head>
 
 <body>
-	<h3> 정상 등록되었습니다. </h3>
+	<c:if test="${msgValue ne null}">
+		<div class="alert alert-${msgTag}">${msgValue}</div>
+	</c:if>
 </body>
 </html>
 

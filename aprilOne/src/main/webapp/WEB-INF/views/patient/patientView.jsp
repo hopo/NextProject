@@ -18,7 +18,8 @@
 </head>
 
 <body>
-	<table class="table table-bordered table-hover">
+	<table class="table table-bordered">
+		<thead></thead>
 		<tbody>
 			<tr>
 				<th>환자 코드</th>
@@ -71,15 +72,12 @@
 				<th>환자 특이사항</th>
 				<td>${patView.patMemo}</td>
 			</tr>
-			<tr>
-				<td class="btn-group" colspan="2">
-					<a class="btn btn-default" href="<c:url value='/patient/patientList' />">환자목록</a>
-					<a class="btn btn-info" href="<c:url value='/patient/patientUpdate?patCode=${patView.patCode}' />">수정</a>
-					<a class="btn btn-danger" href="<c:url value='#' />">삭제</a>
-				</td>
-			</tr>
 		</tbody>
 	</table>
-
+	<div class="btn-group" colspan="2">
+		<a class="btn btn-default" href="<c:url value='/patient/patientList' />">환자목록</a>
+		<a class="btn btn-info" href="<c:url value='/patient/patientUpdate?patCode=${patView.patCode}' />">수정</a>
+		<a class="btn btn-danger" href="<c:url value='#' />">삭제</a>
+	</div>
 </body>
 </html>

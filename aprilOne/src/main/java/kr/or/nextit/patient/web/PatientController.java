@@ -1,5 +1,6 @@
 package kr.or.nextit.patient.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.nextit.comm.model.PatientVo;
 import kr.or.nextit.comm.service.impl.CommBuis;
@@ -46,11 +48,21 @@ public class PatientController {
 				Model model
 			) {
 		log.info(">>> patient/patientCreateProc");
+		log.debug(">>> param : {}", param);
 
 		try {
 
 			patientService.insertPatient(param);
+
+			msgVo = new MessageVo();
+
+			msgVo.setMsgTag("info");
+			msgVo.setMsgValue(String.format("환자 %s님이 등록되었습니다.", param.getPatName()));
+
 			model.addAttribute("patInsert", param);
+
+			model.addAttribute("msgTag", msgVo.getMsgTag());
+			model.addAttribute("msgValue", msgVo.getMsgValue());
 
 			return "patient/patientCreateProc";
 
@@ -64,12 +76,15 @@ public class PatientController {
 	// !!!환자 리스트 화면
 	@RequestMapping(value = "/patient/patientList")
 	public String patientList(
+				@RequestParam HashMap<String, Object> param,
 				@ModelAttribute PatientVo patientVo,
-				@ModelAttribute(name = "SearchVo") SearchVo searchVo,
+				@ModelAttribute(name = "searchVo") SearchVo searchVo,
 				Model model
-			) throws Exception {
+			) {
 		log.info(">>> /patient/patientList");
-		log.debug(">>> SearchVo : {}", searchVo);
+		log.debug(">>> param : {}", param);
+		log.debug(">>> patientVo : {}", patientVo);
+		log.debug(">>> searchVo : {}", searchVo);
 
 		try {
 
@@ -80,11 +95,14 @@ public class PatientController {
 
 			commBuis.dispSearchVo(searchVo);
 
-			List<PatientVo> items = patientService.patientSelectList(searchVo);
+			List<PatientVo> items = patientService.selectPatientList(searchVo);
 			log.debug(">>> items : {}", items);
 
 			model.addAttribute("patList", items);
 
+			model.addAttribute("msgTag", param.get("msgTag"));
+			model.addAttribute("msgValue", param.get("msgValue"));
+			
 			return "patient/patientList";
 
 		} catch (Exception e) {
@@ -98,45 +116,88 @@ public class PatientController {
 	// !!!환자 상세보기 화면
 	@RequestMapping(value = "/patient/patientView")
 	public String patientView(
+				@RequestParam HashMap<String, Object> param,
 				@ModelAttribute PatientVo patientVo,
 				Model model
-			) throws Exception {
+			) {
 		log.info(">>> /patient/patientView");
+		log.debug(">>> param : {}", param);
+		log.debug(">>> patientVo : {}", patientVo);
 
-		PatientVo result = patientService.patientSelectView(patientVo);
-		log.debug(">>> result : {}", result);
+		try {
 
-		model.addAttribute("patView", result);
+			PatientVo result = patientService.patientSelectView(patientVo);
+			log.debug(">>> result : {}", result);
 
-		return "patient/patientView";
+			model.addAttribute("patView", result);
 
+			msgVo = new MessageVo();
+
+			model.addAttribute("msgTag", msgVo.getMsgTag());
+			model.addAttribute("msgValue", msgVo.getMsgValue());
+
+			return "patient/patientView";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 	// !!!환자 수정 화면
-	@RequestMapping(value = "/patient/patientUpdate")
-	public String patientUpdate(
-				@ModelAttribute PatientVo patientVo,
+	@RequestMapping(value = "/patient/patientEdit")
+	public String patientEdit(
+				@ModelAttribute PatientVo param,
 				Model model
-			) throws Exception {
-		log.info(">>> /patient/patientUpdate");
+			) {
+		log.info(">>> /patient/patientEdit");
+		log.debug(">>> param : {}", param);
 
-		PatientVo result = patientService.patientSelectView(patientVo);
-		model.addAttribute("patUpdt", result);
+		try {
 
-		return "patient/patientUpdate";
+			PatientVo result = patientService.patientSelectView(param);
+			model.addAttribute("patUpdt", result);
 
+			return "patient/patientEdit";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 	// !!!환자 수정 프로세서
 	@RequestMapping(value = "/patient/patientUpdateProc")
-	public String patientUpdateProc(@ModelAttribute PatientVo patientVo) throws Exception {
+	public String patientUpdateProc(
+				@ModelAttribute PatientVo patientVo,
+				HashMap<String, Object> hmap
+			) throws Exception {
 		log.info(">>> /patient/patientUpdateProc");
+		log.debug(">>> patientVo : {}", patientVo);
 
-		patientService.patientUpdate(patientVo);
+		try {
+			
+			patientService.patientUpdate(patientVo);
 
-		// 수정 후 리스트페이지로
-		return "redirect:/patient/patientView?patCode=" + patientVo.getPatCode();
+			msgVo = new MessageVo();
 
+			msgVo.setMsgTag("info");
+			msgVo.setMsgValue(String.format("%s님 정보가 수정되었습니다.", patientVo.getPatName()));
+
+			hmap.put("msgTag", msgVo.getMsgTag());
+			hmap.put("msgValue", msgVo.getMsgValue());
+
+			hmap.put("patCode", patientVo.getPatCode());
+
+			return "redirect:/patient/patientView";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 }

@@ -20,7 +20,6 @@
 	    TO_CHAR(emp_retiredate,'yyyy/mm/dd') AS emp_retiredate
 	</sql>
 	
-
 	<!-- WHERE문 트림 (search 사용시) -->
 	<sql id="whereQueryTrimIf">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">

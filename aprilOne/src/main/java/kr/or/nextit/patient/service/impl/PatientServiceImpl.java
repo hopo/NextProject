@@ -24,8 +24,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 	
 	@Override
-	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception {
-		return patientMapper.patientSelectList(searchVo);
+	public List<PatientVo> selectPatientList(SearchVo searchVo) throws Exception {
+		return patientMapper.selectPatientList(searchVo);
 	}
 
 	@Override

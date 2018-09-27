@@ -5,21 +5,13 @@
 <!-- // 환자 매퍼 -->
 <mapper namespace="kr.or.nextit.patient.service.impl.PatientMapper">
 
-	<sql id="whereQuery">
-		<if test="searchText != null and searchText != ''">
-			<if test="searchType == 'sel1'">
-				AND pat_name LIKE '%' || #{searchText} || '%'
+	<!-- WHERE문 트림 (search 사용시) -->
+	<sql id="whereQueryTrimIf">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="searchText != null and searchText != ''">
+				AND ${searchType} LIKE '%' || #{searchText} || '%'
 			</if>
-			<if test="searchType == 'sel2'">
-				AND pat_code LIKE '%' || #{searchText} || '%'
-			</if>
-			<if test="searchType == 'sel3'">
-				AND pat_inscode LIKE '%' || #{searchText} || '%'
-			</if>
-			<if test="searchType == 'sel4'">
-				AND pat_phone LIKE '%' || #{searchText} || '%'
-			</if>
-		</if>
+		</trim>
 	</sql>
 
 
@@ -56,29 +48,35 @@
 	</insert>
 
 	<!-- 환자 리스트 -->
-	<select id="patientSelectList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
-			SELECT * FROM (
-			    SELECT ROWNUM AS rnum , frm.* from (
-					SELECT
-						pat_code,
-						pat_inscode,
-						pat_name,
-						pat_phone,
-						pat_rrnum,
-						pat_gender,
-						pat_address,
-						pat_disease,
-						pat_firstdate,
-						pat_redate,
-						pat_memo,
-						emp_id
-					FROM
-						tb_patient
-		    		WHERE 1=1 	    		 
-		    			<include refid="whereQuery"></include>
-		    		ORDER BY pat_code DESC
-				) frm 
-		    ) WHERE rnum BETWEEN #{startRow} AND #{endRow}
+	<select id="selectPatientList" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="kr.or.nextit.comm.model.PatientVo" >
+		SELECT
+			*
+		FROM (
+			SELECT
+				ROWNUM AS rnum ,
+				frm.*
+			FROM (
+				SELECT
+					pat_code,
+					pat_inscode,
+					pat_name,
+					pat_phone,
+					pat_rrnum,
+					pat_gender,
+					pat_address,
+					pat_disease,
+				    TO_CHAR(pat_firstdate,'yyyy/mm/dd') AS pat_firstdate,
+				    TO_CHAR(pat_redate,'yyyy/mm/dd') AS pat_redate,
+					pat_memo,
+					emp_id
+				FROM
+					tb_patient
+	   			<include refid="whereQueryTrimIf" />	
+	    		ORDER BY
+	    			pat_code DESC
+			) frm 
+	    ) WHERE
+	    	rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<!-- 환자 상세보기 -->
@@ -98,24 +96,21 @@
 			emp_id
 		FROM
 			tb_patient
-		WHERE pat_code = #{patCode}
+		WHERE
+			pat_code = #{patCode}
 	</select>
 	
 	<!-- 환자 검색  -->
-	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" 
-							      resultType="int">			  
+	<select id="selectTotalCount" parameterType="kr.or.nextit.comm.util.SearchVo" resultType="int">			  
 		 SELECT
 		    COUNT(*) AS totalCount
 		 FROM
-		    tb_patient
-		    WHERE 1=1 	    		 
-	    		<include refid="whereQuery"></include>	
+		    tb_patient 
+	    <include refid="whereQueryTrimIf" />	
 	</select>
 	
 	<!-- 환자 수정  -->
-	<update id="patientUpdate"
-		parameterType="kr.or.nextit.comm.model.PatientVo">
-			 
+	<update id="patientUpdate" parameterType="kr.or.nextit.comm.model.PatientVo">
 		UPDATE
 			tb_patient
 		SET

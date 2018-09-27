@@ -13,7 +13,12 @@ public interface PatientService {
 	 */
 	public void insertPatient(PatientVo param) throws Exception;
 
-	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception;
+	/**
+	 * @param searchVo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PatientVo> selectPatientList(SearchVo searchVo) throws Exception;
 
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception;
 

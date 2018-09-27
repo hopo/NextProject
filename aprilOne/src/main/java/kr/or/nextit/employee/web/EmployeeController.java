@@ -59,6 +59,7 @@ public class EmployeeController {
 			employeeService.insertEmployee(param); // ;DB에 새로운 계정을 인서트 한다
 
 			msgVo = new MessageVo();
+
 			msgVo.setMsgTag("info");
 			msgVo.setMsgValue(String.format("%s님 계정이 생성되었습니다.", param.getEmpId()));
 
@@ -123,12 +124,10 @@ public class EmployeeController {
 			) {
 		log.info(">>> /employee/employeeView");
 		log.debug(">>> param : {}", param);
-		
-		EmployeeVo item = null;
 
 		try {
 
-			item = employeeService.selectEmployeeItem(param);
+			EmployeeVo item = employeeService.selectEmployeeItem(param);
 			log.debug(">>> item : {}", item);
 			
 			hmap.put("item", item);
@@ -154,11 +153,9 @@ public class EmployeeController {
 		log.info(">>> /employee/employeeEdit");
 		log.debug(">>> param : {}", param);
 		
-		EmployeeVo item = null;
-
 		try {
 
-			item = employeeService.selectEmployeeItem(param);
+			EmployeeVo item = employeeService.selectEmployeeItem(param);
 			log.debug(">>> item : {}", item);
 
 			hmap.put("item", item);
@@ -182,11 +179,12 @@ public class EmployeeController {
 				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /employee/employeeEditProc");
-		log.debug(">>> param : {}", employeeVo);
+		log.debug(">>> employeeVo : {}", employeeVo);
 		
 		try {
 
 			employeeService.updateEmployee(employeeVo); // 직원정보를 수정하였다
+
 			msgVo = new MessageVo();
 
 			msgVo.setMsgTag("info");

@@ -16,24 +16,25 @@
 
 <title>환자 리스트</title>
 <script type="text/javascript" defer="defer">
-	$(document).ready(function(){	
-		
-		$frm = $('#searchForm');
-		// 서브밋 버튼 클릭시   
-		$('button[type=submit]', $frm).click(function(e){
-			e.preventDefault(); // 이벤트 전파 막기 
+
+	$(document).ready(function() {
+		$frm = $('#searchVo');
+
+		// ;;on click submit btn
+		$('#searchSubmit', $frm).click(function(evt) {
+			evt.preventDefault();
 			$('input[name=curPage]', $frm).val(1);
 			$frm.submit();
 		});
-		
-		// 페이지 네비~ 버튼 클릭시
-		$(".goPage").click(function() {
-			
-			var curPage = $(this).data("curpage");
+
+		// ;;on click  page nav btn
+		$('.goPage').click(function() {
+			var curPage = $(this).data('curpage');
 			$('#curPage').val(curPage);
 			$frm.submit();
 		});
 	});
+
 </script>
 </head>
 
@@ -43,39 +44,31 @@
 	</c:if>
 
 	<!-- // ;Search Part -->
-	<form action="<c:url value='/patient/patientList' />" id="searchForm" method="POST">
-		<table class="table table-bordered">
+	<form:form commandName="searchVo" method="POST">
+		<table>
 			<tr>
-				<th>SearchType</th>
+				<th>검색타입</th>
 				<td>
-					<select name="searchType">
-						<option value="sel1" ${searchType eq 'sel1'?'selected="selected"':''}>이름</option>
-						<option value="sel2" ${searchType eq 'sel2'?'selected="selected"':''}>환자코드</option>
-						<option value="sel3" ${searchType eq 'sel3'?'selected="selected"':''}>보험코드</option>
-						<option value="sel4" ${searchType eq 'sel4'?'selected="selected"':''}>전화번호</option>
-					</select>
+					<form:select path="searchType" class="btn btn-default">
+						<form:option value="pat_name">환자이름</form:option>
+						<form:option value="pat_phone">환자전화번호</form:option>
+					</form:select>
 				</td>
-          		
 				<td>
-					<!-- <input type="text" name="searchText" value="<%= request.getParameter("searchText")%>" /> -->
-					<input type="text" name="searchText" value="${searchText}" />
+					<form:input path="searchText" placeholder="입력하세요..." class="form-control" />
 				</td>
-				
 				<td>
-					<button id="searchsubmit" type="submit" class="btn btn-primary">검색</button>
+					<form:button id="searchSubmit" type="submit" class="btn btn-primary btn-sm">검색</form:button>
 				</td>
-				
 			</tr>
 		</table>
-		<input type="hidden" name="curPage" />
-		<input type="hidden" name="totalPageCount" />
-		<input type="hidden" name="totalCount" />
-	</form>
+		<form:hidden path="curPage" readonly="true" />
+		<form:hidden path="totalPageCount" readonly="true" />
+		<form:hidden path="totalCount" readonly="true" />
+	</form:form>
 
 
-
-
-	<!-- 검색테이블 -->
+	<!-- // ;List View Part -->
 	<table class="table table-bordered table-hover">
 		<thead class="bg-danger">
 			<tr>

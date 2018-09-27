@@ -18,25 +18,11 @@ public interface PatientMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<PatientVo> patientSelectList(SearchVo searchVo) throws Exception;
+	public List<PatientVo> selectPatientList(SearchVo searchVo) throws Exception;
 
-	/**
-	 * @param patientVo
-	 * @return
-	 * @throws Exception
-	 */
 	public PatientVo patientSelectView(PatientVo patientVo) throws Exception;
 
-	/**
-	 * @param searchVo
-	 * @return
-	 * @throws Exception
-	 */
 	public int selectTotalCount(SearchVo searchVo) throws Exception;
 
-	/**
-	 * @param patientVo
-	 * @throws Exception
-	 */
 	public void patientUpdate(PatientVo patientVo) throws Exception;
 }

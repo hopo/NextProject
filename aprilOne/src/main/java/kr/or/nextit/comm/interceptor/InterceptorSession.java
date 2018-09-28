@@ -26,19 +26,21 @@ public class InterceptorSession extends HandlerInterceptorAdapter  {
 		
 		// ! /session/loginForm 로그이니 안되어 있을 경우 이동 경로
 		
-		EmployeeVo loginInfo = null;
-		loginInfo = (EmployeeVo) req.getSession().getAttribute("loginInfo");
+		EmployeeVo loginInfo = (EmployeeVo)req.getSession().getAttribute("loginInfo");
 		
 		if (loginInfo != null) {
-			// 정상 로그인
+
+			// ;;정상 로그인
 			log.debug(">>> loginInfo: {}", loginInfo);
 			log.debug(">>> loginInfo.memId: {}", loginInfo.getEmpId());
 			log.debug(">>> loginInfo.memName: {}", loginInfo.getEmpName());
 
 		} else {
-			// not 로그인
+
+			// ;;not 로그인
 			ModelAndView modelAndView = new ModelAndView("redirect:/session/login");
 			throw new ModelAndViewDefiningException(modelAndView);
+
 		}
 
 		return true;

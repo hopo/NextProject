@@ -57,8 +57,10 @@
 		<input type="hidden" name="empId" value="${empId}" >  
 
 		<table class="table">
+			// ;참고 - SELECT seq_prescription.CURRVAL FROM DUAL
+
+			<thead></thead>
 			<tbody>
-			
 				<tr>
 					<th>진료코드</th>	
 					<td>${clnCode}</td>

@@ -18,6 +18,8 @@ public class UrlAliasFilter implements Filter {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+	private HashMap<String, String> urls = null;
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		log.info(">>> UrlAliasFilter.init() Call");
@@ -32,32 +34,25 @@ public class UrlAliasFilter implements Filter {
 		//		log.info(">>> UrlAliasFilter.doFilter() Call");
 		// ;별칭 맵을 상뇽하면 좋을 듯 하다고 생각
 		// ; 세션에 loginInfo를 삭제 하면 어떻게 ???
+
+		urls = new HashMap<>();
 		
 		HttpServletRequest myreq = (HttpServletRequest)req;
-		HashMap<String, String> urls = new HashMap<>();
 		
 		if(myreq.getSession().getAttribute("urls") == null) {
 			// ! alias = url
 
-//			urls.put("clinic_create", "/clinic/clinicCreate");
-//			urls.put("clinic_createProc", "/clinic/clinicCreateProc");
-//			urls.put("clinic_view", "/clinic/clinicView");
-//			urls.put("clinic_list", "/clinic/clinicList");
-//
-//			urls.put("employee_list", "/employee/employeeList");
-//			urls.put("employee_view", "/employee/employeeView");
-//			urls.put("employee_create", "/employee/employeeCreate");
-//			urls.put("employee_createProc", "/employee/employeeCreateProc");
-//			urls.put("employee_edit", "/employee/employeeEdit");
-//			urls.put("employee_editProc", "/employee/employeeEditProc");
-//			urls.put("employee_retire", "/employee/employeeRetire");
-//			urls.put("employee_retireProc", "/employee/employeeRetireProc");
-//			urls.put("patient_list", "/patient/patientList");
-//			urls.put("prescription_create", "/prescription/prescriptionCreate");
-
 			// !! index
 			urls.put("index", "/index");
 			urls.put("wrong", "/wrong");
+
+			// !! session
+			urls.put("session_loginProc","/session/loginProc");
+			urls.put("session_loginInfo","/session/loginInfo");
+			urls.put("session_logout","/session/logout");
+			urls.put("session_showDateInfoProc","/session/showDateInfoProc");
+			urls.put("session_login","/session/login");
+
 			
 			// !! clinic
 			urls.put("clinic_create","/clinic/clinicCreate");
@@ -104,13 +99,6 @@ public class UrlAliasFilter implements Filter {
 			urls.put("prescription_edit","/prescription/prescriptionEdit");
 			urls.put("prescription_create","/prescription/prescriptionCreate");
 			urls.put("prescription_createProc","/prescription/prescriptionCreateProc");
-
-			// !! session
-			urls.put("session_loginProc","/session/loginProc");
-			urls.put("session_loginInfo","/session/loginInfo");
-			urls.put("session_logout","/session/logout");
-			urls.put("session_showDateInfoProc","/session/showDateInfoProc");
-			urls.put("session_login","/session/login");
 			
 			myreq.getSession().setAttribute("urls", urls);
 		}

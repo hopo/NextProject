@@ -49,13 +49,15 @@
 
 	<div class="btn-group">
 		<a class="btn btn-default" href="<c:url value='/notice/noticeList'/>">글목록</a> 
-		
+
 		<c:if test="${loginInfo.empId eq item.empId}">
 			<c:url value='/notice/noticeEdit' var='noticeEditUrl'>
 				<c:param value='${item.ntcIdx}' name='ntcIdx' />
 			</c:url>
 			<a class="btn btn-info" href="${noticeEditUrl}">수정</a>
-			
+		</c:if>
+
+		<c:if test="${loginInfo.empId eq item.empId or loginInfo.empDiv eq 'A'}">
 			<c:url value='/notice/noticeDelete' var='noticeDeleteUrl'>
 				<c:param value='${item.ntcIdx}' name='ntcIdx' />
 			</c:url>

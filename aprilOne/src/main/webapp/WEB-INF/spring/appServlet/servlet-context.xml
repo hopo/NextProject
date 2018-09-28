@@ -22,7 +22,27 @@
 	<!-- ====================================================== -->
 	
 	<!-- ========== USER: Interceptor ========================= -->
-		<!-- ;;나중에 잍처셉테 할때 -->
+	<interceptors>
+		<interceptor>
+			<!-- ;해당하는 매핑 패턴에 인터셉터를 걸어줌 -->
+			<mapping path="/*" />
+			<mapping path="/**" />
+			<!-- <mapping path="/**/*Form*" /> -->
+
+			 <!-- ;제외시키겠다 -->
+			<exclude-mapping path="/about" />
+			<exclude-mapping path="/session/*" />
+			<exclude-mapping path="/employee/employeeCreate" />
+			<exclude-mapping path="/employee/employeeCreateProc" />
+
+			<exclude-mapping path="/js/*"/>
+			<exclude-mapping path="/css/*"/>
+			<exclude-mapping path="/fonts/*"/>
+			<exclude-mapping path="/decorator/*"/>
+			<exclude-mapping path="/images/*"/>
+			<beans:bean id="sessionCheck" class="kr.or.nextit.comm.interceptor.InterceptorSession"></beans:bean>
+		</interceptor>
+	</interceptors>
 	<!-- =================================================================== -->
 	
 

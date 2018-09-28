@@ -48,79 +48,79 @@
 	<form action="<c:url value='/prescription/prescriptionList'/>" method="post">
 		<table class="table">
 			<tbody>
-			
-			<tr>
-				<th>처방코드</th>	<!-- prsCode -->
-				<td>${preView.prsCode }</td>
-			</tr>
-			
-			
-			<!-- clnCode  진료상세조회 - 진료코드로 가져옴(진료코드, 환자코드, 담당의, 진료일, 진료내용)   -->  
-			<tr>
-				<th>진료코드</th>	
-				<td>${preView.clnCode }</td>
-			</tr>
-			<tr>
-				<th>환자코드</th>	<!-- patCode -->  
-				<td>${clinicVo.patCode}</td>
-			</tr>
-			<tr>
-				<th>담당의</th>	<!-- empId -->  
-				<td>${clinicVo.empId} </td>
-			</tr> 
-			<tr>
-				<th>진료일</th>	<!-- clnDate -->  
-				<td>${clinicVo.clnDate}</td>
-			</tr>
-			<tr>
-				<th>진료내용</th>	<!-- clnDescr -->  
-				<td>${clinicVo.clnDescr}</td>
-			</tr>
-			
-			
-			<tr>
-				<th>처방내역</th>	<!-- prsDescr -->
-				<td>
-					<textarea cols="55" rows="5" name="prsDescr" id="prsDescr"> </textarea>
-				</td>
-			</tr>
-			
-			
-			
-			<!-- medCode  의약품코드 테이블에서 의약품코드 컬럼3개 가져옴   -->
-			
-			<tr>
-				<th>의약품코드</th>	
-				<td>
-					<span id="medi_1"></span> 
-					 <button type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_1' data-target="#modal_medi"> 선택</button>
-				</td>
-			</tr>
-			<tr>
-				<th>의약품코드2</th>	<!-- medCode2 -->
-				<td>
-					<span id="medi_2"></span> 
-					<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_2'  data-target="#modal_medi"> 선택</button>
-				</td>
-			</tr>
-			<tr>
-				<th>의약품코드3</th>	<!-- medCode3 -->
-				<td>
-					<span id="medi_3"></span> 
-					<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_3'  ddata-target="#modal_medi"> 선택</button>
-				</td>
-			</tr>
-			
-			<tr>				
-				<td><a class="btn btn-success" href="prescription/prescriptionList" role="button">처방 리스트</a></td>
-			</tr>	
-			<tr>				
-				<td><a class="btn btn-success" href="prescription/prescriptionUpdate" role="button">처방수정</a></td>
-			</tr>	
-					
-			 <tr>				
-				<td><a class="btn btn-warning" href="prescription/prescriptionDelete" role="button">처방삭제 </a></td>
-			 </tr> 		
+				<tr>
+					<th>진료코드</th>	
+					<td>${clnCode}</td>
+				</tr>
+				
+				<tr>
+					<th>처방코드</th>	<!-- prsCode -->
+					<td>${preView.prsCode}</td>
+				</tr>
+				
+				
+				<!-- clnCode  진료상세조회 - 진료코드로 가져옴(진료코드, 환자코드, 담당의, 진료일, 진료내용)   -->  
+				<tr>
+					<th>환자코드</th>	<!-- patCode -->  
+					<td>${clinicVo.patCode}</td>
+				</tr>
+				<tr>
+					<th>담당의</th>	<!-- empId -->  
+					<td>${clinicVo.empId} </td>
+				</tr> 
+				<tr>
+					<th>진료일</th>	<!-- clnDate -->  
+					<td>${clinicVo.clnDate}</td>
+				</tr>
+				<tr>
+					<th>진료내용</th>	<!-- clnDescr -->  
+					<td>${clinicVo.clnDescr}</td>
+				</tr>
+				
+				
+				<tr>
+					<th>처방내역</th>	<!-- prsDescr -->
+					<td>
+						<textarea cols="55" rows="5" name="prsDescr" id="prsDescr"> </textarea>
+					</td>
+				</tr>
+				
+				
+				
+				<!-- medCode  의약품코드 테이블에서 의약품코드 컬럼3개 가져옴   -->
+				
+				<tr>
+					<th>의약품코드</th>	
+					<td>
+						<span id="medi_1"></span> 
+						 <button type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_1' data-target="#modal_medi"> 선택</button>
+					</td>
+				</tr>
+				<tr>
+					<th>의약품코드2</th>	<!-- medCode2 -->
+					<td>
+						<span id="medi_2"></span> 
+						<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_2'  data-target="#modal_medi"> 선택</button>
+					</td>
+				</tr>
+				<tr>
+					<th>의약품코드3</th>	<!-- medCode3 -->
+					<td>
+						<span id="medi_3"></span> 
+						<button  type="button" class="btn btn-sm btn-info btn_medi" data-suntack='medi_3'  ddata-target="#modal_medi"> 선택</button>
+					</td>
+				</tr>
+				
+				<tr>				
+					<td><a class="btn btn-success" href="prescription/prescriptionList" role="button">처방 리스트</a></td>
+				</tr>	
+				<tr>				
+					<td><a class="btn btn-success" href="prescription/prescriptionUpdate" role="button">처방수정</a></td>
+				</tr>	
+						
+				 <tr>				
+					<td><a class="btn btn-warning" href="prescription/prescriptionDelete" role="button">처방삭제 </a></td>
+				 </tr> 		
 			
 		</tbody>
 	</table>

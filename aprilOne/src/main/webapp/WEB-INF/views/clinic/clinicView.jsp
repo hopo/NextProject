@@ -23,20 +23,23 @@
 	</c:url>
 	
 	<form action="<c:url value='${urls.prescription_create}' />" method="POST">
+		<input type="hidden" name="clnCode" value="${item.clnCode}" >
+		<input type="hidden" name="patCode" value="${item.patCode}" >
+		<input type="hidden" name="empId" value="${item.empId}" >
+
 		<table class="table">
 			<tbody>
 				<tr>
 					<th>진료코드</th> <!-- clnCode -->
 					<td>
 						${item.clnCode}
-						<!-- <input type="text" name="clnCode" id="clnCode" value="${item.clnCode}" >  -->
+						<button type="submit" class="btn btn-primary btn-sm" >처방하기</button>
 					</td>
 				</tr>
 				<tr>
 					<th>환자이름 (환자코드)</th>	<!-- patCode -->
 					<td>
 						${param.patName} - ${item.patCode}
-						<!-- <input type="text" name="patCode" id="patCode" value="${item.patCode}" >  -->
 						<a href="<c:url value='${patientViewUrl}'/>" class="btn btn-info btn-xs">상세보기</a>
 					</td>
 				</tr>
@@ -44,7 +47,6 @@
 					<th>담당의 (직원ID)</th>	<!-- empId -->
 					<td>
 						${param.empName} - ${item.empId}
-						<!-- <input type="text" name="empId" id="empId" value="${item.empId}" > -->
 						<a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
 					</td>
 				</tr>
@@ -62,16 +64,9 @@
 						<!-- <input type="text" name="clnDescr" id="clnDescr" value="${item.clnDescr}" >  -->       
 					</td>
 				</tr>
-				
-				<tr>				
-					<td colspan="2" class="btn-group">
-						<a class="btn btn-default btn-sm" href="<c:url value='${urls.clinic_list}' />">진료리스트</a>
-						<button type="submit" class="btn btn-primary btn-sm" >처방하기</button>
-					</td>
-				</tr>	
-				
 			</tbody>
 		</table>
+		<a class="btn btn-default btn-sm" href="<c:url value='${urls.clinic_list}' />">진료리스트</a>
 	</form>
 	
 	<%--

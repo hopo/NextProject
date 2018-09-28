@@ -48,13 +48,17 @@ public class PrescriptionController {
 	// ;;;약품.진료 리스트 가져오기
 	@RequestMapping(value = "/prescription/prescriptionCreate")
 	public String prescriptionCreate(
-				HashMap<String, Object> param,
+				@RequestParam HashMap<String, Object> param,
 				Model model
 			) {
 		log.info(">>> /prescription/prescriptionCreate");
 		log.debug("param : {}", param);
 
 		try {
+			
+			model.addAttribute("clnCode", param.get("clnCode"));
+			model.addAttribute("patCode", param.get("patCode"));
+			model.addAttribute("empId", param.get("empId"));
 
 //			// ;;진료정보를 조회하여 모델에 저장
 //			ClinicVo clinicVo = clinicService.selectClinicItem(null);

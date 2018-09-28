@@ -14,11 +14,7 @@
 	<title>wrong page</title>
 </head>
 <body>
-<h1>
-	""something wrong"
-</h1>
-
-<P>The time on the server is ${serverTime}. </P>
-
+	<h1 class="bg-danger">"something wrong"</h1>
+	<P>The time on the server is ${serverTime}.</P>
 </body>
 </html>

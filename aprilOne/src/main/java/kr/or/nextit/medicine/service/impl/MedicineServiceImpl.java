@@ -15,16 +15,17 @@ import kr.or.nextit.medicine.service.MedicineService;
 public class MedicineServiceImpl implements MedicineService {
 
 	@Autowired
-	MedicineMapper medicineMapper;
+	private MedicineMapper medicineMapper;
 
-	@Override
-	public List<MedicineVo> selectMedicineList(MedicineVo medicineVo) throws Exception {
-		 return medicineMapper.selectMedicineList(medicineVo);
-	}
 
 	@Override
 	public void insertMedicine(MedicineVo medicineVo) throws Exception {
 		medicineMapper.insertMedicine(medicineVo);
+	}
+
+	@Override
+	public List<MedicineVo> selectMedicineList(MedicineVo medicineVo) throws Exception {
+		 return medicineMapper.selectMedicineList(medicineVo);
 	}
 }
 

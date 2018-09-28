@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.nextit.comm.model.EmployeeVo;
 import kr.or.nextit.comm.model.LoginInfoVo;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.session.service.SessionService;
 
 @Controller
@@ -26,6 +28,13 @@ public class SessionController {
 
 	@Resource(name = "SessionService")
 	private SessionService sessionService;
+
+	// !비즈니스 로직
+	private CommBuis commBuis = CommBuis.getInstance();
+
+	// !메시지Vo 공동 사용
+	private MessageVo msgVo = null;
+
 
 	// !!!로그인 화면
 	@RequestMapping(value = "/session/login")
@@ -74,8 +83,8 @@ public class SessionController {
 			} else {
 				// ;로그인이 NOT 가능합니다
 				error.reject("error", "Error : 아이디와 비밀번호 확인해라");
-				return "session/login";
 
+				return "session/login";
 			}
 
 		} catch (Exception e) {
@@ -95,6 +104,7 @@ public class SessionController {
 		log.info(">>> /session/loginInfo");
 
 		EmployeeVo employeeVo = (EmployeeVo)session.getAttribute("loginInfo");
+
 		hmap.put("loginInfo", employeeVo);
 
 		return "session/loginInfo";
@@ -102,8 +112,7 @@ public class SessionController {
 
 	// !!!로그아웃 프로세스
 	@RequestMapping(value = "/session/logout")
-	public String logoutProc(HttpSession session) throws Exception {
-
+	public String logoutProc(HttpSession session) {
 		log.info(">>> /session/logout");
 
 		EmployeeVo employeeVo = (EmployeeVo) session.getAttribute("loginInfo");
@@ -136,20 +145,23 @@ public class SessionController {
 		EmployeeVo employeeVo = new EmployeeVo();
 		employeeVo.setEmpId((String)param.get("empId"));
 		
-		List<LoginInfoVo> result = null;
+		HashMap<String, Object> hmap = new HashMap<>();;
 
 		try {
 
-			result = sessionService.selectLoginInfoList(employeeVo); // ;TB_LOGIN_INFO로 부터 조회
+			List<LoginInfoVo> result = sessionService.selectLoginInfoList(employeeVo); // ;TB_LOGIN_INFO로 부터 조회
 			log.debug("result : {}", result);
+			
+			hmap.put("result", result);
+
+			return hmap;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		HashMap<String, Object> hmap = new HashMap<>(); 
-		hmap.put("result", result);
-
+		hmap.put("message", ">>> showDateInfoProc() is something wrong!");
+		
 		return hmap;
 	}
 

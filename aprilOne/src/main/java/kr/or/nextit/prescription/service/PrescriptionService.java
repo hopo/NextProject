@@ -40,8 +40,7 @@ public interface PrescriptionService {
 
 	public PrescriptionVo prescriptionSelect(PrescriptionVo prescriptionVo) throws Exception;
 
-	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception;
-
+	//public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception;
 
 	public void updatePrescription(PrescriptionVo prescriptionVo) throws Exception;
 

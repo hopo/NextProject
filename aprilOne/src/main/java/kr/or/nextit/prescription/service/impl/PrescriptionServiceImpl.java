@@ -49,13 +49,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	}
 
 	@Override
-	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
-		return prescriptionMapper.selectClinicItem(prescriptionVo);
-	}
-
-	@Override
 	public void updatePrescription(PrescriptionVo prescriptionVo) throws Exception {
 		prescriptionMapper.updatePrescription(prescriptionVo);
 	}
+
+//	@Override
+//	public PrescriptionVo selectClinicItem(PrescriptionVo prescriptionVo) throws Exception {
+//		return prescriptionMapper.selectClinicItem(prescriptionVo);
+//	}
 
 }

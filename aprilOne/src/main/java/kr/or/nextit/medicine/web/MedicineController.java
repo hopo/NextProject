@@ -2,15 +2,18 @@ package kr.or.nextit.medicine.web;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.nextit.comm.model.MedicineVo;
+import kr.or.nextit.comm.service.impl.CommBuis;
+import kr.or.nextit.comm.util.MessageVo;
 import kr.or.nextit.medicine.service.MedicineService;
 
 @Controller
@@ -18,88 +21,58 @@ public class MedicineController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	 MedicineService medicineService;
+	@Resource(name = "MedicineService")
+	private MedicineService medicineService;
+
+	// !비즈니스 로직
+	private CommBuis commBuis = CommBuis.getInstance();
+
+	// !메시지Vo 공동 사용
+	private MessageVo msgVo = null;
 	
-	// 약품등록 폼 화면 
-		@RequestMapping(value="/medicine/medicineCreate")
-		public String medicineCreate() throws Exception {
-			log.info(">>> /medicine/medicineCreate");
-			
-		  return "medicine/medicineCreate";
-			
+	@RequestMapping(value = "/medicine/medicineCreate")
+	public String medicineCreate() {
+		log.info(">>> /medicine/medicineCreate");
+
+		return "medicine/medicineCreate";
+	}
+
+	@RequestMapping(value = "/medicine/medicineCreateProc")
+	public String medicineCreateProc(MedicineVo medicineVo) {
+
+		try {
+
+			medicineService.insertMedicine(medicineVo);
+
+			return "medicine/medicineCreateProc";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
+	}
+
+	@RequestMapping("/medicine/medicineList")
+	public String medicineSelectList(
+				@ModelAttribute MedicineVo medicineVo,
+				Model model
+			) {
+		log.info(">>> /medicine/medicineList");
+
+		try {
+
+			List<MedicineVo> item = medicineService.selectMedicineList(medicineVo);
+			model.addAttribute("medList", item);
+
+			return "medicine/medicineList";
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		
-		
-	// 약품등록
-	@RequestMapping(value="/medicine/medicineCreateProc")
-	public String medicineCreateProc(MedicineVo medicineVo) throws Exception {
-		
-		medicineService.insertMedicine(medicineVo);
-		
-		return "medicine/medicineCreateProc";
-		
+		return "wrong";
+
 	}
-		
-		
-		
-	
-		
-	// 약품 리스트 
-	/*@RequestMapping("/medicine/medicineList")
-	public String medicineSelectList(@ModelAttribute MedicineVo medicineVo,
-							   Model model
-							  ) throws Exception {
-		
-		log.info(">>> /medicine/medicineList");
-	
-	try {	
-		
-		
-		
-		
-		List<MedicineVo> item = medicineService.medicineSelectList(medicineVo);
-		model.addAttribute("medList", item);
-		
-		
-	}catch (Exception e) {
-		
-		e.printStackTrace();
-		
-	}
-		return "medicine/medicineList";
-		
-	}*/
-
-	
-		
-		
-		
-	
-
-
-	
-	
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

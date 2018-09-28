@@ -169,12 +169,26 @@ public class PrescriptionController {
 	}
 
 	// !!!처방 수정 화면
-	@RequestMapping(value = "/prescription/prescriptionUpdate")
-	public String updatePrescription(PrescriptionVo prescriptionVo, Model model) throws Exception {
-		prescriptionService.updatePrescription(prescriptionVo);
-		model.addAttribute("prsUpdt", prescriptionVo);
+	@RequestMapping(value = "/prescription/prescriptionEdit")
+	public String prescriptionEdit(
+				PrescriptionVo prescriptionVo,
+				Model model
+			) {
+		log.info(">>> /prescription/prescriptionEdit");
+		log.debug("prescriptionVo : {}", prescriptionVo);
 
-		return "prescription/prescription";
+		try {
+
+			prescriptionService.updatePrescription(prescriptionVo);
+			model.addAttribute("prsUpdt", prescriptionVo);
+
+			return "prescription/prescription";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "wrong";
 	}
 
 }

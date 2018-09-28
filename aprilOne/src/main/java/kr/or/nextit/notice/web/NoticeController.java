@@ -44,7 +44,7 @@ public class NoticeController {
 
 	// !!!글작성 프로세스
 	@RequestMapping(value = "/notice/noticeCreateProc")
-	public String noticeRegist(
+	public String noticeCreateProc(
 				@RequestParam HashMap<String, Object> param,
 				HashMap<String, Object> hmap
 			) {

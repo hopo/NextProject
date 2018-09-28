@@ -70,7 +70,7 @@
 	</form:form>
 
 	<!-- // ;List View Part -->
-	<form action="<c:url value='/prescription/prescriptionUpdate' />" id="searchForm" method="POST">
+	<form action="<c:url value='/prescription/prescriptionEdit' />" id="searchForm" method="POST">
 		<table class="table table-bordered">
 			<thead class="bg-success">
 				<tr>

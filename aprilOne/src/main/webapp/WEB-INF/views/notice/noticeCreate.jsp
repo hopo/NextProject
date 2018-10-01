@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<th>직원 ID</th>
-					<td>${loginInfo.empName}</td>
+					<td>${loginInfo.empName} (${loginInfo.empId})</td>
 				</tr>
 				<tr>
 					<th>내용</th>

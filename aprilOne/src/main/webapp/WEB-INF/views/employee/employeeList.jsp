@@ -11,7 +11,7 @@
 <html>
 
 <head>
-<title>직원 리스트</title>
+<title>직원 목록</title>
 <script type="text/javascript" defer="defer">
 
 	$(document).ready(function() {

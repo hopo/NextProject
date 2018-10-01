@@ -7,68 +7,41 @@
 
 <mapper namespace="kr.or.nextit.medicine.service.impl.MedicineMapper">
 
-
 	<!-- =================================== -->
 	<!-- SELECT / INSERT / UPDATE -->
 	<!-- =================================== -->
 	<insert id="insertMedicine" parameterType="kr.or.nextit.comm.model.MedicineVo" >
-			 INSERT INTO tb_medicine (
-			    med_code,
-			    med_storedate,
-			    med_disusedate,
-			    med_amt,
-			    med_memo
-			) VALUES (
-			    #{medCode},
-			    #{medStoredate},
-			    #{medDisusedate},
-			    #{medAmt},
-			    #{medMemo},
-			);
-	
+		 INSERT INTO tb_medicine (
+		    med_code,
+		    med_storedate,
+		    med_disusedate,
+		    med_amt,
+		    med_memo
+		) VALUES (
+		    #{medCode},
+		    #{medStoredate},
+		    #{medDisusedate},
+		    #{medAmt},
+		    #{medMemo},
+		)
 	</insert> 
-	
-	<!--
-	<select id="insertMedicine" parameterType="kr.or.nextit.comm.model.MedicineVo" resultType="kr.or.nextit.comm.model.MedicineVo">
-		
-			SELECT
-				medCode,			
-				medStoredate,	 
-				medDisusedate,
-				medAmt, 			
-				medMemo		
-			FROM
-				tb_medicine
-		
-	</select>
-	-->
 
 	<select id="selectMedicineList" parameterType="kr.or.nextit.comm.model.MedicineVo" resultType="kr.or.nextit.comm.model.MedicineVo">
-			SELECT 
-				a.med_code ,
-			    b.med_codename ,
-			    b.med_unit , 
-			    a.med_storedate ,
-			    a.med_disusedate ,
-			    a.med_amt ,
-			    a.med_memo 
-			  FROM
-			  	tb_medicine a , 
-			    tb_med_codename  b
-			 WHERE
-			 	a.med_code = b.med_code   
+		SELECT 
+			a.med_code ,
+		    TO_CHAR(a.med_storedate, 'yyyy/mm/dd') med_storedate,
+		    TO_CHAR(a.med_disusedate, 'yyyy/mm/dd') med_disusedate,
+		    a.med_amt ,
+		    a.med_memo , 
+		    b.med_codename ,
+		    b.med_unit 
+		  FROM
+		  	tb_medicine a , 
+		    tb_med_codename  b
+		 WHERE
+		 	a.med_code = b.med_code 
+		 ORDER BY
+		 	med_disusedate
 	</select>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

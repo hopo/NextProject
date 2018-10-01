@@ -32,8 +32,8 @@ public class UrlAliasFilter implements Filter {
 				FilterChain chain
 			) throws IOException, ServletException {
 		//		log.info(">>> UrlAliasFilter.doFilter() Call");
-		// ;별칭 맵을 상뇽하면 좋을 듯 하다고 생각
-		// ; 세션에 loginInfo를 삭제 하면 어떻게 ???
+		// ;별칭 맵을 사용하면 좋을 듯 하다고 생각
+		// ;세션에 loginInfo를 삭제 하면 어떻게 ???
 
 		urls = new HashMap<>();
 		

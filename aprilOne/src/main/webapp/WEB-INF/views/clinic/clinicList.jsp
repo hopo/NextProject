@@ -11,7 +11,7 @@
 <html>
 
 <head>
-<title>진료 리스트</title>
+<title>진료 목록</title>
 <script type="text/javascript" defer="defer">
 
 	$(document).ready(function() {

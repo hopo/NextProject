@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>게시판 리스트</title>
+<title>직원 게시판</title>
 <script type="text/javascript" defer="defer">
 	
 	$(document).ready(function() {

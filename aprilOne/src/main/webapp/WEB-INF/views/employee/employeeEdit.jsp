@@ -98,10 +98,13 @@
 			    		</div>
 					</td>
 				</tr>
-				<tr>
-					<th>연봉</th>	<!--empSalary -->
-					<td><input name="empSalary" value="${item.empSalary}"></td>
-				</tr>
+				<c:if test="${loginInfo.empDiv eq 'A'}">
+					<tr>
+						<th>연봉</th>	<!--empSalary -->
+						<td><input name="empSalary" value="${item.empSalary}"></td>
+					</tr>
+				</c:if>
+				
 				<tr>
 					<th>입사일</th>	<!-- empHiredate -->
 					<td><span>${item.empHiredate}</span>

@@ -71,7 +71,7 @@
 
 	<!-- // ;List View Part -->
 	<form action="<c:url value='/prescription/prescriptionEdit' />" id="searchForm" method="POST">
-		<table class="table table-bordered">
+		<table class="table table-bordered table-hover">
 			<thead class="bg-success">
 				<tr>
 					<th>처방코드</th>
@@ -88,9 +88,7 @@
 						<c:param name="prsCode" value="${i.prsCode}"/>
 					</c:url>
 					<tr>
-						<td>
-							<a href="#">${i.prsCode}</a>
-						</td>
+						<td>${i.prsCode}</td>
 						<td>${i.clnCode}</td>
 						<td>${i.prsDescr}</td>
 						<td>${i.medCode}</td>

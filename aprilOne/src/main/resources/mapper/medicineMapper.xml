@@ -19,8 +19,8 @@
 		    med_memo
 		) VALUES (
 		    #{medCode},
-		    #{medStoredate},
-		    #{medDisusedate},
+		    SYSDATE,
+		    SYSDATE,
 		    #{medAmt},
 		    #{medMemo}
 		)

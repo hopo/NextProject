@@ -15,17 +15,15 @@
 <title>약품 등록</title>
 </head>
 <body>
-
-
 	<form class="form-horizontal" action="<c:url value='/medicine/medicineCreateProc' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
-					<th>의약품코드 </th>
+					<th>의약품코드</th> <!-- // 검색되어 있어야 합니다? -->
 					<td><input type="text" name="medCode" class="form-control" ></td>
 				</tr>
 				<tr>
-					<th>입고일</th>
+					<th>입고일</th> <!-- // 문자열입력이요? -->
 					<td><input type="date" name="medStoredate" class="form-control" ></td>
 				</tr>
 				<tr>

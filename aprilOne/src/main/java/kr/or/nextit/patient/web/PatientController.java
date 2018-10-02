@@ -64,7 +64,7 @@ public class PatientController {
 			model.addAttribute("msgTag", msgVo.getMsgTag());
 			model.addAttribute("msgValue", msgVo.getMsgValue());
 
-			return "patient/patientCreateProc";
+			return "redirect:/patient/patientList";
 
 		} catch (Exception e) {
 			e.printStackTrace();

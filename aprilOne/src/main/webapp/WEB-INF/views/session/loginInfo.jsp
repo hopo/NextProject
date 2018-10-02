@@ -110,14 +110,12 @@
 		<tr>
 			<th>접속자 직원 이름</th>
 			<th>접속자 직원 아이디</th>
-			<th>접속자 직원 직책분류</th>
-			<th>접속자 직원 직책이름</th>
+			<th>접속자 직원 직책</th>
 		</tr>
 		<tr>
 			<td>${loginInfo.empName}</td>
 			<td>${loginInfo.empId}</td>
-			<td>${loginInfo.empDiv}</td>
-			<td>${loginInfo.empDivname}</td>
+			<td>${loginInfo.empDivname} (${loginInfo.empDiv})</td>
 		</tr>
 	</table>
 	
@@ -128,24 +126,6 @@
 	</form>
 	
 	<div id="showDiv"></div>
-
-	<%--
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>로그인 시간</th>
-				<th>로그아웃 시간</th>
-			</tr>
-			<c:forEach var="item" items="${result}">
-				<tr>
-					<td>${item.logLogindate}</td>
-					<td>${item.logLogoutdate}</td>
-				</tr>
-			</c:forEach>
-		</thead>
-		<tbody></tbody>
-	</table>
-	--%>	
 	
 </body>
 </html>

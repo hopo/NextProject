@@ -51,7 +51,7 @@
 		empRrnum.value = empRrnum1.value + '-' +  empRrnum2.value;
 
 		if (empPhone.value == null || empRrnum == null) {
-			return fasle;
+			return false;
 		} else {
 			return true;
 		}
@@ -67,7 +67,7 @@
 	</c:if>
 
 	<%-- <form class="" action="<c:url value='/employee/employeeCreateProc' />" method="POST"> --%>
-	<form action="<c:url value='${urls.employee_createProc}' />" method="POST" onsubmit="return check()">
+	<form action="<c:url value='/employee/employeeCreateProc' />" method="POST" onsubmit="return check()">
 		<div class="loginmo-container" style="max-width: 500px;">
 		<h3 style="text-align: center;">계정 만들기</h3>
 			<table class="table">
@@ -127,19 +127,11 @@
 				    		</div>
 						</td>
 					</tr>
-					<!-- 
-					<tr>
-						<td colspan="2">
-							<button class="btn btn-lg btn-primary btn-block" type="submit">직원등록</button>
-						</td>
-					</tr>
-					-->
 				</tbody>
 			</table>
 
 			<input type="submit" class="login loginmo-submit" value="Create ID">
-
-			<div>계정 만들기를, <a href="<c:url value='${urls.session_login}' />">취소</a></div>
+			<div>계정 만들기를, <a href="<c:url value='/session/login' />">취소</a></div>
 		</div>
 	</form>	
 

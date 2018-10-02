@@ -18,16 +18,31 @@
 <body>
 
 	<!-- 검색  -->
-	<form class="form-horizontal" action="#" id="searchForm" method="POST">
-		<!-- // ;;검색기능 코드 -->
-	</form>
+	<!-- // ;Search Part -->
+	<table>
+		<tr>
+			<th>검색타입</th>
+			<td>
+				<select path="searchType" class="btn btn-default">
+					<option value="med_code">의약품코드</option>
+					<option value="med_name">의약품이름</option>
+				</select>
+			</td>
+			<td>
+				<input path="searchText" placeholder="입력하세요..." class="form-control" />
+			</td>
+			<td>
+				<button id="searchSubmit" type="submit" class="btn btn-primary btn-sm">검색</button>
+			</td>
+		</tr>
+	</table>
 	
 	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
 		<thead class="bg-primary">
 			<tr>
 				<th>의약품코드</th>
-				<th>의약품 명</th>
+				<th>의약품이름</th>
 				<th>입고일</th>
 				<th>폐기일</th>
 				<th>재고 수량</th>
@@ -37,7 +52,7 @@
 		<tbody>
 			<c:forEach var="i" items="${medList}" >
 				<tr>
-					<td><a href="#">${i.medCode}</a></td>
+					<td>${i.medCode}</td>
 					<td>${i.medCodename}</td>
 					<td>${i.medStoredate}</td>
 					<td>${i.medDisusedate}</td>
@@ -47,7 +62,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a class="btn btn-default" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a>
+	<a class="btn btn-primary" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a>
 	
 	<!-- 페이지 -->
 	<!-- // ;;기능 코드 -->

@@ -19,28 +19,7 @@
 </head>
 
 <body>
-<h1>
-	AprilOne Project
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-	<table class="table-bordered">
-		<thead class="">
-			<tr>
-				<th>Url</th>
-				<th>Alias</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="item" items="${urls}">
-				<tr>
-					<td>${item.value}</td>
-					<td><a href="<c:url value="${item.value}" />">${item.key}</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
+<h2>${loginInfo.empDivname}, ${loginInfo.empName}님의 접속</h2>
+<P>The time on the server is ${serverTime}.</P>
 </body>
 </html>

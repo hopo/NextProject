@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<form action="patientCreateProc"  method="POST">
+	<form action="<c:url value='/patient/patientCreateProc' />"  method="POST">
 		<table class="table table-bordered" >
 			<tbody>
 				<tr>
@@ -39,11 +39,17 @@
 				</tr>
 				<tr>
 					<th>환자 성별</th>
-					<td><input type="text" name="patGender" required placeholder="성별(M/F)" value="F"></td>
+					<td>
+						<div id='type'>
+							여자 <input type='radio' id='radio_2' name='patGender' value='F' />
+				    	    남자 <input type='radio' id='radio_1' name='patGender' value='M' />
+				    	    미분류 <input type='radio' id='radio_3' name='patGender' value='Z' checked="checked" />
+			    		</div>
 				</tr>
 				<tr>
 					<th>환자 주소</th>
-					<td><input type="text" name="patAddress" required placeholder="주소" value="대전광역시 중구"></td>
+					<td>
+						<input type="text" name="patAddress" required placeholder="주소" value="대전광역시 중구"></td>
 				</tr>
 				<tr>
 					<th>환자 질환유무</th>
@@ -60,14 +66,9 @@
 						<input type="hidden" name="empId" value="${loginInfo.empId}" >
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<button class="btn btn-default">환자등록</button>
-					</td>
-				</tr>
-				
 			</tbody>
 		</table>
+		<button class="btn btn-primary">환자등록</button>
 	</form>
 </body>
 </html>

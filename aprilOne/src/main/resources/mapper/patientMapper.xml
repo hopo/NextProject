@@ -73,7 +73,7 @@
 					tb_patient
 	   			<include refid="whereQueryTrimIf" />	
 	    		ORDER BY
-	    			pat_firstdate
+	    			pat_firstdate DESC
 			) frm
 	    ) WHERE
 	    	rnum BETWEEN #{startRow} AND #{endRow}

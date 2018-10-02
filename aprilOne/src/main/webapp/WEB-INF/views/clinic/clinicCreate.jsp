@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<form class="form-horizontal" action="<c:url value='${urls.clinic_createProc}' />" method="POST">
+	<form class="form-horizontal" action="<c:url value='/clinic/clinicCreateProc' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -25,9 +25,9 @@
 							${param.patName} (${param.patCode})
 						</c:if>
 
-						<input type="hidden" name="patCode" required value="${param.patCode}"> <!-- null상태서 서브밋 하면 에러터짐 -->
+						<input type="hidden" name="patCode" id="patCode" required value="${param.patCode}"> <!-- null상태서 서브밋 하면 에러터짐 -->
 						<c:if test="${param.patCode eq null}">
-							<a class='btn btn-primary btn-xs' href="<c:url value='${urls.patient_list}' />">환자검색</a>
+							<a class='btn btn-primary btn-xs' href="<c:url value='/patient/patientList' />">환자검색</a>
 						</c:if>
 					</td>
 				</tr>
@@ -39,14 +39,16 @@
 					</td>
 				</tr>
 				<tr>
-					<th>진료내용</th>
-					<td>
+					<th colspan="2">진료내용</th>
+				</tr>
+				<tr>
+					<td colspan="2">
 						<textarea name="clnDescr" class="form-control" rows="4" cols="50" placeholder="진료내용" require></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-lg btn-primary btn-block" type="submit" value="">진료등록</button>
+		<button class="btn btn-primary" type="submit" value="">진료등록</button>
 	</form>	 
 
 </body>

@@ -38,6 +38,10 @@
 						<a class="btn btn-danger" href="<c:url value='/patient/patientCreate' />">환자 등록</a>
 						|
 						<a class="btn btn-warning" href="<c:url value='/clinic/clinicList' />">진료 목록</a>
+						<c:if test="${loginInfo.empDiv eq 'D' }">
+							<a class="btn btn-warning" href="<c:url value='/clinic/clinicCreate' />">진료 등록</a>
+						</c:if>
+						|
 						<a class="btn btn-success" href="<c:url value='/prescription/prescriptionList' />">처방전 목록</a>
 						<a class="btn btn-primary" href="<c:url value='/medicine/medicineList' />">의약품 목록</a>
 						|

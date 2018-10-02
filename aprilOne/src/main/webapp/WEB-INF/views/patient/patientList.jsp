@@ -96,7 +96,7 @@
 					<td>${i.patName}</td>
 					<td>${i.empId}</td>
 					<td>${i.patRrnum}</td>
-					<td>${i.patInscode}</td>
+					<td>${i.insCode}</td>
 					<td>${i.patAddress}</td>
 					<td>${i.patPhone}</td>
 					<td>${i.patDisease}</td>

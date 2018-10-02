@@ -22,7 +22,7 @@
 	<insert id="insertPatient" parameterType="kr.or.nextit.comm.model.PatientVo">
 		INSERT INTO tb_patient (
 			pat_code ,
-			pat_inscode ,
+			ins_code ,
 			pat_name ,
 			pat_phone ,
 			pat_rrnum ,
@@ -34,7 +34,7 @@
 			emp_id
 		) VALUES (
 			'P' || LPAD(seq_patient.NEXTVAL, 5, '0') ,
-			#{patInscode} ,
+			#{insCode} ,
 			#{patName} ,
 			#{patPhone} ,
 			#{patRrnum} ,
@@ -58,7 +58,7 @@
 			FROM (
 				SELECT
 					pat_code,
-					pat_inscode,
+					ins_code,
 					pat_name,
 					pat_phone,
 					pat_rrnum,
@@ -83,7 +83,7 @@
 	<select id="selectPatientView" resultType="kr.or.nextit.comm.model.PatientVo" parameterType="kr.or.nextit.comm.model.PatientVo">
 		SELECT
 			pat_code,
-			pat_inscode,
+			ins_code,
 			pat_name,
 			pat_phone,
 			pat_rrnum,

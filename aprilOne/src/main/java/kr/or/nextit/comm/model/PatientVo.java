@@ -11,7 +11,6 @@ public class PatientVo implements Serializable {
 	// !!!필드
 
 	private String patCode; // !환자코드 (PK) nn
-	private String patInscode; // !보험코드 (FK)
 	private String patName; // !환자 이름 nn
 	private String patPhone; // !환자 전화번호 : UQ nn
 	private String patRrnum; // !환자 주민번호 : UQ nn
@@ -22,6 +21,7 @@ public class PatientVo implements Serializable {
 	private String patRedate; // !재진일
 	private String patMemo; // !환자 특이사항
 	private String empId; // !직원 ID(담당의) : FK
+	private String insCode; // !보험코드 (FK)
 
 	// !!!부가적 필드
 	private String message;
@@ -30,30 +30,17 @@ public class PatientVo implements Serializable {
 	private String empName; // !직원 ID(담당의) : FK
 
 	// !!!게터 세터
-	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+
 	public String getPatCode() {
 		return patCode;
 	}
 
-	public String getEmpName() {
-		return empName;
-	}
-
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
-
 	public void setPatCode(String patCode) {
 		this.patCode = patCode;
-	}
-
-	public String getPatInscode() {
-		return patInscode;
-	}
-
-	public void setPatInscode(String patInscode) {
-		this.patInscode = patInscode;
 	}
 
 	public String getPatName() {
@@ -136,6 +123,14 @@ public class PatientVo implements Serializable {
 		this.empId = empId;
 	}
 
+	public String getInsCode() {
+		return insCode;
+	}
+
+	public void setInsCode(String insCode) {
+		this.insCode = insCode;
+	}
+
 	public String getMessage() {
 		return message;
 	}
@@ -152,9 +147,12 @@ public class PatientVo implements Serializable {
 		this.result = result;
 	}
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
+	public String getEmpName() {
+		return empName;
 	}
 
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	
 }

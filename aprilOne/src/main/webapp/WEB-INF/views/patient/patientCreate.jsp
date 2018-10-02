@@ -23,7 +23,7 @@
 			<tbody>
 				<tr>
 					<th>보험 코드</th>
-					<td><input type="text" name="patInscode"></td>
+					<td><input type="text" name="insCode"></td>
 				</tr>
 				<tr>
 					<th>환자 이름</th>

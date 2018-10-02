@@ -49,7 +49,7 @@
 			</tr>
 			<tr>
 				<th>환자 보험코드</th>
-				<td>${patView.patInscode}</td>
+				<td>${patView.insCode}</td>
 			</tr>
 			<tr>
 				<th>환자 주소</th>

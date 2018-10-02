@@ -51,21 +51,18 @@
 
 <body>
 
-	<form action="<c:url value='/prescription/prescriptionView'/>" method="post">
+	<form action="<c:url value='/prescription/prescriptionCreateProc'/>" method="POST">
 		<input type="hidden" name="clnCode" value="${clnCode}" > 
 		<input type="hidden" name="patCode" value="${patCode}" > 
 		<input type="hidden" name="empId" value="${empId}" >  
 
 		<table class="table">
-			// ;참고 - SELECT seq_prescription.CURRVAL FROM DUAL
-
 			<thead></thead>
 			<tbody>
 				<tr>
 					<th>진료코드</th>	
 					<td>${clnCode}</td>
 				</tr>
-				
 				<tr>
 					<th>환자코드</th>	<!-- patCode -->  
 					<td>${patCode}</td>
@@ -90,7 +87,6 @@
 						<textarea cols="55" rows="5" name="prsDescr" id="prsDescr"> </textarea>
 					</td>
 				</tr>
-				
 				
 				
 				<!-- medCode  의약품코드 테이블에서 의약품코드 컬럼3개 가져옴   -->

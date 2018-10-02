@@ -88,7 +88,9 @@
 						<c:param name="prsCode" value="${i.prsCode}"/>
 					</c:url>
 					<tr>
-						<td><a href="<c:url value='/prescription/prescriptionView?prsCode=${i.prsCode}' />">${i.prsCode}</a></td>
+						<td>
+							<a href="#">${i.prsCode}</a>
+						</td>
 						<td>${i.clnCode}</td>
 						<td>${i.prsDescr}</td>
 						<td>${i.medCode}</td>

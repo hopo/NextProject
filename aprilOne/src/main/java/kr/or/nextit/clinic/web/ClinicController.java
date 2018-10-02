@@ -35,7 +35,7 @@ public class ClinicController {
 
 	// !!!진료 기록 화면
 	@RequestMapping(value = "/clinic/clinicCreate")
-	public String clinicCreate() {
+	public String clinicCreate(HashMap<String, Object> hmap) {
 		log.info(">>> /clinic/clinicCreate");
 
 		return "clinic/clinicCreate";

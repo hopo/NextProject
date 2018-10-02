@@ -60,17 +60,17 @@ public class PrescriptionController {
 			model.addAttribute("patCode", param.get("patCode"));
 			model.addAttribute("empId", param.get("empId"));
 
-//			// ;;진료정보를 조회하여 모델에 저장
-//			ClinicVo clinicVo = clinicService.selectClinicItem(null);
-//			log.debug("clinicVo : {}", clinicVo);
-//
-//			model.addAttribute("clinicVo", clinicVo);
-//
-//			// ;;약품목록을 조회하여 모델에 저장
-//			List<MedicineVo> medList = medicineService.selectMedicineList(null);
-//			log.debug("medList : {}", medList);
-//
-//			model.addAttribute("medList", medList);
+			// ;;진료정보를 조회하여 모델에 저장
+			ClinicVo clinicVo = clinicService.selectClinicItem(null);
+			log.debug("clinicVo : {}", clinicVo);
+
+			model.addAttribute("clinicVo", clinicVo);
+
+			// ;;약품목록을 조회하여 모델에 저장
+			List<MedicineVo> medList = medicineService.selectMedicineList(null);
+			log.debug("medList : {}", medList);
+
+			model.addAttribute("medList", medList);
 
 			return "prescription/prescriptionCreate";
 
@@ -95,7 +95,7 @@ public class PrescriptionController {
 			prescriptionService.insertPrescription(prescriptionVo);
 			model.addAttribute("prsInsert", prescriptionVo);
 
-			return "prescription/prescriptionCreateProc";
+			return "redirect:/prescription/prescriptionList";
 
 		} catch (Exception e) {
 			e.printStackTrace();

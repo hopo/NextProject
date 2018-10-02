@@ -29,7 +29,7 @@
 		    med_code2,
 		    med_code3
 		 ) VALUES (
-			'R' || LPAD(seq_prescriptioc.NEXTVAL, 5, '0') ,
+			'R' || LPAD(seq_prescription.NEXTVAL, 5, '0') ,
 		    #{clnCode} ,
 		    #{prsDescr} ,
 		    #{medCode} ,

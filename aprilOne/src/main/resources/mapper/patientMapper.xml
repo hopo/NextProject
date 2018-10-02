@@ -74,7 +74,7 @@
 	   			<include refid="whereQueryTrimIf" />	
 	    		ORDER BY
 	    			pat_firstdate
-			) frm 
+			) frm
 	    ) WHERE
 	    	rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
@@ -90,8 +90,8 @@
 			pat_gender,
 			pat_address,
 			pat_disease,
-			pat_firstdate,
-			pat_redate,
+		    TO_CHAR(pat_firstdate,'yyyy/mm/dd hh:mi') AS pat_firstdate,
+		    TO_CHAR(pat_redate,'yyyy/mm/dd hh:mi') AS pat_redate,
 			pat_memo,
 			emp_id
 		FROM

@@ -22,7 +22,7 @@
 		    #{medStoredate},
 		    #{medDisusedate},
 		    #{medAmt},
-		    #{medMemo},
+		    #{medMemo}
 		)
 	</insert> 
 

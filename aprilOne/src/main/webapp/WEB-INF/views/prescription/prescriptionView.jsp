@@ -45,7 +45,7 @@
 
 </script>
 
-	<form action="<c:url value='/prescription/prescriptionList'/>" method="post">
+	<form action="<c:url value='/prescription/prescriptionList'/>" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -57,8 +57,6 @@
 					<th>처방코드</th>	<!-- prsCode -->
 					<td>${preView.prsCode}</td>
 				</tr>
-				
-				
 				<!-- clnCode  진료상세조회 - 진료코드로 가져옴(진료코드, 환자코드, 담당의, 진료일, 진료내용)   -->  
 				<tr>
 					<th>환자코드</th>	<!-- patCode -->  
@@ -88,7 +86,6 @@
 				
 				
 				<!-- medCode  의약품코드 테이블에서 의약품코드 컬럼3개 가져옴   -->
-				
 				<tr>
 					<th>의약품코드</th>	
 					<td>

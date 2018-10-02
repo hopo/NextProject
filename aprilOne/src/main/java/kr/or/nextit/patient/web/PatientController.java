@@ -38,7 +38,7 @@ public class PatientController {
 	public String patientCreate() {
 		log.info(">>> /patient/patientCreate");
 
-		return "patient/patientCreate";
+			return "patient/patientCreate";
 	}
 
 	// !!!환자 등록 프로세스

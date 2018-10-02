@@ -24,7 +24,7 @@
 	
 	<!-- 검색테이블 -->
 	<table class="table table-bordered table-hover">
-		<thead>
+		<thead class="bg-primary">
 			<tr>
 				<th>의약품코드</th>
 				<th>의약품 명</th>
@@ -37,7 +37,7 @@
 		<tbody>
 			<c:forEach var="i" items="${medList}" >
 				<tr>
-					<td><a href="${i.medCode}">${i.medCode}</a></td>
+					<td><a href="#">${i.medCode}</a></td>
 					<td>${i.medCodename}</td>
 					<td>${i.medStoredate}</td>
 					<td>${i.medDisusedate}</td>
@@ -48,5 +48,8 @@
 		</tbody>
 	</table>
 	<a class="btn btn-default" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a>
+	
+	<!-- 페이지 -->
+	<!-- // ;;기능 코드 -->
 </body>
 </html>

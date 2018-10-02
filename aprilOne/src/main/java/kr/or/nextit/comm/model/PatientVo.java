@@ -27,9 +27,21 @@ public class PatientVo implements Serializable {
 	private String message;
 	private boolean result;
 
+	private String empName; // !직원 ID(담당의) : FK
+
 	// !!!게터 세터
+	
+	
 	public String getPatCode() {
 		return patCode;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	public void setPatCode(String patCode) {

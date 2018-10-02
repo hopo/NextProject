@@ -28,17 +28,16 @@
 			<tr>
 				<th>환자 코드</th>
 				<td>
-					${patView.patCode}
+					${patView.patName} (${patView.patCode})
 					<c:url value="${urls.clinic_create}" var="clinic_create">
 						<c:param name="patCode" value="${patView.patCode}" />
 						<c:param name="patName" value="${patView.patName}" />
 					</c:url>
-					<a class="btn btn-default btn-sm" href="${clinic_create}">진료하기</a>
+					<c:if test="${loginInfo.empDiv eq 'D'}">
+						<a class="btn btn-primary btn-xs" href="${clinic_create}">진료하기</a>
+					</c:if>
+					
 				</td>
-			</tr>
-			<tr>
-				<th>환자 이름</th>
-				<td>${patView.patName}</td>
 			</tr>
 			<tr>
 				<th>환자 담당의</th>
@@ -81,7 +80,7 @@
 	<div class="btn-group" colspan="2">
 		<a class="btn btn-default" href="<c:url value='/patient/patientList' />">환자목록</a>
 		<a class="btn btn-info" href="<c:url value='/patient/patientEdit?patCode=${patView.patCode}' />">수정</a>
-		<a class="btn btn-danger" href="<c:url value='#' />">#삭제</a>
+		<!-- <a class="btn btn-danger" href="<c:url value='#' />">삭제</a> -->
 	</div>
 </body>
 </html>

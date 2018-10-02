@@ -96,6 +96,12 @@
 		)
 	</select>
 
+	<!-- 
+	<select id="selectCurrval" resultType="int">
+		SELECT seq_clinic.CURRVAL FROM dual
+	</select>
+	-->
+
 	<select id="selectClinicLastItemCode" resultType="String">
 		SELECT
 			cln_code
@@ -109,7 +115,6 @@
 			)
 		WHERE
 			cln_date = last_date
-			
 	</select>
 
 </mapper>

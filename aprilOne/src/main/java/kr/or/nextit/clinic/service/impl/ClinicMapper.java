@@ -39,5 +39,11 @@ public interface ClinicMapper {
 	 * @return
 	 * @throws Exception
 	 */
+	public int selectCurrval() throws Exception;
+
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	public String selectClinicLastItemCode() throws Exception;
 }

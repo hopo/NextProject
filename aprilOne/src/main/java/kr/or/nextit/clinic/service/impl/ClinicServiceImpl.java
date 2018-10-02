@@ -38,6 +38,11 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 	
 	@Override
+	public int selectCurrval() throws Exception {
+		return clinicMapper.selectCurrval();
+	}
+	
+	@Override
 	public String selectClinicLastItemCode() throws Exception {
 		return clinicMapper.selectClinicLastItemCode();
 	}

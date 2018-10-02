@@ -44,7 +44,7 @@ public class MedicineController {
 
 			medicineService.insertMedicine(medicineVo);
 
-			return "medicine/medicineCreateProc";
+			return "redirect:/medicine/medicineList";
 
 		} catch (Exception e) {
 			e.printStackTrace();

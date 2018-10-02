@@ -32,22 +32,20 @@
 				<tr>
 					<th>진료코드</th> <!-- clnCode -->
 					<td>
-						${item.clnCode}
-						<button type="submit" class="btn btn-primary btn-sm" >처방하기</button>
+						${item.clnCode} <button type="submit" class="btn btn-primary btn-xs" >처방하기</button>
 					</td>
 				</tr>
 				<tr>
 					<th>환자이름 (환자코드)</th>	<!-- patCode -->
 					<td>
-						${param.patName} - ${item.patCode}
-						<a href="<c:url value='${patientViewUrl}'/>" class="btn btn-info btn-xs">상세보기</a>
+						${param.patName} (${item.patCode}) <a href="<c:url value='${patientViewUrl}'/>" class="btn btn-info btn-xs">상세보기</a>
 					</td>
 				</tr>
 				<tr>
 					<th>담당의 (직원ID)</th>	<!-- empId -->
 					<td>
-						${param.empName} - ${item.empId}
-						<a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a>
+						${param.empName} (${item.empId})
+						<!-- <a href="<c:url value='${employeeViewUrl}'/>" class="btn btn-xs btn-info">상세보기</a> -->
 					</td>
 				</tr>
 				<tr>

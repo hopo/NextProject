@@ -34,12 +34,12 @@
 					
 		
 						<!-- // 메뉴들 -->
-						<a class="btn btn-default" href="<c:url value='/patient/patientList' />">환자 목록</a>
-						<a class="btn btn-default" href="<c:url value='/patient/patientCreate' />">환자 등록</a>
+						<a class="btn btn-danger" href="<c:url value='/patient/patientList' />">환자 목록</a>
+						<a class="btn btn-danger" href="<c:url value='/patient/patientCreate' />">환자 등록</a>
 						|
-						<a class="btn btn-default" href="<c:url value='/clinic/clinicList' />">진료 목록</a>
-						<a class="btn btn-default" href="<c:url value='/prescription/prescriptionList' />">처방전 목록</a>
-						<a class="btn btn-default" href="<c:url value='/medicine/medicineList' />">의약품 목록</a>
+						<a class="btn btn-warning" href="<c:url value='/clinic/clinicList' />">진료 목록</a>
+						<a class="btn btn-success" href="<c:url value='/prescription/prescriptionList' />">처방전 목록</a>
+						<a class="btn btn-primary" href="<c:url value='/medicine/medicineList' />">의약품 목록</a>
 						|
 						<a class="btn btn-default" href="<c:url value='/notice/noticeList' />">직원 게시판</a>
 						|
@@ -48,6 +48,7 @@
 							<!-- // !!직원 관리 드랍다운 -->
 							<span class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-employee" data-toggle="dropdown" aria-expanded="true">
+									<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 									관리
 									<span class="caret"></span>
 								</button>

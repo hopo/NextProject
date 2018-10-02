@@ -17,7 +17,7 @@
 <body>
 
 
-	<form class="form-horizontal" action="medicine/medicineList' /> method="POST">
+	<form class="form-horizontal" action="<c:url value='/medicine/medicineCreateProc' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -38,22 +38,13 @@
 				</tr>
 				<tr>
 					<th>의약품 주의사항</th>
-					<td><textarea name="medMemo" class="form-control" cols="40" rows="5">  </textarea></td>
+					<td><textarea name="medMemo" class="form-control" cols="40" rows="5"></textarea></td>
 				</tr>
-			
-				
-				
-				
-				
-				
 				<tr>
 					<td colspan="2">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">약품등록</button>
 					</td>
 				</tr>
-				
-				
-				
 				
 			</tbody>
 		</table>

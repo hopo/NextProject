@@ -17,7 +17,7 @@
 
 <title><sitemesh:write property='title' /></title>
 
-<link rel="icon" href="<c:url value='/images/favicon01.ico' />" type="image/x-icon" />
+<link rel="icon" href="<c:url value='/images/favicon.ico' />" type="image/x-icon" />
 
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap.min.js" />"></script>
@@ -27,6 +27,13 @@
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css"/>"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide4.jpg' />");
+		/* background-color: lightblue; */
+	}
+</style>
+
 <sitemesh:write property='head' />
 </head>
 
@@ -34,14 +41,13 @@
 	<c:import url="/decorator/inc/index.navigation.jsp" />
 	
 	<div class="container">
-
+	
 		<br>
 
 		<div id="body-top" class="blog-header">
-			<div class="blog-title" style="color:tomato; font-size:1.2em;">
+			<div class="blog-title" style="color:gray; font-size:1.2em;">
 				<sitemesh:write property='title' />
 			</div>
-			<!-- <p class="lead blog-description">"there is no meaning"</p> -->
 		</div>
 
 		<br>
@@ -51,7 +57,6 @@
 		<br>
 		<!-- // ;필요시 푸터 사용 -->
 		<c:import url="/decorator/inc/index.footer.jsp" />
-
 	</div>
 
 </body>

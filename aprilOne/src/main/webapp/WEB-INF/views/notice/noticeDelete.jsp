@@ -21,7 +21,7 @@
 		<c:param value='${param.ntcIdx}' name='ntcIdx' />
 	</c:url>
 
-	<button class="btn btn-danger"><a href="${noticeDeleteProcUrl}">삭제</a></button>
-	<button class="btn btn-secondary"><a href="<c:url value='/notice/noticeList' />">취소</a></button>
+	<a href="${noticeDeleteProcUrl}" class="btn btn-danger">삭제</a>
+	<a href="<c:url value='/notice/noticeList' />" class="btn btn-default">취소</a>
 </body>
 </html>

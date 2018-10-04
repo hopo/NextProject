@@ -15,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>환자 목록</title>
+
 <script type="text/javascript" defer="defer">
 
 	$(document).ready(function() {
@@ -39,6 +40,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
 		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
@@ -52,6 +54,7 @@
 					<form:select path="searchType" class="btn btn-default">
 						<form:option value="pat_name">환자이름</form:option>
 						<form:option value="pat_phone">환자전화번호</form:option>
+						<form:option value="emp_id">담당의</form:option>
 					</form:select>
 				</td>
 				<td>
@@ -73,16 +76,15 @@
 		<thead class="bg-danger">
 			<tr>
 				<th>환자코드</th>
-				<th>환자이름</th>
-				<th>담당의</th>
-				<th>환자주민번호</th>
 				<th>보험코드</th>
+				<th>환자이름</th>
+				<th>환자주민번호</th>
 				<th>환자주소</th>
 				<th>환자전화번호</th>
 				<th>질환유무</th>
-				<th>초진일</th>
-				<th>재진일</th>
 				<th>특이사항</th>
+				<th>담당의</th>
+				<th>최근진료일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -94,15 +96,14 @@
 				<tr>
 					<td><a href="<c:url value='/patient/patientView?patCode=${i.patCode}' />">${i.patCode}</a></td>
 					<td>${i.patName}</td>
-					<td>${i.empId}</td>
-					<td>${i.patRrnum}</td>
 					<td>${i.insCode}</td>
+					<td>${i.patRrnum}</td>
 					<td>${i.patAddress}</td>
 					<td>${i.patPhone}</td>
 					<td>${i.patDisease}</td>
-					<td>${i.patFirstdate}</td>
-					<td>${i.patRedate}</td>
 					<td>${i.patMemo}</td>
+					<td>${i.empId}</td>
+					<td>${i.patFirstdate eq null ? i.patRedate : i.patFirstdate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -133,9 +134,7 @@
 			<c:forEach var="i" begin="${searchVo.startPage}" end="${searchVo.endPage}">
 				<c:choose>
 					<c:when test="${i eq searchVo.curPage}">
-						<li class='disabled'>
-							<a href='#'>${i}</a>
-						</li>
+						<li class='disabled'><a href='#'>${i}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class='activate'>
@@ -163,11 +162,7 @@
 			</c:if>
 		</ul>
 	</nav>	
+	</div>
 
 </body>
 </html>
-
-
-
-
-

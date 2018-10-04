@@ -11,7 +11,12 @@
 <html>
 
 <head>
-<title>직원퇴사완료</title>
+<title></title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide2.jpg' />");
+	}
+</style>
 </head>
 
 <body>

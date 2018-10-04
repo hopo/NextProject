@@ -15,8 +15,9 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<form class="form-horizontal" action="<c:url value='/clinic/clinicCreateProc' />" method="POST">
-		<table class="table">
+		<table class="table table-bordered">
 			<tbody>
 				<tr>
 					<th>환자이름(환자코드)</th>
@@ -49,7 +50,8 @@
 			</tbody>
 		</table>
 		<button class="btn btn-primary" type="submit" value="">진료등록</button>
-	</form>	 
+	</form>
+	</div>	 
 
 </body>
 </html>

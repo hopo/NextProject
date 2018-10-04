@@ -41,7 +41,7 @@
 		 WHERE
 		 	a.med_code = b.med_code 
 		 ORDER BY
-		 	med_disusedate
+		 	med_storedate DESC
 	</select>
 
 </mapper>

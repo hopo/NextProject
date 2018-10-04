@@ -39,11 +39,16 @@ public class SessionController {
 	// !!!로그인 화면
 	@RequestMapping(value = "/session/login")
 	public String login(
+				HttpSession session,
 				@RequestParam HashMap<String, Object> param,
 				HashMap<String, Object> hmap
 			) {
 		log.info(">>> /session/login");
 		log.debug(">>> param {}", param);
+		
+		if (session.getAttribute("loginInfo") != null) {
+			return "index";
+		}
 		
 		hmap.put("msgTag", param.get("msgTag"));
 		hmap.put("msgValue", param.get("msgValue"));

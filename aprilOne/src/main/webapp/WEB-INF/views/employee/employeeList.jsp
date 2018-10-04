@@ -12,6 +12,11 @@
 
 <head>
 <title>직원 목록</title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide2.jpg' />");
+	}
+</style>
 <script type="text/javascript" defer="defer">
 
 	$(document).ready(function() {
@@ -36,6 +41,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
 		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
@@ -67,7 +73,7 @@
 
 	<!-- // ;List View Part -->
 	<table class="table table-bordered table-hover">
-		<thead class="bg-info">
+		<thead>
 			<tr>
 				<th>아이디</th>		<!-- empId -->
 				<th>이름</th>		<!-- empName -->
@@ -161,5 +167,7 @@
 			</c:if>
 		</ul>
 	</nav>	
+	</div>
+	
 </body>
 </html>

@@ -12,6 +12,11 @@
 
 <head>
 <title>직원 상세보기</title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide2.jpg' />");
+	}
+</style>
 <script type="text/javascript" defer="defer">
 
 	// 닫았으면 좋겠는데..
@@ -24,8 +29,12 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
-		<div id="msgDiv" class="alert alert-${msgTag}">${msgValue}<input type="button" value="X" onclick="fn_close()"></div>
+		<div id="msgDiv" class="alert alert-${msgTag}">
+			${msgValue}
+			<%-- <input type="button" value="X" onclick="fn_close()"> --%>
+		</div>
 	</c:if>
 
 	<table class="table">
@@ -76,25 +85,29 @@
 	
 	
 	<div class="btn btn-group">
-		<a href="<c:url value='${urls.employee_list}' />" class="btn btn-default">직원리스트</a>
+		<a href="<c:url value='/employee/employeeList' />" class="btn btn-default">직원리스트</a>
+
 		<c:if test="${loginInfo.empDiv eq 'A'}">
 			<c:url value='/employee/employeeEdit' var='employeeEditUrl'>
 				<c:param value='${item.empId}' name='empId' />
 			</c:url>
 			<a href="${employeeEditUrl}" class="btn btn-info">수정</a>
+
+			<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
+				<c:param value='${item.empId}' name='empId' />
+				<c:param value='${item.empName}' name='empName' />
+			</c:url>
 			<c:if test="${item.empRetiredate eq null}">
 				<a href="${employeeRetireUrl}" class="btn btn-danger">삭제(퇴사)</a>
 			</c:if>
 		</c:if>
 	
-		<c:url value='/employee/employeeRetire' var='employeeRetireUrl'>
-			<c:param value='${item.empId}' name='empId' />
-			<c:param value='${item.empName}' name='empName' />
-		</c:url>
 		
 	</div>
 	<c:if test="${item.empRetiredate ne null}">
 		<div><small class="text-danger">퇴사한 사람입니다.</small></div>
 	</c:if>
+
+	</div>
 </body>
 </html>

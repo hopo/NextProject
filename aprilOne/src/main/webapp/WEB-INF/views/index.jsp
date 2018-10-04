@@ -14,12 +14,19 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<title>Welcome Index</title>
+	<style type="text/css">
+		body {
+			background-image: url("<c:url value='/images/slide3.jpg' />");
+		}
+	</style>
 </head>
 
 <body>
-<h2>${loginInfo.empDivname}, ${loginInfo.empName}님의 접속</h2>
-<P>The time on the server is ${serverTime}.</P>
+	<hr>
+	<div style="color : white">
+		<div style="font-size: 2em">반갑습니다. ${loginInfo.empName}님.</div>
+		<P>접속시간: ${serverTime}.</P>
+	</div>
 </body>
 </html>

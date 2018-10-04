@@ -18,6 +18,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<form action="<c:url value='/notice/noticeCreateProc' />">
 		<input type="hidden" name="empId" value="${loginInfo.empId}">
 		<table class="table">
@@ -25,7 +26,7 @@
 			<tbody>
 				<tr>
 					<th>제목</th>
-					<td><input name="ntcTitle" placeholder="제목" required autofocus></td>
+					<td><input class="form-control" name="ntcTitle" placeholder="제목" required autofocus></td>
 				</tr>
 				<tr>
 					<th>직원 ID</th>
@@ -33,16 +34,13 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea rows="10" cols="60" name="ntcContent" placeholder="내용을 쓰세요.." required></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button type="submit">글저장</button>
-					</td>
+					<td><textarea class="form-control" rows="10" cols="60" name="ntcContent" placeholder="내용을 쓰세요.." required></textarea></td>
 				</tr>
 			</tbody>
 		</table>
-		<a class="btn btn-default" href="<c:url value='/notice/noticeList' />">게시판리스트</a>
+		<input class="btn btn-primary" type="submit" value="글저장" />
+		<a class="btn btn-default" href="<c:url value='/notice/noticeList' />">취소</a>
 	</form>
+	</div>
 </body>
 </html>

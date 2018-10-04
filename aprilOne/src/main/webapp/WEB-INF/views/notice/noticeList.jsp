@@ -35,6 +35,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
 		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
@@ -66,7 +67,7 @@
 	
 	<!-- // ;List View Part -->
 	<table class="table table-bordered table-hover">
-		<thead class="">
+		<thead class="bg-info">
 			<tr>
 				<th>글번호</th>	<!-- ntcIdx -->
 				<th>제목</th> 	<!-- ntcTitle-->
@@ -152,7 +153,8 @@
 				</li>
 			</c:if>
 		</ul>
-	</nav>	
+	</nav>
+	</div>	
 
 </body>
 </html>

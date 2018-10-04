@@ -10,25 +10,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
-
 <head>
 <title>약품 등록</title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide2.jpg' />");
+	}
+</style>
 </head>
+
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<form class="form-horizontal" action="<c:url value='/medicine/medicineCreateProc' />" method="POST">
 		<table class="table">
 			<tbody>
 				<tr>
 					<th>의약품코드</th> <!-- // 검색되어 있어야 합니다? -->
-					<td><input type="text" name="medCode" class="form-control" ></td>
+					<td><input type="text" name="medCode" class="form-control" maxlength="9" placeholder="M00000000" ></td>
 				</tr>
 				<tr>
 					<th>입고일</th> <!-- // 문자열입력이요? -->
-					<td><input type="date" name="medStoredate" class="form-control" ></td>
+					<td><input type="date" name="medStoredate" class="form-control"></td>
 				</tr>
 				<tr>
 					<th>폐기일</th>
-					<td><input type="date" name="medDisusedate" class="form-control" ></td>
+					<td><input type="date" name="medDisusedate" class="form-control"></td>
 				</tr>
 				<tr>
 					<th>재고 수량 </th>
@@ -46,23 +52,8 @@
 				
 			</tbody>
 		</table>
-	</form>	 
+	</form>
+	</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

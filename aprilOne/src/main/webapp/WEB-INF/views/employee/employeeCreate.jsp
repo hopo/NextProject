@@ -11,8 +11,15 @@
 <html>
 
 <head>
-<title>직원 등록</title>
+<title></title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide2.jpg' />");
+	}
+</style>
+
 <link rel="stylesheet" href="<c:url value="/css/nextit-login.css"/>">
+<!-- 
 <style type="text/css">
 	/* unvisited link */
 	a:link {
@@ -34,6 +41,7 @@
 	    color: blue;
 	}
 </style>
+-->
 
 <script type="text/javascript" defer="defer">
 
@@ -79,11 +87,11 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="empPwd" class="" placeholder="Password" required value="1111"></td>
+						<td><input type="password" name="empPwd" placeholder="Password" required></td>
 					</tr>
 					<tr>
 						<th>직원 이름</th>
-						<td><input type="text" name="empName" class="" placeholder="Name" required value="박테스트"></td>
+						<td><input type="text" name="empName" placeholder="Name"></td>
 					</tr>
 					<tr>
 						<th>직원 전화번호</th> <!-- empPhone -->
@@ -96,9 +104,9 @@
 								<option value='019'>019</option>
 							</select>
 							-
-							<input id="empPhone2" maxlength="4" size="4" placeholder="가운데자리" required value="1111">
+							<input id="empPhone2" maxlength="4" size="4">
 							-
-							<input id="empPhone3" maxlength="4" size="4" placeholder="끝자리" required value="2222">
+							<input id="empPhone3" maxlength="4" size="4">
 	
 							<input type="hidden" id="empPhone" name="empPhone" value="">
 						</td>
@@ -106,16 +114,16 @@
 					<tr>
 						<th>직원 주민번호</th> <!-- empRnrnum -->
 						<td>
-							<input id="empRrnum1" name="empRrnum1" maxlength="6" size="6" placeholder="주민번호 앞" required value="900909">
+							<input id="empRrnum1" name="empRrnum1" maxlength="6" size="6" required>
 							-
-							<input id="empRrnum2" name="empRrnum2" maxlength="7" size="7" placeholder="주민번호 뒤" required value="1231234">
+							<input id="empRrnum2" name="empRrnum2" maxlength="7" size="7" required>
 	
 							<input type="hidden" id="empRrnum" name="empRrnum" value="">
 						</td>
 					</tr>
 					<tr>
 						<th>직원 주소</th>
-						<td><input type="text" name="empAddress" class="" placeholder="Address" required value="대전광역시 중구"></td>
+						<td><input type="text" name="empAddress" class="" placeholder="Address" required></td>
 					</tr>
 					<tr>
 						<th>직책</th>
@@ -131,7 +139,7 @@
 			</table>
 
 			<input type="submit" class="login loginmo-submit" value="Create ID">
-			<div>계정 만들기를, <a href="<c:url value='/session/login' />">취소</a></div>
+			<div>계정 만들기를, <a style="color: red" href="<c:url value='/session/login' />">취소</a></div>
 		</div>
 	</form>	
 

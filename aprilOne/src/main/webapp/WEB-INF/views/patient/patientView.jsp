@@ -18,6 +18,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
 		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
@@ -81,6 +82,7 @@
 		<a class="btn btn-default" href="<c:url value='/patient/patientList' />">환자목록</a>
 		<a class="btn btn-info" href="<c:url value='/patient/patientEdit?patCode=${patView.patCode}' />">수정</a>
 		<!-- <a class="btn btn-danger" href="<c:url value='#' />">삭제</a> -->
+	</div>
 	</div>
 </body>
 </html>

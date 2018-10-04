@@ -15,6 +15,8 @@
 </head>  
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
+
 	<c:url value="../patient/patientView" var="patientViewUrl">
 		<c:param name="patCode" value="${item.patCode}" />
 	</c:url>
@@ -78,7 +80,8 @@
 	</c:url>
 	<button class="btn"><a href="${employeeRetireUrl}">"YOU'RE FIRED!"</a></button>
 	--%>
+	</div>
 
-	</body>
+</body>
 </html>
 

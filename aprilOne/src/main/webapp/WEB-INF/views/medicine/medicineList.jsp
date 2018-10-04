@@ -15,8 +15,9 @@
 
 <title>의약품 목록</title>
 </head>
-<body>
 
+<body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<!-- 검색  -->
 	<!-- // ;Search Part -->
 	<table>
@@ -62,9 +63,12 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a class="btn btn-primary" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a>
+	<c:if test="${loginInfo.empDiv eq 'D'}">
+		<a class="btn btn-default" href="<c:url value='/medicine/medicineCreate' />">의약품등록</a>
+	</c:if>
 	
 	<!-- 페이지 -->
 	<!-- // ;;기능 코드 -->
+	</div>
 </body>
 </html>

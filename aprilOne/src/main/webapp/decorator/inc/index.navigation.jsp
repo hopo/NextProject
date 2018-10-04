@@ -22,7 +22,7 @@
   			-->
 
 			<a class="navbar-brand" href="<c:url value='/index'/>">
-				<p><img src="<c:url value='/images/favicon01.ico' />" height="28">&nbsp;&nbsp;&nbsp;에이프릴 Clinic</p>
+				<p><img src="<c:url value='/images/favicon.ico' />" height="28">&nbsp;&nbsp;&nbsp;에이프릴 클리닉</p>
 			</a>
 		</div>
 		
@@ -30,22 +30,24 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${loginInfo ne null}">
-						
-					
 		
 						<!-- // 메뉴들 -->
+						<c:if test="${loginInfo.empDiv eq 'D' or loginInfo.empDiv eq 'N'}">
+							<a class="btn btn-danger" href="<c:url value='/patient/patientCreate' />">환자 등록</a>
+						</c:if>
+						
 						<a class="btn btn-danger" href="<c:url value='/patient/patientList' />">환자 목록</a>
-						<a class="btn btn-danger" href="<c:url value='/patient/patientCreate' />">환자 등록</a>
 						|
-						<a class="btn btn-warning" href="<c:url value='/clinic/clinicList' />">진료 목록</a>
-						<c:if test="${loginInfo.empDiv eq 'D' }">
+						<c:if test="${loginInfo.empDiv eq 'D'}">
 							<a class="btn btn-warning" href="<c:url value='/clinic/clinicCreate' />">진료 등록</a>
 						</c:if>
+						<a class="btn btn-warning" href="<c:url value='/clinic/clinicList' />">진료 목록</a>
 						|
 						<a class="btn btn-success" href="<c:url value='/prescription/prescriptionList' />">처방전 목록</a>
+						|
 						<a class="btn btn-primary" href="<c:url value='/medicine/medicineList' />">의약품 목록</a>
 						|
-						<a class="btn btn-default" href="<c:url value='/notice/noticeList' />">직원 게시판</a>
+						<a class="btn btn-info" href="<c:url value='/notice/noticeList' />">직원 게시판</a>
 						|
 
 						<c:if test="${loginInfo.empDiv eq 'A'}">
@@ -61,9 +63,10 @@
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/employee/employeeCreate' />">직원 등록</a></li>
 									<li role="presentation" class="divider"></li>
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="<c:url value='/medicine/medicineCreate' />">의약품 등록</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">#의약품 거래처</a></li>
+									<!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">#의약품 거래처</a></li> -->
 								</ul>
 							</span>
+							|
 						</c:if>
 						
 						
@@ -99,18 +102,4 @@
 		
 	</div>
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

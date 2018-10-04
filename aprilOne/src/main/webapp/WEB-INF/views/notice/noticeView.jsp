@@ -16,6 +16,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<table class="table">
 		<tbody>
 			<tr>
@@ -28,7 +29,7 @@
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td>${item.empName} - ${item.empDiv}</td>
+				<td>${item.empName}</td>
 			</tr>
 			<tr>
 				<th>글등록일</th>
@@ -40,7 +41,9 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${item.ntcContent}</td>
+				<td>
+					<pre>${item.ntcContent}</pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -64,5 +67,7 @@
 			<a class="btn btn-danger" href="${noticeDeleteUrl}">삭제</a>
 		</c:if>
 	</div>
+	</div>
+	
 </body>
 </html>

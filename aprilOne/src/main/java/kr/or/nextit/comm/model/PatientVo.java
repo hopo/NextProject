@@ -8,8 +8,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class PatientVo implements Serializable {
 
 	// !!! *테이블이름 : TB_PATIENT
-	// !!!필드
 
+	// !!!필드
 	private String patCode; // !환자코드 (PK) nn
 	private String patName; // !환자 이름 nn
 	private String patPhone; // !환자 전화번호 : UQ nn

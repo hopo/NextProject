@@ -12,6 +12,11 @@
 
 <head>
 <title>직원 수정하기</title>
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide1.jpg' />");
+	}
+</style>
 <script type="text/javascript" defer="defer">
 
 	function check() {
@@ -39,6 +44,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<form class="form-horizontal" action="<c:url value='${urls.employee_editProc}' />" onsubmit="return check()" method="POST">
 		<table class="table">
 			<tbody>
@@ -117,5 +123,6 @@
 			</tbody>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

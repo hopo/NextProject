@@ -36,6 +36,7 @@
 </head>
 
 <body>
+	<div style="background-color : #ffffff; padding: 30px">
 	<c:if test="${msgValue ne null}">
 		<div class="alert alert-${msgTag}">${msgValue}</div>
 	</c:if>
@@ -151,7 +152,8 @@
 				</li>
 			</c:if>
 		</ul>
-	</nav>	
+	</nav>
+	</div>
 
 </body>
 </html>

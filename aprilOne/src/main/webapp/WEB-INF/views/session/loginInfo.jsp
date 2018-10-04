@@ -15,6 +15,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>접속자 정보</title>
 
+<style type="text/css">
+	body {
+		background-image: url("<c:url value='/images/slide1.jpg' />");
+	}
+</style>
+
+
 <script type="text/javascript" defer="defer">
 
 	// ;===== jQuery AJAX ========
@@ -106,8 +113,9 @@
 </head>
 
 <body>
-	<table class="table">
-		<tr>
+	<div style="background-color : #ffffff; padding: 30px">
+	<table class="table table-bordered">
+		<tr style="background-color : gray;">
 			<th>접속자 직원 이름</th>
 			<th>접속자 직원 아이디</th>
 			<th>접속자 직원 직책</th>
@@ -126,6 +134,7 @@
 	</form>
 	
 	<div id="showDiv"></div>
-	
+	</div>
+
 </body>
 </html>
